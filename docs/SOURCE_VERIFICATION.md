@@ -2,7 +2,16 @@
 
 `config/sources.yaml`의 `TODO` 값을 채우고 `verified: true`로 바꾸는 절차입니다. 네트워크가 열린 환경에서 진행합니다.
 
-## 0. 현황 보기
+## 0. 준비: GitHub Actions 로 구조 확인하기
+
+작업 환경에서 사이트 접속이 막혀 있으면 `probe` 워크플로를 수동 실행한다 (Actions → probe → Run workflow).
+
+- `urls`: 목록 페이지 URL을 공백으로 구분해 넣으면 `scripts/dump_structure.py`가 표/목록 구조, 행 내부 요소, 링크·onclick, 페이징, 날짜 표본을 로그에 출력한다.
+  URL에 `amode=view`, `View.do`, `Detail.do`, `regSn=` 이 있으면 상세 페이지로 보고 본문·첨부 후보를 출력한다.
+- `sources`: source id 를 넣으면 `gia probe <id> --detail` 을 실행한다.
+- 기본 브랜치가 아닌 브랜치의 스크립트로 실행하려면 Run workflow 의 "Use workflow from" 에서 그 브랜치를 고른다.
+
+## 0-1. 현황 보기
 
 ```bash
 python -m gia sources            # 소스별 설정 상태 (미설정 이유 포함)
@@ -105,3 +114,4 @@ python -m gia collect --dry-run --sources <source_id>
 | 글자 깨짐 | 인코딩 | `encoding: euc-kr` |
 | 마감일 unknown | 첨부(HWP)에만 있음 | `attachment_selector` 확인, `첨부추출실패` 플래그 확인 |
 | HTTP 403 | User-Agent 차단 또는 robots | `notes`에 기록하고 비활성화 |
+| 연결 시간초과(ConnectTimeout)가 여러 사이트에서 동시에 남 | GitHub 호스티드 러너 IP 대역을 지자체 방화벽이 차단. 같은 시각 다른 러너(Azure 리전)에서는 열리기도 함 (2026-09-21 관측: eastus2 러너는 창원·김해·하동·거창 정상, eastus 러너는 전부 시간초과) | 재실행해 다른 러너에 배정되길 기다리거나, 국내 IP(자체 호스팅 러너·프록시)로 수집. `collect` 워크플로도 같은 영향을 받으므로 소스별 실패를 일시 장애로 취급하고 다음 날 재시도 |
