@@ -654,5 +654,37 @@
     "confidence": "high",
     "collected_at": "2026-09-21",
     "id": "masan-04"
+  },
+  {
+    "institution_id": "pnu-sce",
+    "region": "부산",
+    "university": "부산대학교",
+    "center": "미래시민교육원(舊 평생교육원)",
+    "title": "강좌개설신청 (홈페이지 상시 접수 메뉴)",
+    "url": "https://sce.pusan.ac.kr/#none",
+    "posted_date": "",
+    "category": "강좌개설제안(상시)",
+    "summary": "",
+    "board": "미래시민교육원 메인",
+    "source": "scraper",
+    "confidence": "high",
+    "collected_at": "2026-09-21",
+    "id": "pnu-sce-02"
+  },
+  {
+    "institution_id": "uc-edu",
+    "region": "울산",
+    "university": "울산과학대학교",
+    "center": "평생교육원",
+    "title": "성인 태권도 강좌 개설제안 (홈페이지 상시 접수 메뉴)",
+    "url": "https://edu.uc.ac.kr/edu/CMS/Board/Board.do?mCode=MN080&mode=view&mgr_seq=394&board_seq=39469",
+    "posted_date": "",
+    "category": "강좌개설제안(상시)",
+    "summary": "",
+    "board": "강좌개설제안",
+    "source": "scraper",
+    "confidence": "high",
+    "collected_at": "2026-09-21",
+    "id": "uc-edu-03"
   }
 ]
