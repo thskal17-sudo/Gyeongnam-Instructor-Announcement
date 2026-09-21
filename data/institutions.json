@@ -180,10 +180,10 @@
     "boards": [
       {
         "name": "공지사항",
-        "url": "https://ysedu.ysu.ac.kr/board/notice/list.asp"
+        "url": "https://ysedu.ysu.ac.kr/board/notice_edu/list.asp"
       }
     ],
-    "phone": ""
+    "phone": "051-540-7045, 7265"
   },
   {
     "id": "bdu-edulife",
@@ -218,14 +218,14 @@
     "region": "부산",
     "university": "부산보건대학교",
     "center": "평생교육원",
-    "homepage": "https://cedu.bhu.ac.kr/",
+    "homepage": "https://life.bhu.ac.kr/",
     "boards": [
       {
-        "name": "HiVE 평생교육원",
-        "url": "https://hive.bhu.ac.kr/"
+        "name": "공지사항",
+        "url": "https://life.bhu.ac.kr/Board/BoardList.aspx?BoardMstNo=1&MENU_ID=24"
       }
     ],
-    "phone": "051-200-1522"
+    "phone": "051-200-3244, 1528"
   },
   {
     "id": "kit-cei",
@@ -361,10 +361,14 @@
     "boards": [
       {
         "name": "공지사항",
-        "url": "https://www.changwon.ac.kr/lifelong/na/ntt/selectNttList.do?mi=4760&bbsId=1039"
+        "url": "https://www.changwon.ac.kr/lifelong/na/ntt/selectNttList.do?mi=4774&bbsId=1787"
+      },
+      {
+        "name": "자료실>강사",
+        "url": "https://www.changwon.ac.kr/lifelong/na/ntt/selectNttList.do?mi=4771&bbsId=1786"
       }
     ],
-    "phone": ""
+    "phone": "055-213-2561~5"
   },
   {
     "id": "changwon-gc",
@@ -412,14 +416,14 @@
     "region": "경남",
     "university": "가야대학교",
     "center": "평생교육원",
-    "homepage": "https://www.kaya.ac.kr/",
+    "homepage": "https://life.kaya.ac.kr/",
     "boards": [
       {
-        "name": "대학 공지사항",
-        "url": "https://www.kaya.ac.kr/Home/BBSList.mbz?action=MAPP_0000000015"
+        "name": "강사지원",
+        "url": "https://life.kaya.ac.kr/pages/applicant/application.jsp"
       }
     ],
-    "phone": ""
+    "phone": "055-344-5210"
   },
   {
     "id": "cs-ice",
@@ -454,8 +458,13 @@
     "region": "경남",
     "university": "마산대학교",
     "center": "평생교육원",
-    "homepage": "https://www.masan.ac.kr/",
-    "boards": [],
+    "homepage": "https://lifelong.masan.ac.kr/main",
+    "boards": [
+      {
+        "name": "공지사항",
+        "url": "https://lifelong.masan.ac.kr/main"
+      }
+    ],
     "phone": ""
   },
   {
