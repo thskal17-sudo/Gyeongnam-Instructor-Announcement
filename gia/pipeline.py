@@ -9,14 +9,17 @@ from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta
 from urllib.parse import unquote, urlsplit
 
+from .classify.llm import Extraction, LlmClassifier
 from .classify.rules import score_posting
 from .collectors.base import FetchError, HttpClient, UnconfiguredSource
 from .collectors.registry import build_adapter
 from .config import ConfigBundle, MissingSecret, SourceConfig
 from .dedupe import canonical_key, find_duplicate, merge
+from .feedback import apply_feedback, feedback_path, load_feedback
 from .extract.attachments import extract_text, file_extension
 from .extract.deadline import KST, DeadlineType, parse_deadline, parse_known_format
 from .models import Posting, RawPosting, RunLog, SourceRef, SourceRunResult, Status
+from .models import FIELD_NAMES
 from .normalize import clean_url, extract_regions, mask_pii, normalize_title, standardize_org
 from .store import Store
 
@@ -29,6 +32,7 @@ class SourceOutcome:
     postings: list[Posting] = field(default_factory=list)
     touched: list[str] = field(default_factory=list)  # 이미 알던 URL (last_seen 갱신)
     excluded: list[str] = field(default_factory=list)  # 규칙 점수 미달 URL
+    bodies: dict[str, tuple[str, str | None]] = field(default_factory=dict)  # canonical_key → (본문, 근무지 필드) — LLM 입력용
 
 
 def build_posting(raw: RawPosting, cfg: SourceConfig, bundle: ConfigBundle, now: datetime) -> Posting | None:
@@ -37,11 +41,12 @@ def build_posting(raw: RawPosting, cfg: SourceConfig, bundle: ConfigBundle, now:
     title, flags = normalize_title(raw.title)
     org = standardize_org(raw.org_name or cfg.name, bundle.aliases)
     body = mask_pii(raw.body_text or "")
-    rule = score_posting(title, body, raw.region_text)
+    rule = score_posting(title, body, raw.region_text, org)
     if rule.score < cs.review_threshold:
         return None
     if rule.score < cs.include_threshold:
-        if not (cs.include_review_without_llm and not cs.llm_enabled):
+        # 판단 유보 구간: LLM이 켜져 있으면 LLM 단계로 넘기고, 아니면 설정에 따라 플래그를 달아 포함하거나 제외
+        if not cs.llm_enabled and not cs.include_review_without_llm:
             return None
         flags.append("판별유보")
 
@@ -159,15 +164,69 @@ def run_source(cfg: SourceConfig, bundle: ConfigBundle, store: Store, http: Http
         p = build_posting(raw, cfg, bundle, now)
         if p:
             out.postings.append(p)
+            out.bodies[p.canonical_key] = (mask_pii(raw.body_text or ""), raw.region_text)
         else:
             out.excluded.append(url)
     res.duration_ms = int((time.monotonic() - t0) * 1000)
     return out
 
 
+def apply_extraction(p: Posting, ext: Extraction) -> None:
+    """LLM 추출 결과를 Posting에 반영한다 (규칙 결과를 보강, 마감일은 규칙이 못 찾았을 때만)."""
+    if ext.field in FIELD_NAMES and ext.field != "other":
+        p.field = ext.field
+    if ext.employment_type in ("시간강사", "기간제", "프리랜서", "용역", "기타") and ext.employment_type != "기타":
+        p.employment_type = ext.employment_type
+    dl = ext.deadline_datetime()
+    if p.deadline is None and dl is not None:
+        p.deadline = dl
+        p.deadline_type = DeadlineType.fixed
+        p.deadline_text = p.deadline_text or ext.deadline
+    elif p.deadline is None and ext.deadline_type == "until_filled":
+        p.deadline_type = DeadlineType.until_filled
+    if not p.region and ext.work_location:
+        p.region = extract_regions(ext.work_location) or [ext.work_location[:10]]
+    p.qualifications = [q[:40] for q in ext.qualifications[:3]]
+    p.pay = (ext.pay or None) and ext.pay[:40]
+    p.apply_method = ext.apply_method
+    p.one_line_summary = ext.one_line_summary[:60]
+    p.llm_confidence = ext.confidence
+    if "판별유보" in p.flags and ext.confidence >= 0.7:
+        p.flags.remove("판별유보")
+        p.relevance_score = max(p.relevance_score, 70)
+    p.score_reasons.append(f"LLM 확신도 {ext.confidence:.2f}")
+
+
+def run_llm_stage(outcomes: list[SourceOutcome], llm: LlmClassifier, bundle: ConfigBundle, store: Store, now: datetime) -> None:
+    """판단 유보 건을 우선, 그다음 확정 포함 건 순으로 LLM 호출 상한까지 판별·추출한다."""
+    cfg_by_id = {s.id: s for s in bundle.sources}
+    queue: list[tuple[int, SourceOutcome, Posting]] = []
+    for oc in outcomes:
+        for p in oc.postings:
+            priority = 0 if "판별유보" in p.flags else 1
+            queue.append((priority, oc, p))
+    queue.sort(key=lambda t: (t[0], -t[2].relevance_score))
+    for _, oc, p in queue:
+        if llm.remaining <= 0:
+            break
+        body, region_text = oc.bodies.get(p.canonical_key, ("", None))
+        cfg = cfg_by_id.get(p.sources[0].source_id) if p.sources else None
+        ext = llm.classify(p.title, p.org_name, cfg.org_type.value if cfg else p.org_type.value, body, region_text)
+        if ext is None:
+            continue
+        if not ext.is_instructor_job:
+            oc.postings.remove(p)
+            oc.result.llm_excluded += 1
+            for s in p.sources:
+                store.mark_excluded(s.url, now)
+            log.info("[llm] 제외: %s · %s (%s)", p.org_name, p.title, ext.exclusion_reason)
+            continue
+        apply_extraction(p, ext)
+
+
 def collect(bundle: ConfigBundle, store: Store, http: HttpClient, only: list[str] | None = None,
             dry_run: bool = False, backfill_days: int | None = None, now: datetime | None = None,
-            light: bool = False) -> RunLog:
+            light: bool = False, llm: LlmClassifier | None = None) -> RunLog:
     now = now or datetime.now(KST)
     cs = bundle.settings.collector
     since = now.date() - timedelta(days=backfill_days if backfill_days else cs.default_days)
@@ -176,8 +235,22 @@ def collect(bundle: ConfigBundle, store: Store, http: HttpClient, only: list[str
     if backfill_days:
         run.notes.append(f"백필 {backfill_days}일")
 
+    fb_applied = apply_feedback(store, load_feedback(feedback_path(store.data_dir)), now)
+    if fb_applied:
+        run.notes.append(f"피드백 적용 {fb_applied}건")
+
     with ThreadPoolExecutor(max_workers=max(1, cs.concurrency)) as ex:
         outcomes = list(ex.map(lambda c: run_source(c, bundle, store, http, now, since), selected))
+
+    llm = llm if llm is not None else LlmClassifier.from_settings(bundle.settings.classifier)
+    if llm is not None:
+        run_llm_stage(outcomes, llm, bundle, store, now)
+        u = llm.usage
+        run.llm_calls, run.llm_input_tokens, run.llm_output_tokens = u.calls, u.input_tokens, u.output_tokens
+        run.llm_cache_read_tokens, run.llm_refusals, run.llm_errors = u.cache_read_tokens, u.refusals, u.errors
+        run.llm_excluded = sum(oc.result.llm_excluded for oc in outcomes)
+        if llm.remaining <= 0:
+            run.notes.append(f"LLM 호출 상한({bundle.settings.classifier.llm_max_calls_per_run}) 도달: 이후 건은 규칙 판별만 적용")
 
     counts = {"new": 0, "updated": 0, "merged": 0}
     batch: list[Posting] = []

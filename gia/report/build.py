@@ -26,6 +26,7 @@ class ReportData:
     telegram_max_items: int = 15
     closing_days: int = 3
     repo_url: str = ""
+    overview: str | None = None
 
     def keys(self) -> list[str]:
         return [p.canonical_key for p in self.closing + self.new + self.updated]
@@ -38,7 +39,7 @@ def select_postings(bundle: ConfigBundle, store: Store, now: datetime) -> Report
     new: list[Posting] = []
     updated: list[Posting] = []
     for p in store.values():
-        if p.status == Status.expired or (p.deadline and p.deadline < now):
+        if p.status == Status.expired or (p.deadline and p.deadline < now) or "피드백제외" in p.flags:
             continue
         if p.deadline and p.deadline <= horizon:
             closing.append(p)

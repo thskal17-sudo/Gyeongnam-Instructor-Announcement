@@ -14,6 +14,8 @@ from .config import load_bundle
 from .extract.deadline import KST, parse_deadline
 from .classify.rules import score_posting
 from .models import Status
+from .classify.llm import LlmClassifier
+from .feedback import LABELS, append_feedback, feedback_path, load_feedback
 from .pipeline import build_posting, collect
 from .report.build import email_subject, render_email, render_markdown, render_telegram, select_postings, write_report
 from .store import Store
@@ -48,6 +50,15 @@ def _parser() -> argparse.ArgumentParser:
     so.add_argument("--tier", type=int)
     so.add_argument("--all", action="store_true", help="비활성 소스도 표시")
 
+    fb = sub.add_parser("feedback", help="오탐·미탐 피드백 기록 (다음 수집부터 반영)")
+    fb.add_argument("posting_id", nargs="?", help="공고 id (리포트 링크 옆 12자리) — 생략하면 목록 표시")
+    fb.add_argument("label", nargs="?", choices=LABELS)
+    fb.add_argument("--note", default="")
+
+    ev = sub.add_parser("eval", help="라벨 데이터로 판별 정밀도·재현율 측정")
+    ev.add_argument("--labeled", default="tests/eval/labeled.jsonl")
+    ev.add_argument("--llm", action="store_true", help="LLM 판별까지 포함 (ANTHROPIC_API_KEY 필요)")
+
     sub.add_parser("status", help="저장소 요약")
     return p
 
@@ -75,6 +86,11 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd == "report":
         data = select_postings(bundle, store, now)
+        if bundle.settings.report.daily_overview_llm and (data.new or data.closing):
+            llm = LlmClassifier.from_settings(bundle.settings.classifier)
+            if llm:
+                lines = [f"[{p.field}] {p.org_name} · {p.title} · 마감 {p.deadline.date() if p.deadline else '미상'} · {', '.join(p.region) or '지역 미상'}" for p in data.closing + data.new]
+                data.overview = llm.summarize_day(lines)
         md = render_markdown(data, now)
         path = write_report(md, Path(args.reports_dir), now)
         if args.print_md or not (args.send or args.mark):
@@ -136,7 +152,7 @@ def main(argv: list[str] | None = None) -> int:
             if args.detail and listings:
                 raw = adapter.fetch_detail(listings[0])
                 res = parse_deadline(raw.body_text, raw.posted_at)
-                rule = score_posting(raw.title, raw.body_text, raw.region_text)
+                rule = score_posting(raw.title, raw.body_text, raw.region_text, raw.org_name or cfg.name)
                 print(f"[detail] 본문 {len(raw.body_text)}자 · 마감 {res.deadline} ({res.deadline_type.value}, '{res.text}') · 점수 {rule.score} {rule.reasons} · 분야 {rule.field}")
                 p = build_posting(raw, cfg, bundle, now)
                 print(f"[posting] {'포함' if p else '제외'}: {p.title if p else ''}")
@@ -154,6 +170,28 @@ def main(argv: list[str] | None = None) -> int:
             print(f"  T{s.tier} {s.id:<24} {s.adapter.get('type','-'):<10} {state}{flag}  — {s.name}")
         return 0
 
+    if args.cmd == "feedback":
+        path = feedback_path(Path(args.data_dir))
+        if not args.posting_id:
+            entries = load_feedback(path)
+            print(f"피드백 {len(entries)}건 ({path})")
+            for e in entries[-20:]:
+                print(f"  {e['at'][:10]} {e['id']} {e['label']} {e.get('note','')}")
+            return 0
+        if not args.label:
+            print("label 필요: " + ", ".join(LABELS), file=sys.stderr)
+            return 2
+        p = next((x for x in store.values() if x.id == args.posting_id), None)
+        if p is None:
+            print(f"공고 id 없음: {args.posting_id}", file=sys.stderr)
+            return 2
+        append_feedback(path, args.posting_id, args.label, args.note, now)
+        print(f"기록: {p.org_name} · {p.title} → {args.label}. 다음 collect 실행 시 반영됩니다.")
+        return 0
+
+    if args.cmd == "eval":
+        return _eval(bundle, Path(args.labeled), use_llm=args.llm)
+
     if args.cmd == "status":
         by = {s.value: 0 for s in Status}
         for p in store.values():
@@ -162,6 +200,52 @@ def main(argv: list[str] | None = None) -> int:
         print(f"마지막 수집 {store.state.get('last_run_at', '-')} · 마지막 보고 {store.state.get('last_report_at', '-')}")
         return 0
     return 1
+
+
+def _eval(bundle, labeled: Path, use_llm: bool) -> int:
+    """라벨 세트에 파이프라인과 같은 판별 정책을 적용해 정밀도·재현율을 계산한다."""
+    import json
+
+    from .classify.rules import score_posting
+
+    cs = bundle.settings.classifier
+    rows = [json.loads(l) for l in labeled.read_text(encoding="utf-8").splitlines() if l.strip()]
+    llm = None
+    if use_llm:
+        llm = LlmClassifier(cs.model_copy(update={"llm_enabled": True}), client=__import__("anthropic").Anthropic()) if os.environ.get("ANTHROPIC_API_KEY") else None
+        if llm is None:
+            print("ANTHROPIC_API_KEY 없음: 규칙만 평가", file=sys.stderr)
+    tp = fp = fn = tn = 0
+    wrong: list[str] = []
+    for r in rows:
+        rule = score_posting(r["title"], r.get("body", ""), r.get("region_text"), r.get("org_name"))
+        pred = rule.score >= cs.include_threshold or (rule.score >= cs.review_threshold and cs.include_review_without_llm and llm is None)
+        if llm is not None and rule.score >= cs.review_threshold:
+            ext = llm.classify(r["title"], r.get("org_name", ""), "unknown", r.get("body", ""), r.get("region_text"))
+            if ext is not None:
+                pred = ext.is_instructor_job
+            elif rule.score < cs.include_threshold:
+                pred = cs.include_review_without_llm
+        truth = bool(r["label"])
+        if pred and truth:
+            tp += 1
+        elif pred and not truth:
+            fp += 1
+            wrong.append(f"오탐 {r['id']} ({rule.score}) {r['title']}")
+        elif not pred and truth:
+            fn += 1
+            wrong.append(f"미탐 {r['id']} ({rule.score}) {r['title']}")
+        else:
+            tn += 1
+    precision = tp / (tp + fp) if tp + fp else 0.0
+    recall = tp / (tp + fn) if tp + fn else 0.0
+    f1 = 2 * precision * recall / (precision + recall) if precision + recall else 0.0
+    print(f"평가 {len(rows)}건 · 정밀도 {precision:.2f} · 재현율 {recall:.2f} · F1 {f1:.2f} · (TP {tp} FP {fp} FN {fn} TN {tn})" + (f" · LLM 호출 {llm.usage.calls}" if llm else ""))
+    for w in wrong:
+        print("  " + w)
+    ok = precision >= 0.9 and recall >= 0.85
+    print("목표(정밀도 ≥ 0.90, 재현율 ≥ 0.85): " + ("충족" if ok else "미달"))
+    return 0 if ok else 1
 
 
 def _save_fixture(cfg, http: HttpClient, out_dir: Path) -> None:

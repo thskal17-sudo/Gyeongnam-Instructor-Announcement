@@ -120,6 +120,7 @@ class SourceRunResult(BaseModel):
     new: int = 0
     updated: int = 0
     detail_fetched: int = 0
+    llm_excluded: int = 0
     errors: list[str] = Field(default_factory=list)
     duration_ms: int = 0
 
@@ -131,6 +132,12 @@ class RunLog(BaseModel):
     sources: list[SourceRunResult] = Field(default_factory=list)
     totals: dict[str, int] = Field(default_factory=dict)
     llm_calls: int = 0
+    llm_input_tokens: int = 0
+    llm_output_tokens: int = 0
+    llm_cache_read_tokens: int = 0
+    llm_refusals: int = 0
+    llm_errors: int = 0
+    llm_excluded: int = 0
     notes: list[str] = Field(default_factory=list)
 
     def counts(self) -> dict[str, int]:
