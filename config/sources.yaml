@@ -159,12 +159,29 @@ sources:
     notes: 도 본청·직속기관(인재개발원, 보건환경연구원 등) 공고 포함 여부 확인
 
   - id: gne
-    name: 경상남도교육청
+    name: 경상남도교육청 구인구직포털
     org_type: edu_office
     tier: 2
-    homepage: https://www.gne.go.kr
-    adapter: { type: html_list, list_url: TODO, board: 채용공고 }
-    notes: 학교별 강사 채용은 교육청 통합 채용 게시판(있을 경우)으로 수집. 없으면 18개 교육지원청 개별 등록
+    homepage: https://www.gne.go.kr/works/index.do
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?pageIndex={page}
+      row_selector: table.frmbd-list-tbl tr
+      title_selector: td.tl a
+      link_attr: onclick
+      link_regex: "openDetail\\('(\\d+)'\\)"
+      link_url_template: "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn={1}"
+      date_selector: td:nth-child(3)
+      org_selector: td:nth-child(2)
+      keywords: [강사, 교강사, 지도사, 지도자, 코치, 방과후, 늘봄, 돌봄]
+      detail:
+        fetch: true
+        body_selector: div.prgr-bd-view
+    notes: >-
+      도내 학교·교육지원청의 강사·방과후·돌봄 공고가 모이는 통합 포털(2026-09-21 GitHub 러너에서 검증).
+      목록 3열은 접수기간이라 게시일 대신 접수 시작일이 잡힘. 첨부는 javascript 다운로드라 미추출.
+      구 채용·모집공고 게시판(board/list.gne?boardId=BBS_0000448)은 404.
 
   - id: gne_district
     name: 경남 교육지원청 (18개)
@@ -176,12 +193,64 @@ sources:
     notes: gne 통합 게시판이 학교 공고를 포함하면 불필요. 아니면 시군별로 18개 항목으로 분리 등록
 
   # --- 8개 시 ---
-  - { id: changwon,  name: 창원시,  org_type: local_gov, tier: 2, homepage: https://www.changwon.go.kr,  adapter: { type: html_list, list_url: TODO } }
+  - id: changwon
+    name: 창원시
+    org_type: local_gov
+    tier: 2
+    homepage: https://www.changwon.go.kr
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://www.changwon.go.kr/cwportal/10310/10429/10440.web?cpage={page}
+      row_selector: table.t3 tr
+      title_selector: td.tal a
+      date_selector: td.write_day
+      org_selector: td:nth-child(3)
+      detail:
+        fetch: true
+        body_selector: div.examinfo1view div.substance
+        attachment_selector: a.filename[href*="cmsfile/download.do"]
+    notes: 시험/채용정보 게시판(2026-09-21 검증). 접수기간은 목록 5열과 본문에 있음
   - { id: jinju,     name: 진주시,  org_type: local_gov, tier: 2, homepage: https://www.jinju.go.kr,     adapter: { type: html_list, list_url: TODO } }
   - { id: tongyeong, name: 통영시,  org_type: local_gov, tier: 2, homepage: https://www.tongyeong.go.kr, adapter: { type: html_list, list_url: TODO } }
-  - { id: sacheon,   name: 사천시,  org_type: local_gov, tier: 2, homepage: https://www.sacheon.go.kr,   adapter: { type: html_list, list_url: TODO } }
+  - id: sacheon
+    name: 사천시 구인게시판
+    org_type: local_gov
+    tier: 2
+    homepage: https://www.sacheon.go.kr
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://www.sacheon.go.kr/economy/00279/00281.web?cpage={page}
+      row_selector: table.t3 tr
+      title_selector: td.tal a
+      date_selector: td:nth-child(6)
+      org_selector: td:nth-child(2)
+      keywords: [강사, 교강사, 지도사, 지도자, 교습]
+      detail:
+        fetch: true
+        body_selector: form#workserviceVO div.scroll1cont
+    notes: >-
+      시청 채용공고가 아니라 구인/구직자가 직접 올리는 민간 구인게시판(2026-09-21 검증).
+      제목 키워드로만 수집. 시 자체 채용공고 게시판 URL은 미확인.
   - { id: gimhae,    name: 김해시,  org_type: local_gov, tier: 2, homepage: https://www.gimhae.go.kr,    adapter: { type: html_list, list_url: TODO } }
-  - { id: miryang,   name: 밀양시,  org_type: local_gov, tier: 2, homepage: https://www.miryang.go.kr,   adapter: { type: html_list, list_url: TODO } }
+  - id: miryang
+    name: 밀양시
+    org_type: local_gov
+    tier: 2
+    homepage: https://www.miryang.go.kr
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://www.miryang.go.kr/web/eMinwonList.do?mnNo=50610000000&searchCateId=05&pageIndex={page}
+      row_selector: table.board-list-table tr
+      title_selector: td.subject a
+      date_selector: td:nth-child(5)
+      org_selector: td:nth-child(4)
+      detail:
+        fetch: true
+        body_selector: div.inboxRead div.cont
+    notes: 공공일자리(채용공고) 게시판(2026-09-21 검증). 첨부는 javascript 다운로드라 미추출
   - { id: geoje,     name: 거제시,  org_type: local_gov, tier: 2, homepage: https://www.geoje.go.kr,     adapter: { type: html_list, list_url: TODO } }
   - { id: yangsan,   name: 양산시,  org_type: local_gov, tier: 2, homepage: https://www.yangsan.go.kr,   adapter: { type: html_list, list_url: TODO } }
   # --- 10개 군 ---
