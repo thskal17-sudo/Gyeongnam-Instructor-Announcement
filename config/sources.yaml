@@ -155,8 +155,11 @@ sources:
     org_type: local_gov
     tier: 2
     homepage: https://www.gyeongnam.go.kr
-    adapter: { type: html_list, list_url: TODO, board: 채용공고 }
-    notes: 도 본청·직속기관(인재개발원, 보건환경연구원 등) 공고 포함 여부 확인
+    adapter:
+      type: html_list
+      list_url: TODO
+      candidate_list_url: https://www.gyeongnam.go.kr/board/list.gyeong?boardId=BBS_0000377&menuCd=DOM_000000108002002000&startPage={page}
+    notes: 경남채용정보 게시판 후보. GitHub 러너에서 '페이지를 표시할 수 없습니다'(1.4KB 차단 페이지) 또는 연결 시간초과 → 국내 IP 필요. 도 본청 공무직 채용은 saramin 위탁(gyeongnam.saramin.co.kr)
 
   - id: gne
     name: 경상남도교육청 구인구직포털
@@ -214,8 +217,35 @@ sources:
         body_selector: div.examinfo1view div.substance
         attachment_selector: a.filename[href*="cmsfile/download.do"]
     notes: 시험/채용정보 게시판(2026-09-21 검증). 접수기간은 목록 5열과 본문에 있음
-  - { id: jinju,     name: 진주시,  org_type: local_gov, tier: 2, homepage: https://www.jinju.go.kr,     adapter: { type: html_list, list_url: TODO } }
-  - { id: tongyeong, name: 통영시,  org_type: local_gov, tier: 2, homepage: https://www.tongyeong.go.kr, adapter: { type: html_list, list_url: TODO } }
+  - id: jinju
+    name: 진주시
+    org_type: local_gov
+    tier: 2
+    homepage: https://www.jinju.go.kr
+    adapter:
+      type: html_list
+      list_url: TODO
+      candidate_list_url: https://www.jinju.go.kr/00130/02730/06660.web?cpage={page}
+    notes: 채용공고 게시판 후보. 모든 GitHub 러너에서 연결 시간초과(2026-09-21, 3회) → 국내 IP 필요
+  - id: tongyeong
+    name: 통영시 취업공지사항
+    org_type: local_gov
+    tier: 2
+    homepage: https://www.tongyeong.go.kr
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://www.tongyeong.go.kr/00973/00974/00975.web?gcode=9539&cpage={page}
+      row_selector: ul.lst1 > li.li1
+      title_selector: strong.t1
+      link_selector: a.a1
+      date_selector: span.t3:nth-of-type(1)
+      org_selector: span.t3:nth-of-type(2)
+      detail:
+        fetch: true
+        body_selector: div.bbs1view1 div.substance
+        attachment_selector: a[href*="/board/download.do"]
+    notes: 구인/구직 > 취업공지사항 게시판(2026-09-21 검증). 시 자체 기간제·강사 모집 공고가 올라옴
   - id: sacheon
     name: 사천시 구인게시판
     org_type: local_gov
@@ -236,7 +266,24 @@ sources:
     notes: >-
       시청 채용공고가 아니라 구인/구직자가 직접 올리는 민간 구인게시판(2026-09-21 검증).
       제목 키워드로만 수집. 시 자체 채용공고 게시판 URL은 미확인.
-  - { id: gimhae,    name: 김해시,  org_type: local_gov, tier: 2, homepage: https://www.gimhae.go.kr,    adapter: { type: html_list, list_url: TODO } }
+  - id: gimhae
+    name: 김해시
+    org_type: local_gov
+    tier: 2
+    homepage: https://www.gimhae.go.kr
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://www.gimhae.go.kr/03360/00023/00031.web?cpage={page}
+      row_selector: ul.lst1 > li.li1
+      title_selector: strong.t1
+      link_selector: a.a1
+      date_selector: span.t3:nth-of-type(2)
+      detail:
+        fetch: true
+        body_selector: div.bbs1view1 div.substance
+        attachment_selector: a.filename[href*="DownloadEx.do"]
+    notes: 알림마당 > 채용공고(2026-09-21 검증). 목록 span.t3 2번째가 '등록일 : YYYY-MM-DD'. 읍면동 채용공고는 별도 게시판(00954/01200/*)
   - id: miryang
     name: 밀양시
     org_type: local_gov
@@ -254,19 +301,144 @@ sources:
         fetch: true
         body_selector: div.inboxRead div.cont
     notes: 공공일자리(채용공고) 게시판(2026-09-21 검증). 첨부는 javascript 다운로드라 미추출
-  - { id: geoje,     name: 거제시,  org_type: local_gov, tier: 2, homepage: https://www.geoje.go.kr,     adapter: { type: html_list, list_url: TODO } }
-  - { id: yangsan,   name: 양산시,  org_type: local_gov, tier: 2, homepage: https://www.yangsan.go.kr,   adapter: { type: html_list, list_url: TODO } }
+  - id: geoje
+    name: 거제시
+    org_type: local_gov
+    tier: 2
+    homepage: https://www.geoje.go.kr
+    adapter:
+      type: html_list
+      list_url: TODO
+      candidate_list_url: https://www.geoje.go.kr/board/list.geoje?boardId=BBS_0000455&menuCd=DOM_000008901001001001&startPage={page}
+    notes: 거제시일자리 게시판 후보(구인정보는 BBS_0000062). 모든 GitHub 러너에서 연결 시간초과(2026-09-21, 3회)
+  - id: yangsan
+    name: 양산시
+    org_type: local_gov
+    tier: 2
+    homepage: https://www.yangsan.go.kr
+    adapter:
+      type: html_list
+      list_url: TODO
+      candidate_list_url: https://www.yangsan.go.kr/portal/saeol/gosi/list.do?mid=0102010000
+    notes: 고시/공고 목록(table.bod_list.gosi, td.list_tit a, td.list_date)은 열리지만 링크가 req.post(this) POST 방식이라 현 어댑터로 상세 URL을 만들 수 없음. 상세는 GET /portal/saeol/gosi/view.do?notAncmtMgtNo=... 로 열림 → 행의 hidden input 지원 필요(Phase 4). 채용안내(job/board/post/list.do?bcIdx=31)도 같은 방식
   # --- 10개 군 ---
-  - { id: uiryeong,  name: 의령군,  org_type: local_gov, tier: 2, homepage: https://www.uiryeong.go.kr,  adapter: { type: html_list, list_url: TODO } }
-  - { id: haman,     name: 함안군,  org_type: local_gov, tier: 2, homepage: https://www.haman.go.kr,     adapter: { type: html_list, list_url: TODO } }
-  - { id: changnyeong, name: 창녕군, org_type: local_gov, tier: 2, homepage: https://www.cng.go.kr,      adapter: { type: html_list, list_url: TODO } }
-  - { id: goseong,   name: 고성군,  org_type: local_gov, tier: 2, homepage: https://www.goseong.go.kr,   adapter: { type: html_list, list_url: TODO } }
-  - { id: namhae,    name: 남해군,  org_type: local_gov, tier: 2, homepage: https://www.namhae.go.kr,    adapter: { type: html_list, list_url: TODO } }
-  - { id: hadong,    name: 하동군,  org_type: local_gov, tier: 2, homepage: https://www.hadong.go.kr,    adapter: { type: html_list, list_url: TODO } }
-  - { id: sancheong, name: 산청군,  org_type: local_gov, tier: 2, homepage: https://www.sancheong.go.kr, adapter: { type: html_list, list_url: TODO } }
-  - { id: hamyang,   name: 함양군,  org_type: local_gov, tier: 2, homepage: https://www.hygn.go.kr,      adapter: { type: html_list, list_url: TODO } }
-  - { id: geochang,  name: 거창군,  org_type: local_gov, tier: 2, homepage: https://www.geochang.go.kr,  adapter: { type: html_list, list_url: TODO } }
-  - { id: hapcheon,  name: 합천군,  org_type: local_gov, tier: 2, homepage: https://www.hc.go.kr,        adapter: { type: html_list, list_url: TODO } }
+  - id: uiryeong
+    name: 의령군
+    org_type: local_gov
+    tier: 2
+    homepage: https://www.uiryeong.go.kr
+    adapter:
+      type: html_list
+      list_url: TODO
+      candidate_list_url: https://www.uiryeong.go.kr/board/list.uiryeong?boardId=BBS_0000112&menuCd=DOM_000000204004004002&startPage={page}
+    notes: 구인정보 게시판 후보. 러너 연결 시간초과(2026-09-21) → 재시도 필요
+  - id: haman
+    name: 함안군
+    org_type: local_gov
+    tier: 2
+    homepage: https://www.haman.go.kr
+    adapter:
+      type: html_list
+      list_url: TODO
+      candidate_list_url: https://www.haman.go.kr/00059/06642/06644.web?cpage={page}
+    notes: 채용공고 게시판 후보. 러너 연결 시간초과(2026-09-21) → 재시도 필요
+  - id: changnyeong
+    name: 창녕군
+    org_type: local_gov
+    tier: 2
+    homepage: https://www.cng.go.kr
+    adapter:
+      type: html_list
+      list_url: TODO
+      candidate_list_url: https://www.cng.go.kr/03518/01566.web?cpage={page}
+    notes: 채용정보 > 채용공고 게시판 후보(기타채용은 01567.web). 러너 연결 시간초과(2026-09-21) → 재시도 필요
+  - id: goseong
+    name: 고성군
+    org_type: local_gov
+    tier: 2
+    homepage: https://www.goseong.go.kr
+    adapter:
+      type: html_list
+      list_url: TODO
+      candidate_list_url: https://www.goseong.go.kr/board/list.goseong?boardId=BBS_0000015&menuCd=DOM_000000103001014000&startPage={page}
+    notes: 고시공고 게시판 후보. 러너에서 400 'Request Blocked'(WAF) → 국내 IP 또는 브라우저 UA 필요
+  - id: namhae
+    name: 남해군
+    org_type: local_gov
+    tier: 2
+    homepage: https://www.namhae.go.kr
+    adapter:
+      type: html_list
+      list_url: TODO
+      candidate_list_url: https://www.namhae.go.kr/modules/saeol/gosi.do?siteGubun=portal&pageCd=WW0512090402&cpage={page}
+    notes: 공고/고시 게시판 후보. 러너 연결 시간초과(2026-09-21) → 재시도 필요
+  - id: hadong
+    name: 하동군
+    org_type: local_gov
+    tier: 2
+    homepage: https://www.hadong.go.kr
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://www.hadong.go.kr/specialty/00224/00412.web?gcode=4146&cpage={page}
+      row_selector: ul.lst1 > li.li1
+      title_selector: strong.t1
+      link_selector: a.a1
+      date_selector: span.t3:nth-of-type(1)
+      org_selector: span.t3:nth-of-type(2)
+      detail:
+        fetch: true
+        body_selector: div.bbs1view1 div.substance
+        attachment_selector: a[href*="/board/download.do"]
+    notes: 채용공고 게시판(2026-09-21 검증). 주간 '채용정보' 묶음 글도 섞여 있음
+  - id: sancheong
+    name: 산청군
+    org_type: local_gov
+    tier: 2
+    homepage: https://www.sancheong.go.kr
+    adapter:
+      type: html_list
+      list_url: TODO
+      candidate_list_url: https://www.sancheong.go.kr/www/selectBbsNttList.do?key=161&bbsNo=3&pageIndex={page}
+    notes: 채용/시험 게시판 후보. 러너 연결 시간초과(2026-09-21) → 재시도 필요
+  - id: hamyang
+    name: 함양군
+    org_type: local_gov
+    tier: 2
+    homepage: https://www.hygn.go.kr
+    adapter:
+      type: html_list
+      list_url: TODO
+      candidate_list_url: https://www.hygn.go.kr/00429/00543/00553.web?cpage={page}
+    notes: 채용공고 게시판 후보. 러너에서 403 또는 DNS 실패(2026-09-21)
+  - id: geochang
+    name: 거창군
+    org_type: local_gov
+    tier: 2
+    homepage: https://www.geochang.go.kr
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&cpage={page}
+      row_selector: ul.lst1 > li.li1
+      title_selector: strong.t1
+      link_selector: a.a1
+      date_selector: span.t3:nth-of-type(1)
+      detail:
+        fetch: true
+        body_selector: div.bbs1view1 div.substance
+        attachment_selector: a.filename[href*="/board/download.do"]
+    notes: 취업정보 > 시험채용정보 게시판(2026-09-21 검증). 민간 구인글(요양보호사 등)도 섞여 있어 분류기 점수로 거름
+  - id: hapcheon
+    name: 합천군
+    org_type: local_gov
+    tier: 2
+    homepage: https://www.hc.go.kr
+    adapter:
+      type: html_list
+      list_url: TODO
+      candidate_list_url: https://www.hc.go.kr/08998.web?cpage={page}
+    notes: 채용공고 게시판 후보. 러너에서 error.html 로 meta refresh(차단 또는 URL 변경) → 재확인 필요
 
 # ---------------------------------------------------------------------------
 # Tier 3-A. 경남 출자·출연기관 / 지방공기업  — Phase 2~3
