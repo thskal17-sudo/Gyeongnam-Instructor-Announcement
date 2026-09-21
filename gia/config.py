@@ -44,6 +44,8 @@ class CollectorSettings(BaseModel):
     user_agent: str = "GyeongnamInstructorBot/0.1 (+https://github.com/thskal17-sudo/Gyeongnam-Instructor-Announcement)"
     attachment_max_mb: int = 10
     max_detail_errors_per_source: int = 5
+    attachment_max_files: int = 3
+    attachment_extensions: list[str] = Field(default_factory=lambda: [".hwp", ".hwpx", ".pdf", ".docx"])
 
 
 class InterestSettings(BaseModel):

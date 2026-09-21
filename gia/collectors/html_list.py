@@ -41,6 +41,31 @@ def extract_body(r: httpx.Response, selector: str, encoding: str | None = None) 
     return re.sub(r"\n{3,}", "\n\n", text)[:20000]
 
 
+def resolve_link(node, page_url: str, a: dict) -> str | None:
+    """href 또는 onclick에서 상세 URL을 만든다.
+
+    - link_attr: 읽을 속성 (기본 href, 없으면 onclick)
+    - link_regex: 속성값에서 식별자를 뽑는 정규식 (그룹 사용)
+    - link_url_template: "{1}" 같은 그룹 자리표시자를 채울 URL 템플릿
+    """
+    if node is None:
+        return None
+    attrs = node.attributes
+    value = attrs.get(a.get("link_attr") or "href") or attrs.get("onclick") or attrs.get("href") or ""
+    regex = a.get("link_regex")
+    if regex:
+        m = re.search(regex, value)
+        if not m:
+            return None
+        tpl = a.get("link_url_template")
+        if tpl:
+            return tpl.format(m.group(0), *m.groups())
+        return urljoin(page_url, m.group(1) if m.groups() else m.group(0))
+    if not value or value.startswith(("javascript:", "#")):
+        return None
+    return urljoin(page_url, value)
+
+
 class HtmlListAdapter(SourceAdapter):
     type_name = "html_list"
 
@@ -62,10 +87,10 @@ class HtmlListAdapter(SourceAdapter):
                 t = row.css_first(a.get("title_selector") or "a")
                 if t is None:
                     continue
-                title = t.text(strip=True)
+                title = (t.attributes.get(a["title_attr"]) if a.get("title_attr") else None) or t.text(strip=True)
                 link = row.css_first(a.get("link_selector") or a.get("title_selector") or "a")
-                href = (link.attributes.get("href") if link is not None else None) or ""
-                if not title or not href or href.startswith(("javascript:", "#")):
+                target = resolve_link(link, url, a)
+                if not title or not target:
                     continue
                 posted = None
                 if a.get("date_selector"):
@@ -83,7 +108,7 @@ class HtmlListAdapter(SourceAdapter):
                     continue
                 if posted and posted < since:
                     continue
-                out.append(RawListing(source_id=self.cfg.id, title=title, url=urljoin(url, href), org_name=org, posted_at=posted))
+                out.append(RawListing(source_id=self.cfg.id, title=title, url=target, org_name=org, posted_at=posted))
             if "{page}" not in list_url or (oldest_on_page and oldest_on_page < since):
                 break
         return out

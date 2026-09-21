@@ -67,6 +67,26 @@ class HttpClient:
                 return r
             raise FetchError(f"재시도 실패: {last_err}")
 
+    def download(self, url: str, max_bytes: int) -> tuple[bytes, str | None]:
+        """첨부파일을 크기 상한까지 내려받는다. 반환: (bytes, Content-Disposition 파일명)."""
+        host = urlsplit(url).netloc
+        if self.settings.respect_robots and not self._allowed(url):
+            raise FetchError(f"robots.txt 차단: {url}")
+        with self._lock_for(host):
+            self._wait(host)
+            try:
+                with self._client.stream("GET", url) as r:
+                    if r.status_code >= 400:
+                        raise FetchError(f"HTTP {r.status_code} {url}")
+                    buf = bytearray()
+                    for chunk in r.iter_bytes():
+                        buf += chunk
+                        if len(buf) > max_bytes:
+                            raise FetchError(f"첨부 크기 초과(>{max_bytes // 1024 // 1024}MB): {url}")
+                    return bytes(buf), filename_from_headers(r.headers)
+            except (httpx.TimeoutException, httpx.TransportError) as e:
+                raise FetchError(f"첨부 다운로드 실패: {e}") from e
+
     def post_json(self, url: str, payload: dict) -> httpx.Response:
         r = self._client.post(url, json=payload)
         if r.status_code >= 400:
@@ -132,6 +152,27 @@ class SourceAdapter:
 
 
 # ---- helpers ---------------------------------------------------------
+_CD_EXT = re.compile(r"filename\*=(?:[\w-]+)''([^;]+)", re.I)
+_CD_PLAIN = re.compile(r'filename="?([^";]+)"?', re.I)
+
+
+def filename_from_headers(headers) -> str | None:
+    cd = headers.get("content-disposition", "") if headers else ""
+    if not cd:
+        return None
+    from urllib.parse import unquote
+    m = _CD_EXT.search(cd)
+    if m:
+        return unquote(m.group(1)).strip()
+    m = _CD_PLAIN.search(cd)
+    if m:
+        name = m.group(1).strip()
+        try:
+            return name.encode("latin-1").decode("utf-8")
+        except (UnicodeEncodeError, UnicodeDecodeError):
+            return unquote(name)
+    return None
+
 def get_path(obj: Any, path: str | None) -> Any:
     if not path:
         return obj
