@@ -168,19 +168,22 @@ sources:
       type: html_list
       list_url: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?pageIndex={page}
       row_selector: table.frmbd-list-tbl tr
-      title_selector: td.tl a
+      title_selector: td.tl span.tit
+      link_selector: td.tl a
       link_attr: onclick
       link_regex: "openDetail\\('(\\d+)'\\)"
       link_url_template: "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn={1}"
-      date_selector: td:nth-child(3)
-      org_selector: td:nth-child(2)
+      date_selector: td:nth-child(3) span:nth-of-type(2)
+      org_selector: td:nth-child(2) span:nth-of-type(2)
       keywords: [강사, 교강사, 지도사, 지도자, 코치, 방과후, 늘봄, 돌봄]
+      paging: { max_pages: 1 }
       detail:
         fetch: true
         body_selector: div.prgr-bd-view
     notes: >-
       도내 학교·교육지원청의 강사·방과후·돌봄 공고가 모이는 통합 포털(2026-09-21 GitHub 러너에서 검증).
       목록 3열은 접수기간이라 게시일 대신 접수 시작일이 잡힘. 첨부는 javascript 다운로드라 미추출.
+      pageIndex 파라미터가 무시되어(POST 페이징) 1페이지(10건)만 수집.
       구 채용·모집공고 게시판(board/list.gne?boardId=BBS_0000448)은 404.
 
   - id: gne_district
