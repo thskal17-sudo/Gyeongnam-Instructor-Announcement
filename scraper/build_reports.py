@@ -49,6 +49,11 @@ def build() -> None:
         out.append("")
     MD.write_text("\n".join(out), encoding="utf-8")
     print(f"wrote {CSV.relative_to(ROOT)} and {MD.relative_to(ROOT)} ({len(rows)} rows)")
+    try:
+        from build_xlsx import build as build_xlsx
+        build_xlsx()
+    except ImportError as exc:  # openpyxl 미설치 시 xlsx 만 건너뜀
+        print(f"skip xlsx: {exc}")
 
 
 if __name__ == "__main__":

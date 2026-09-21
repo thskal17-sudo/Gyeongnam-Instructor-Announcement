@@ -8,7 +8,8 @@
 | 파일 | 내용 |
 |---|---|
 | [`data/announcements.md`](data/announcements.md) | 지역별 공고 표 (바로 보기용) |
-| `data/announcements.csv` | 엑셀용 CSV (UTF-8 BOM) |
+| `data/announcements.xlsx` | 엑셀 파일: `공고목록`·`기관목록`·`요약`(지역×구분 자동 집계) 3개 시트 |
+| `data/announcements.csv` | CSV (UTF-8 BOM) |
 | `data/announcements.json` | 원본 데이터 (스크래퍼가 병합 대상으로 사용) |
 | `data/institutions.json` | 대상 기관 38곳의 평생교육원 홈페이지·게시판 URL·연락처 |
 
@@ -28,7 +29,7 @@ pip install -r scraper/requirements.txt
 python scraper/collect.py              # 전체 기관
 python scraper/collect.py --only pia-edu ulsan-cec   # 특정 기관만
 python scraper/collect.py --dry-run    # 파일 저장 없이 확인
-python scraper/build_reports.py        # JSON -> CSV/MD 재생성만
+python scraper/build_reports.py        # JSON -> CSV/MD/XLSX 재생성만
 ```
 
 스크래퍼는 `data/institutions.json` 의 `boards[].url` 을 읽어 링크 제목에서
