@@ -433,8 +433,8 @@
     "homepage": "https://ice.cs.ac.kr/",
     "boards": [
       {
-        "name": "대학 공지사항",
-        "url": "https://www.cs.ac.kr/post"
+        "name": "평생교육원 메인",
+        "url": "https://ice.cs.ac.kr/"
       }
     ],
     "phone": "055-250-3050"
