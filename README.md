@@ -49,12 +49,7 @@ GitHub Actions는 매일 06:30 KST에 `collect`, 07:30 KST에 `report --send`를
 | `gia/report/` | Markdown·텔레그램 템플릿 렌더링 |
 | `gia/notify/telegram.py` | 텔레그램 발송 (4,000자 분할) |
 | `data/`, `reports/` | 수집 원장과 일일 리포트 아카이브 (봇이 커밋) |
-
-## 기존 대학 평생교육원 스크래퍼
-
-이 저장소에는 부산·울산·경남 대학 평생교육원 강사모집 공고를 모으는 별도 스크래퍼(`scraper/`, `data/announcements.*`)가 먼저 있었습니다.
-사용법은 [docs/legacy-univ-scraper.md](docs/legacy-univ-scraper.md)에 있고, 주간 수집 워크플로는 `.github/workflows/collect-legacy.yml`로 유지됩니다.
-`config/sources.yaml`의 대학 평생교육원 항목(Tier 3-C, 3-G)을 검증할 때 `data/institutions.json`의 게시판 URL을 참고할 수 있습니다.
+| `data/institutions.json` | 부산·울산·경남 대학 평생교육원 38곳의 게시판 URL·연락처. `config/sources.yaml`의 대학 항목(Tier 3-C, 3-G)을 검증할 때 참고 |
 
 ## 다음 단계
 
