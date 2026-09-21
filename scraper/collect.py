@@ -36,7 +36,8 @@ KEYWORDS = re.compile(
     r"|강좌\s*제안)",
 )
 # 수강생 모집 등 학습자 대상 글은 제외한다.
-EXCLUDE = re.compile(r"(수강생|교육생|학습자|참가자|장학생|수료식)\s*(모집|안내)")
+EXCLUDE = re.compile(r"(수강생|교육생|학습자|참가자|장학생|수료식)\s*(모집|안내)|신규\s*강좌\s*안내")
+MENU_MAX_LEN = 14  # 이보다 짧고 연도가 없는 링크는 게시글이 아니라 상시 접수 메뉴로 본다
 DATE = re.compile(r"(20\d{2})[.\-/년]\s*(\d{1,2})[.\-/월]\s*(\d{1,2})")
 
 HEADERS = {
@@ -46,6 +47,27 @@ HEADERS = {
     ),
     "Accept-Language": "ko,en;q=0.8",
 }
+
+
+def clean_title(text: str) -> str:
+    """앵커 텍스트에서 첫 줄만 남기고 뒤에 붙은 날짜·조회수·작성자를 떼어낸다."""
+    first = text.replace("\xa0", " ").strip().splitlines()[0]
+    first = re.sub(r"\s+", " ", first).strip()
+    # 목록 셀에 제목과 본문 요약이 한 줄로 붙어 오면 제목이 두 번 나타난다 → 두 번째 등장 전까지만 남긴다.
+    first = re.split(r"\s+[※▶▷★☆]", first, maxsplit=1)[0]  # 제목 뒤에 이어지는 부가 안내문 제거
+    head = first[:12]
+    if len(head) == 12 and first.count(head) > 1:
+        first = first[: first.index(head, 1)].strip()
+    for pat in (r"\s+\d{1,6}$",                                             # 조회수
+                r"\s*20\d{2}[.\-/]\d{1,2}[.\-/]\d{1,2}\.?(\s*\d{1,2}:\d{2})?$",  # 날짜(시각)
+                r"\s+\S*\*+\S*$",                                         # 마스킹된 작성자(류**)
+                r"\s*20\d{2}[.\-/]\d{1,2}[.\-/]\d{1,2}\.?(\s*\d{1,2}:\d{2})?$"):
+        first = re.sub(pat, "", first)
+    return first.strip()[:120]
+
+
+def is_menu_link(title: str) -> bool:
+    return len(title) <= MENU_MAX_LEN and not re.search(r"20\d{2}", title)
 
 
 def classify(title: str) -> str:
@@ -75,7 +97,15 @@ def find_date(node) -> str:
 
 def fetch(url: str, timeout: int = 20) -> str | None:
     try:
-        resp = requests.get(url, headers=HEADERS, timeout=timeout)
+        try:
+            resp = requests.get(url, headers=HEADERS, timeout=timeout)
+        except requests.exceptions.SSLError:
+            # 일부 대학 사이트는 중간 인증서를 내려주지 않아 검증에 실패한다.
+            # 공개 게시판 읽기 용도이므로 이 경우에만 검증 없이 재시도한다.
+            import urllib3
+            urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+            print(f"  ~ ssl verify failed, retrying without verification: {url}", file=sys.stderr)
+            resp = requests.get(url, headers=HEADERS, timeout=timeout, verify=False)
         resp.raise_for_status()
         if not resp.encoding or resp.encoding.lower() == "iso-8859-1":
             resp.encoding = resp.apparent_encoding
@@ -92,11 +122,13 @@ def scrape_board(inst: dict, board: dict) -> list[dict]:
     soup = BeautifulSoup(html, "lxml")
     found: dict[str, dict] = {}
     for a in soup.find_all("a"):
-        title = a.get_text(" ", strip=True)
-        if not title or len(title) < 6:
+        raw = a.get_text("\n", strip=True)
+        if not raw or len(raw) < 6:
             continue
+        title = clean_title(raw)
         if not KEYWORDS.search(title) or EXCLUDE.search(title):
             continue
+        menu = is_menu_link(title)
         href = a.get("href") or ""
         if href.startswith("javascript") or not href:
             # onclick 기반 게시판은 목록 URL을 남긴다.
@@ -110,10 +142,10 @@ def scrape_board(inst: dict, board: dict) -> list[dict]:
             "region": inst["region"],
             "university": inst["university"],
             "center": inst["center"],
-            "title": title,
+            "title": f"{title} (홈페이지 상시 접수 메뉴)" if menu else title,
             "url": url,
-            "posted_date": find_date(a),
-            "category": classify(title),
+            "posted_date": "" if menu else find_date(a),
+            "category": "강좌개설제안(상시)" if menu else classify(title),
             "summary": "",
             "board": board["name"],
             "source": "scraper",
@@ -123,12 +155,19 @@ def scrape_board(inst: dict, board: dict) -> list[dict]:
     return list(found.values())
 
 
+def norm(title: str) -> str:
+    """대괄호 말머리·날짜·공백·기호를 제거한 비교용 제목."""
+    t = re.sub(r"\[[^\]]*\]|\([^)]*\)", "", title)
+    t = re.sub(r"20\d{2}[.\-/]\d{1,2}[.\-/]\d{1,2}", "", t)
+    return re.sub(r"[\s\W_]+", "", t)
+
+
 def merge(existing: list[dict], new: list[dict]) -> tuple[list[dict], int]:
     by_url = {a["url"]: a for a in existing}
-    by_key = {(a["institution_id"], a["title"]): a for a in existing}
+    by_key = {(a["institution_id"], norm(a["title"])): a for a in existing}
     added = 0
     for item in new:
-        key = (item["institution_id"], item["title"])
+        key = (item["institution_id"], norm(item["title"]))
         if item["url"] in by_url or key in by_key:
             old = by_url.get(item["url"]) or by_key[key]
             # 수동 수집분에 날짜/URL 정보가 비어 있으면 보완한다.
