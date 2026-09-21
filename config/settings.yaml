@@ -6,14 +6,14 @@ report:
   weekdays_only: false
   telegram_max_items: 15
   closing_soon_days: 3
-  daily_overview_llm: false
+  daily_overview_llm: false     # true면 발송 시 LLM으로 3문장 총평 생성 (llm_enabled·API 키 필요)
   recheck_active_days: 3        # 활성 공고 상세 재확인 주기(마감 연장 감지)
 
 classifier:
   include_threshold: 70
   review_threshold: 30
   include_review_without_llm: true   # LLM 미사용 시 판단 유보 구간을 '판별유보' 플래그로 포함
-  llm_enabled: false                 # Phase 3에서 활성화
+  llm_enabled: false                 # true로 바꾸고 ANTHROPIC_API_KEY 를 등록하면 판단 유보 건부터 LLM 판별·구조화 추출
   llm_model: claude-opus-5
   llm_effort: low
   llm_max_calls_per_run: 60

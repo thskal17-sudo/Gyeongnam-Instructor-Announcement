@@ -87,21 +87,26 @@ class ApiJsonAdapter(SourceAdapter):
 
     def _to_listing(self, it: dict, a: dict) -> RawListing | None:
         fm = a.get("field_map") or {}
-        title = _s(get_path(it, fm.get("title")))
+
+        def f(key: str) -> str:
+            path = fm.get(key)
+            return _s(get_path(it, path)) if path else ""
+
+        title = f("title")
         if not title:
             return None
-        url = _s(get_path(it, fm.get("url")))
+        url = f("url")
         if not url and fm.get("url_template"):
             url = _format_template(fm["url_template"], it)
         if not url:
             url = self.cfg.homepage or ""
         formats = a.get("date_formats") or []
-        posted = parse_date_loose(get_path(it, fm.get("posted_at")), formats)
-        deadline_text = _s(get_path(it, fm.get("deadline")))
-        region_text = _s(get_path(it, fm.get("region")))
-        org = _s(get_path(it, fm.get("org_name"))) or (None if self.cfg.org_type.value == "portal" else self.cfg.name)
+        posted = parse_date_loose(get_path(it, fm["posted_at"]), formats) if fm.get("posted_at") else None
+        deadline_text = f("deadline")
+        region_text = f("region")
+        org = f("org_name") or (None if self.cfg.org_type.value == "portal" else self.cfg.name)
         extra = {"raw": it}
-        body = _s(get_path(it, fm.get("body")))
+        body = f("body")
         if body:
             extra["body_text"] = body
         return RawListing(

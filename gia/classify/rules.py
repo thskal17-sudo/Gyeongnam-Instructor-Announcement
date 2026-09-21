@@ -10,12 +10,12 @@ CORE_WORDS = [
     "시간강사", "외래강사", "외래교수", "초빙강사", "초빙교수", "교강사", "훈련교사", "강사",
     "지도자", "지도사", "튜터", "코치", "멘토", "한국어교원", "예술강사", "스포츠강사",
 ]
-HIRE_WORDS = ["모집", "채용", "공모", "위촉", "공개채용", "인력풀", "선발", "공개모집", "구인", "채용공고", "위촉공고"]
+HIRE_WORDS = ["모집", "채용", "공모", "위촉", "공개채용", "인력풀", "선발", "공개모집", "구인", "채용공고", "위촉공고", "초빙"]
 LECTURE_WORDS = ["강의", "수업", "교육과정 운영", "프로그램 운영", "출강", "강좌", "교육 운영", "교육운영"]
 EXCLUDE_TITLE = [
     "수강생", "교육생", "학생 모집", "참가자", "참여자", "합격자", "발표", "강사료", "지급",
     "만족도", "결과", "수료", "신청 안내", "교육 안내", "프로그램 안내", "입학", "수강 신청", "수강신청",
-    "접수 안내", "참가 신청", "참가신청",
+    "접수 안내", "참가 신청", "참가신청", "전임교원", "교원 임용", "교수 임용", "교원임용", "교수임용",
 ]
 PROCUREMENT_WORDS = ["입찰", "물품", "시설", "임대", "공사"]
 SERVICE_OK_WORDS = ["강의 용역", "교육 용역", "교육 운영 용역", "강사 운영", "교육과정 운영 용역", "교육 위탁"]
@@ -50,7 +50,7 @@ class RuleResult:
     employment_type: str = "기타"
 
 
-def score_posting(title: str, body: str = "", region_text: str | None = None) -> RuleResult:
+def score_posting(title: str, body: str = "", region_text: str | None = None, org_name: str | None = None) -> RuleResult:
     t = nfkc(title)
     b = nfkc(body)[:4000]
     r = nfkc(region_text or "")
@@ -66,6 +66,9 @@ def score_posting(title: str, body: str = "", region_text: str | None = None) ->
         if core_b:
             score += 25
             reasons.append(f"+25 본문 핵심어({core_b[0]})")
+        else:
+            score -= 30
+            reasons.append("-30 핵심어 없음")
 
     hire = [w for w in HIRE_WORDS if w in t]
     if hire:
@@ -77,7 +80,7 @@ def score_posting(title: str, body: str = "", region_text: str | None = None) ->
         score += 10
         reasons.append(f"+10 강의어({lect[0]})")
 
-    region_blob = " ".join([t, r, b[:2000]])
+    region_blob = " ".join([t, r, nfkc(org_name or ""), b[:2000]])
     if any(w in region_blob for w in GYEONGNAM_WORDS) or any(s in region_blob for s in SIGUN):
         score += 15
         reasons.append("+15 경남 지역")

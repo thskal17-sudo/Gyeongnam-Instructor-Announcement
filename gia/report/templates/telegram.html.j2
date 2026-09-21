@@ -1,7 +1,9 @@
 <b>경남 강사 구인공고 {{ r.date_str }}</b>
 신규 {{ r.new|length }} · 마감임박 {{ r.closing|length }} · 변경 {{ r.updated|length }}
 
-<b>⏰ 마감 임박</b>
+{% if r.overview %}<i>{{ r.overview|e }}</i>
+
+{% endif %}<b>⏰ 마감 임박</b>
 {% for p in r.closing %}
 {{ loop.index }}. [{{ p.field|field_name }}] {{ p.org_name|e }} · <a href="{{ p.primary_url|e }}">{{ p.title|e }}</a> — {{ p|dday }}
    마감 {{ p|deadline_str }} · {{ p.region|region_str }} · {{ p.employment_type }}{% if '판별유보' in p.flags %} · ⚠확인필요{% endif %}
@@ -13,7 +15,8 @@
 {% for p in r.new[:r.telegram_max_items] %}
 {{ loop.index }}. [{{ p.field|field_name }}] {{ p.org_name|e }} · <a href="{{ p.primary_url|e }}">{{ p.title|e }}</a>
    마감 {{ p|deadline_str }} · {{ p.region|region_str }} · {{ p.employment_type }}{% if '판별유보' in p.flags %} · ⚠확인필요{% endif %}
-{% else %}
+{% if p.one_line_summary %}   {{ p.one_line_summary|e }}
+{% endif %}{% else %}
 없음
 {% endfor %}
 {% if r.new|length > r.telegram_max_items %}
