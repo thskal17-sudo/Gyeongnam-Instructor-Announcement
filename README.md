@@ -10,7 +10,7 @@
 | 문서 | 내용 |
 |---|---|
 | [docs/DESIGN.md](docs/DESIGN.md) | 전체 설계서: 요구사항, 아키텍처, 수집·분류·저장·요약·발송 각 계층, 스케줄, 데이터 모델, 운영, 준법, 테스트, 로드맵 |
-| [config/sources.yaml](config/sources.yaml) | 수집 대상 기관 레지스트리 (Tier 1~4, 70여 개 항목) |
+| [config/sources.yaml](config/sources.yaml) | 수집 대상 기관 레지스트리 (Tier 1~4, 100여 개 항목) |
 | [docs/DAILY_REPORT_TEMPLATE.md](docs/DAILY_REPORT_TEMPLATE.md) | 일일 요약본 형식과 채널별 출력 규칙 |
 
 ## 한눈에 보기

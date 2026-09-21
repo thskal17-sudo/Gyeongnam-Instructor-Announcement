@@ -195,3 +195,54 @@ sources:
   - { id: alba,      name: 알바천국·알바몬 (시간제 강사), org_type: portal, tier: 4, enabled: false, tos_checked: false, homepage: TODO, adapter: { type: search_portal, queries: ["강사 경남"] } }
   - { id: culture_centers, name: 백화점·마트 문화센터 (창원·김해·진주 지점), org_type: private, tier: 4, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 롯데·신세계·홈플러스·이마트 문화센터 강사 모집 페이지. 지점별 URL 확인 }
   - { id: private_training, name: 직업훈련기관 (경남 소재), org_type: private, tier: 4, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 대부분 work24로 유입되므로 개별 등록은 보류 }
+
+# ---------------------------------------------------------------------------
+# Tier 3-D. 시군 문화재단·문화원  — Phase 3
+#   (시군청 게시판·클린아이에 중복 게시되는 경우가 많음. 문화원은 별도 사이트가 많아 개별 등록)
+# ---------------------------------------------------------------------------
+  - { id: ty_culture,   name: 통영시문화재단(통영국제음악재단 포함), org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: sc_culture,   name: 사천문화재단,             org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: my_culture,   name: 밀양문화재단,             org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: gj_culture,   name: 거제시문화예술재단,       org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: ys_culture,   name: 양산문화재단,             org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: gn_cultural_centers, name: 시군 문화원 (18개 묶음), org_type: private, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 창원·진주·통영·사천·김해·밀양·거제·양산·의령·함안·창녕·고성·남해·하동·산청·함양·거창·합천 문화원. 사이트가 있는 곳만 개별 항목으로 분리 등록 }
+
+# ---------------------------------------------------------------------------
+# Tier 3-E. 시군 도서관  — Phase 3
+#   (강좌 강사 공고. 시청 게시판에 함께 게시되면 해당 항목은 enabled=false로 전환)
+# ---------------------------------------------------------------------------
+  - { id: cw_lib,   name: 창원시 도서관 (통합 시스템),   org_type: local_gov, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: gh_lib,   name: 김해시 도서관 (통합 시스템),   org_type: local_gov, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: jj_lib,   name: 진주시 도서관 (통합 시스템),   org_type: local_gov, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: ys_lib,   name: 양산시 도서관,                 org_type: local_gov, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: gj_lib,   name: 거제시 도서관,                 org_type: local_gov, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: gne_lib,  name: 경남교육청 소속 공공도서관 (통합), org_type: edu_office, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 교육청 직속 도서관(창원·마산·진주·김해 등). gne 통합 채용 게시판에 포함되면 비활성 }
+
+# ---------------------------------------------------------------------------
+# Tier 3-F. 시군 보건소  — Phase 3
+#   (건강·금연·치매예방·정신건강 교육 강사. 대부분 시군청 게시판에 게시되므로 기본 비활성,
+#    시군청 소스 검증 후 보건소 공고가 누락되는 곳만 활성화)
+# ---------------------------------------------------------------------------
+  - { id: gn_health_centers, name: 경남 시군 보건소 (20개 묶음), org_type: local_gov, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 창원시는 5개 구 보건소(의창·성산·마산·진해 등) 별도. 시군청 채용 게시판에 통합 게시 여부 확인 후 누락 지역만 개별 등록 }
+  - { id: gn_mental_health, name: 경남광역정신건강복지센터·시군 정신건강복지센터, org_type: local_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 정신건강 교육 강사 }
+  - { id: gn_dementia,      name: 경남광역치매센터·시군 치매안심센터, org_type: local_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 치매 예방 교육 강사 }
+
+# ---------------------------------------------------------------------------
+# Tier 3-G. 사립대·전문대 평생교육원  — Phase 3
+# ---------------------------------------------------------------------------
+  - { id: changshin_lifelong, name: 창신대학교 평생교육원,     org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: kaya_lifelong,      name: 가야대학교 평생교육원,     org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: youngsan_lifelong,  name: 영산대학교 양산캠퍼스 평생교육원, org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: masan_lifelong,     name: 마산대학교 평생교육원,     org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: cwmc_lifelong,      name: 창원문성대학교 평생교육원, org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: gimhae_college_lifelong, name: 김해대학교 평생교육원, org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: yonam_lifelong,     name: 연암공과대학교 평생교육원 (진주), org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: jinju_health_lifelong, name: 진주보건대학교 평생교육원, org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: gndc_lifelong,      name: 경남도립거창대학·남해대학 평생교육원, org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 도립대학이므로 org_type을 local_public로 볼 수도 있음 }
+
+# ---------------------------------------------------------------------------
+# Tier 3-H. 중앙 산하 공공기관 경남 지역본부 (강사 공고 빈도 낮음)  — Phase 3, 기본 비활성
+# ---------------------------------------------------------------------------
+  - { id: ekr_gn,    name: 한국농어촌공사 경남지역본부,   org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 농업인 교육 강사. alio로 대체 가능 }
+  - { id: lx_gn,     name: 한국국토정보공사 경남지역본부, org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: gn_agri_tech, name: 경상남도농업기술원·시군 농업기술센터, org_type: local_gov, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 농업인대학·귀농교육 강사. 시군청 게시판 통합 여부 확인 }
