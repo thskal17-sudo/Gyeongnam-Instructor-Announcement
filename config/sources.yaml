@@ -19,19 +19,35 @@ defaults:
 # ---------------------------------------------------------------------------
 sources:
   - id: gojobs
-    name: 나라일터 (인사혁신처)
+    name: 나라일터·공공기관 채용정보 (인사혁신처)
     org_type: portal
     tier: 1
     schedule: daily_light
     homepage: https://www.gojobs.go.kr
     adapter:
       type: api_json
-      provider: data.go.kr
-      dataset: 인사혁신처_나라일터 채용정보     # 공공데이터포털에서 정확한 서비스명·엔드포인트 확인
-      params: { region: 경남 }
-      keywords: [강사, 교강사, 시간강사, 외래강사, 지도자]
-      fallback: { type: html_list, list_url: TODO }
-    notes: 지자체 기간제·임기제·강사 공고가 가장 많이 모이는 포털
+      endpoint: https://apis.data.go.kr/1051000/recruitment/list
+      format: json
+      params:
+        serviceKey: "${DATA_GO_KR_KEY}"
+        resultType: json
+      paging: { page_param: pageNo, size_param: numOfRows, size: 100, max_pages: 5 }
+      items_path: result
+      field_map:
+        title: recrutPbancTtl
+        org_name: instNm
+        posted_at: pbancBgngYmd
+        deadline: pbancEndYmd
+        region: workRgnNmLst
+        url: srcUrl
+      date_formats: ["%Y%m%d"]
+      keywords: [강사, 교강사, 시간강사, 외래, 훈련교사, 지도자, 지도사, 튜터, 코치, 멘토]
+      region_filter: "@gyeongnam"
+      detail: { fetch: false }
+    notes: >-
+      공공데이터포털 '인사혁신처_공공기관 채용정보' API 기준으로 작성. 엔드포인트·필드명(recrutPbancTtl,
+      instNm, pbancBgngYmd, pbancEndYmd, workRgnNmLst, srcUrl)은 `gia probe gojobs`로 실측 후 verified: true.
+      환경변수 DATA_GO_KR_KEY 필요.
 
   - id: alio
     name: 잡알리오 (기획재정부, 공공기관 채용)
@@ -41,11 +57,16 @@ sources:
     homepage: https://job.alio.go.kr
     adapter:
       type: api_json
-      provider: data.go.kr
-      dataset: 기획재정부_공공기관 채용정보
-      params: { work_region: 경남 }
+      endpoint: TODO          # 공공데이터포털 '기획재정부_공공기관 채용정보' 엔드포인트 확인
+      format: json
+      params: { serviceKey: "${DATA_GO_KR_KEY}" }
+      paging: { page_param: pageNo, size_param: numOfRows, size: 100, max_pages: 5 }
+      items_path: TODO
+      field_map: { title: TODO, org_name: TODO, posted_at: TODO, deadline: TODO, region: TODO, url: TODO }
       keywords: [강사, 교강사, 시간강사, 외래교수, 훈련교사]
-    notes: 중앙 산하 공공기관(폴리텍·산업인력공단 등) 강사 공고 유입
+      region_filter: "@gyeongnam"
+      detail: { fetch: false }
+    notes: gojobs(인사혁신처 API)가 공공기관 채용을 이미 포함하면 중복이므로 검증 후 enabled 여부 결정
 
   - id: cleaneye
     name: 클린아이 잡플러스 (행안부, 지방공기업·출자출연기관)
@@ -55,8 +76,13 @@ sources:
     homepage: https://job.cleaneye.go.kr
     adapter:
       type: html_list
-      list_url: TODO       # 지역=경남 검색 결과 URL
+      list_url: TODO          # 지역=경남 검색 결과 URL ({page} 자리표시자 사용 가능)
       row_selector: TODO
+      title_selector: a
+      date_selector: TODO
+      org_selector: TODO
+      keywords: [강사, 교강사, 시간강사, 지도자, 지도사]
+      detail: { fetch: true, body_selector: TODO }
     notes: 경남 출자출연기관 채용 대부분 커버. API 유무 확인 필요
 
   - id: work24
@@ -67,23 +93,59 @@ sources:
     homepage: https://www.work24.go.kr
     adapter:
       type: api_json
-      provider: data.go.kr
-      dataset: 고용노동부_워크넷 채용정보
-      params: { region_code: 경남, occupation: 강사 }   # 직종·지역 코드표 확인
-    notes: 민간 학원·훈련기관 강사 공고의 주 유입원
+      endpoint: https://openapi.work.go.kr/opi/opi/opia/wantedApi.do
+      format: xml
+      params:
+        authKey: "${WORKNET_API_KEY}"
+        callTp: L
+        returnType: XML
+        region: "48000"       # 경남 지역코드 (확인 필요)
+        keyword: 강사
+      paging: { page_param: startPage, size_param: display, size: 100, max_pages: 5 }
+      items_path: wantedRoot.wanted
+      field_map:
+        title: title
+        org_name: company
+        posted_at: regDt
+        deadline: closeDate
+        region: region
+        url: wantedInfoUrl
+      date_formats: ["%y-%m-%d", "%Y-%m-%d"]
+      detail: { fetch: false }
+    notes: >-
+      워크넷 채용정보 Open API(XML) 기준. 2024년 이후 고용24로 이관되어 엔드포인트가 바뀌었을 수 있음.
+      probe로 검증. 환경변수 WORKNET_API_KEY 필요. 민간 학원·훈련기관 강사 공고의 주 유입원.
 
   - id: g2b
-    name: 나라장터 (조달청, 입찰공고)
+    name: 나라장터 (조달청, 용역 입찰공고)
     org_type: portal
     tier: 1
+    enabled: false            # 강사 개인이 아닌 교육 용역 업체 대상. 필요 시 활성화
     homepage: https://www.g2b.go.kr
     adapter:
       type: api_json
-      provider: data.go.kr
-      dataset: 조달청_나라장터 입찰공고정보
-      params: { demand_region: 경남, type: 용역 }
-      keywords: [강의, 강사, 교육 운영, 교육과정 운영, 프로그램 운영]
-    notes: 강사 개인이 아닌 교육 용역 업체 대상 공고. 관심 없으면 enabled=false
+      endpoint: https://apis.data.go.kr/1230000/ad/BidPublicInfoService/getBidPblancListInfoServcPPSSrch
+      format: json
+      params:
+        serviceKey: "${DATA_GO_KR_KEY}"
+        type: json
+        inqryDiv: "1"
+        inqryBgnDt: "{since}0000"
+        inqryEndDt: "{today}2359"
+        bidNtceNm: 강사
+      paging: { page_param: pageNo, size_param: numOfRows, size: 100, max_pages: 3 }
+      items_path: response.body.items
+      field_map:
+        title: bidNtceNm
+        org_name: dminsttNm
+        posted_at: bidNtceDt
+        deadline: bidClseDt
+        region: dminsttNm
+        url: bidNtceDtlUrl
+      date_formats: ["%Y-%m-%d %H:%M:%S", "%Y%m%d%H%M"]
+      region_filter: "@gyeongnam"
+      detail: { fetch: false }
+    notes: 수요기관명으로 경남 필터. 공공데이터포털 '조달청_나라장터 입찰공고정보' 기준
 
 # ---------------------------------------------------------------------------
 # Tier 2. 경남도·시군·교육청  — Phase 2
