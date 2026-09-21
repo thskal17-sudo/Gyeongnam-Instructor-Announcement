@@ -1,68 +1,58 @@
-# 부산·울산·경남 대학 평생교육원 강사모집 공고 수집
+# 경남 강사 구인공고 수집·일일 요약 (Gyeongnam Instructor Announcement)
 
-부산/울산/경남 지역 대학(4년제·전문대) 부설 평생교육원 홈페이지를 대상으로
-**강사모집 · 강좌개설 신청 · 강사 인증/등록** 공고를 모아 둔 저장소입니다.
+경남 지역 공공기관·정부산하기관·민간기관의 **강사 구인공고**를 매일 자동 수집하고,
+정해진 시각에 신규·마감임박 공고 요약본을 텔레그램/이메일로 받아보는 시스템입니다.
 
-## 결과물
+현재 상태: **Phase 1 구현 완료** (Tier 1 API 어댑터, 규칙 분류기, 마감일 파서, JSONL 저장, Markdown 리포트, 텔레그램 발송, GitHub Actions 스케줄). Tier 1 소스의 API 엔드포인트·필드명은 실측 검증 전이다.
 
-| 파일 | 내용 |
+## 문서
+
+| 문서 | 내용 |
 |---|---|
-| [`data/announcements.md`](data/announcements.md) | 지역별 공고 표 (바로 보기용) |
-| `data/announcements.xlsx` | 엑셀 파일: `공고목록`·`기관목록`·`요약`(지역×구분 자동 집계) 3개 시트 |
-| `data/announcements.csv` | CSV (UTF-8 BOM) |
-| `data/announcements.json` | 원본 데이터 (스크래퍼가 병합 대상으로 사용) |
-| `data/institutions.json` | 대상 기관 38곳의 평생교육원 홈페이지·게시판 URL·연락처 |
+| [docs/DESIGN.md](docs/DESIGN.md) | 전체 설계서: 요구사항, 아키텍처, 수집·분류·저장·요약·발송 각 계층, 스케줄, 데이터 모델, 운영, 준법, 테스트, 로드맵 |
+| [config/sources.yaml](config/sources.yaml) | 수집 대상 기관 레지스트리 (Tier 1~4, 100여 개 항목) |
+| [docs/DAILY_REPORT_TEMPLATE.md](docs/DAILY_REPORT_TEMPLATE.md) | 일일 요약본 형식과 채널별 출력 규칙 |
 
-각 공고 레코드의 주요 필드
+## 한눈에 보기
 
-- `category`: `강사모집` / `강좌개설신청` / `강좌개설제안(상시)` / `강사인증/등록` / `강사공지` / `일반강사채용(참고)`
-- `confidence`: `high` = 게시글 URL까지 확인, `medium` = 제목·게시판은 확인했으나 상세 URL 미확보, `low` = 검색 스니펫으로만 확인
-- `source`: `web_search` (초기 수동 수집) 또는 `scraper` (자동 수집)
+```
+sources.yaml ─▶ Collector ─▶ Normalizer/Deduper ─▶ Classifier(규칙+LLM) ─▶ Store(JSONL)
+                                                                             │
+                     텔레그램 / 이메일 / reports/ ◀── Notifier ◀── Summarizer ◀┘
+                     (매일 07:30 KST, GitHub Actions cron)
+```
 
-`일반강사채용(참고)` 는 평생교육원이 아닌 대학 본부의 학부 강사·겸임교수 채용으로,
-검색 과정에서 함께 잡혀 참고용으로만 분리해 두었습니다.
-
-## 재수집 방법
+## 실행 방법
 
 ```bash
-pip install -r scraper/requirements.txt
-python scraper/collect.py              # 전체 기관
-python scraper/collect.py --only pia-edu ulsan-cec   # 특정 기관만
-python scraper/collect.py --dry-run    # 파일 저장 없이 확인
-python scraper/build_reports.py        # JSON -> CSV/MD/XLSX 재생성만
+pip install -e ".[dev]"
+python -m pytest -q                      # 오프라인 테스트
+python -m gia probe gojobs --detail      # 소스 하나 시험 수집 (DATA_GO_KR_KEY 필요)
+python -m gia collect --dry-run          # 전체 수집, 저장 안 함
+python -m gia collect                    # 수집·저장 (data/)
+python -m gia report                     # 요약본 생성·출력 (reports/)
+python -m gia report --send              # 텔레그램 발송 (TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID 필요)
 ```
 
-스크래퍼는 `data/institutions.json` 의 `boards[].url` 을 읽어 링크 제목에서
-`강사모집`, `강사 채용/초빙/위수탁`, `강좌 개설 신청/제안/공모`, `강사 인증` 등의 표현을 찾고,
-`수강생/교육생 모집` 같은 학습자 대상 글은 제외합니다. 기존 데이터와는 URL 또는
-(기관, 제목) 기준으로 병합되므로 여러 번 실행해도 중복이 쌓이지 않습니다.
+GitHub Actions는 매일 06:30 KST에 `collect`, 07:30 KST에 `report --send`를 실행하고 결과를 커밋한다.
+필요한 저장소 Secrets: `DATA_GO_KR_KEY`, `WORKNET_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`.
 
-`.github/workflows/collect.yml` 은 매주 월요일 09:00(KST)에 자동 수집 후 변경분을 커밋합니다.
-Actions 탭에서 `Run workflow` 로 수동 실행도 가능합니다.
+## 디렉터리
 
-## 대상 기관 추가
+| 경로 | 내용 |
+|---|---|
+| `gia/collectors/` | HTTP 클라이언트(요청 간격·재시도·robots), `api_json`·`html_list` 어댑터 |
+| `gia/extract/deadline.py` | 마감일 파서 |
+| `gia/classify/rules.py` | 규칙 기반 관련성 점수, 분야·고용형태 추정 |
+| `gia/normalize.py`, `gia/dedupe.py` | 제목·기관명 정규화, 중복 병합 |
+| `gia/store.py` | 월별 JSONL 원장, URL 인덱스, 상태 전이 |
+| `gia/report/` | Markdown·텔레그램 템플릿 렌더링 |
+| `gia/notify/telegram.py` | 텔레그램 발송 (4,000자 분할) |
+| `data/`, `reports/` | 수집 원장과 일일 리포트 아카이브 (봇이 커밋) |
+| `data/institutions.json` | 부산·울산·경남 대학 평생교육원 38곳의 게시판 URL·연락처. `config/sources.yaml`의 대학 항목(Tier 3-C, 3-G)을 검증할 때 참고 |
 
-`data/institutions.json` 에 아래 형식으로 항목을 추가하면 됩니다.
+## 다음 단계
 
-```json
-{
-  "id": "example-edu",
-  "region": "경남",
-  "university": "OO대학교",
-  "center": "평생교육원",
-  "homepage": "https://edu.example.ac.kr/",
-  "boards": [{"name": "공지사항", "url": "https://edu.example.ac.kr/notice"}],
-  "phone": "055-000-0000"
-}
-```
-
-`boards` 가 비어 있는 기관(마산대·창원문성대·김해대·거제대·동원과기대·연암공대·부산여대·부산경상대 등)은
-평생교육원 게시판 URL이 아직 확인되지 않은 곳입니다. URL을 채우면 다음 수집부터 포함됩니다.
-
-## 알려진 제약
-
-- 초기 데이터는 대학 도메인 직접 접속이 차단된 환경에서 웹 검색 결과로 수집했습니다.
-  따라서 일부 항목은 게시일이나 상세 URL이 비어 있으며(`confidence: medium/low`),
-  네트워크가 열린 환경에서 `collect.py` 를 한 번 실행하면 보완됩니다.
-- JavaScript 로만 목록을 그리는 게시판(onclick 링크)은 게시글 URL 대신 목록 URL이 저장됩니다.
-- 첨부파일(hwp/pdf)로만 공고를 올리는 기관은 제목만 수집되고 본문 요약은 비어 있습니다.
+1. 공공데이터포털에서 API 키를 발급받아 `gia probe gojobs`, `gia probe work24`로 엔드포인트·필드명을 검증하고 `verified: true`로 표시한다.
+2. 텔레그램 봇을 만들고 Secrets를 등록한 뒤 `report` 워크플로를 수동 실행해 수신을 확인한다.
+3. Phase 2: 경남도·시군·교육청 게시판의 `list_url`·셀렉터를 채우고 첨부파일(HWP/PDF) 추출을 붙인다.
