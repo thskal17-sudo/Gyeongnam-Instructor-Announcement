@@ -247,7 +247,9 @@ sources:
         fetch: true
         body_selector: div.bbs1view1 div.substance
         attachment_selector: a[href*="/board/download.do"]
-    notes: 구인/구직 > 취업공지사항 게시판(2026-09-21 검증). 시 자체 기간제·강사 모집 공고가 올라옴
+    notes: >-
+      구인/구직 > 취업공지사항 게시판(2026-09-21 검증). 시 자체 기간제·강사 모집 공고가 올라옴.
+      게시 빈도가 낮아(최신 글 2026-08-26) 기본 수집 기간 14일 안에는 0건일 수 있음
   - id: sacheon
     name: 사천시 구인게시판
     org_type: local_gov
@@ -438,7 +440,9 @@ sources:
         fetch: true
         body_selector: div.bbs1view1 div.substance
         attachment_selector: a.filename[href*="/board/download.do"]
-    notes: 취업정보 > 시험채용정보 게시판(2026-09-21 검증). 민간 구인글(요양보호사 등)도 섞여 있어 분류기 점수로 거름
+    notes: >-
+      취업정보 > 시험채용정보 게시판(2026-09-21 검증). 민간 구인글(요양보호사 등)도 섞여 있어 분류기 점수로 거름.
+      최신 글 제목 끝에 '새 글' 배지(span.t1)가 붙어 옴 → normalize_title 에서 제거 필요(후속)
   - id: hapcheon
     name: 합천군
     org_type: local_gov
