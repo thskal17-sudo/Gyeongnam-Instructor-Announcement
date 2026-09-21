@@ -1,20 +1,25 @@
 #!/usr/bin/env python3
-"""게시판 목록 페이지의 HTML 구조를 요약 출력한다 (셀렉터 결정용).
+"""게시판 목록/상세 페이지의 HTML 구조를 요약 출력한다 (셀렉터 결정용).
 
-사용법: python scripts/dump_structure.py URL [URL ...]
+사용법: python scripts/dump_structure.py URL [URL ...]   (인자가 없으면 환경변수 URLS 를 공백으로 나눠 사용)
+URL 에 amode=view / View.do / Detail.do / regSn= 이 있으면 상세 페이지로 보고 본문·첨부 후보를 출력한다.
 네트워크가 열린 환경(GitHub Actions 등)에서 실행하고 로그를 읽는다.
 """
 from __future__ import annotations
 
+import os
 import re
 import sys
-import urllib3
 
 import requests
+import urllib3
 from bs4 import BeautifulSoup
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+HEADERS = {"User-Agent": UA, "Accept-Language": "ko-KR,ko;q=0.9,en;q=0.5", "Accept": "text/html,application/xhtml+xml,*/*;q=0.8"}
+NOISE = re.compile(r"(nav|menu|header|footer|lnb|gnb|tnb|snb|anb|topmenu|depth|sitemap|quick|util|breadcrumb|location|family|skip|m_menu|slide|banner|share|foot|head)", re.I)
+DETAIL = re.compile(r"(amode=view|View\.do|Detail\.do|regSn=|/view\.|nttNo=|dataSid=)", re.I)
 
 
 def sel(tag) -> str:
@@ -31,63 +36,110 @@ def path(tag) -> str:
     return " > ".join(reversed(parts))
 
 
+def short_path(tag) -> str:
+    """잡음 없는 짧은 경로: 마지막 3단계."""
+    return " > ".join(path(tag).split(" > ")[-3:])
+
+
+def fetch(url: str):
+    try:
+        return requests.get(url, headers=HEADERS, timeout=25)
+    except requests.exceptions.SSLError:
+        print("  (ssl verify failed, retrying without verification)")
+        return requests.get(url, headers=HEADERS, timeout=25, verify=False)
+
+
+def row_detail(row, limit: int = 14) -> None:
+    """행 내부의 클래스/태그가 있는 요소를 얕은 순서로 출력 (제목·날짜·부서 위치 파악용)."""
+    n = 0
+    for el in row.find_all(True):
+        if el.name in ("br", "img", "script", "style"):
+            continue
+        txt = el.get_text(" ", strip=True)
+        own = "".join(el.find_all(string=True, recursive=False)).strip()
+        if not txt:
+            continue
+        extra = ""
+        if el.name == "a":
+            extra = f" href={ (el.get('href') or '')[:90] } onclick={ (el.get('onclick') or '')[:60] }"
+        print(f"      {sel(el)}{extra} :: own={own[:40]!r} all={txt[:50]!r}")
+        n += 1
+        if n >= limit:
+            break
+
+
+def dump_list(soup) -> None:
+    for t in soup.find_all("table"):
+        rows = t.find_all("tr")
+        if len(rows) < 2 or NOISE.search(path(t)):
+            continue
+        print(f"\n[TABLE] {short_path(t)}  rows={len(rows)}")
+        for tr in rows[:2]:
+            cells = tr.find_all(["th", "td"])
+            print("   row:", sel(tr), "->", " | ".join(f"{sel(c)}:{c.get_text(' ', strip=True)[:26]}" for c in cells[:8]))
+        if len(rows) > 1:
+            row_detail(rows[1])
+    for ul in soup.find_all(["ul", "ol"]):
+        lis = ul.find_all("li", recursive=False)
+        if len(lis) < 3 or not ul.find("a") or NOISE.search(path(ul)):
+            continue
+        if sum(len(li.get_text(" ", strip=True)) for li in lis) < 80:
+            continue
+        print(f"\n[LIST] {short_path(ul)}  items={len(lis)}")
+        print("   li:", sel(lis[0]), "->", lis[0].get_text(" ", strip=True)[:100])
+        row_detail(lis[0])
+    pag = [a for a in soup.find_all("a") if re.search(r"(cpage|pageIndex|startPage|pageNo|page)=\d+", a.get("href") or "")]
+    if pag:
+        print("\n[PAGING]", (pag[0].get("href") or "")[:140])
+    print("[DATES] sample:", re.findall(r"20\d{2}[.\-/]\s?\d{1,2}[.\-/]\s?\d{1,2}", soup.get_text(" "))[:5])
+
+
+def dump_detail(soup) -> None:
+    cands = []
+    for el in soup.find_all(["div", "td", "article", "section", "pre", "p"]):
+        if NOISE.search(path(el)) or el.find(["table", "ul"]) and el.name == "div" and len(el.find_all("a")) > 15:
+            continue
+        txt = el.get_text(" ", strip=True)
+        if len(txt) < 120:
+            continue
+        # 자식 중 더 큰 텍스트 컨테이너가 있으면 그쪽을 우선하도록 (가장 안쪽 큰 블록)
+        inner = max((len(c.get_text(' ', strip=True)) for c in el.find_all(["div", "td", "article", "section"], recursive=False)), default=0)
+        cands.append((len(txt) - inner * 0.9, len(txt), el))
+    cands.sort(key=lambda x: -x[0])
+    print("\n[BODY candidates]")
+    for _, ln, el in cands[:5]:
+        print(f"   {short_path(el)}  textlen={ln} :: {el.get_text(' ', strip=True)[:80]!r}")
+    print("\n[ATTACH candidates]")
+    for a in soup.find_all("a"):
+        h = a.get("href") or ""
+        oc = a.get("onclick") or ""
+        if re.search(r"(download|file|attach|\.hwp|\.pdf|\.hwpx|\.docx)", h + oc, re.I):
+            print(f"   {short_path(a)} href={h[:100]} onclick={oc[:60]} text={a.get_text(' ', strip=True)[:40]!r}")
+    print("[DATES] sample:", re.findall(r"20\d{2}[.\-/]\s?\d{1,2}[.\-/]\s?\d{1,2}", soup.get_text(" "))[:8])
+
+
 def dump(url: str) -> None:
     print("=" * 100)
     print("URL:", url)
     try:
-        r = requests.get(url, headers={"User-Agent": UA}, timeout=25)
-    except requests.exceptions.SSLError:
-        print("  (ssl verify failed, retrying without verification)")
-        r = requests.get(url, headers={"User-Agent": UA}, timeout=25, verify=False)
+        r = fetch(url)
     except Exception as exc:  # noqa: BLE001
-        print("  FETCH ERROR:", exc)
+        print("  FETCH ERROR:", str(exc)[:200])
         return
     if not r.encoding or r.encoding.lower() == "iso-8859-1":
         r.encoding = r.apparent_encoding
     print(f"status={r.status_code} final={r.url} encoding={r.encoding} bytes={len(r.content)}")
     soup = BeautifulSoup(r.text, "lxml")
     print("title:", (soup.title.get_text(strip=True) if soup.title else "")[:80])
-    robots = re.findall(r'<meta[^>]+name=["\']robots["\'][^>]*>', r.text, re.I)
-    if robots:
-        print("robots meta:", robots[0][:120])
-
-    # 표 형태 게시판
-    for t in soup.find_all("table")[:6]:
-        rows = t.find_all("tr")
-        print(f"\n[TABLE] {path(t)}  rows={len(rows)}")
-        for tr in rows[:3]:
-            cells = tr.find_all(["th", "td"])
-            desc = " | ".join(f"{sel(c)}:{c.get_text(' ', strip=True)[:28]}" for c in cells[:8])
-            print("   row:", sel(tr), "->", desc)
-            for a in tr.find_all("a")[:2]:
-                print("      a:", sel(a), "href=", (a.get("href") or "")[:100], "onclick=", (a.get("onclick") or "")[:80], "text=", a.get_text(" ", strip=True)[:50])
-
-    # 목록(ul/ol) 형태 게시판: 항목이 3개 이상이고 링크가 있는 것만
-    for ul in soup.find_all(["ul", "ol"]):
-        lis = ul.find_all("li", recursive=False)
-        if len(lis) < 3 or not ul.find("a"):
-            continue
-        texts = [li.get_text(" ", strip=True) for li in lis]
-        if sum(len(t) for t in texts) < 60:
-            continue
-        print(f"\n[LIST] {path(ul)}  items={len(lis)}")
-        for li in lis[:2]:
-            print("   li:", sel(li), "->", li.get_text(" ", strip=True)[:90])
-            for a in li.find_all("a")[:1]:
-                print("      a:", sel(a), "href=", (a.get("href") or "")[:100], "onclick=", (a.get("onclick") or "")[:80])
-            for child in li.find_all(True, recursive=False)[:6]:
-                print("      child:", sel(child), ":", child.get_text(" ", strip=True)[:40])
-
-    # 페이지 이동 링크
-    pag = [a for a in soup.find_all("a") if re.search(r"(page|Page|cpage|pageIndex|startPage|pageNo)=\d+", a.get("href") or "")]
-    if pag:
-        print("\n[PAGING]", (pag[0].get("href") or "")[:140])
-    dates = re.findall(r"20\d{2}[.\-/]\d{1,2}[.\-/]\d{1,2}", soup.get_text(" "))
-    print("[DATES] sample:", dates[:5])
+    if len(r.content) < 2000:
+        print("body (short):", re.sub(r"\s+", " ", r.text)[:600])
+        return
+    if DETAIL.search(url):
+        dump_detail(soup)
+    else:
+        dump_list(soup)
 
 
 if __name__ == "__main__":
-    import os
-    urls = sys.argv[1:] or os.environ.get("URLS", "").split()
-    for u in urls:
+    for u in sys.argv[1:] or os.environ.get("URLS", "").split():
         dump(u)
