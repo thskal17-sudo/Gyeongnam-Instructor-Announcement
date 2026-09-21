@@ -6,7 +6,7 @@
 
 {% for p in r.closing %}
 {{ loop.index }}. **[{{ p.field|field_name }}] {{ p.org_name }} · {{ p.title }}** — {{ p|dday }}
-   마감 {{ p|deadline_str }} · {{ p.region|region_str }} · {{ p.employment_type }}{% if p.pay %} · {{ p.pay }}{% endif %}{% if '판별유보' in p.flags %} · ⚠ 강사 공고 여부 확인 필요{% endif %}{% if '재공고' in p.flags %} · 재공고{% endif %}
+   마감 {{ p|deadline_str }} · {{ p.region|region_str }} · {{ p.employment_type }}{% if p.pay %} · {{ p.pay }}{% endif %}{% if '판별유보' in p.flags %} · ⚠ 강사 공고 여부 확인 필요{% endif %}{% if '재공고' in p.flags %} · 재공고{% endif %}{% if '첨부추출실패' in p.flags and not p.deadline %} · 첨부 추출 실패{% endif %}
    → {{ p.primary_url }} (출처: {% for s in p.sources %}{{ r.source_names.get(s.source_id, s.source_id) }}{% if not loop.last %}, {% endif %}{% endfor %})
 {% else %}
 없음
@@ -16,7 +16,7 @@
 
 {% for p in r.new %}
 {{ loop.index }}. **[{{ p.field|field_name }}] {{ p.org_name }} · {{ p.title }}**
-   마감 {{ p|deadline_str }} · {{ p.region|region_str }} · {{ p.employment_type }}{% if p.pay %} · {{ p.pay }}{% endif %}{% if '판별유보' in p.flags %} · ⚠ 강사 공고 여부 확인 필요{% endif %}{% if '재공고' in p.flags %} · 재공고{% endif %}
+   마감 {{ p|deadline_str }} · {{ p.region|region_str }} · {{ p.employment_type }}{% if p.pay %} · {{ p.pay }}{% endif %}{% if '판별유보' in p.flags %} · ⚠ 강사 공고 여부 확인 필요{% endif %}{% if '재공고' in p.flags %} · 재공고{% endif %}{% if '첨부추출실패' in p.flags and not p.deadline %} · 첨부 추출 실패{% endif %}
    → {{ p.primary_url }} (출처: {% for s in p.sources %}{{ r.source_names.get(s.source_id, s.source_id) }}{% if not loop.last %}, {% endif %}{% endfor %})
 {% else %}
 없음

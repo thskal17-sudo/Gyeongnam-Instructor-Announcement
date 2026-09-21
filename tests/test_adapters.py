@@ -73,9 +73,20 @@ def test_html_list_and_detail(settings):
     ad = HtmlListAdapter(cfg, http, settings.collector, since=date(2026, 9, 1))
     listings = ad.fetch_list()
     # 6월 게시글은 since 이전이라 제외, 페이지 2는 가장 오래된 글이 since 이전이라 요청하지 않음
-    assert [l.title for l in listings] == ["[재공고] 2026 하반기 시민강좌 강사 모집", "2026 시민강좌 수강생 모집 안내"]
+    assert [l.title for l in listings] == ["디지털 문해교육 강사 인력풀 모집", "[재공고] 2026 하반기 시민강좌 강사 모집", "2026 시민강좌 수강생 모집 안내"]
+    listings = listings[1:]
     assert listings[0].url == "https://site.example.org/board/view?id=3"
     assert listings[0].org_name == "board 기관"
     raw = ad.fetch_detail(listings[0])
     assert "접수기간" in raw.body_text and "alert" not in raw.body_text
     assert raw.attachments == ["https://site.example.org/files/공고문.hwp"]
+
+
+def test_html_list_onclick_links(settings):
+    cfg = make_source("onclick", "local_gov", type="html_list", list_url="https://site.example.org/bbs/list",
+                      row_selector="table.bbs_list tbody tr", title_selector="td.subject a", date_selector="td.date",
+                      link_attr="onclick", link_regex=r"fn_view\('(\d+)'\)", link_url_template="https://site.example.org/bbs/view?seq={1}")
+    http = _client(settings, {"/bbs/list": ("text/html", "board_onclick.html")})
+    listings = HtmlListAdapter(cfg, http, settings.collector, since=date(2026, 9, 1)).fetch_list()
+    assert [(l.title, l.url) for l in listings] == [("체육센터 수영강사 모집", "https://site.example.org/bbs/view?seq=1001")]
+    assert listings[0].posted_at == date(2026, 9, 19)

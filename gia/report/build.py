@@ -109,6 +109,17 @@ def render_telegram(data: ReportData, now: datetime) -> str:
     return env.get_template("telegram.html.j2").render(r=data, now=now)
 
 
+def render_email(data: ReportData, now: datetime) -> str:
+    env = _env()
+    env.filters["dday"] = lambda p: dday(p, now)
+    return env.get_template("email.html.j2").render(r=data, now=now)
+
+
+def email_subject(data: ReportData, now: datetime) -> str:
+    d = now.astimezone(KST)
+    return f"[경남 강사공고] {d.month:02d}/{d.day:02d} 신규 {len(data.new)} · 마감임박 {len(data.closing)}"
+
+
 def write_report(md: str, reports_dir: Path, now: datetime) -> Path:
     reports_dir.mkdir(parents=True, exist_ok=True)
     path = reports_dir / f"{now.astimezone(KST):%Y-%m-%d}.md"

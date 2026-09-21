@@ -15,7 +15,7 @@ from .extract.deadline import KST, parse_deadline
 from .classify.rules import score_posting
 from .models import Status
 from .pipeline import build_posting, collect
-from .report.build import render_markdown, render_telegram, select_postings, write_report
+from .report.build import email_subject, render_email, render_markdown, render_telegram, select_postings, write_report
 from .store import Store
 
 
@@ -42,6 +42,11 @@ def _parser() -> argparse.ArgumentParser:
     pr.add_argument("source_id")
     pr.add_argument("--limit", type=int, default=5)
     pr.add_argument("--detail", action="store_true", help="첫 건의 상세·마감일·점수까지 표시")
+    pr.add_argument("--save-fixture", action="store_true", help="목록(및 첫 상세) 응답을 tests/fixtures/live/<id>/ 에 저장")
+
+    so = sub.add_parser("sources", help="소스별 설정 상태")
+    so.add_argument("--tier", type=int)
+    so.add_argument("--all", action="store_true", help="비활성 소스도 표시")
 
     sub.add_parser("status", help="저장소 요약")
     return p
@@ -89,9 +94,20 @@ def main(argv: list[str] | None = None) -> int:
                         print(f"[report] 텔레그램 {n}개 메시지 전송", file=sys.stderr)
                     except Exception as e:  # noqa: BLE001
                         failures.append(f"telegram: {e}")
+            if "email" in channels:
+                from .notify.email import SmtpConfig, send_email
+                cfg = SmtpConfig.from_env(os.environ)
+                if cfg is None:
+                    failures.append("email: SMTP_HOST/EMAIL_TO 없음")
+                else:
+                    try:
+                        n = send_email(cfg, email_subject(data, now), render_email(data, now), md)
+                        print(f"[report] 이메일 {n}명에게 전송", file=sys.stderr)
+                    except Exception as e:  # noqa: BLE001
+                        failures.append(f"email: {e}")
             for ch in channels:
-                if ch not in ("telegram",):
-                    failures.append(f"{ch}: Phase 1에서는 미구현")
+                if ch not in ("telegram", "email"):
+                    failures.append(f"{ch}: 지원하지 않는 채널")
             for f in failures:
                 print(f"[report] 발송 실패 {f}", file=sys.stderr)
         if args.send or args.mark:
@@ -107,6 +123,11 @@ def main(argv: list[str] | None = None) -> int:
             return 2
         http = HttpClient(bundle.settings.collector)
         try:
+            if args.save_fixture:
+                _save_fixture(cfg, http, Path("tests/fixtures/live") / cfg.id)
+                if cfg.unconfigured_reason():
+                    print(f"[probe] 설정 미완료({cfg.unconfigured_reason()}) — 응답 저장만 수행")
+                    return 0
             adapter = build_adapter(cfg, http, bundle.settings.collector, since=now.date() - timedelta(days=bundle.settings.collector.default_days))
             listings = adapter.fetch_list()
             print(f"[probe] {cfg.name}: 목록 {len(listings)}건")
@@ -123,6 +144,16 @@ def main(argv: list[str] | None = None) -> int:
             http.close()
         return 0
 
+    if args.cmd == "sources":
+        rows = [s for s in bundle.sources if (args.all or s.enabled) and (args.tier is None or s.tier == args.tier)]
+        ready = sum(1 for s in rows if s.unconfigured_reason() is None)
+        print(f"소스 {len(rows)}건 · 실행 가능 {ready} · 미설정 {len(rows) - ready} · 검증됨 {sum(1 for s in rows if s.verified)}")
+        for s in rows:
+            state = "검증됨" if s.verified else ("실행가능" if s.unconfigured_reason() is None else f"미설정: {s.unconfigured_reason()}")
+            flag = "" if s.enabled else " (비활성)"
+            print(f"  T{s.tier} {s.id:<24} {s.adapter.get('type','-'):<10} {state}{flag}  — {s.name}")
+        return 0
+
     if args.cmd == "status":
         by = {s.value: 0 for s in Status}
         for p in store.values():
@@ -131,6 +162,35 @@ def main(argv: list[str] | None = None) -> int:
         print(f"마지막 수집 {store.state.get('last_run_at', '-')} · 마지막 보고 {store.state.get('last_report_at', '-')}")
         return 0
     return 1
+
+
+def _save_fixture(cfg, http: HttpClient, out_dir: Path) -> None:
+    """설정된 목록 URL/엔드포인트의 원본 응답을 저장한다 (셀렉터·field_map 결정용)."""
+    from .collectors.base import substitute_placeholders
+    from .config import resolve_env
+
+    a = cfg.adapter
+    out_dir.mkdir(parents=True, exist_ok=True)
+    today = datetime.now(KST).date()
+    if a.get("type") == "api_json" and str(a.get("endpoint", "")).upper() != "TODO":
+        ra = substitute_placeholders(resolve_env(a), today, today - timedelta(days=14))
+        params = dict(ra.get("params") or {})
+        paging = ra.get("paging") or {}
+        if paging.get("page_param"):
+            params[paging["page_param"]] = 1
+        if paging.get("size_param"):
+            params[paging["size_param"]] = int(paging.get("size") or 100)
+        r = http.get(ra["endpoint"], params=params)
+        ext = "xml" if (ra.get("format") or "json") == "xml" else "json"
+        (out_dir / f"list.{ext}").write_bytes(r.content)
+        print(f"[probe] 저장: {out_dir / f'list.{ext}'} ({len(r.content)} bytes, HTTP {r.status_code})")
+    elif a.get("type") == "html_list" and str(a.get("list_url", "")).upper() != "TODO":
+        url = str(a["list_url"]).replace("{page}", "1")
+        r = http.get(url)
+        (out_dir / "list.html").write_bytes(r.content)
+        print(f"[probe] 저장: {out_dir / 'list.html'} ({len(r.content)} bytes, HTTP {r.status_code}, charset {r.encoding})")
+    else:
+        print("[probe] list_url/endpoint 가 TODO 라서 저장할 수 없음")
 
 
 if __name__ == "__main__":

@@ -7,12 +7,14 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta
+from urllib.parse import unquote, urlsplit
 
 from .classify.rules import score_posting
 from .collectors.base import FetchError, HttpClient, UnconfiguredSource
 from .collectors.registry import build_adapter
 from .config import ConfigBundle, MissingSecret, SourceConfig
 from .dedupe import canonical_key, find_duplicate, merge
+from .extract.attachments import extract_text, file_extension
 from .extract.deadline import KST, DeadlineType, parse_deadline, parse_known_format
 from .models import Posting, RawPosting, RunLog, SourceRef, SourceRunResult, Status
 from .normalize import clean_url, extract_regions, mask_pii, normalize_title, standardize_org
@@ -60,6 +62,8 @@ def build_posting(raw: RawPosting, cfg: SourceConfig, bundle: ConfigBundle, now:
             res = parse_deadline(title, ref)
         deadline_dt, dtype, dtext = res.deadline, res.deadline_type, res.text
 
+    if raw.extra.get("attachment_errors"):
+        flags.append("첨부추출실패")
     regions = extract_regions(" ".join([title, raw.region_text or "", body[:3000]]))
     if not regions and cfg.region_hint and cfg.org_type.value != "portal":
         regions = [r if r != "경상남도" else "경남" for r in cfg.region_hint][:1]
@@ -76,6 +80,35 @@ def build_posting(raw: RawPosting, cfg: SourceConfig, bundle: ConfigBundle, now:
         attachments=list(raw.attachments), content_hash=content_hash,
         first_seen_at=now, last_seen_at=now, status=Status.new,
     )
+
+
+def enrich_attachments(raw: RawPosting, http: HttpClient, cs) -> None:
+    """첨부파일 텍스트를 본문 뒤에 붙인다. 실패는 extra['attachment_errors']에 기록."""
+    if cs.attachment_max_files <= 0 or not raw.attachments:
+        return
+    allowed = {e.lower() for e in cs.attachment_extensions}
+    picked = [u for u in raw.attachments if file_extension(u) in allowed or file_extension(u) == ""][: cs.attachment_max_files]
+    parts: list[str] = []
+    errors: list[str] = []
+    for u in picked:
+        try:
+            data, header_name = http.download(u, cs.attachment_max_mb * 1024 * 1024)
+        except FetchError as e:
+            errors.append(str(e)[:200])
+            continue
+        name = header_name or unquote(urlsplit(u).path.rsplit("/", 1)[-1]) or "attachment"
+        if file_extension(name) not in allowed:
+            errors.append(f"{name}: 지원하지 않는 형식")
+            continue
+        res = extract_text(data, name)
+        if res.ok:
+            parts.append(f"[첨부: {name}]\n{res.text[:8000]}")
+        else:
+            errors.append(f"{name}: {res.error}")
+    if parts:
+        raw.body_text = ((raw.body_text or "") + "\n\n" + "\n\n".join(parts)).strip()
+    if errors:
+        raw.extra["attachment_errors"] = errors
 
 
 def run_source(cfg: SourceConfig, bundle: ConfigBundle, store: Store, http: HttpClient, now: datetime, since: date | None) -> SourceOutcome:
@@ -122,6 +155,7 @@ def run_source(cfg: SourceConfig, bundle: ConfigBundle, store: Store, http: Http
                 break
             continue
         res.detail_fetched += 1
+        enrich_attachments(raw, http, cs)
         p = build_posting(raw, cfg, bundle, now)
         if p:
             out.postings.append(p)

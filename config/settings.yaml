@@ -28,10 +28,12 @@ collector:
   concurrency: 4
   respect_robots: true
   attachment_max_mb: 10
+  attachment_max_files: 3               # 공고당 첨부 텍스트 추출 최대 파일 수
+  attachment_extensions: [.hwp, .hwpx, .pdf, .docx]
 
 interests:
   weights: {}          # 예: { lifelong: 1.5, it_digital: 1.2 }
   keywords: []         # 예: [한국어, 디지털, 성인문해]
 
 notify:
-  channels: [telegram]
+  channels: [telegram]   # email을 추가하려면 SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, EMAIL_FROM, EMAIL_TO 설정
