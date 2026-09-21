@@ -17,6 +17,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8", "freezegun>=1.4"]
+browser = ["playwright>=1.45"]
 
 [project.scripts]
 gia = "gia.__main__:main"

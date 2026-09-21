@@ -18,6 +18,8 @@ from .classify.llm import LlmClassifier
 from .feedback import LABELS, append_feedback, feedback_path, load_feedback
 from .pipeline import build_posting, collect
 from .report.build import email_subject, render_email, render_markdown, render_telegram, select_postings, write_report
+from .site import build_site
+from .stats import compute_stats
 from .store import Store
 
 
@@ -58,6 +60,12 @@ def _parser() -> argparse.ArgumentParser:
     ev = sub.add_parser("eval", help="라벨 데이터로 판별 정밀도·재현율 측정")
     ev.add_argument("--labeled", default="tests/eval/labeled.jsonl")
     ev.add_argument("--llm", action="store_true", help="LLM 판별까지 포함 (ANTHROPIC_API_KEY 필요)")
+
+    st = sub.add_parser("stats", help="최근 N일 통계")
+    st.add_argument("--days", type=int, default=7)
+
+    si = sub.add_parser("site", help="GitHub Pages용 정적 아카이브 생성")
+    si.add_argument("--out", default="site")
 
     sub.add_parser("status", help="저장소 요약")
     return p
@@ -191,6 +199,15 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.cmd == "eval":
         return _eval(bundle, Path(args.labeled), use_llm=args.llm)
+
+    if args.cmd == "stats":
+        print(compute_stats(store.values(), now, args.days).to_markdown())
+        return 0
+
+    if args.cmd == "site":
+        info = build_site(list(store.values()), Path(args.reports_dir), Path(args.out), now)
+        print(f"[site] {args.out}/ 생성 · 활성 공고 {info['active']}건 · 리포트 {info['reports']}개")
+        return 0
 
     if args.cmd == "status":
         by = {s.value: 0 for s in Status}

@@ -30,15 +30,7 @@ def decode_html(r: httpx.Response, encoding: str | None = None) -> str:
 
 
 def extract_body(r: httpx.Response, selector: str, encoding: str | None = None) -> str:
-    tree = HTMLParser(decode_html(r, encoding))
-    for tag in ("script", "style", "noscript"):
-        for n in tree.css(tag):
-            n.decompose()
-    node = tree.css_first(selector) or tree.body
-    if node is None:
-        return ""
-    text = node.text(separator="\n", strip=True)
-    return re.sub(r"\n{3,}", "\n\n", text)[:20000]
+    return extract_body_html(decode_html(r, encoding), selector)
 
 
 def resolve_link(node, page_url: str, a: dict) -> str | None:
@@ -66,6 +58,65 @@ def resolve_link(node, page_url: str, a: dict) -> str | None:
     return urljoin(page_url, value)
 
 
+def parse_list_html(html: str, page_url: str, a: dict, cfg, since: date) -> tuple[list[RawListing], date | None]:
+    """목록 HTML에서 공고 후보를 뽑는다. 반환: (목록, 페이지 내 가장 오래된 게시일)."""
+    tree = HTMLParser(html)
+    rows = tree.css(a["row_selector"])
+    out: list[RawListing] = []
+    oldest_on_page: date | None = None
+    for row in rows:
+        t = row.css_first(a.get("title_selector") or "a")
+        if t is None:
+            continue
+        title = (t.attributes.get(a["title_attr"]) if a.get("title_attr") else None) or t.text(strip=True)
+        link = row.css_first(a.get("link_selector") or a.get("title_selector") or "a")
+        target = resolve_link(link, page_url, a)
+        if not title or not target:
+            continue
+        posted = None
+        if a.get("date_selector"):
+            dn = row.css_first(a["date_selector"])
+            posted = parse_date_loose(dn.text(strip=True) if dn is not None else None, a.get("date_formats"))
+            if posted and (oldest_on_page is None or posted < oldest_on_page):
+                oldest_on_page = posted
+        org = None
+        if a.get("org_selector"):
+            on = row.css_first(a["org_selector"])
+            org = on.text(strip=True) if on is not None else None
+        if org is None and cfg.org_type.value != "portal":
+            org = cfg.name
+        if not matches_keywords(title, a.get("keywords")):
+            continue
+        if posted and posted < since:
+            continue
+        out.append(RawListing(source_id=cfg.id, title=title, url=target, org_name=org, posted_at=posted))
+    return out, oldest_on_page
+
+
+def extract_body_html(html: str, selector: str) -> str:
+    tree = HTMLParser(html)
+    for tag in ("script", "style", "noscript"):
+        for n in tree.css(tag):
+            n.decompose()
+    node = tree.css_first(selector) or tree.body
+    if node is None:
+        return ""
+    text = node.text(separator="\n", strip=True)
+    return re.sub(r"\n{3,}", "\n\n", text)[:20000]
+
+
+def extract_attachments_html(html: str, page_url: str, selector: str | None) -> list[str]:
+    if not selector:
+        return []
+    tree = HTMLParser(html)
+    out: list[str] = []
+    for n in tree.css(selector):
+        href = n.attributes.get("href")
+        if href:
+            out.append(urljoin(page_url, href))
+    return out
+
+
 class HtmlListAdapter(SourceAdapter):
     type_name = "html_list"
 
@@ -78,38 +129,11 @@ class HtmlListAdapter(SourceAdapter):
         for page in range(1, max_pages + 1):
             url = list_url.replace("{page}", str(page))
             r = self.http.get(url)
-            tree = HTMLParser(decode_html(r, a.get("encoding")))
-            rows = tree.css(a["row_selector"])
-            if not rows:
+            listings, oldest = parse_list_html(decode_html(r, a.get("encoding")), url, a, self.cfg, since)
+            if not listings and oldest is None:
                 break
-            oldest_on_page: date | None = None
-            for row in rows:
-                t = row.css_first(a.get("title_selector") or "a")
-                if t is None:
-                    continue
-                title = (t.attributes.get(a["title_attr"]) if a.get("title_attr") else None) or t.text(strip=True)
-                link = row.css_first(a.get("link_selector") or a.get("title_selector") or "a")
-                target = resolve_link(link, url, a)
-                if not title or not target:
-                    continue
-                posted = None
-                if a.get("date_selector"):
-                    dn = row.css_first(a["date_selector"])
-                    posted = parse_date_loose(dn.text(strip=True) if dn is not None else None, a.get("date_formats"))
-                    if posted and (oldest_on_page is None or posted < oldest_on_page):
-                        oldest_on_page = posted
-                org = None
-                if a.get("org_selector"):
-                    on = row.css_first(a["org_selector"])
-                    org = on.text(strip=True) if on is not None else None
-                if org is None and self.cfg.org_type.value != "portal":
-                    org = self.cfg.name
-                if not matches_keywords(title, a.get("keywords")):
-                    continue
-                if posted and posted < since:
-                    continue
-                out.append(RawListing(source_id=self.cfg.id, title=title, url=target, org_name=org, posted_at=posted))
-            if "{page}" not in list_url or (oldest_on_page and oldest_on_page < since):
+            out.extend(listings)
+            if "{page}" not in list_url or (oldest and oldest < since):
                 break
         return out
 
@@ -118,12 +142,7 @@ class HtmlListAdapter(SourceAdapter):
         if d.get("fetch") is False:
             return super().fetch_detail(listing)
         r = self.http.get(listing.url)
-        body = extract_body(r, d.get("body_selector") or "body", d.get("encoding") or self.a.get("encoding"))
-        attachments: list[str] = []
-        if d.get("attachment_selector"):
-            tree = HTMLParser(decode_html(r, self.a.get("encoding")))
-            for n in tree.css(d["attachment_selector"]):
-                href = n.attributes.get("href")
-                if href:
-                    attachments.append(urljoin(listing.url, href))
+        html = decode_html(r, d.get("encoding") or self.a.get("encoding"))
+        body = extract_body_html(html, d.get("body_selector") or "body")
+        attachments = extract_attachments_html(html, listing.url, d.get("attachment_selector"))
         return RawPosting(**listing.model_dump(), body_text=body, attachments=attachments, fetched_at=datetime.now(KST))

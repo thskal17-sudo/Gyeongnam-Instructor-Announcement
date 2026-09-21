@@ -134,6 +134,7 @@ def run_source(cfg: SourceConfig, bundle: ConfigBundle, store: Store, http: Http
     except (FetchError, Exception) as e:  # noqa: BLE001 - 소스 격리
         res.status, res.errors = "fail", [f"목록 실패: {type(e).__name__}: {e}"[:300]]
         log.warning("[%s] %s", cfg.id, res.errors[0])
+        adapter.close()
         return out
     res.listed = len(listings)
     if not listings:
@@ -167,6 +168,7 @@ def run_source(cfg: SourceConfig, bundle: ConfigBundle, store: Store, http: Http
             out.bodies[p.canonical_key] = (mask_pii(raw.body_text or ""), raw.region_text)
         else:
             out.excluded.append(url)
+    adapter.close()
     res.duration_ms = int((time.monotonic() - t0) * 1000)
     return out
 

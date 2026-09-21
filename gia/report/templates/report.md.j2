@@ -35,7 +35,11 @@
 없음
 {% endfor %}
 
-## 📎 부록: 수집 상태
+{% if r.weekly_md %}## 📊 주간 통계
+
+{{ r.weekly_md }}
+
+{% endif %}## 📎 부록: 수집 상태
 
 {% if r.run %}
 {% set c = r.run.counts() %}
