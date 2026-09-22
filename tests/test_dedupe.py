@@ -38,3 +38,22 @@ def test_merge_without_change():
     b = make_posting("강사 모집", deadline=NOW + timedelta(days=5))
     merged, changed = merge(a, b, NOW)
     assert not changed and merged.status == Status.new
+
+
+def test_merge_prefer_incoming_fixes_wrong_deadline():
+    """재수집(prefer_incoming)은 기존보다 이른 마감일도 그대로 받아들여 잘못 잡힌 마감일을 바로잡는다."""
+    wrong = make_posting("강사 모집", deadline=NOW - timedelta(days=2))
+    wrong.status = Status.expired
+    right = make_posting("강사 모집", deadline=NOW + timedelta(days=10))
+    merged, changed = merge(wrong, right, NOW)  # 기본 병합: 더 늦은 마감일이므로 받아들임
+    assert changed and merged.deadline == right.deadline
+
+    later = make_posting("강사 모집", deadline=NOW + timedelta(days=20))
+    later.status = Status.active
+    earlier = make_posting("강사 모집", deadline=NOW + timedelta(days=3))
+    merged, changed = merge(later, earlier, NOW)
+    assert not changed and merged.deadline == later.deadline  # 기본 병합은 더 이른 마감일을 무시
+    merged, changed = merge(later, earlier, NOW, prefer_incoming=True)
+    assert changed and merged.deadline == earlier.deadline
+    merged, changed = merge(later, make_posting("강사 모집", deadline=NOW + timedelta(days=20)), NOW, prefer_incoming=True)
+    assert not changed

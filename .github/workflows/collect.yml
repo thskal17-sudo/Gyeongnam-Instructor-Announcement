@@ -10,6 +10,9 @@ on:
       sources:
         description: "쉼표로 구분한 source id (비우면 전체)"
         default: ""
+      refetch:
+        description: "이미 알던 URL도 상세를 다시 파싱 (파서 수정 후 보정용, true/false)"
+        default: "false"
 concurrency:
   group: pipeline
   cancel-in-progress: false
@@ -21,6 +24,8 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}   # 대기 중 다른 실행이 push한 최신 커밋에서 시작 (rebase 충돌 방지)
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -34,6 +39,7 @@ jobs:
           ARGS=""
           if [ "${{ github.event.inputs.backfill_days }}" != "" ] && [ "${{ github.event.inputs.backfill_days }}" != "0" ]; then ARGS="$ARGS --backfill-days ${{ github.event.inputs.backfill_days }}"; fi
           if [ "${{ github.event.inputs.sources }}" != "" ]; then ARGS="$ARGS --sources ${{ github.event.inputs.sources }}"; fi
+          if [ "${{ github.event.inputs.refetch }}" = "true" ]; then ARGS="$ARGS --refetch"; fi
           python -m gia collect $ARGS
       - name: commit data
         run: |

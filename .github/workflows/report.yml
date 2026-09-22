@@ -18,6 +18,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}   # 대기 중 다른 실행이 push한 최신 커밋에서 시작 (rebase 충돌 방지)
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
