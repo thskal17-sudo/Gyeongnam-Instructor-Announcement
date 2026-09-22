@@ -502,8 +502,74 @@ sources:
 # ---------------------------------------------------------------------------
 # Tier 3-C. 대학·평생교육원  — Phase 3
 # ---------------------------------------------------------------------------
-  - { id: gnu_lifelong,   name: 경상국립대학교 평생교육원, org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: cwnu_lifelong,  name: 창원대학교 평생교육원,     org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - id: gnu_lifelong
+    name: 경상국립대학교 평생교육원
+    org_type: university
+    tier: 3
+    homepage: https://longlife.gnu.ac.kr
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://longlife.gnu.ac.kr/board.jsp?sID=0401
+      row_selector: table.base tbody tr
+      title_selector: td.left a
+      link_selector: td.left a
+      link_attr: href
+      link_regex: 'toPage\("(\d+)"\)'
+      link_url_template: https://longlife.gnu.ac.kr/board.jsp?sID=0401&btype=view&bcode=notice&no={1}
+      date_selector: td:nth-child(5)
+      org_selector: td:nth-child(4)
+      keywords: [강사, 교강사, 강좌 개설, 개설 신청, 지도사, 지도자]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: body }
+    notes: >-
+      공지사항 게시판(2026-09-22 GitHub 러너에서 검증). 링크가 javascript:toPage("번호") 라 홈 화면의 상세 URL 형식으로 조립.
+      매 학기 '[강사 공지] 강좌 개설 신청 안내'가 올라옴(강사가 강좌를 제안하는 방식). 페이징 파라미터 미확인이라 1페이지(10건)만.
+  - id: cwnu_lifelong
+    name: 창원대학교 평생교육원 공지사항
+    org_type: university
+    tier: 3
+    homepage: https://www.changwon.ac.kr/lifelong/main.do
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://www.changwon.ac.kr/lifelong/na/ntt/selectNttList.do?mi=4774&bbsId=1787
+      row_selector: table#nttTable tbody tr
+      title_selector: td.bbs_tit a
+      link_selector: td.bbs_tit a
+      link_attr: data-id
+      link_regex: '(\d+)'
+      link_url_template: https://www.changwon.ac.kr/lifelong/na/ntt/selectNttInfo.do?mi=4774&bbsId=1787&nttSn={1}
+      date_selector: td:nth-child(4)
+      keywords: [강사, 교강사, 강좌 개설, 개설 신청, 모집, 지도사, 지도자]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: body }
+    notes: >-
+      공지사항 게시판(2026-09-22 러너 검증). 링크는 a.nttInfoBtn 의 data-id(nttSn) 로 상세 URL 조립. 강사 자료실(bbsId=1786)은 재직 강사용 안내라 제외.
+      날짜 형식 '2026. 6. 25'.
+
+  - id: cwnu_lifelong_jobs
+    name: 창원대학교 평생교육원 구인구직
+    org_type: university
+    tier: 3
+    homepage: https://www.changwon.ac.kr/lifelong/main.do
+    verified: true
+    schedule: daily_light
+    adapter:
+      type: html_list
+      list_url: https://www.changwon.ac.kr/lifelong/na/ntt/selectNttList.do?mi=4780&bbsId=1790
+      row_selector: table#nttTable tbody tr
+      title_selector: td.bbs_tit a
+      link_selector: td.bbs_tit a
+      link_attr: data-id
+      link_regex: '(\d+)'
+      link_url_template: https://www.changwon.ac.kr/lifelong/na/ntt/selectNttInfo.do?mi=4780&bbsId=1790&nttSn={1}
+      date_selector: td:nth-child(4)
+      keywords: [강사, 교강사, 지도사, 지도자, 교습]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: body }
+    notes: >-
+      학원 등 외부 구인 게시판(2026-09-22 러너 검증). 마지막 글이 2023년이라 빈도 매우 낮음. 게시자는 마스킹(평**)이라 org 는 기관명으로.
   - { id: kyungnam_lifelong, name: 경남대학교 평생교육원,  org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
   - { id: inje_lifelong,  name: 인제대학교 평생교육원,     org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
   - { id: gnu_parttime,   name: 경상국립대 시간강사 공고,  org_type: university, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 20절 5번 결정에 따라 활성화 }
@@ -573,12 +639,63 @@ sources:
   - { id: changshin_lifelong, name: 창신대학교 평생교육원,     org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
   - { id: kaya_lifelong,      name: 가야대학교 평생교육원,     org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
   - { id: youngsan_lifelong,  name: 영산대학교 양산캠퍼스 평생교육원, org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: masan_lifelong,     name: 마산대학교 평생교육원,     org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - id: masan_lifelong
+    name: 마산대학교 평생교육원 공지사항
+    org_type: university
+    tier: 3
+    homepage: https://lifelong.masan.ac.kr/main
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://lifelong.masan.ac.kr/board/000001/{page}
+      row_selector: table#tablelist tbody tr
+      title_selector: td.text-left a
+      date_selector: td:nth-child(4)
+      keywords: [강사, 교강사, 강좌 개설, 개설 신청, 지도사, 지도자]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: body }
+    notes: >-
+      공지사항(2026-09-22 러너 검증). 날짜 '2026.09.07 16:30'. 페이지 경로 /board/000001/{n} 은 확인 중.
+
+  - id: masan_lectopen
+    name: 마산대학교 평생교육원 강좌 개설 신청
+    org_type: university
+    tier: 3
+    homepage: https://lifelong.masan.ac.kr/main
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://lifelong.masan.ac.kr/lectopen
+      row_selector: table#tablelist tbody tr
+      title_selector: td.text-left a
+      date_selector: td:nth-child(6)
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: body }
+    notes: >-
+      강좌 개설 신청 공고(강사가 강좌를 제안하는 모집, 2026-09-22 러너 검증). 모든 행이 강사 대상이므로 keywords 없음.
+      6열 '신청기간'(2026.06.01 00:00 ~ 2026.06.30 00:00)의 첫 날짜가 게시일로 잡힘 → 실제 게시일보다 이르게 기록될 수 있음.
   - { id: cwmc_lifelong,      name: 창원문성대학교 평생교육원, org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
   - { id: gimhae_college_lifelong, name: 김해대학교 평생교육원, org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
   - { id: yonam_lifelong,     name: 연암공과대학교 평생교육원 (진주), org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
   - { id: jinju_health_lifelong, name: 진주보건대학교 평생교육원, org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: gndc_lifelong,      name: 경남도립거창대학·남해대학 평생교육원, org_type: university, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 도립대학이므로 org_type을 local_public로 볼 수도 있음 }
+  - id: gndc_lifelong
+    name: 국립창원대학교 거창캠퍼스 평생교육원 (구 경남도립거창대학)
+    org_type: university
+    tier: 3
+    homepage: https://psl.gc.ac.kr/M0101/
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://psl.gc.ac.kr/P0401/F0001.asp?page={page}
+      row_selector: table.TableB tbody tr
+      title_selector: td a
+      date_selector: td:nth-child(4)
+      org_selector: td:nth-child(3)
+      keywords: [강사, 교강사, 강좌, 개설, 지도사, 지도자, 공개모집]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: body }
+    notes: >-
+      공지사항(2026-09-22 러너 검증). '2학기 신규개설강좌 공개모집' 같은 강사 대상 공고가 올라옴. 남해대학(구 경남도립남해대학) 평생교육원은 별도 사이트라 미등록.
 
 # ---------------------------------------------------------------------------
 # Tier 3-H. 중앙 산하 공공기관 경남 지역본부 (강사 공고 빈도 낮음)  — Phase 3, 기본 비활성
