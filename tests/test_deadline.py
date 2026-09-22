@@ -75,3 +75,36 @@ def test_deadline_window_bounds():
     assert not in_deadline_window(date(2026, 7, 1), REF)   # 30일보다 이전
     assert in_deadline_window(date(2027, 9, 1), REF)       # 1년 이내
     assert not in_deadline_window(date(2027, 12, 1), REF)  # 1년 초과
+
+
+# --- 2026-09-22 창원시설공단·통영국제음악재단 오판 회귀 테스트 (#19) ---
+
+def test_posting_date_without_context_is_not_a_deadline():
+    """본문이 짧고 공고문이 첨부인 그누보드 게시글: 첨부 등록 시각(DATE :)을 마감으로 잡지 않는다."""
+    text = ("[성산스포츠센터] 생활체육(요가) 도급강사 경력경쟁모집 공고 작성자 전재일 댓글 0건 조회 220회 "
+            "작성일 2026-09-10 본문 첨부파일 응시원서 및 제출서류성산스포츠센터.hwp (34.5K) "
+            "10회 다운로드 | DATE : 2026-09-10 16:50:57 목록")
+    res = parse_deadline(text, date(2026, 9, 10))
+    assert res.deadline is None
+    assert res.deadline_type == DeadlineType.unknown
+
+
+def test_signature_date_equal_to_posting_date_is_ignored():
+    """공문 말미의 서명 일자(게시일과 같은 날)는 마감이 아니다."""
+    text = "통영시민오케스트라 교육강사를 모집하오니 유능한 인재의 많은 지원 바랍니다. 2026 년 9 월 21 일 재단법인 통영국제음악재단 이사장"
+    res = parse_deadline(text, date(2026, 9, 21))
+    assert res.deadline is None
+
+
+def test_same_day_deadline_with_context_is_kept():
+    """게시일과 같은 날이라도 '까지' 등 마감 문맥이 있으면 마감으로 인정한다."""
+    text = "접수기간: 2026. 9. 10.(수) 09:00 ~ 2026. 9. 10.(수) 18:00까지"
+    res = parse_deadline(text, date(2026, 9, 10))
+    assert res.deadline == datetime(2026, 9, 10, 18, 0, tzinfo=KST)
+
+
+def test_later_date_without_context_still_parses():
+    """게시일 이후의 날짜는 문맥이 없어도 기존처럼 마감 후보로 남긴다 (회귀 방지)."""
+    text = "공고문 참조. 2026. 9. 30.(수) 18:00"
+    res = parse_deadline(text, date(2026, 9, 10))
+    assert res.deadline == datetime(2026, 9, 30, 18, 0, tzinfo=KST)
