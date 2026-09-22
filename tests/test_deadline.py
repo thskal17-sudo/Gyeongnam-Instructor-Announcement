@@ -46,3 +46,32 @@ def test_known_formats():
     assert parse_known_format("20260930") == datetime(2026, 9, 30, 23, 59, tzinfo=KST)
     assert parse_known_format("2026-09-30 18:00:00") == datetime(2026, 9, 30, 18, 0, tzinfo=KST)
     assert parse_known_format("상시") is None
+
+
+# --- 2026-09-22 실수집에서 나온 오판 회귀 테스트 ---
+
+def test_past_year_date_is_not_a_deadline():
+    """근거 규정·사업연도로 적힌 과거 날짜를 마감일로 잡지 않는다 (창원시 청원경찰 공고)."""
+    text = "청원경찰법 시행규칙(2017.12.31.)에 따라 시행합니다."
+    assert parse_deadline(text, REF).deadline is None
+
+
+def test_past_year_date_loses_to_real_deadline():
+    text = "근거: 규칙(2017.12.31.) / 접수기간: 2026. 9. 25.(금) 18:00까지"
+    res = parse_deadline(text, REF)
+    assert res.deadline == datetime(2026, 9, 25, 18, 0, tzinfo=KST)
+
+
+def test_contract_end_date_far_in_future_is_not_a_deadline():
+    """계약·근무기간 종료일(1년 초과)을 마감일로 잡지 않는다 (하동군 방과후아카데미 공고)."""
+    assert parse_deadline("근무기간: 2026.10.01. ~ 2027.09.30.", REF).deadline is None
+    res = parse_deadline("계약기간 2026.10.01.~2027.09.30. 접수기간 2026. 9. 30.(수)까지", REF)
+    assert res.deadline == datetime(2026, 9, 30, 23, 59, tzinfo=KST)
+
+
+def test_deadline_window_bounds():
+    from gia.extract.deadline import in_deadline_window
+    assert in_deadline_window(date(2026, 9, 20), REF)      # 게시일 직전 (게시일 추정 오차)
+    assert not in_deadline_window(date(2026, 7, 1), REF)   # 30일보다 이전
+    assert in_deadline_window(date(2027, 9, 1), REF)       # 1년 이내
+    assert not in_deadline_window(date(2027, 12, 1), REF)  # 1년 초과

@@ -20,6 +20,10 @@ _PARTIAL = re.compile(
 )
 _UNTIL_FILLED = re.compile(r"채용\s*시\s*까지|충원\s*시\s*까지|상시\s*(?:모집|채용|접수)|적격자\s*채용\s*시|모집\s*시\s*까지")
 
+# 마감일 유효 구간: 게시일보다 이만큼 이전이면 과거 날짜(사업연도·근거 규정 등), 이후면 계약·근무기간 종료일로 본다
+PAST_SLACK_DAYS = 30
+FUTURE_LIMIT_DAYS = 365
+
 _POS_BEFORE = ["접수", "제출", "마감", "공고기간", "모집기간", "신청", "접수기간", "기한", "공고 기간", "모집 기간"]
 _NEG_BEFORE = [
     "면접", "발표", "합격", "시험", "근무", "계약", "임용", "게시", "심사", "개강",
@@ -66,7 +70,9 @@ def parse_deadline(text: str, ref_date: date | None = None) -> DeadlineResult:
         dt = _build(int(m.group("year")), int(m.group("month")), int(m.group("day")), m)
         if dt is None:
             continue
-        spans.append(m.span())
+        spans.append(m.span())  # 구간은 기록해 부분 패턴이 같은 자리를 다시 읽지 않게 한다
+        if not in_deadline_window(dt.date(), ref):
+            continue
         candidates.append((_score(text, m, partial=False), dt, m.group(0).strip()))
 
     for m in _PARTIAL.finditer(text):
@@ -76,8 +82,10 @@ def parse_deadline(text: str, ref_date: date | None = None) -> DeadlineResult:
         dt = _build(year, int(m.group("month")), int(m.group("day")), m)
         if dt is None:
             continue
-        if dt.date() < ref - timedelta(days=30):
+        if dt.date() < ref - timedelta(days=PAST_SLACK_DAYS):
             dt = dt.replace(year=year + 1)
+        if not in_deadline_window(dt.date(), ref):
+            continue
         sc = _score(text, m, partial=True)
         if sc <= 0:
             continue
@@ -92,6 +100,11 @@ def parse_deadline(text: str, ref_date: date | None = None) -> DeadlineResult:
     if _UNTIL_FILLED.search(text):
         return DeadlineResult(None, DeadlineType.until_filled, _UNTIL_FILLED.search(text).group(0))
     return DeadlineResult(None, DeadlineType.unknown)
+
+
+def in_deadline_window(value: date, ref: date) -> bool:
+    """접수 마감일로 볼 수 있는 날짜인지. 게시일 기준 과거 30일 ~ 미래 365일."""
+    return ref - timedelta(days=PAST_SLACK_DAYS) <= value <= ref + timedelta(days=FUTURE_LIMIT_DAYS)
 
 
 def _build(year: int, month: int, day: int, m: re.Match) -> datetime | None:

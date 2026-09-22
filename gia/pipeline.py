@@ -69,7 +69,7 @@ def build_posting(raw: RawPosting, cfg: SourceConfig, bundle: ConfigBundle, now:
 
     if raw.extra.get("attachment_errors"):
         flags.append("첨부추출실패")
-    regions = extract_regions(" ".join([title, raw.region_text or "", body[:3000]]))
+    regions = extract_regions(" ".join([title, org, raw.region_text or "", body[:3000]]))
     if not regions and cfg.region_hint and cfg.org_type.value != "portal":
         regions = [r if r != "경상남도" else "경남" for r in cfg.region_hint][:1]
 

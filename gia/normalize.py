@@ -6,11 +6,25 @@ import unicodedata
 from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 FLAG_WORDS = ["재공고", "재모집", "재채용", "긴급", "수정", "연장", "정정", "추가", "변경"]
-SIGUN = [
-    "창원", "진주", "통영", "사천", "김해", "밀양", "거제", "양산",
-    "의령", "함안", "창녕", "고성", "남해", "하동", "산청", "함양", "거창", "합천",
-]
+# 경남 18개 시군과 행정 접미사. 맨 이름만으로는 매칭하지 않는다
+# ("고성"→고성능, "양산"→대량양산, "거창"→거창하다, "남해"→남해안 같은 오탐 방지)
+SIGUN_SUFFIX = {
+    "창원": "시", "진주": "시", "통영": "시", "사천": "시", "김해": "시", "밀양": "시", "거제": "시", "양산": "시",
+    "의령": "군", "함안": "군", "창녕": "군", "고성": "군", "남해": "군", "하동": "군", "산청": "군",
+    "함양": "군", "거창": "군", "합천": "군",
+}
+SIGUN = list(SIGUN_SUFFIX)
 GYEONGNAM_WORDS = ["경남", "경상남도"]
+# 지역으로 인정하는 형태
+#  - 붙여 쓴 행정명: 고성군, 고성군청, 창원시설공단, 김해시립도서관
+#  - 띄어 쓴 행정명: "고성 군" 뒤에 글자가 이어지면 제외 ("대량 양산 시행"의 "양산 시" 차단)
+#  - 경남 문맥: "경남 고성", "경상남도 하동"
+_SIGUN_PATTERNS = {
+    name: re.compile(
+        rf"{name}{suffix}|{name}\s+{suffix}(?![가-힣])|(?:경남|경상남도)\s*{name}(?![가-힣])"
+    )
+    for name, suffix in SIGUN_SUFFIX.items()
+}
 ORG_PREFIX_RE = re.compile(r"^\s*(?:\(재\)|\(사\)|\(주\)|재단법인|사단법인|주식회사)\s*")
 _BRACKET_RE = re.compile(r"[\[\(【〔]([^\]\)】〕]{1,20})[\]\)】〕]")
 _WS_RE = re.compile(r"\s+")
@@ -65,14 +79,20 @@ def standardize_org(name: str, aliases: dict[str, list[str]]) -> str:
 
 
 def extract_regions(text: str) -> list[str]:
+    """텍스트에서 경남 지역명을 뽑는다. 시군은 행정 접미사나 경남 문맥이 있을 때만 인정."""
     t = nfkc(text)
     out: list[str] = []
     if any(w in t for w in GYEONGNAM_WORDS):
         out.append("경남")
-    for s in SIGUN:
-        if s in t and s not in out:
-            out.append(s)
+    for name, pattern in _SIGUN_PATTERNS.items():
+        if pattern.search(t):
+            out.append(name)
     return out
+
+
+def mentions_gyeongnam(text: str) -> bool:
+    """경남 또는 경남 시군이 언급되는지."""
+    return bool(extract_regions(text))
 
 
 def mask_pii(text: str) -> str:
