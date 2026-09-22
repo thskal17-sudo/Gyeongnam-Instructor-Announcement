@@ -12,12 +12,12 @@
  "2491e98afb8ded6f447a15453393a2a1427abea5": {
   "first_seen": "2026-09-21T18:42:32.621910+09:00",
   "last_seen": "2026-09-22T09:12:46.445300+09:00",
-  "status": "new"
+  "status": "active"
  },
  "2cefd4ead719c982c4f441f442774ffe4430cc6d": {
   "first_seen": "2026-09-22T19:49:00.718442+09:00",
   "last_seen": "2026-09-22T19:49:00.718442+09:00",
-  "status": "new"
+  "status": "closing_soon"
  },
  "367f031f49ec98919ddf7ae1cd0a5dfb7d3fd6a2": {
   "first_seen": "2026-09-22T19:49:00.718442+09:00",
@@ -32,22 +32,22 @@
  "6b91b93c863484ede5be84d622aceaa8d93fc422": {
   "first_seen": "2026-09-22T14:52:12.614300+09:00",
   "last_seen": "2026-09-22T14:52:12.614300+09:00",
-  "status": "new"
+  "status": "active"
  },
  "95770dc3720a8127ed43d8d70ff3792e1309bd14": {
   "first_seen": "2026-09-21T18:42:32.621910+09:00",
   "last_seen": "2026-09-22T09:12:46.445300+09:00",
-  "status": "new"
+  "status": "active"
  },
  "9ece3ed6be730132ecb48d3254d30cdd90b27bcf": {
   "first_seen": "2026-09-21T18:42:32.621910+09:00",
   "last_seen": "2026-09-22T14:52:12.614300+09:00",
-  "status": "new"
+  "status": "active"
  },
  "a3f628307e7529cb7a4308d7ef16cc1d11dcb8bf": {
   "first_seen": "2026-09-21T18:42:32.621910+09:00",
   "last_seen": "2026-09-22T14:52:12.614300+09:00",
-  "status": "new"
+  "status": "active"
  },
  "ab1b02e0f4eeec27f97f1de50329add70ca568cd": {
   "first_seen": "2026-09-21T18:42:32.621910+09:00",
@@ -57,7 +57,7 @@
  "bbb645c315157da4d3c4b38ddd3ba732ace49565": {
   "first_seen": "2026-09-21T18:42:32.621910+09:00",
   "last_seen": "2026-09-22T09:12:46.445300+09:00",
-  "status": "new"
+  "status": "active"
  },
  "c5c80c8c70993b86d1085198a2aeff98dea2d1fc": {
   "first_seen": "2026-09-22T19:49:00.718442+09:00",
@@ -72,7 +72,7 @@
  "c9b97568cb032365c19774bc0c3dac78eec54afe": {
   "first_seen": "2026-09-22T14:52:12.614300+09:00",
   "last_seen": "2026-09-22T14:52:12.614300+09:00",
-  "status": "new"
+  "status": "active"
  },
  "d65246c37ba5b6193a2934aec39749f09bd96c4a": {
   "first_seen": "2026-09-22T19:49:00.718442+09:00",
@@ -87,6 +87,6 @@
  "f13aa9dcc2636c0e5fa21e56c5949fa4bae3e6bc": {
   "first_seen": "2026-09-22T14:52:12.614300+09:00",
   "last_seen": "2026-09-22T14:52:12.614300+09:00",
-  "status": "new"
+  "status": "active"
  }
 }
