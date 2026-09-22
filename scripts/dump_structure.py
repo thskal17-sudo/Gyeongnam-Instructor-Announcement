@@ -17,7 +17,21 @@ from bs4 import BeautifulSoup
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
-HEADERS = {"User-Agent": UA, "Accept-Language": "ko-KR,ko;q=0.9,en;q=0.5", "Accept": "text/html,application/xhtml+xml,*/*;q=0.8"}
+HEADERS = {
+    "User-Agent": UA,
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept-Language": "ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "same-origin",
+    "Sec-Fetch-User": "?1",
+    "sec-ch-ua": '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": '"Windows"',
+}
 NOISE = re.compile(r"(nav|menu|header|footer|lnb|gnb|tnb|snb|anb|topmenu|depth|sitemap|quick|util|breadcrumb|location|family|skip|m_menu|slide|banner|share|foot|head)", re.I)
 DETAIL = re.compile(r"(amode=view|View\.do|Detail\.do|regSn=|/view\.|nttNo=|dataSid=)", re.I)
 
@@ -42,11 +56,20 @@ def short_path(tag) -> str:
 
 
 def fetch(url: str):
-    try:
-        return requests.get(url, headers=HEADERS, timeout=25)
-    except requests.exceptions.SSLError:
-        print("  (ssl verify failed, retrying without verification)")
-        return requests.get(url, headers=HEADERS, timeout=25, verify=False)
+    from urllib.parse import urlsplit
+    u = urlsplit(url)
+    headers = dict(HEADERS, Referer=f"{u.scheme}://{u.netloc}/")
+    sess = requests.Session()
+    for attempt in (1, 2):
+        try:
+            return sess.get(url, headers=headers, timeout=25)
+        except requests.exceptions.SSLError:
+            print("  (ssl verify failed, retrying without verification)")
+            return sess.get(url, headers=headers, timeout=25, verify=False)
+        except (requests.exceptions.ConnectTimeout, requests.exceptions.ConnectionError) as exc:
+            if attempt == 2:
+                raise
+            print(f"  (connect failed, retrying once: {str(exc)[:80]})")
 
 
 def row_detail(row, limit: int = 14) -> None:
