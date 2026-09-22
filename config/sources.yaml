@@ -461,24 +461,326 @@ sources:
 # Tier 3-A. 경남 출자·출연기관 / 지방공기업  — Phase 2~3
 #   (클린아이 잡플러스에 중복 게시되는 경우가 많으므로, cleaneye 검증 후 개별 소스는 우선순위 조정)
 # ---------------------------------------------------------------------------
-  - { id: gn_hrd,       name: 경남인재평생교육진흥원,   org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 평생교육 강사 공고 핵심 기관 }
-  - { id: gn_tp,        name: 경남테크노파크,           org_type: local_public, tier: 3, homepage: https://www.gntp.or.kr, adapter: { type: html_list, list_url: TODO } }
-  - { id: gn_caf,       name: 경남문화예술진흥원,       org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 문화예술 강사·예술교육 인력풀 }
-  - { id: gn_wf,        name: 경남여성가족재단,         org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: gn_ssw,       name: 경남사회서비스원,         org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: gn_dev,       name: 경남개발공사,             org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: gn_ri,        name: 경남연구원,               org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: gn_tour,      name: 경남관광재단,             org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: gn_robot,     name: 경남로봇랜드재단,         org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: gn_credit,    name: 경남신용보증재단,         org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: gn_lib,       name: 경남대표도서관,           org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 도서관 강좌 강사 }
-  - { id: gn_youth,     name: 경남청소년지원재단,       org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: cw_fmc,       name: 창원시설공단,             org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 체육센터·수영장 강사 }
-  - { id: cw_culture,   name: 창원문화재단,             org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: gh_fmc,       name: 김해시시설관리공단·문화재단, org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: jj_fmc,       name: 진주시시설관리공단·문화관광재단, org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: ys_fmc,       name: 양산시시설관리공단,       org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: gj_fmc,       name: 거제해양관광개발공사,     org_type: local_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - id: gn_hrd
+    name: 경남인재평생교육진흥원 채용공고
+    org_type: local_public
+    tier: 3
+    homepage: https://www.gndamoa.or.kr/main.web
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://www.gndamoa.or.kr/01328/01624.web?gcode=1035&cpage={page}
+      row_selector: ul.lst1 > li.li1
+      title_selector: strong.t1
+      link_selector: a.a1
+      date_selector: span.t3:nth-of-type(1)
+      keywords: [강사, 교강사, 강사진, 문해교사, 지도사, 지도자, 교육강사, 튜터]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: div.bbs1view1, attachment_selector: 'a.filename[href*="/board/download.do"]' }
+    notes: >-
+      채용공고 게시판(2026-09-22 러너 구조 검증, 통영·김해와 같은 .web CMS). gia probe 는 목록 10건이 모두 직원 채용이라 keywords 에 걸린 게 없어 0건(셀렉터는 진주시설공단과 동일 구조).
+      루트(/)는 러너에서 간헐적으로 시간초과지만 main.web·게시판은 정상.
+
+  - id: gn_hrd_programs
+    name: 경남인재평생교육진흥원 모집·접수
+    org_type: local_public
+    tier: 3
+    homepage: https://www.gndamoa.or.kr/main.web
+    verified: true
+    schedule: daily_light
+    adapter:
+      type: html_list
+      list_url: https://www.gndamoa.or.kr/01328/01330.web?cpage={page}
+      row_selector: table.t3 tbody tr
+      title_selector: td a
+      date_selector: td:nth-child(5)
+      keywords: [강사, 문해교사, 지도사, 지도자, 양성, 서포터즈]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: div.bbs1view1 div.substance, attachment_selector: 'a.filename[href*="/cmsfile/download.do"]' }
+    notes: >-
+      교육·행사 참가자 모집 게시판(2026-09-22 러너에서 gia probe 검증: 'AI·디지털 문해교육 강사 양성과정 모집' 1건 수집·마감 추출 정상). 문해교사 양성·보수교육처럼 강사 대상 모집이 섞여 있어 keywords 로 거름.
+      5열 '접수기간'(2026-08-26 ~ 2026-10-29)의 첫 날짜가 게시일로 잡힘.
+  - id: gn_tp
+    name: 경남테크노파크
+    org_type: local_public
+    tier: 3
+    enabled: false
+    homepage: https://www.gntp.or.kr
+    adapter:
+      type: html_list
+      list_url: TODO
+    notes: >-
+      러너에서 열림(2026-09-22)이나 홈 화면에 사업공고·공지·보도자료만 있고 채용 게시판 링크가 없음. 강사 공고 빈도 낮아 보류.
+  - id: gn_caf
+    name: 경남문화예술진흥원 채용공고
+    org_type: local_public
+    tier: 3
+    homepage: https://www.gcaf.or.kr
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&page={page}
+      row_selector: div.tbl_head01 table tbody tr
+      title_selector: td.td_subject div.bo_tit a
+      date_selector: td.td_datetime
+      keywords: [강사, 예술강사, 교강사, 지도사, 지도자, 강사진, 예술교육]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: "article#bo_v", attachment_selector: a.view_file_download }
+    notes: >-
+      채용공고(그누보드, 2026-09-22 러너 구조 검증). 임원·직원 채용이 대부분이라 keywords 로 예술강사 관련만.
+  - id: gn_wf
+    name: 경남여성가족재단
+    org_type: local_public
+    tier: 3
+    enabled: false
+    homepage: https://gnwff.or.kr
+    adapter:
+      type: html_list
+      list_url: TODO
+      candidate_list_url: https://gnwff.or.kr/sub04/sub03_01.php
+    notes: >-
+      채용공고 페이지가 GitHub 러너에서 403 Forbidden(2026-09-22) → 국내 IP 필요.
+  - id: gn_ssw
+    name: 경남사회서비스원 채용지원
+    org_type: local_public
+    tier: 3
+    homepage: https://gn.pass.or.kr/main/main.php
+    verified: true
+    schedule: daily_light
+    adapter:
+      type: html_list
+      list_url: https://gn.pass.or.kr/apply/sub02_01.php?code=apply&page={page}
+      row_selector: ul.apply-list > li
+      title_selector: a
+      keywords: [강사, 교강사, 지도사, 지도자, 요양보호사 교육]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: body }
+    notes: >-
+      채용지원 게시판(2026-09-22 러너 구조 검증). 루트(/)는 403이지만 하위 경로는 열림. 행에 날짜 노드가 따로 없어(텍스트 '마감 2026.09.09 ~ 2026.09.16') since 필터가 안 걸리고 1페이지 전부를 후보로 봄.
+      기간제 근로자 채용 위주라 keywords 로 거름.
+  - id: gn_dev
+    name: 경남개발공사
+    org_type: local_public
+    tier: 3
+    enabled: false
+    homepage: https://www.gndc.co.kr
+    adapter:
+      type: html_list
+      list_url: TODO
+    notes: >-
+      채용공고 게시판(boardlist.do?seqId=0000000050)이 404(2026-09-22), 홈 화면은 JS 렌더링. 택지·산단 개발 기관이라 강사 공고 없음 → 보류.
+  - id: gn_ri
+    name: 경남연구원 채용정보
+    org_type: local_public
+    tier: 3
+    homepage: https://www.gndi.re.kr
+    verified: true
+    schedule: daily_light
+    adapter:
+      type: html_list
+      list_url: https://www.gndi.re.kr/0000057?page={page}
+      row_selector: table.basic-board tbody tr
+      title_selector: td.subject a
+      link_selector: td.subject a
+      link_attr: onclick
+      link_regex: "goRead\\('([0-9a-f-]+)'\\)"
+      link_url_template: https://www.gndi.re.kr/0000057?postid={1}&mode=READ
+      date_selector: td.date
+      keywords: [강사, 교강사, 지도사, 지도자, 위촉]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: body }
+    notes: >-
+      채용정보(2026-09-22 러너 구조 검증). 링크가 onclick=goRead('uuid') 라 postid 로 상세 URL 조립. 상세 페이지(31KB)에 본문 텍스트 블록이 없어(JS 로딩 추정) 본문은 거의 비어 옴. 러너에서 첫 연결이 끊겨 재시도로 열림(간헐). 연구직 채용 위주라 빈도 낮음.
+  - id: gn_tour
+    name: 경남관광재단 채용공고
+    org_type: local_public
+    tier: 3
+    homepage: https://gnto.or.kr/main/main.php
+    verified: true
+    schedule: daily_light
+    adapter:
+      type: html_list
+      list_url: https://gnto.or.kr/sub04/sub03_01.php?code=040301&page={page}
+      row_selector: ul.board_ul > li
+      title_selector: h5 a
+      date_selector: span.date
+      org_selector: span.name
+      keywords: [강사, 해설사, 지도사, 지도자, 교강사]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: div.board_view, attachment_selector: 'a[href*="bbs_download.php"]' }
+    notes: >-
+      채용공고(2026-09-22 러너 구조 검증). 머리글 li.title_li 는 h5 a 가 없어 자동으로 건너뜀. 기간제 근로자 채용 위주.
+  - id: gn_robot
+    name: 경남로봇랜드재단
+    org_type: local_public
+    tier: 3
+    enabled: false
+    homepage: https://www.gnrobot.or.kr
+    adapter:
+      type: playwright
+      list_url: https://www.gnrobot.or.kr/page/recruitment-information
+    notes: >-
+      채용정보 목록이 {{title}} 템플릿으로 JS 렌더링(2026-09-22) → playwright 어댑터 필요. 강사 공고 빈도 낮아 보류.
+  - id: gn_credit
+    name: 경남신용보증재단
+    org_type: local_public
+    tier: 3
+    enabled: false
+    homepage: https://www.gnsinbo.or.kr
+    adapter:
+      type: html_list
+      list_url: TODO
+    notes: >-
+      홈 화면이 9KB 프레임 페이지(2026-09-22). 보증 기관이라 강사 공고 없음 → 보류.
+  - id: gn_lib
+    name: 경남대표도서관 공지사항
+    org_type: local_public
+    tier: 3
+    homepage: https://lib.gyeongnam.go.kr
+    verified: true
+    enabled: false
+    adapter:
+      type: html_list
+      list_url: https://lib.gyeongnam.go.kr/board/list.lib?boardId=BBS_0000001&menuCd=DOM_000000205016001000&startPage={page}
+      row_selector: table.tb_board tbody tr
+      title_selector: td.td_tit a
+      date_selector: td:nth-child(4)
+      date_formats: ["%y.%m.%d"]
+      org_selector: td:nth-child(3)
+      keywords: [강사, 교강사, 지도사, 지도자, 강좌 운영, 프로그램 운영]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: div.borad }
+    notes: >-
+      공지사항(2026-09-22 러너 구조 검증). 도청 도메인(gyeongnam.go.kr)의 하위 사이트인데도 러너에서 열리지만, robots.txt 가 gia UA 를 차단해(gia probe: robots.txt 차단) 비활성. 날짜가 '26.09.10' 두 자리 연도라 date_formats 지정.
+  - id: gn_youth
+    name: 경상남도미래세대재단 채용공고 (구 경남청소년지원재단)
+    org_type: local_public
+    tier: 3
+    homepage: https://gnysf.co.kr
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://gnysf.co.kr/employment/?pageid={page}
+      row_selector: div#kboard-default-list table tbody tr
+      title_selector: td.kboard-list-title a
+      date_selector: td.kboard-list-date
+      org_selector: td.kboard-list-user
+      keywords: [강사, 교강사, 지도사, 지도자, 활동가, 멘토, 상담사]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: "div#kboard-document" }
+    notes: >-
+      채용공고(워드프레스 kboard, 2026-09-22 러너 구조 검증). 청소년활동 강사·자원활동가 모집이 산하 사이트(say.gnysf.co.kr, kdream.gnysf.co.kr)에도 뜸.
+  - id: cw_fmc
+    name: 창원시설공단 채용정보
+    org_type: local_public
+    tier: 3
+    homepage: https://www.cwsisul.or.kr
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://www.cwsisul.or.kr/bbs/board.php?bo_table=sub06_04_04&page={page}
+      row_selector: div#pc_list table.bbs-table tbody tr
+      title_selector: td.td_subject div.bo_tit a
+      date_selector: td.td_datetime
+      keywords: [강사, 도급강사, 교강사, 지도사, 지도자, 강습, 코치, 트레이너]
+      paging: { max_pages: 2 }
+      detail: { fetch: true, body_selector: "div#bo_v", attachment_selector: a.view_file_download }
+    notes: >-
+      채용정보(그누보드, 2026-09-22 러너에서 gia probe 검증: 400일 창에서 요가·줌바·탁구 도급강사, 수영강습 등 7건 수집, 마감 추출 정상). 강사 공고가 잦음(주 수 건). 본문이 짧고 공고문은 hwp 첨부.
+  - id: cw_culture
+    name: 창원문화재단 채용공고
+    org_type: local_public
+    tier: 3
+    homepage: https://www.cwcf.or.kr
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://www.cwcf.or.kr/commu/notice_list.asp?BCATE=BD00001&BSUBCATE=%C3%A4%BF%EB%B0%F8%B0%ED&place_idx=&page={page}
+      encoding: euc-kr
+      row_selector: table.t tbody tr
+      title_selector: td a
+      date_selector: td:nth-child(4)
+      date_formats: ["%y.%m.%d"]
+      keywords: [강사, 교강사, 지도사, 지도자, 예술강사, 도슨트, 해설]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: div.n-content div.contents, attachment_selector: 'a.m-board-body[href*="download_file.asp"]' }
+    notes: >-
+      공지사항 중 채용공고 분류(EUC-KR ASP, 2026-09-22 러너에서 gia probe 검증: 도슨트 공고 1건 수집·본문 2711자). 상단 공지 행은 '작성일 2026.09.22', 일반 행은 '26.09.16' 이라 date_formats 와 느슨한 파서를 함께 씀.
+  - id: gh_fmc
+    name: 김해시도시개발공사·김해문화관광재단
+    org_type: local_public
+    tier: 3
+    enabled: false
+    homepage: https://ghdc.or.kr
+    adapter:
+      type: html_list
+      list_url: TODO
+      candidate_list_url: https://www.ghct.or.kr/board/board02
+    notes: >-
+      시설관리공단은 2014년 도시개발공사(ghdc.or.kr)에 통합. ghdc.or.kr·ghct.or.kr(문화관광재단, 스포츠 강사 채용 게시)·ghcf.or.kr 모두 러너에서 연결 시간초과(2026-09-22) → 국내 IP 필요.
+  - id: jj_fmc
+    name: 진주시시설관리공단 채용정보
+    org_type: local_public
+    tier: 3
+    homepage: https://www.jjsiseol.or.kr
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://www.jjsiseol.or.kr/11632/00047.web?gcode=1005&cpage={page}
+      row_selector: ul.lst1 > li.li1
+      title_selector: strong.t1
+      link_selector: a.a1
+      date_selector: span.t3:nth-of-type(2)
+      org_selector: span.t3:nth-of-type(3)
+      keywords: [강사, 교강사, 지도사, 지도자, 강습, 코치, 트레이너]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: div.bbs1view1 div.substance, attachment_selector: 'a.filename[href*="/board/download.do"]' }
+    notes: >-
+      채용정보(통영·김해와 같은 .web CMS, 2026-09-22 러너 구조 검증). span.t3 순서: 번호·날짜·부서. '새 글' 배지가 제목에 붙음(정규화 과제).
+      진주문화관광재단(jjct.or.kr)은 러너에서 403 이라 미등록.
+
+  - id: ys_fmc
+    name: 양산시시설관리공단 채용정보
+    org_type: local_public
+    tier: 3
+    enabled: false
+    homepage: https://www.yssisul.or.kr/sisul/
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://www.yssisul.or.kr/sisul/board/BBSMSTR_G/article
+      row_selector: table.boardList tbody tr
+      title_selector: td.boardTitle a.articleTitle
+      date_selector: td.boardDate
+      date_formats: ["%y.%m.%d"]
+      org_selector: td.boardName
+      keywords: [강사, 위촉강사, 교강사, 지도사, 지도자, 강습, 코치, 트레이너]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: body, attachment_selector: 'a[href*="/sisul/file/download/"]' }
+    notes: >-
+      채용정보(2026-09-22 러너 구조 검증). 웅상센트럴파크 스쿼시 위촉강사, 요가·필라테스 외부강사 등 강사 공고가 잦아 가치가 높으나,
+      인증서 검증 실패(러너 requests 가 verify=False 로만 열림)라 gia httpx 도 실패할 것으로 보여 비활성. 인증서 완화 옵션이 생기면 활성화.
+
+  - id: gj_fmc
+    name: 거제해양관광개발공사 채용정보
+    org_type: local_public
+    tier: 3
+    homepage: https://www.gmdc.co.kr
+    verified: true
+    enabled: false
+    schedule: daily_light
+    adapter:
+      type: html_list
+      list_url: https://www.gmdc.co.kr/bbs/board.php?bo_table=sub03_04&page={page}
+      row_selector: table.bbslisttable tbody tr
+      title_selector: td.td_subject div.bo_tit a
+      date_selector: td.td_datetime
+      org_selector: td.td_name
+      keywords: [강사, 교강사, 지도사, 지도자, 강습, 코치, 트레이너, 해설]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: "article#bo_v", attachment_selector: a.view_file_download }
+    notes: >-
+      채용정보(그누보드, 2026-09-22 러너 구조 검증). robots.txt 가 gia UA 를 차단해(gia probe: robots.txt 차단) 비활성. 기간제 근로자 채용 위주.
   - { id: gn_lifelong_centers, name: 시군 평생학습관·여성회관·청소년수련관 (묶음), org_type: local_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 시군청 게시판에 통합 게시되는지 확인 후 개별 분리 }
 
 # ---------------------------------------------------------------------------
