@@ -32,8 +32,8 @@ HEADERS = {
     "sec-ch-ua-mobile": "?0",
     "sec-ch-ua-platform": '"Windows"',
 }
-NOISE = re.compile(r"(nav|menu|header|footer|lnb|gnb|tnb|snb|anb|topmenu|depth|sitemap|quick|util|breadcrumb|location|family|skip|m_menu|slide|banner|share|foot|head)", re.I)
-DETAIL = re.compile(r"(amode=view|View\.do|Detail\.do|regSn=|/view\.|nttNo=|dataSid=)", re.I)
+NOISE = re.compile(r"(?<![a-z])(nav|menu|header|footer|lnb|gnb|tnb|snb|anb|topmenu|depth|sitemap|quick|util|breadcrumb|location|family|skip|m_menu|slide|banner|share|foot|head)(?![a-z0-9])", re.I)
+DETAIL = re.compile(r"(amode=view|(?<!sub)View\.do|Detail\.do|regSn=|/view\.|nttNo=|dataSid=|wr_id=|pan=read|List2Content|NttInfo|artclView|/boardview/|/lectopen/view/|bMode=view|btype=view)", re.I)
 
 
 def sel(tag) -> str:
@@ -55,6 +55,21 @@ def short_path(tag) -> str:
     return " > ".join(path(tag).split(" > ")[-3:])
 
 
+class LegacyTLSAdapter(requests.adapters.HTTPAdapter):
+    """TLS 1.0/1.1·약한 암호만 지원하는 구형 서버용 (ice.cs.ac.kr 등)."""
+
+    def init_poolmanager(self, *args, **kwargs):
+        import ssl
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        ctx.minimum_version = ssl.TLSVersion.TLSv1
+        ctx.set_ciphers("DEFAULT:@SECLEVEL=0")
+        ctx.options |= getattr(ssl, "OP_LEGACY_SERVER_CONNECT", 0x4)
+        kwargs["ssl_context"] = ctx
+        return super().init_poolmanager(*args, **kwargs)
+
+
 def fetch(url: str):
     from urllib.parse import urlsplit
     u = urlsplit(url)
@@ -63,7 +78,11 @@ def fetch(url: str):
     for attempt in (1, 2):
         try:
             return sess.get(url, headers=headers, timeout=25)
-        except requests.exceptions.SSLError:
+        except requests.exceptions.SSLError as exc:
+            if "HANDSHAKE_FAILURE" in str(exc) or "handshake" in str(exc).lower():
+                print("  (tls handshake failed, retrying with legacy TLS context)")
+                sess.mount("https://", LegacyTLSAdapter())
+                return sess.get(url, headers=headers, timeout=25, verify=False)
             print("  (ssl verify failed, retrying without verification)")
             return sess.get(url, headers=headers, timeout=25, verify=False)
         except (requests.exceptions.ConnectTimeout, requests.exceptions.ConnectionError) as exc:
@@ -85,17 +104,23 @@ def row_detail(row, limit: int = 14) -> None:
         extra = ""
         if el.name == "a":
             extra = f" href={ (el.get('href') or '')[:90] } onclick={ (el.get('onclick') or '')[:60] }"
+            data = {k: v for k, v in el.attrs.items() if k not in ("href", "onclick", "class", "title")}
+            if data:
+                extra += f" attrs={ {k: str(v)[:40] for k, v in list(data.items())[:5]} }"
         print(f"      {sel(el)}{extra} :: own={own[:40]!r} all={txt[:50]!r}")
         n += 1
         if n >= limit:
             break
 
 
-def dump_list(soup) -> None:
+def dump_list(soup, noise=None) -> None:
+    noise = NOISE if noise is None else noise
+    found = 0
     for t in soup.find_all("table"):
         rows = t.find_all("tr")
-        if len(rows) < 2 or NOISE.search(path(t)):
+        if len(rows) < 2 or noise.search(path(t)):
             continue
+        found += 1
         print(f"\n[TABLE] {short_path(t)}  rows={len(rows)}")
         for tr in rows[:2]:
             cells = tr.find_all(["th", "td"])
@@ -104,10 +129,11 @@ def dump_list(soup) -> None:
             row_detail(rows[1])
     for ul in soup.find_all(["ul", "ol"]):
         lis = ul.find_all("li", recursive=False)
-        if len(lis) < 3 or not ul.find("a") or NOISE.search(path(ul)):
+        if len(lis) < 3 or not ul.find("a") or noise.search(path(ul)):
             continue
         if sum(len(li.get_text(" ", strip=True)) for li in lis) < 80:
             continue
+        found += 1
         print(f"\n[LIST] {short_path(ul)}  items={len(lis)}")
         print("   li:", sel(lis[0]), "->", lis[0].get_text(" ", strip=True)[:100])
         row_detail(lis[0])
@@ -115,6 +141,38 @@ def dump_list(soup) -> None:
     if pag:
         print("\n[PAGING]", (pag[0].get("href") or "")[:140])
     print("[DATES] sample:", re.findall(r"20\d{2}[.\-/]\s?\d{1,2}[.\-/]\s?\d{1,2}", soup.get_text(" "))[:5])
+    if not found and noise is NOISE:
+        print("\n[RETRY without noise filter]")
+        dump_list(soup, noise=re.compile(r"(?!x)x"))
+        return
+    dump_anchor_paths(soup)
+
+
+def dump_anchor_paths(soup) -> None:
+    """제목 길이의 앵커를 경로별로 묶어 가장 흔한 경로를 출력 (표/목록으로 안 잡히는 게시판용)."""
+    from collections import Counter, defaultdict
+    groups: dict[str, list] = defaultdict(list)
+    for a in soup.find_all("a"):
+        text = a.get_text(" ", strip=True)
+        if len(text) < 10 or NOISE.search(path(a)):
+            continue
+        groups[" > ".join(path(a).split(" > ")[-4:])].append(a)
+    top = Counter({k: len(v) for k, v in groups.items()}).most_common(4)
+    if not top:
+        return
+    print("\n[ANCHORS] most common link paths")
+    for key, n in top:
+        a = groups[key][0]
+        data = {k: str(v)[:40] for k, v in a.attrs.items() if k not in ("href", "class")}
+        print(f"   x{n} {key}  href={(a.get('href') or '')[:90]} {data if data else ''} text={a.get_text(' ', strip=True)[:40]!r}")
+        row = a
+        for _ in range(4):
+            row = row.parent
+            if row is None or row.name in ("body", "[document]"):
+                break
+            if row.name in ("tr", "li") or (row.name == "div" and len(row.find_all("a")) <= 3):
+                print(f"      row? {sel(row)} :: {row.get_text(' ', strip=True)[:120]!r}")
+                break
 
 
 def dump_detail(soup) -> None:
@@ -161,6 +219,29 @@ def dump(url: str) -> None:
         dump_detail(soup)
     else:
         dump_list(soup)
+        dump_links(soup, r.url)
+
+
+LINK_WORDS = re.compile(r"(공지|알림|소식|채용|모집|구인|강사|게시판|공고|notice|recruit|job)", re.I)
+
+
+def dump_links(soup, base: str) -> None:
+    """홈페이지에서 게시판 후보 링크를 찾는다 (공지·채용·모집 등 낱말이 든 앵커)."""
+    from urllib.parse import urljoin
+    seen, out = set(), []
+    for a in soup.find_all("a"):
+        text = a.get_text(" ", strip=True)
+        href = a.get("href") or ""
+        if not LINK_WORDS.search(text + " " + href) or href.startswith(("#", "javascript", "mailto")):
+            continue
+        full = urljoin(base, href)
+        if full in seen:
+            continue
+        seen.add(full)
+        out.append(f"   {text[:30]!r} -> {full[:120]}")
+    if out:
+        print(f"\n[LINKS] board candidates ({len(out)})")
+        print("\n".join(out[:40]))
 
 
 if __name__ == "__main__":
