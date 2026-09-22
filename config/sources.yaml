@@ -804,11 +804,11 @@ sources:
       link_url_template: https://www.kopo.ac.kr/changwon/board.do?menu=10551&mode=view&post={1}
       date_selector: td:nth-child(4)
       org_selector: td:nth-child(3)
-      keywords: [강사, 시간강사, 외래교수, 겸임교수, 초빙, 교수, 지도사]
+      keywords: [강사, 시간강사, 외래교수, 겸임교수, 초빙, 지도사]
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: div.board_view }
     notes: >-
-      캠퍼스 교직원 채용정보(2026-09-22 러너 구조 검증). 링크가 onclick=fn_board_detail('post') 라 board.do?mode=view&post= 로 조립.
+      캠퍼스 교직원 채용정보(2026-09-22 러너에서 gia probe 검증: 목록·본문 1342자·마감 추출 정상). 링크가 onclick=fn_board_detail('post') 라 board.do?mode=view&post= 로 조립.
       첨부는 openAtch() JS 다운로드라 미추출. 전임교수 채용은 본부 게시판(board.do?menu=10523)에 전국 캠퍼스 통합 게시.
   - id: kopo_jinju
     name: 한국폴리텍VII대학 진주캠퍼스 교직원 채용정보
@@ -827,11 +827,11 @@ sources:
       link_url_template: https://www.kopo.ac.kr/jinju/board.do?menu=10555&mode=view&post={1}
       date_selector: td:nth-child(4)
       org_selector: td:nth-child(3)
-      keywords: [강사, 시간강사, 외래교수, 겸임교수, 초빙, 교수, 지도사]
+      keywords: [강사, 시간강사, 외래교수, 겸임교수, 초빙, 지도사]
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: div.board_view }
     notes: >-
-      캠퍼스 교직원 채용정보(2026-09-22 러너 구조 검증). 링크가 onclick=fn_board_detail('post') 라 board.do?mode=view&post= 로 조립.
+      캠퍼스 교직원 채용정보(2026-09-22 러너에서 gia probe 검증: 목록·본문 1342자·마감 추출 정상). 링크가 onclick=fn_board_detail('post') 라 board.do?mode=view&post= 로 조립.
       첨부는 openAtch() JS 다운로드라 미추출. 전임교수 채용은 본부 게시판(board.do?menu=10523)에 전국 캠퍼스 통합 게시.
   - id: hrdkorea_gn
     name: 한국산업인력공단 경남지사
@@ -1036,6 +1036,7 @@ sources:
     tier: 3
     homepage: https://tyhansancf.or.kr
     verified: true
+    enabled: false
     adapter:
       type: html_list
       list_url: https://tyhansancf.or.kr/notice/notice.html?Ncode=b2&page={page}
@@ -1047,7 +1048,7 @@ sources:
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: td.con, attachment_selector: td.save a }
     notes: >-
-      구 통영한산대첩문화재단. 기관공고(채용) 게시판(2026-09-22 러너 구조 검증). 상세 링크는 상대경로 view.html?Ncode=b2&num=.
+      구 통영한산대첩문화재단. 기관공고(채용) 게시판(2026-09-22 러너 구조 검증). robots.txt 가 gia UA 를 차단해(gia probe: robots.txt 차단) 비활성. 상세 링크는 상대경로 view.html?Ncode=b2&num=.
 
   - id: ty_culture_biz
     name: 통영문화재단 사업공고
@@ -1055,6 +1056,7 @@ sources:
     tier: 3
     homepage: https://tyhansancf.or.kr
     verified: true
+    enabled: false
     schedule: daily_light
     adapter:
       type: html_list
@@ -1067,7 +1069,7 @@ sources:
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: td.con, attachment_selector: td.save a }
     notes: >-
-      사업공고(참여자·운영자 모집)에 국가유산 야행 해설·도슨트 등 강사성 모집이 섞여 있어 keywords 로 거름(2026-09-22 러너 구조 검증).
+      사업공고(참여자·운영자 모집)에 국가유산 야행 해설·도슨트 등 강사성 모집이 섞여 있어 keywords 로 거름(2026-09-22 러너 구조 검증). robots.txt 차단으로 비활성(기관공고 항목 참조).
 
   - id: timf
     name: 통영국제음악재단 공지사항
@@ -1086,7 +1088,7 @@ sources:
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: div.content-area, attachment_selector: 'a[href*="/site/download.asp"]' }
     notes: >-
-      공지사항(2026-09-22 러너 구조 검증). '2026 통영시민오케스트라 교육강사(플루트) 모집 공고'처럼 음악 교육강사 모집이 올라옴. 첨부는 pdf.
+      공지사항(2026-09-22 러너에서 gia probe 검증: 목록 5건, '2026 통영시민오케스트라 교육강사(플루트) 모집 공고' 포함 판정). 합창지도자 채용도 올라옴. 본문이 짧고 공고문은 pdf 첨부라 마감이 게시일로 잡힐 수 있음(#19).
   - id: sc_culture
     name: 사천문화재단
     org_type: local_public
@@ -1116,6 +1118,7 @@ sources:
     tier: 3
     homepage: https://www.geojeart.or.kr
     verified: true
+    enabled: false
     schedule: daily_light
     adapter:
       type: html_list
@@ -1132,7 +1135,7 @@ sources:
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: body }
     notes: >-
-      채용공고(2026-09-22 러너 구조 검증). 링크가 onclick=onview('idx','bd_code') 라 bbs_view.asp 로 조립(앵커 href 는 비어 있고 'herf' 오타 속성). 날짜 '2026.06.10'. 상세 본문 셀렉터 미확인.
+      채용공고(2026-09-22 러너 구조 검증). robots.txt 가 gia UA 를 차단해(gia probe: robots.txt 차단) 비활성. 링크가 onclick=onview('idx','bd_code') 라 bbs_view.asp 로 조립(앵커 href 는 비어 있고 'herf' 오타 속성). 날짜 '2026.06.10'. 상세 본문 셀렉터 미확인.
   - id: ys_culture
     name: 양산문화재단 채용공고
     org_type: local_public
