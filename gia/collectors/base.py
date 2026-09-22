@@ -1,6 +1,7 @@
 """어댑터 인터페이스와 HTTP 클라이언트 (docs/DESIGN.md 5절)."""
 from __future__ import annotations
 
+import logging
 import random
 import re
 import threading
@@ -17,6 +18,9 @@ from ..extract.deadline import KST
 from ..models import RawListing, RawPosting
 
 
+log = logging.getLogger("gia.http")
+
+
 class FetchError(Exception):
     pass
 
@@ -30,19 +34,43 @@ class HttpClient:
 
     def __init__(self, settings: CollectorSettings, transport: httpx.BaseTransport | None = None):
         self.settings = settings
-        self._client = httpx.Client(
-            headers={"User-Agent": settings.user_agent, "Accept-Language": "ko,en;q=0.8"},
-            timeout=settings.request_timeout_sec,
-            follow_redirects=True,
-            transport=transport,
-        )
+        self._transport = transport
+        self._client = self._make_client(verify=True)
+        self._insecure_client: httpx.Client | None = None  # tls_verify: false 소스 전용 (호스트 단위)
+        self._insecure_hosts: set[str] = set()
         self._last: dict[str, float] = {}
         self._locks: dict[str, threading.Lock] = {}
         self._guard = threading.Lock()
         self._robots: dict[str, RobotFileParser | None] = {}
 
+    def _make_client(self, verify: bool) -> httpx.Client:
+        return httpx.Client(
+            headers={"User-Agent": self.settings.user_agent, "Accept-Language": "ko,en;q=0.8"},
+            timeout=self.settings.request_timeout_sec,
+            follow_redirects=True,
+            transport=self._transport,
+            verify=verify,
+        )
+
+    def allow_insecure_tls(self, host: str) -> None:
+        """해당 호스트만 인증서 검증을 끈다 (adapter.tls_verify: false). 중간 인증서 누락 등 서버 쪽 설정 문제용."""
+        host = host.lower()
+        if host in self._insecure_hosts:
+            return
+        self._insecure_hosts.add(host)
+        if self._insecure_client is None:
+            self._insecure_client = self._make_client(verify=False)
+        log.warning("[http] %s: TLS 인증서 검증 비활성 (tls_verify: false)", host)
+
+    def _client_for(self, url: str) -> httpx.Client:
+        if self._insecure_client is not None and urlsplit(url).netloc.lower() in self._insecure_hosts:
+            return self._insecure_client
+        return self._client
+
     def close(self) -> None:
         self._client.close()
+        if self._insecure_client is not None:
+            self._insecure_client.close()
 
     def get(self, url: str, params: dict | None = None, headers: dict | None = None) -> httpx.Response:
         host = urlsplit(url).netloc
@@ -53,7 +81,7 @@ class HttpClient:
             last_err: Exception | None = None
             for attempt in range(3):
                 try:
-                    r = self._client.get(url, params=params, headers=headers)
+                    r = self._client_for(url).get(url, params=params, headers=headers)
                 except (httpx.TimeoutException, httpx.TransportError) as e:
                     last_err = e
                     time.sleep(2 ** attempt * 0.5 if self.settings.per_domain_delay_sec else 0)
@@ -75,7 +103,7 @@ class HttpClient:
         with self._lock_for(host):
             self._wait(host)
             try:
-                with self._client.stream("GET", url) as r:
+                with self._client_for(url).stream("GET", url) as r:
                     if r.status_code >= 400:
                         raise FetchError(f"HTTP {r.status_code} {url}")
                     buf = bytearray()
@@ -88,7 +116,7 @@ class HttpClient:
                 raise FetchError(f"첨부 다운로드 실패: {e}") from e
 
     def post_json(self, url: str, payload: dict) -> httpx.Response:
-        r = self._client.post(url, json=payload)
+        r = self._client_for(url).post(url, json=payload)
         if r.status_code >= 400:
             raise FetchError(f"HTTP {r.status_code} {url}: {r.text[:200]}")
         return r
@@ -130,7 +158,7 @@ class HttpClient:
         if cached == "miss":
             rp: RobotFileParser | None = RobotFileParser()
             try:
-                r = self._client.get(base + "/robots.txt")
+                r = self._client_for(base).get(base + "/robots.txt")
                 if r.status_code == 200:
                     rp.parse(r.text.splitlines())
                 else:
