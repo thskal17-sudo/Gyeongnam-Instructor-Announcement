@@ -885,6 +885,7 @@ sources:
       사이트 운영자 허락을 받거나 정책을 바꾸기 전까지 수동 확인 대상. 링크가 javascript:toPage("번호") 라 홈 화면의 상세 URL 형식으로 조립.
       매 학기 '[강사 공지] 강좌 개설 신청 안내'가 올라옴(강사가 강좌를 제안하는 방식). 페이징 파라미터 미확인이라 1페이지(10건)만.
   - id: cwnu_lifelong
+    enabled: false   # 제외: 부산·울산·경남 대학 평생교육원은 수집하지 않음 (2026-09-22 결정)
     name: 창원대학교 평생교육원 공지사항
     org_type: university
     tier: 3
@@ -908,6 +909,7 @@ sources:
       날짜 형식 '2026. 6. 25'.
 
   - id: cwnu_lifelong_jobs
+    enabled: false   # 제외: 부산·울산·경남 대학 평생교육원은 수집하지 않음 (2026-09-22 결정)
     name: 창원대학교 평생교육원 구인구직
     org_type: university
     tier: 3
@@ -1267,6 +1269,7 @@ sources:
     notes: >-
       러너에서 열림(2026-09-22)이나 공지 대부분이 해운대캠퍼스(부산) 과정이고 표가 중첩 table 구조라 셀렉터 미확정. 양산캠퍼스 공고가 필요해지면 재검토.
   - id: masan_lifelong
+    enabled: false   # 제외: 부산·울산·경남 대학 평생교육원은 수집하지 않음 (2026-09-22 결정)
     name: 마산대학교 평생교육원 공지사항
     org_type: university
     tier: 3
@@ -1285,6 +1288,7 @@ sources:
       공지사항(2026-09-22 러너에서 gia probe 검증: 목록 1건). 상세는 div.board-view-cont 로 2자만 잡혀 상위 div.board-view(제목 포함) 사용. 날짜 '2026.09.07 16:30'. /board/000001/2 도 1페이지와 같은 내용이라(페이징은 POST) 1페이지(10건)만.
 
   - id: masan_lectopen
+    enabled: false   # 제외: 부산·울산·경남 대학 평생교육원은 수집하지 않음 (2026-09-22 결정)
     name: 마산대학교 평생교육원 강좌 개설 신청
     org_type: university
     tier: 3
@@ -1325,6 +1329,7 @@ sources:
     notes: >-
       평생직업교육원 전용 게시판 없음. 본교 채용/입찰(www/board/47)은 JS 렌더링이라 서버 HTML 에 목록이 없음(2026-09-22) → playwright 어댑터로 재검증.
   - id: yonam_lifelong
+    enabled: false   # 제외: 부산·울산·경남 대학 평생교육원은 수집하지 않음 (2026-09-22 결정)
     name: 연암공과대학교 평생교육원 (진주)
     org_type: university
     tier: 3
@@ -1342,6 +1347,7 @@ sources:
     notes: >-
       2026년 신설 사이트, 공지 1건(홈페이지 오픈)뿐이라 gia probe 수집 실적 0건(2026-09-22). 셀렉터는 구조 덤프 기준이며 목록에 날짜 없음 → 첫 강사 공고가 뜨면 재확인. 그누보드라 상세 본문은 진주보건대와 같은 구조로 가정.
   - id: jinju_health_lifelong
+    enabled: false   # 제외: 부산·울산·경남 대학 평생교육원은 수집하지 않음 (2026-09-22 결정)
     name: 진주보건대학교 평생교육원
     org_type: university
     tier: 3

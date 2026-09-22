@@ -64,7 +64,6 @@ GitHub Actions는 매일 06:30 KST에 `collect`, 07:30 KST에 `report --send`를
 | `gia/notify/telegram.py`, `email.py` | 텔레그램(4,000자 분할)·이메일(SMTP) 발송 |
 | `docs/SOURCE_VERIFICATION.md` | 게시판 URL·셀렉터를 채우고 검증하는 절차 |
 | `data/`, `reports/` | 수집 원장과 일일 리포트 아카이브 (봇이 커밋) |
-| `data/institutions.json` | 부산·울산·경남 대학 평생교육원 38곳의 게시판 URL·연락처. `config/sources.yaml`의 대학 항목(Tier 3-C, 3-G)을 검증할 때 참고 |
 
 ## 다음 단계
 
