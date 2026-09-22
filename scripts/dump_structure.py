@@ -161,6 +161,29 @@ def dump(url: str) -> None:
         dump_detail(soup)
     else:
         dump_list(soup)
+        dump_links(soup, r.url)
+
+
+LINK_WORDS = re.compile(r"(공지|알림|소식|채용|모집|구인|강사|게시판|공고|notice|recruit|job)", re.I)
+
+
+def dump_links(soup, base: str) -> None:
+    """홈페이지에서 게시판 후보 링크를 찾는다 (공지·채용·모집 등 낱말이 든 앵커)."""
+    from urllib.parse import urljoin
+    seen, out = set(), []
+    for a in soup.find_all("a"):
+        text = a.get_text(" ", strip=True)
+        href = a.get("href") or ""
+        if not LINK_WORDS.search(text + " " + href) or href.startswith(("#", "javascript", "mailto")):
+            continue
+        full = urljoin(base, href)
+        if full in seen:
+            continue
+        seen.add(full)
+        out.append(f"   {text[:30]!r} -> {full[:120]}")
+    if out:
+        print(f"\n[LINKS] board candidates ({len(out)})")
+        print("\n".join(out[:40]))
 
 
 if __name__ == "__main__":
