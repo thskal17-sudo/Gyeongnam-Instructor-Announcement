@@ -20,6 +20,7 @@ class ReportSettings(BaseModel):
     closing_soon_days: int = 3
     daily_overview_llm: bool = False
     recheck_active_days: int = 3
+    weekly_stats_weekday: int = 0  # 0=월요일, -1이면 주간 통계 섹션 비활성
 
 
 class ClassifierSettings(BaseModel):

@@ -79,6 +79,43 @@ adapter:
   detail: { body_selector: div.view_cont, attachment_selector: "div.file a" }
 ```
 
+### JS 렌더링 게시판 (playwright)
+
+HTML 소스에 글 제목이 없고 스크립트가 목록을 그리는 사이트는 `type: playwright`로 등록합니다. 셀렉터 설정은 `html_list`와 같고 `wait_for`(목록이 그려졌음을 뜻하는 셀렉터)만 추가합니다.
+
+```yaml
+adapter:
+  type: playwright
+  list_url: https://www.example.or.kr/recruit/list?page={page}
+  wait_for: table.list tbody tr
+  row_selector: table.list tbody tr
+  title_selector: td.title a
+  date_selector: td.date
+  detail: { render: true, body_selector: div.view_body }   # render: false 면 상세는 일반 HTTP로
+```
+
+- 실행 환경에 Chromium이 필요합니다. `pip install -e ".[browser]"` 후 `playwright install chromium`. GitHub Actions에서는 `collect.yml`에 `playwright install --with-deps chromium` 단계를 추가합니다 (약 1분).
+- 이미 설치된 Chromium을 쓰려면 `GIA_CHROMIUM_PATH` 환경변수로 실행 파일을 지정합니다.
+- 브라우저 렌더링은 HTTP보다 10배 이상 느리므로 `paging.max_pages`를 1~2로 둡니다.
+
+### 검색어 기반 포털 (search_portal)
+
+민간 채용 포털처럼 검색 결과 페이지에서 수집하는 소스입니다. `query_url_template`의 `{query}`에 `queries`를 차례로 넣고, 결과는 `html_list`와 같은 셀렉터로 파싱합니다. 같은 URL은 한 번만 남깁니다.
+
+```yaml
+adapter:
+  type: search_portal
+  query_url_template: https://www.example.com/search?q={query}&page={page}
+  queries: ["강사 경남", "강사 창원"]
+  row_selector: div.item
+  title_selector: a.title
+  org_selector: span.company
+  date_selector: span.date
+  paging: { max_pages: 2 }
+```
+
+민간 포털은 **이용약관의 자동 수집 조항을 먼저 확인**하고 `tos_checked: true`를 기록한 뒤에만 `enabled: true`로 바꿉니다. 약관이 금지하면 등록하지 않고 사이트의 이메일 알림 기능을 씁니다.
+
 ### API 소스
 
 `gia probe <id> --save-fixture`가 저장한 JSON/XML을 보고 `items_path`와 `field_map`을 맞춥니다.

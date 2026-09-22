@@ -510,10 +510,27 @@ sources:
 # ---------------------------------------------------------------------------
 # Tier 4. 민간  — Phase 4 (약관 확인 전까지 enabled=false)
 # ---------------------------------------------------------------------------
-  - { id: saramin,   name: 사람인,   org_type: portal, tier: 4, enabled: false, tos_checked: false, homepage: https://www.saramin.co.kr, adapter: { type: search_portal, queries: ["강사 경남", "강사 창원", "강사 김해", "강사 진주"] }, notes: 약관·API 확인 후 결정. 이메일 알림 기능 대안 }
-  - { id: jobkorea,  name: 잡코리아, org_type: portal, tier: 4, enabled: false, tos_checked: false, homepage: https://www.jobkorea.co.kr, adapter: { type: search_portal, queries: ["강사 경남"] } }
-  - { id: incruit,   name: 인크루트, org_type: portal, tier: 4, enabled: false, tos_checked: false, homepage: https://www.incruit.com, adapter: { type: search_portal, queries: ["강사 경남"] } }
-  - { id: alba,      name: 알바천국·알바몬 (시간제 강사), org_type: portal, tier: 4, enabled: false, tos_checked: false, homepage: TODO, adapter: { type: search_portal, queries: ["강사 경남"] } }
+  - id: saramin
+    name: 사람인
+    org_type: portal
+    tier: 4
+    enabled: false            # 이용약관(자동 수집 조항) 확인 후 tos_checked: true 와 함께 활성화
+    tos_checked: false
+    homepage: https://www.saramin.co.kr
+    adapter:
+      type: search_portal
+      query_url_template: TODO   # 검색 결과 URL, {query} 와 {page} 자리표시자
+      queries: ["강사 경남", "강사 창원", "강사 김해", "강사 진주", "강사 양산"]
+      row_selector: TODO
+      title_selector: TODO
+      org_selector: TODO
+      date_selector: TODO
+      paging: { max_pages: 2 }
+      detail: { body_selector: TODO }
+    notes: 약관이 자동 수집을 제한하면 등록하지 않고 사이트의 이메일 알림 기능을 쓴다
+  - { id: jobkorea,  name: 잡코리아, org_type: portal, tier: 4, enabled: false, tos_checked: false, homepage: https://www.jobkorea.co.kr, adapter: { type: search_portal, query_url_template: TODO, queries: ["강사 경남"], row_selector: TODO, title_selector: TODO, org_selector: TODO, date_selector: TODO } }
+  - { id: incruit,   name: 인크루트, org_type: portal, tier: 4, enabled: false, tos_checked: false, homepage: https://www.incruit.com, adapter: { type: search_portal, query_url_template: TODO, queries: ["강사 경남"], row_selector: TODO, title_selector: TODO, org_selector: TODO, date_selector: TODO } }
+  - { id: alba,      name: 알바천국·알바몬 (시간제 강사), org_type: portal, tier: 4, enabled: false, tos_checked: false, homepage: TODO, adapter: { type: search_portal, query_url_template: TODO, queries: ["강사 경남"], row_selector: TODO, title_selector: TODO, org_selector: TODO, date_selector: TODO } }
   - { id: culture_centers, name: 백화점·마트 문화센터 (창원·김해·진주 지점), org_type: private, tier: 4, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 롯데·신세계·홈플러스·이마트 문화센터 강사 모집 페이지. 지점별 URL 확인 }
   - { id: private_training, name: 직업훈련기관 (경남 소재), org_type: private, tier: 4, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 대부분 work24로 유입되므로 개별 등록은 보류 }
 

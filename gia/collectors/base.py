@@ -93,6 +93,17 @@ class HttpClient:
             raise FetchError(f"HTTP {r.status_code} {url}: {r.text[:200]}")
         return r
 
+    def check_allowed(self, url: str) -> None:
+        """robots.txt 정책상 허용되지 않으면 FetchError."""
+        if self.settings.respect_robots and not self._allowed(url):
+            raise FetchError(f"robots.txt 차단: {url}")
+
+    def throttle(self, url: str) -> None:
+        """HTTP 클라이언트를 거치지 않는 요청(브라우저 렌더링)도 도메인별 간격을 지키게 한다."""
+        host = urlsplit(url).netloc
+        with self._lock_for(host):
+            self._wait(host)
+
     def _lock_for(self, host: str) -> threading.Lock:
         with self._guard:
             if host not in self._locks:
@@ -149,6 +160,9 @@ class SourceAdapter:
 
     def fetch_detail(self, listing: RawListing) -> RawPosting:
         return RawPosting(**listing.model_dump(), body_text=str(listing.extra.get("body_text", "")), fetched_at=datetime.now(KST))
+
+    def close(self) -> None:
+        """브라우저 등 자원을 정리한다."""
 
 
 # ---- helpers ---------------------------------------------------------

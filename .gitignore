@@ -7,3 +7,5 @@ dist/
 .venv/
 .env
 data/http_cache/
+site/
+tests/fixtures/live/

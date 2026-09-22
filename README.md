@@ -3,7 +3,7 @@
 경남 지역 공공기관·정부산하기관·민간기관의 **강사 구인공고**를 매일 자동 수집하고,
 정해진 시각에 신규·마감임박 공고 요약본을 텔레그램/이메일로 받아보는 시스템입니다.
 
-현재 상태: **Phase 3 진행 중** (LLM 판별·구조화 추출, 피드백 루프, 평가 명령). Phase 2: 첨부파일 텍스트 추출, onclick 게시판 지원, 이메일 채널, 소스 검증 도구. Phase 1:  (Tier 1 API 어댑터, 규칙 분류기, 마감일 파서, JSONL 저장, Markdown 리포트, 텔레그램 발송, GitHub Actions 스케줄). Tier 1 소스의 API 엔드포인트·필드명은 실측 검증 전이다.
+현재 상태: **Phase 4 진행 중** (Playwright 어댑터, 검색 포털 어댑터, GitHub Pages 아카이브, 주간 통계). Phase 3: LLM 판별·구조화 추출, 피드백 루프, 평가 명령. Phase 2: 첨부파일 텍스트 추출, onclick 게시판 지원, 이메일 채널, 소스 검증 도구. Phase 1:  (Tier 1 API 어댑터, 규칙 분류기, 마감일 파서, JSONL 저장, Markdown 리포트, 텔레그램 발송, GitHub Actions 스케줄). Tier 1 소스의 API 엔드포인트·필드명은 실측 검증 전이다.
 
 ## 문서
 
@@ -35,10 +35,12 @@ python -m gia report --send              # 발송 (텔레그램: TELEGRAM_BOT_TO
 python -m gia sources                    # 소스별 설정 상태
 python -m gia feedback <id> false_positive  # 오탐 신고 (다음 수집부터 숨김). id는 리포트 링크 옆 12자리
 python -m gia eval [--llm]               # 라벨 세트(tests/eval/labeled.jsonl)로 정밀도·재현율 측정
+python -m gia stats --days 7             # 최근 7일 통계 (월요일 리포트에 자동 포함)
+python -m gia site --out site            # GitHub Pages용 정적 아카이브 생성 (pages.yml이 main 푸시 시 배포)
 python -m gia probe <id> --save-fixture  # 응답을 tests/fixtures/live/<id>/에 저장 (셀렉터 정할 때)
 ```
 
-GitHub Actions는 매일 06:30 KST에 `collect`, 07:30 KST에 `report --send`를 실행하고 결과를 커밋한다.
+GitHub Actions는 매일 06:30 KST에 `collect`, 07:30 KST에 `report --send`를 실행하고 결과를 커밋한다. `pages.yml`은 `main`에 데이터·리포트가 커밋될 때 정적 아카이브를 GitHub Pages로 배포한다 (저장소 Settings → Pages → Source를 "GitHub Actions"로 설정 필요).
 필요한 저장소 Secrets: `DATA_GO_KR_KEY`, `WORKNET_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`. LLM 판별을 켜면 `ANTHROPIC_API_KEY`도 필요.
 
 ### LLM 판별 켜기
@@ -49,7 +51,8 @@ GitHub Actions는 매일 06:30 KST에 `collect`, 07:30 KST에 `report --send`를
 
 | 경로 | 내용 |
 |---|---|
-| `gia/collectors/` | HTTP 클라이언트(요청 간격·재시도·robots), `api_json`·`html_list` 어댑터 |
+| `gia/collectors/` | HTTP 클라이언트(요청 간격·재시도·robots), `api_json`·`html_list`·`playwright`(JS 렌더링)·`search_portal`(검색어 포털) 어댑터 |
+| `gia/stats.py`, `gia/site.py` | 주간 통계, GitHub Pages 아카이브(제목·요약·링크만 공개) |
 | `gia/extract/deadline.py` | 마감일 파서 |
 | `gia/extract/attachments.py` | 첨부 텍스트 추출 (PDF, HWPX, DOCX, HWP 5.0) |
 | `gia/classify/rules.py` | 규칙 기반 관련성 점수, 분야·고용형태 추정 |

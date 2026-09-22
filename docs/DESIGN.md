@@ -1,7 +1,7 @@
 # 경남 강사 구인공고 수집·일일 요약 시스템 설계서
 
 - 문서 버전: 0.1 (2026-09-21)
-- 상태: Phase 3 구현 반영 (2026-09-21: LLM 판별·추출, 피드백 루프, eval 명령). Phase 2의 첨부 추출·onclick 게시판·이메일 채널 포함. 게시판 URL·셀렉터 실측은 `docs/SOURCE_VERIFICATION.md` 절차로 진행. 구현과 다른 부분은 코드가 기준이며 이 문서를 갱신한다.
+- 상태: Phase 4 구현 반영 (2026-09-21: playwright·search_portal 어댑터, GitHub Pages 아카이브, 주간 통계). Phase 3의 LLM 판별·추출, 피드백 루프, eval 명령 포함. Phase 2의 첨부 추출·onclick 게시판·이메일 채널 포함. 게시판 URL·셀렉터 실측은 `docs/SOURCE_VERIFICATION.md` 절차로 진행. 구현과 다른 부분은 코드가 기준이며 이 문서를 갱신한다.
 - 관련 파일: `config/sources.yaml` (수집원 레지스트리), `docs/DAILY_REPORT_TEMPLATE.md` (요약본 형식)
 
 ---

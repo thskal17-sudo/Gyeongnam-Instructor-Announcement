@@ -8,6 +8,7 @@ report:
   closing_soon_days: 3
   daily_overview_llm: false     # true면 발송 시 LLM으로 3문장 총평 생성 (llm_enabled·API 키 필요)
   recheck_active_days: 3        # 활성 공고 상세 재확인 주기(마감 연장 감지)
+  weekly_stats_weekday: 0       # 주간 통계를 붙이는 요일 (0=월 … 6=일, -1=끄기)
 
 classifier:
   include_threshold: 70
