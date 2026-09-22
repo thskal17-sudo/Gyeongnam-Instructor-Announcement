@@ -1108,7 +1108,7 @@ sources:
     name: 밀양문화관광재단 채용공고
     org_type: local_public
     tier: 3
-    enabled: true
+    enabled: false
     verified: true
     schedule: daily_light
     homepage: https://www.mycf.or.kr/main/
@@ -1127,7 +1127,8 @@ sources:
     notes: >-
       채용공고 게시판(cb=35, 2026-09-22 러너 덤프로 구조 검증: li.list-li > a.list-a, 제목 strong.tit01-1 (목록에서 '..' 로 잘림),
       div.tit-wrap-2 첫 span.text-3 가 게시일 'YYYY-MM-DD'). 기간제근로자·안내원 공고가 대부분이라 keywords 로 거름.
-      서버 TLS 가 DH_KEY_TOO_SMALL 이라 adapter.tls_legacy: true 필요(#15). 상세 본문 셀렉터 미확인이라 body 전체 사용.
+      서버 TLS 가 DH_KEY_TOO_SMALL 이라 adapter.tls_legacy: true 필요(#15). 그러나 robots.txt 가 게시판 경로를 차단해(2026-09-22 gia probe: 'robots.txt 차단')
+      respect_robots 정책상 비활성. 운영자 동의를 받으면 활성화. 상세 본문 셀렉터 미확인이라 body 전체 사용.
       밀양시청 공공일자리 게시판(miryang)에 재단 채용이 함께 게시되기도 함.
   - id: gj_culture
     name: 거제시문화예술재단 채용공고
