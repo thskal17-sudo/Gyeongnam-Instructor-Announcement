@@ -79,6 +79,31 @@ def test_collect_end_to_end(settings, tmp_path, monkeypatch):
     assert run2.totals["new"] == 0
     assert {s.source_id: s.detail_fetched for s in run2.sources}["board"] == 0
 
+    # 세 번째 실행(--refetch): 파서 오판으로 마감이 지난 것으로 저장된 공고를 다시 파싱해 바로잡는다 (#19 후속)
+    board_post.deadline = NOW - timedelta(days=5)
+    board_post.status = Status.expired
+    store.upsert(board_post)
+    store.save()
+    store = Store(tmp_path / "data").load()
+    run3 = collect(bundle, store, _http(settings), now=NOW + timedelta(hours=12), refetch=True)
+    assert "재수집" in " ".join(run3.notes)
+    assert {s.source_id: s.detail_fetched for s in run3.sources}["board"] == 2
+    assert run3.totals["new"] == 0 and run3.totals["merged"] >= 2
+    fixed = next(p for p in store.values() if "시민강좌" in p.title)
+    assert fixed.deadline.isoformat() == "2026-09-30T18:00:00+09:00"
+    assert fixed.canonical_key == board_post.canonical_key  # 같은 URL → 같은 공고, 키 유지
+
+    # 네 번째 실행: adapter.org_name 을 바꾸면 canonical_key 가 달라지지만, 같은 URL 이므로 중복 생성 없이 기관명만 갱신
+    board = next(s for s in bundle.sources if s.id == "board")
+    board.adapter["org_name"] = "경남인재평생교육진흥원 평생학습관"
+    n_before = len(list(store.values()))
+    run4 = collect(bundle, store, _http(settings), now=NOW + timedelta(hours=13), refetch=True)
+    assert run4.totals["new"] == 0 and len(list(store.values())) == n_before
+    renamed = store.get(board_post.canonical_key)
+    assert renamed is not None and renamed.org_name == "경남인재평생교육진흥원 평생학습관"
+    assert fixed.status == Status.new  # 한 번도 보고되지 않았으므로 신규로 보고
+    assert fixed.canonical_key in select_postings(bundle, store, NOW + timedelta(hours=12)).keys()
+
     # 리포트 선별: 둘 다 신규, 마감 임박 없음 (9/30 마감, 현재 9/21)
     data = select_postings(bundle, store, NOW)
     assert len(data.new) == 3 and data.closing == []

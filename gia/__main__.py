@@ -8,7 +8,7 @@ import sys
 from datetime import datetime, timedelta
 from pathlib import Path
 
-from .collectors.base import HttpClient
+from .collectors.base import FetchError, HttpClient
 from .collectors.registry import build_adapter
 from .config import load_bundle
 from .extract.deadline import KST, parse_deadline
@@ -16,7 +16,7 @@ from .classify.rules import score_posting
 from .models import Status
 from .classify.llm import LlmClassifier
 from .feedback import LABELS, append_feedback, feedback_path, load_feedback
-from .pipeline import build_posting, collect
+from .pipeline import build_posting, collect, enrich_attachments
 from .report.build import email_subject, render_email, render_markdown, render_telegram, select_postings, write_report
 from .site import build_site
 from .stats import compute_stats
@@ -36,6 +36,7 @@ def _parser() -> argparse.ArgumentParser:
     c.add_argument("--dry-run", action="store_true", help="저장하지 않음")
     c.add_argument("--backfill-days", type=int, default=0)
     c.add_argument("--light", action="store_true", help="schedule=daily_light 소스만")
+    c.add_argument("--refetch", action="store_true", help="이미 알던 URL도 상세를 다시 가져와 재파싱 (파서 수정 후 저장 데이터 보정)")
 
     r = sub.add_parser("report", help="요약본 생성(및 발송)")
     r.add_argument("--send", action="store_true", help="채널로 발송하고 보고 상태를 기록")
@@ -82,7 +83,7 @@ def main(argv: list[str] | None = None) -> int:
         http = HttpClient(bundle.settings.collector)
         try:
             only = [s.strip() for s in args.sources.split(",")] if args.sources else None
-            run = collect(bundle, store, http, only=only, dry_run=args.dry_run, backfill_days=args.backfill_days or None, now=now, light=args.light)
+            run = collect(bundle, store, http, only=only, dry_run=args.dry_run, backfill_days=args.backfill_days or None, now=now, light=args.light, refetch=args.refetch)
         finally:
             http.close()
         c = run.counts()
@@ -153,15 +154,29 @@ def main(argv: list[str] | None = None) -> int:
                     print(f"[probe] 설정 미완료({cfg.unconfigured_reason()}) — 응답 저장만 수행")
                     return 0
             adapter = build_adapter(cfg, http, bundle.settings.collector, since=now.date() - timedelta(days=bundle.settings.collector.default_days))
-            listings = adapter.fetch_list()
+            try:
+                listings = adapter.fetch_list()
+            except FetchError as e:
+                print(f"[probe] {cfg.name}: 목록 실패 — {e}", file=sys.stderr)
+                return 1
             print(f"[probe] {cfg.name}: 목록 {len(listings)}건")
             for l in listings[: args.limit]:
                 print(f"  - {l.posted_at or '????-??-??'} | {l.org_name or ''} | {l.title} | {l.url}")
             if args.detail and listings:
                 raw = adapter.fetch_detail(listings[0])
+                enrich_attachments(raw, http, bundle.settings.collector)  # collect 와 같은 본문(첨부 텍스트 포함)으로 판정
+                if raw.extra.get("attachment_errors"):
+                    print(f"[detail] 첨부 추출 실패: {raw.extra['attachment_errors']}")
                 res = parse_deadline(raw.body_text, raw.posted_at)
                 rule = score_posting(raw.title, raw.body_text, raw.region_text, raw.org_name or cfg.name)
                 print(f"[detail] 본문 {len(raw.body_text)}자 · 마감 {res.deadline} ({res.deadline_type.value}, '{res.text}') · 점수 {rule.score} {rule.reasons} · 분야 {rule.field}")
+                if res.deadline is None:
+                    # 마감일을 못 찾았을 때: 날짜·접수 문맥이 있는 줄을 보여줘 파서 보강 근거로 삼는다
+                    import re as _re
+                    pat = _re.compile(r"\d{4}\s*[.\-/년]\s*\d{1,2}|\d{1,2}\s*[.\-/월]\s*\d{1,2}|접수|마감|모집기간|까지")
+                    hits = [ln.strip() for ln in raw.body_text.splitlines() if pat.search(ln)]
+                    for ln in hits[:12]:
+                        print(f"  [date?] {ln[:160]}")
                 p = build_posting(raw, cfg, bundle, now)
                 print(f"[posting] {'포함' if p else '제외'}: {p.title if p else ''}")
         finally:

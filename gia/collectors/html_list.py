@@ -84,7 +84,7 @@ def parse_list_html(html: str, page_url: str, a: dict, cfg, since: date) -> tupl
             on = row.css_first(a["org_selector"])
             org = on.text(strip=True) if on is not None else None
         if org is None and cfg.org_type.value != "portal":
-            org = cfg.name
+            org = a.get("org_name") or cfg.name  # adapter.org_name: 게시판 이름 대신 쓸 기관명
         if not matches_keywords(title, a.get("keywords")):
             continue
         if posted and posted < since:

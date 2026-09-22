@@ -41,8 +41,12 @@ def find_duplicate(cand: Posting, pool: Iterable[Posting]) -> Posting | None:
     return best
 
 
-def merge(existing: Posting, incoming: Posting, now: datetime) -> tuple[Posting, bool]:
-    """incoming을 existing에 합친다. 반환: (병합 결과, 의미 있는 변경 여부)."""
+def merge(existing: Posting, incoming: Posting, now: datetime, prefer_incoming: bool = False) -> tuple[Posting, bool]:
+    """incoming을 existing에 합친다. 반환: (병합 결과, 의미 있는 변경 여부).
+
+    prefer_incoming=True(재수집)면 마감일은 새로 파싱한 값을 그대로 믿는다 — 기본 병합은 더 늦은 마감일만 받아들이므로
+    잘못 이르게 잡힌 마감일을 바로잡을 수 없기 때문이다.
+    """
     changed = False
     p = existing.model_copy(deep=True)
     known = {(s.source_id, s.url) for s in p.sources}
@@ -51,7 +55,16 @@ def merge(existing: Posting, incoming: Posting, now: datetime) -> tuple[Posting,
             p.sources.append(s)
             known.add((s.source_id, s.url))
     p.last_seen_at = max(p.last_seen_at, now)
-    if incoming.deadline and (p.deadline is None or incoming.deadline > p.deadline):
+    if prefer_incoming:
+        # 재수집: 기관명·제목 정규화 결과도 새 값으로 (canonical_key/id 는 유지해 링크·피드백이 끊기지 않게)
+        p.org_name, p.title = incoming.org_name, incoming.title
+        if incoming.deadline != p.deadline or incoming.deadline_type != p.deadline_type:
+            changed = True
+            p.deadline, p.deadline_type, p.deadline_text = incoming.deadline, incoming.deadline_type, incoming.deadline_text
+        p.content_hash = incoming.content_hash
+        if incoming.attachments:
+            p.attachments = list(incoming.attachments)
+    elif incoming.deadline and (p.deadline is None or incoming.deadline > p.deadline):
         if p.deadline is not None:
             changed = True
         p.deadline = incoming.deadline

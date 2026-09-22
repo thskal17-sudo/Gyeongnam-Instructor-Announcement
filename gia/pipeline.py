@@ -39,7 +39,7 @@ def build_posting(raw: RawPosting, cfg: SourceConfig, bundle: ConfigBundle, now:
     """RawPosting → Posting. 관련성이 낮으면 None."""
     cs = bundle.settings.classifier
     title, flags = normalize_title(raw.title)
-    org = standardize_org(raw.org_name or cfg.name, bundle.aliases)
+    org = standardize_org(raw.org_name or cfg.adapter.get("org_name") or cfg.name, bundle.aliases)  # adapter.org_name: 게시판 이름 대신 쓸 기관명
     body = mask_pii(raw.body_text or "")
     rule = score_posting(title, body, raw.region_text, org)
     if rule.score < cs.review_threshold:
@@ -116,7 +116,9 @@ def enrich_attachments(raw: RawPosting, http: HttpClient, cs) -> None:
         raw.extra["attachment_errors"] = errors
 
 
-def run_source(cfg: SourceConfig, bundle: ConfigBundle, store: Store, http: HttpClient, now: datetime, since: date | None) -> SourceOutcome:
+def run_source(cfg: SourceConfig, bundle: ConfigBundle, store: Store, http: HttpClient, now: datetime, since: date | None,
+               refetch: bool = False) -> SourceOutcome:
+    """refetch=True면 이미 알던 URL도 상세를 다시 가져와 재파싱한다 (파서 수정 후 저장된 공고를 바로잡을 때)."""
     cs = bundle.settings.collector
     res = SourceRunResult(source_id=cfg.id)
     out = SourceOutcome(result=res)
@@ -148,7 +150,7 @@ def run_source(cfg: SourceConfig, bundle: ConfigBundle, store: Store, http: Http
         if url in store.excluded_urls:
             continue
         existing = store.by_url(url)
-        if existing and not (existing.status != Status.expired and existing.last_seen_at < recheck_before):
+        if existing and not refetch and not (existing.status != Status.expired and existing.last_seen_at < recheck_before):
             out.touched.append(existing.canonical_key)
             continue
         try:
@@ -228,7 +230,7 @@ def run_llm_stage(outcomes: list[SourceOutcome], llm: LlmClassifier, bundle: Con
 
 def collect(bundle: ConfigBundle, store: Store, http: HttpClient, only: list[str] | None = None,
             dry_run: bool = False, backfill_days: int | None = None, now: datetime | None = None,
-            light: bool = False, llm: LlmClassifier | None = None) -> RunLog:
+            light: bool = False, llm: LlmClassifier | None = None, refetch: bool = False) -> RunLog:
     now = now or datetime.now(KST)
     cs = bundle.settings.collector
     since = now.date() - timedelta(days=backfill_days if backfill_days else cs.default_days)
@@ -236,13 +238,15 @@ def collect(bundle: ConfigBundle, store: Store, http: HttpClient, only: list[str
     run = RunLog(run_id=now.strftime("%Y-%m-%dT%H-%M"), started_at=now)
     if backfill_days:
         run.notes.append(f"백필 {backfill_days}일")
+    if refetch:
+        run.notes.append("재수집: 이미 알던 URL도 상세를 다시 파싱")
 
     fb_applied = apply_feedback(store, load_feedback(feedback_path(store.data_dir)), now)
     if fb_applied:
         run.notes.append(f"피드백 적용 {fb_applied}건")
 
     with ThreadPoolExecutor(max_workers=max(1, cs.concurrency)) as ex:
-        outcomes = list(ex.map(lambda c: run_source(c, bundle, store, http, now, since), selected))
+        outcomes = list(ex.map(lambda c: run_source(c, bundle, store, http, now, since, refetch=refetch), selected))
 
     llm = llm if llm is not None else LlmClassifier.from_settings(bundle.settings.classifier)
     if llm is not None:
@@ -264,25 +268,32 @@ def collect(bundle: ConfigBundle, store: Store, http: HttpClient, only: list[str
             if p:
                 p.last_seen_at = now
         for p in oc.postings:
-            dup = find_duplicate(p, list(store.values()) + batch)
+            # 같은 URL 을 이미 알고 있으면 그 공고다 (기관명·제목 정규화가 바뀌어 canonical_key 가 달라져도 중복 생성 방지)
+            dup = next((d for d in (store.by_url(s.url) for s in p.sources) if d is not None), None)
+            if dup is None:
+                dup = find_duplicate(p, list(store.values()) + batch)
             if dup is None:
                 batch.append(p)
                 store.upsert(p)
                 counts["new"] += 1
                 oc.result.new += 1
                 continue
-            if dup.status == Status.expired and "재공고" in p.flags:
+            same_url = {s.url for s in p.sources} & {s.url for s in dup.sources}
+            if dup.status == Status.expired and "재공고" in p.flags and not same_url:
+                # 같은 URL을 다시 파싱한 것(재수집)은 재공고가 아니라 같은 공고다
                 p.reannouncement_of = dup.id
                 batch.append(p)
                 store.upsert(p)
                 counts["new"] += 1
                 oc.result.new += 1
                 continue
-            merged, changed = merge(dup, p, now)
+            merged, changed = merge(dup, p, now, prefer_incoming=refetch)
             if changed and merged.last_reported_at is not None:
                 merged.status = Status.updated
                 counts["updated"] += 1
                 oc.result.updated += 1
+            elif changed and merged.status != Status.expired:
+                merged.status = Status.new  # 아직 한 번도 보고되지 않은 건은 신규로 보고
             counts["merged"] += 1
             store.upsert(merged)
             if dup in batch:

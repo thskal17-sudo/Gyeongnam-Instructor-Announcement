@@ -1,0 +1,47 @@
+{
+ "finished_at": "2026-09-22T22:25:01.245449+09:00",
+ "llm_cache_read_tokens": 0,
+ "llm_calls": 0,
+ "llm_errors": 0,
+ "llm_excluded": 0,
+ "llm_input_tokens": 0,
+ "llm_output_tokens": 0,
+ "llm_refusals": 0,
+ "notes": [
+  "백필 30일",
+  "재수집: 이미 알던 URL도 상세를 다시 파싱"
+ ],
+ "run_id": "2026-09-22T22-24",
+ "sources": [
+  {
+   "detail_fetched": 5,
+   "duration_ms": 22789,
+   "errors": [],
+   "listed": 5,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "cw_fmc",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 1,
+   "duration_ms": 2807,
+   "errors": [],
+   "listed": 1,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "timf",
+   "status": "ok",
+   "updated": 0
+  }
+ ],
+ "started_at": "2026-09-22T22:24:38.416638+09:00",
+ "totals": {
+  "closing_soon": 1,
+  "expired": 7,
+  "merged": 6,
+  "new": 0,
+  "updated": 0
+ }
+}

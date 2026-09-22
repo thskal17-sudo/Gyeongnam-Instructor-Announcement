@@ -90,3 +90,46 @@ def test_html_list_onclick_links(settings):
     listings = HtmlListAdapter(cfg, http, settings.collector, since=date(2026, 9, 1)).fetch_list()
     assert [(l.title, l.url) for l in listings] == [("체육센터 수영강사 모집", "https://site.example.org/bbs/view?seq=1001")]
     assert listings[0].posted_at == date(2026, 9, 19)
+
+
+def test_tls_verify_false_routes_host_to_insecure_client(settings):
+    """adapter.tls_verify: false 인 소스의 호스트만 검증 없는 클라이언트로 보내고, 다른 호스트는 그대로 둔다 (#13)."""
+    import httpx
+    from gia.collectors.base import HttpClient
+    from gia.collectors.registry import build_adapter, insecure_hosts
+    from tests.conftest import make_source
+
+    seen: list[str] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen.append(request.url.host)
+        return httpx.Response(200, text="<html><body><table><tbody></tbody></table></body></html>", headers={"content-type": "text/html"})
+
+    http = HttpClient(settings.collector, transport=httpx.MockTransport(handler))
+    cfg = make_source("insecure", type="html_list", list_url="https://Insecure.example.org/board?page={page}", row_selector="tr",
+                      link_url_template="https://files.example.org/view/{1}", tls_verify=False)
+    assert insecure_hosts(cfg) == ["insecure.example.org", "files.example.org"]
+    build_adapter(cfg, http, settings.collector)
+    assert http._client_for("https://insecure.example.org/board") is http._mode_clients["insecure"]
+    assert http._client_for("https://files.example.org/view/1") is http._mode_clients["insecure"]
+    assert http._client_for("https://other.example.org/") is http._client
+    assert http._mode_clients["insecure"] is not http._client
+    assert http.get("https://insecure.example.org/board").status_code == 200
+    assert http.get("https://other.example.org/").status_code == 200
+    assert seen == ["insecure.example.org", "other.example.org"]
+    http.close()
+
+    plain = HttpClient(settings.collector, transport=httpx.MockTransport(handler))
+    build_adapter(make_source("secure", type="html_list", list_url="https://secure.example.org/board", row_selector="tr"), plain, settings.collector)
+    assert plain._mode_clients == {}
+    plain.close()
+
+    legacy = HttpClient(settings.collector, transport=httpx.MockTransport(handler))
+    build_adapter(make_source("old", type="html_list", list_url="https://old.example.org/board", row_selector="tr", tls_legacy=True), legacy, settings.collector)
+    assert legacy._host_mode == {"old.example.org": "legacy"}
+    assert legacy._client_for("https://old.example.org/x") is legacy._mode_clients["legacy"]
+    assert legacy.get("https://old.example.org/board").status_code == 200
+    import ssl
+    ctx = HttpClient.legacy_tls_context()
+    assert ctx.minimum_version == ssl.TLSVersion.TLSv1 and ctx.verify_mode == ssl.CERT_NONE
+    legacy.close()

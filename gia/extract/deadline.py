@@ -15,10 +15,14 @@ _TIME = r"(?:\s*(?:(?P<ampm>오전|오후)\s*)?(?P<hour>\d{1,2})\s*[:시]\s*(?P<
 _FULL = re.compile(
     r"(?P<year>\d{4})\s*[.년/\-]\s*(?P<month>\d{1,2})\s*[.월/\-]\s*(?P<day>\d{1,2})\s*일?\.?" + _WEEKDAY + _TIME
 )
+# 두 자리 연도 'YY.MM.DD' (첨부 HWP 표의 접수기간 '26.09.10 ~ 26.09.11', 게시판 날짜 열). 앞뒤에 숫자·점이 붙으면 제외
+_SHORT_YEAR = re.compile(
+    r"(?<![\d.\-/])(?P<year>2\d)\s*\.\s*(?P<month>\d{1,2})\s*\.\s*(?P<day>\d{1,2})\.?(?![\d.])" + _WEEKDAY + _TIME
+)
 _PARTIAL = re.compile(
     r"(?<![\d.\-/])(?P<month>\d{1,2})\s*[.월/]\s*(?P<day>\d{1,2})\s*일?\.?(?![\d])" + _WEEKDAY + _TIME
 )
-_UNTIL_FILLED = re.compile(r"채용\s*시\s*까지|충원\s*시\s*까지|상시\s*(?:모집|채용|접수)|적격자\s*채용\s*시|모집\s*시\s*까지")
+_UNTIL_FILLED = re.compile(r"채용\s*시\s*까지|충원\s*시\s*까지|(?:상시|수시)\s*(?:모집|채용|접수)|적격자\s*채용\s*시|모집\s*시\s*까지|연중\s*(?:상시|수시)")
 
 # 마감일 유효 구간: 게시일보다 이만큼 이전이면 과거 날짜(사업연도·근거 규정 등), 이후면 계약·근무기간 종료일로 본다
 PAST_SLACK_DAYS = 30
@@ -28,10 +32,11 @@ _POS_BEFORE = ["접수", "제출", "마감", "공고기간", "모집기간", "�
 _NEG_BEFORE = [
     "면접", "발표", "합격", "시험", "근무", "계약", "임용", "게시", "심사", "개강",
     "교육기간", "강의기간", "운영기간", "채용예정", "근무기간", "위촉기간", "임기", "작성일", "등록일",
+    "DATE", "다운로드", "조회", "수정일", "작성자",
 ]
 _RANGE_START = re.compile(r"^\s*(?:~|∼|～|-|–|—|부터)")
 
-_KNOWN_FORMATS = ["%Y%m%d", "%Y-%m-%d", "%Y.%m.%d", "%Y/%m/%d", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d %H:%M", "%Y%m%d%H%M", "%y-%m-%d"]
+_KNOWN_FORMATS = ["%Y%m%d", "%Y-%m-%d", "%Y.%m.%d", "%Y/%m/%d", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d %H:%M", "%Y%m%d%H%M", "%y-%m-%d", "%y.%m.%d"]
 
 
 @dataclass
@@ -73,7 +78,26 @@ def parse_deadline(text: str, ref_date: date | None = None) -> DeadlineResult:
         spans.append(m.span())  # 구간은 기록해 부분 패턴이 같은 자리를 다시 읽지 않게 한다
         if not in_deadline_window(dt.date(), ref):
             continue
-        candidates.append((_score(text, m, partial=False), dt, m.group(0).strip()))
+        sc = _score(text, m, partial=False)
+        if sc <= 0 and dt.date() == ref:
+            # 게시일과 같은 날짜가 마감 문맥 없이 나오면 작성·서명·첨부 등록 일자로 본다
+            # (그누보드 'DATE : 2026-09-10 16:50:57', 공문 말미 '2026년 9월 21일 이사장')
+            continue
+        candidates.append((sc, dt, m.group(0).strip()))
+
+    for m in _SHORT_YEAR.finditer(text):
+        if any(s <= m.start() < e for s, e in spans):
+            continue
+        dt = _build(2000 + int(m.group("year")), int(m.group("month")), int(m.group("day")), m)
+        if dt is None:
+            continue
+        spans.append(m.span())
+        if not in_deadline_window(dt.date(), ref):
+            continue
+        sc = _score(text, m, partial=False)
+        if sc <= 0 and dt.date() == ref:
+            continue
+        candidates.append((sc, dt, m.group(0).strip()))
 
     for m in _PARTIAL.finditer(text):
         if any(s <= m.start() < e for s, e in spans):
