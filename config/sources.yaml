@@ -478,7 +478,7 @@ sources:
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: div.bbs1view1, attachment_selector: 'a.filename[href*="/board/download.do"]' }
     notes: >-
-      채용공고 게시판(2026-09-22 러너 구조 검증, 통영·김해와 같은 .web CMS). 직원 채용이 대부분이라 keywords 로 강사 관련만.
+      채용공고 게시판(2026-09-22 러너 구조 검증, 통영·김해와 같은 .web CMS). gia probe 는 목록 10건이 모두 직원 채용이라 keywords 에 걸린 게 없어 0건(셀렉터는 진주시설공단과 동일 구조).
       루트(/)는 러너에서 간헐적으로 시간초과지만 main.web·게시판은 정상.
 
   - id: gn_hrd_programs
@@ -498,7 +498,7 @@ sources:
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: div.bbs1view1 div.substance, attachment_selector: 'a.filename[href*="/cmsfile/download.do"]' }
     notes: >-
-      교육·행사 참가자 모집 게시판(2026-09-22 러너 구조 검증). 문해교사 양성·보수교육처럼 강사 대상 모집이 섞여 있어 keywords 로 거름.
+      교육·행사 참가자 모집 게시판(2026-09-22 러너에서 gia probe 검증: 'AI·디지털 문해교육 강사 양성과정 모집' 1건 수집·마감 추출 정상). 문해교사 양성·보수교육처럼 강사 대상 모집이 섞여 있어 keywords 로 거름.
       5열 '접수기간'(2026-08-26 ~ 2026-10-29)의 첫 날짜가 게시일로 잡힘.
   - id: gn_tp
     name: 경남테크노파크
@@ -638,6 +638,7 @@ sources:
     tier: 3
     homepage: https://lib.gyeongnam.go.kr
     verified: true
+    enabled: false
     adapter:
       type: html_list
       list_url: https://lib.gyeongnam.go.kr/board/list.lib?boardId=BBS_0000001&menuCd=DOM_000000205016001000&startPage={page}
@@ -650,7 +651,7 @@ sources:
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: div.borad }
     notes: >-
-      공지사항(2026-09-22 러너 구조 검증). 도청 도메인(gyeongnam.go.kr)의 하위 사이트인데도 러너에서 열림. 날짜가 '26.09.10' 두 자리 연도라 date_formats 지정.
+      공지사항(2026-09-22 러너 구조 검증). 도청 도메인(gyeongnam.go.kr)의 하위 사이트인데도 러너에서 열리지만, robots.txt 가 gia UA 를 차단해(gia probe: robots.txt 차단) 비활성. 날짜가 '26.09.10' 두 자리 연도라 date_formats 지정.
   - id: gn_youth
     name: 경상남도미래세대재단 채용공고 (구 경남청소년지원재단)
     org_type: local_public
@@ -685,7 +686,7 @@ sources:
       paging: { max_pages: 2 }
       detail: { fetch: true, body_selector: "div#bo_v", attachment_selector: a.view_file_download }
     notes: >-
-      채용정보(그누보드, 2026-09-22 러너 구조 검증). 체육센터 도급강사·수영강습 기간제 등 강사 공고가 잦음(하루 1~3건). 본문이 짧고 공고문은 hwp 첨부.
+      채용정보(그누보드, 2026-09-22 러너에서 gia probe 검증: 400일 창에서 요가·줌바·탁구 도급강사, 수영강습 등 7건 수집, 마감 추출 정상). 강사 공고가 잦음(주 수 건). 본문이 짧고 공고문은 hwp 첨부.
   - id: cw_culture
     name: 창원문화재단 채용공고
     org_type: local_public
@@ -704,7 +705,7 @@ sources:
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: div.n-content div.contents, attachment_selector: 'a.m-board-body[href*="download_file.asp"]' }
     notes: >-
-      공지사항 중 채용공고 분류(EUC-KR ASP, 2026-09-22 러너 구조 검증). 상단 공지 행은 '작성일 2026.09.22', 일반 행은 '26.09.16' 이라 date_formats 와 느슨한 파서를 함께 씀.
+      공지사항 중 채용공고 분류(EUC-KR ASP, 2026-09-22 러너에서 gia probe 검증: 도슨트 공고 1건 수집·본문 2711자). 상단 공지 행은 '작성일 2026.09.22', 일반 행은 '26.09.16' 이라 date_formats 와 느슨한 파서를 함께 씀.
   - id: gh_fmc
     name: 김해시도시개발공사·김해문화관광재단
     org_type: local_public
@@ -766,6 +767,7 @@ sources:
     tier: 3
     homepage: https://www.gmdc.co.kr
     verified: true
+    enabled: false
     schedule: daily_light
     adapter:
       type: html_list
@@ -778,7 +780,7 @@ sources:
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: "article#bo_v", attachment_selector: a.view_file_download }
     notes: >-
-      채용정보(그누보드, 2026-09-22 러너 구조 검증). 기간제 근로자 채용 위주.
+      채용정보(그누보드, 2026-09-22 러너 구조 검증). robots.txt 가 gia UA 를 차단해(gia probe: robots.txt 차단) 비활성. 기간제 근로자 채용 위주.
   - { id: gn_lifelong_centers, name: 시군 평생학습관·여성회관·청소년수련관 (묶음), org_type: local_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 시군청 게시판에 통합 게시되는지 확인 후 개별 분리 }
 
 # ---------------------------------------------------------------------------
