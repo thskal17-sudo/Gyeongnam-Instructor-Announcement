@@ -28,6 +28,7 @@ _POS_BEFORE = ["접수", "제출", "마감", "공고기간", "모집기간", "�
 _NEG_BEFORE = [
     "면접", "발표", "합격", "시험", "근무", "계약", "임용", "게시", "심사", "개강",
     "교육기간", "강의기간", "운영기간", "채용예정", "근무기간", "위촉기간", "임기", "작성일", "등록일",
+    "DATE", "다운로드", "조회", "수정일", "작성자",
 ]
 _RANGE_START = re.compile(r"^\s*(?:~|∼|～|-|–|—|부터)")
 
@@ -73,7 +74,12 @@ def parse_deadline(text: str, ref_date: date | None = None) -> DeadlineResult:
         spans.append(m.span())  # 구간은 기록해 부분 패턴이 같은 자리를 다시 읽지 않게 한다
         if not in_deadline_window(dt.date(), ref):
             continue
-        candidates.append((_score(text, m, partial=False), dt, m.group(0).strip()))
+        sc = _score(text, m, partial=False)
+        if sc <= 0 and dt.date() == ref:
+            # 게시일과 같은 날짜가 마감 문맥 없이 나오면 작성·서명·첨부 등록 일자로 본다
+            # (그누보드 'DATE : 2026-09-10 16:50:57', 공문 말미 '2026년 9월 21일 이사장')
+            continue
+        candidates.append((sc, dt, m.group(0).strip()))
 
     for m in _PARTIAL.finditer(text):
         if any(s <= m.start() < e for s, e in spans):

@@ -8,6 +8,9 @@ on:
       sources:
         description: "gia probe 로 시험 수집할 source id (공백 구분)"
         default: ""
+      body_selector:
+        description: "dump 시 이 CSS 셀렉터의 본문 전문을 출력 (예: div#bo_v_con)"
+        default: ""
       days:
         description: "probe 수집 기간(일). 비우면 settings.yaml 의 default_days(14). 게시가 뜸한 게시판 셀렉터 확인용으로 90 등"
         default: ""
@@ -28,6 +31,7 @@ jobs:
         if: ${{ github.event.inputs.urls != '' }}
         env:
           URLS: ${{ github.event.inputs.urls }}
+          BODY_SELECTOR: ${{ github.event.inputs.body_selector }}
         run: python scripts/dump_structure.py
       - name: gia probe
         if: ${{ github.event.inputs.sources != '' }}

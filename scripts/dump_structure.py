@@ -215,6 +215,11 @@ def dump(url: str) -> None:
     if len(r.content) < 2000:
         print("body (short):", re.sub(r"\s+", " ", r.text)[:600])
         return
+    sel_env = os.environ.get("BODY_SELECTOR")
+    if sel_env:
+        for node in soup.select(sel_env)[:3]:
+            print(f"\n[BODY TEXT] {short_path(node)}")
+            print(node.get_text("\n", strip=True)[:3000])
     if DETAIL.search(url):
         dump_detail(soup)
     else:
