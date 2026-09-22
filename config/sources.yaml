@@ -496,7 +496,7 @@ sources:
       date_selector: td:nth-child(5)
       keywords: [강사, 문해교사, 지도사, 지도자, 양성, 서포터즈]
       paging: { max_pages: 1 }
-      detail: { fetch: true, body_selector: div.bbs1view1 }
+      detail: { fetch: true, body_selector: div.bbs1view1 div.substance, attachment_selector: 'a.filename[href*="/cmsfile/download.do"]' }
     notes: >-
       교육·행사 참가자 모집 게시판(2026-09-22 러너 구조 검증). 문해교사 양성·보수교육처럼 강사 대상 모집이 섞여 있어 keywords 로 거름.
       5열 '접수기간'(2026-08-26 ~ 2026-10-29)의 첫 날짜가 게시일로 잡힘.
@@ -525,7 +525,7 @@ sources:
       date_selector: td.td_datetime
       keywords: [강사, 예술강사, 교강사, 지도사, 지도자, 강사진, 예술교육]
       paging: { max_pages: 1 }
-      detail: { fetch: true, body_selector: "div#bo_v_con", attachment_selector: a.view_file_download }
+      detail: { fetch: true, body_selector: "article#bo_v", attachment_selector: a.view_file_download }
     notes: >-
       채용공고(그누보드, 2026-09-22 러너 구조 검증). 임원·직원 채용이 대부분이라 keywords 로 예술강사 관련만.
   - id: gn_wf
@@ -544,14 +544,20 @@ sources:
     name: 경남사회서비스원 채용지원
     org_type: local_public
     tier: 3
-    enabled: false
     homepage: https://gn.pass.or.kr/main/main.php
+    verified: true
+    schedule: daily_light
     adapter:
       type: html_list
-      list_url: TODO
-      candidate_list_url: https://gn.pass.or.kr/apply/sub02_01.php
+      list_url: https://gn.pass.or.kr/apply/sub02_01.php?code=apply&page={page}
+      row_selector: ul.apply-list > li
+      title_selector: a
+      keywords: [강사, 교강사, 지도사, 지도자, 요양보호사 교육]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: body }
     notes: >-
-      루트(/)는 403이지만 main/main.php 는 열림(2026-09-22). 채용지원 게시판 구조 확인 중. 기간제 근로자 채용 위주라 강사 공고 빈도 낮음.
+      채용지원 게시판(2026-09-22 러너 구조 검증). 루트(/)는 403이지만 하위 경로는 열림. 행에 날짜 노드가 따로 없어(텍스트 '마감 2026.09.09 ~ 2026.09.16') since 필터가 안 걸리고 1페이지 전부를 후보로 봄.
+      기간제 근로자 채용 위주라 keywords 로 거름.
   - id: gn_dev
     name: 경남개발공사
     org_type: local_public
@@ -584,7 +590,7 @@ sources:
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: body }
     notes: >-
-      채용정보(2026-09-22 러너 구조 검증). 링크가 onclick=goRead('uuid') 라 postid 로 상세 URL 조립. 러너에서 첫 연결이 끊겨 재시도로 열림(간헐). 연구직 채용 위주라 빈도 낮음.
+      채용정보(2026-09-22 러너 구조 검증). 링크가 onclick=goRead('uuid') 라 postid 로 상세 URL 조립. 상세 페이지(31KB)에 본문 텍스트 블록이 없어(JS 로딩 추정) 본문은 거의 비어 옴. 러너에서 첫 연결이 끊겨 재시도로 열림(간헐). 연구직 채용 위주라 빈도 낮음.
   - id: gn_tour
     name: 경남관광재단 채용공고
     org_type: local_public
@@ -601,7 +607,7 @@ sources:
       org_selector: span.name
       keywords: [강사, 해설사, 지도사, 지도자, 교강사]
       paging: { max_pages: 1 }
-      detail: { fetch: true, body_selector: body }
+      detail: { fetch: true, body_selector: div.board_view, attachment_selector: 'a[href*="bbs_download.php"]' }
     notes: >-
       채용공고(2026-09-22 러너 구조 검증). 머리글 li.title_li 는 h5 a 가 없어 자동으로 건너뜀. 기간제 근로자 채용 위주.
   - id: gn_robot
@@ -642,7 +648,7 @@ sources:
       org_selector: td:nth-child(3)
       keywords: [강사, 교강사, 지도사, 지도자, 강좌 운영, 프로그램 운영]
       paging: { max_pages: 1 }
-      detail: { fetch: true, body_selector: body }
+      detail: { fetch: true, body_selector: div.borad }
     notes: >-
       공지사항(2026-09-22 러너 구조 검증). 도청 도메인(gyeongnam.go.kr)의 하위 사이트인데도 러너에서 열림. 날짜가 '26.09.10' 두 자리 연도라 date_formats 지정.
   - id: gn_youth
@@ -660,7 +666,7 @@ sources:
       org_selector: td.kboard-list-user
       keywords: [강사, 교강사, 지도사, 지도자, 활동가, 멘토, 상담사]
       paging: { max_pages: 1 }
-      detail: { fetch: true, body_selector: body }
+      detail: { fetch: true, body_selector: "div#kboard-document" }
     notes: >-
       채용공고(워드프레스 kboard, 2026-09-22 러너 구조 검증). 청소년활동 강사·자원활동가 모집이 산하 사이트(say.gnysf.co.kr, kdream.gnysf.co.kr)에도 뜸.
   - id: cw_fmc
@@ -696,7 +702,7 @@ sources:
       date_formats: ["%y.%m.%d"]
       keywords: [강사, 교강사, 지도사, 지도자, 예술강사, 도슨트, 해설]
       paging: { max_pages: 1 }
-      detail: { fetch: true, body_selector: body }
+      detail: { fetch: true, body_selector: div.n-content div.contents, attachment_selector: 'a.m-board-body[href*="download_file.asp"]' }
     notes: >-
       공지사항 중 채용공고 분류(EUC-KR ASP, 2026-09-22 러너 구조 검증). 상단 공지 행은 '작성일 2026.09.22', 일반 행은 '26.09.16' 이라 date_formats 와 느슨한 파서를 함께 씀.
   - id: gh_fmc
@@ -770,7 +776,7 @@ sources:
       org_selector: td.td_name
       keywords: [강사, 교강사, 지도사, 지도자, 강습, 코치, 트레이너, 해설]
       paging: { max_pages: 1 }
-      detail: { fetch: true, body_selector: "div#bo_v_con", attachment_selector: a.view_file_download }
+      detail: { fetch: true, body_selector: "article#bo_v", attachment_selector: a.view_file_download }
     notes: >-
       채용정보(그누보드, 2026-09-22 러너 구조 검증). 기간제 근로자 채용 위주.
   - { id: gn_lifelong_centers, name: 시군 평생학습관·여성회관·청소년수련관 (묶음), org_type: local_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 시군청 게시판에 통합 게시되는지 확인 후 개별 분리 }
