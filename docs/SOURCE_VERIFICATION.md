@@ -153,6 +153,7 @@ python -m gia collect --dry-run --sources <source_id>
 | 목록 0건 | row_selector 불일치, JS 렌더링 | fixture HTML에서 셀렉터 재확인 |
 | 제목은 나오는데 URL이 홈페이지 | onclick 링크 | `link_attr`, `link_regex`, `link_url_template` |
 | 글자 깨짐 | 인코딩 | `encoding: euc-kr` |
+| 리포트 기관명이 게시판 이름('○○ 채용정보')이나 작성자('관리자')로 나옴 | `org_selector` 가 없거나 작성자 열을 가리킴 | `adapter.org_name: 기관명` 으로 고정값을 준다 (`org_selector` 보다 후순위) |
 | 마감일 unknown | 첨부(HWP)에만 있음 | `attachment_selector` 확인, `첨부추출실패` 플래그 확인 |
 | HTTP 403 | User-Agent 차단 또는 robots | `notes`에 기록하고 비활성화 |
 | `robots.txt 차단: …` | 사이트가 `User-agent: * Disallow: /` (경상국립대·경남대·거창캠퍼스 평생교육원, 2026-09-22 확인) | `respect_robots` 정책상 수집하지 않는다. 구조를 확인했으면 `verified: true` 로 두되 `enabled: false` 와 사유를 `notes` 에 적는다. 운영자 동의를 받으면 활성화 |

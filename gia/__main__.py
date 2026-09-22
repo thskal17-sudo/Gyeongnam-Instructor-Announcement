@@ -16,7 +16,7 @@ from .classify.rules import score_posting
 from .models import Status
 from .classify.llm import LlmClassifier
 from .feedback import LABELS, append_feedback, feedback_path, load_feedback
-from .pipeline import build_posting, collect
+from .pipeline import build_posting, collect, enrich_attachments
 from .report.build import email_subject, render_email, render_markdown, render_telegram, select_postings, write_report
 from .site import build_site
 from .stats import compute_stats
@@ -160,6 +160,9 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"  - {l.posted_at or '????-??-??'} | {l.org_name or ''} | {l.title} | {l.url}")
             if args.detail and listings:
                 raw = adapter.fetch_detail(listings[0])
+                enrich_attachments(raw, http, bundle.settings.collector)  # collect 와 같은 본문(첨부 텍스트 포함)으로 판정
+                if raw.extra.get("attachment_errors"):
+                    print(f"[detail] 첨부 추출 실패: {raw.extra['attachment_errors']}")
                 res = parse_deadline(raw.body_text, raw.posted_at)
                 rule = score_posting(raw.title, raw.body_text, raw.region_text, raw.org_name or cfg.name)
                 print(f"[detail] 본문 {len(raw.body_text)}자 · 마감 {res.deadline} ({res.deadline_type.value}, '{res.text}') · 점수 {rule.score} {rule.reasons} · 분야 {rule.field}")

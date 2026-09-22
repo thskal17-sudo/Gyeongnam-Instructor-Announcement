@@ -39,7 +39,7 @@ def build_posting(raw: RawPosting, cfg: SourceConfig, bundle: ConfigBundle, now:
     """RawPosting → Posting. 관련성이 낮으면 None."""
     cs = bundle.settings.classifier
     title, flags = normalize_title(raw.title)
-    org = standardize_org(raw.org_name or cfg.name, bundle.aliases)
+    org = standardize_org(raw.org_name or cfg.adapter.get("org_name") or cfg.name, bundle.aliases)  # adapter.org_name: 게시판 이름 대신 쓸 기관명
     body = mask_pii(raw.body_text or "")
     rule = score_posting(title, body, raw.region_text, org)
     if rule.score < cs.review_threshold:

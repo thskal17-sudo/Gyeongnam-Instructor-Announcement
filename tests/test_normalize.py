@@ -13,6 +13,23 @@ def test_title_keeps_meaningful_brackets():
     assert flags == []
 
 
+def test_title_strips_board_badges():
+    """.web CMS 의 '새 글'·'NEW' 꼬리와 '[공지]' 머리 배지는 제목이 아니다 (#18)."""
+    t, flags = normalize_title("[공지] 2026년 제7회 기간제 근로자(청년 체험형 인턴) 채용 최종합격자 결정 공고 새 글")
+    assert t == "2026년 제7회 기간제 근로자(청년 체험형 인턴) 채용 최종합격자 결정 공고"
+    assert flags == []
+    assert normalize_title("2026 하반기 강사 모집 새글")[0] == "2026 하반기 강사 모집"
+    assert normalize_title("2026 하반기 강사 모집 NEW")[0] == "2026 하반기 강사 모집"
+    assert normalize_title("2026 하반기 강사 모집 [NEW]")[0] == "2026 하반기 강사 모집"
+    assert normalize_title("(공지) [재공고] 강사 모집 (N)")[0] == "강사 모집"
+    assert normalize_title("공지 강사 모집")[0] == "강사 모집"
+    # 제목의 일부인 낱말은 건드리지 않는다
+    assert normalize_title("공지사항 게시판 운영 강사 모집")[0] == "공지사항 게시판 운영 강사 모집"
+    assert normalize_title("새 글쓰기 강좌 강사 모집")[0] == "새 글쓰기 강좌 강사 모집"
+    assert normalize_title("NEW 미디어 교육 강사 모집")[0] == "NEW 미디어 교육 강사 모집"
+    assert norm_key("[공지] 강사 모집 새 글") == norm_key("강사 모집")
+
+
 def test_norm_key_ignores_flags_and_symbols():
     assert norm_key("[재공고] 강사 모집!") == norm_key("강사  모집")
 

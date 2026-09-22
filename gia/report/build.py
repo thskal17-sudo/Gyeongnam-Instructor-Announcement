@@ -85,7 +85,7 @@ def deadline_str(p: Posting) -> str:
     if p.deadline_type.value == "until_filled":
         return "채용 시까지"
     if not p.deadline:
-        return "마감 확인 필요"
+        return "확인 필요"  # 템플릿이 앞에 "마감 "을 붙인다
     d = p.deadline.astimezone(KST)
     s = f"{d.month:02d}.{d.day:02d}({_WEEKDAYS[d.weekday()]})"
     if not (d.hour == 23 and d.minute == 59):

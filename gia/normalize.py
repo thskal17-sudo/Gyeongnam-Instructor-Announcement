@@ -27,6 +27,9 @@ _SIGUN_PATTERNS = {
 }
 ORG_PREFIX_RE = re.compile(r"^\s*(?:\(재\)|\(사\)|\(주\)|재단법인|사단법인|주식회사)\s*")
 _BRACKET_RE = re.compile(r"[\[\(【〔]([^\]\)】〕]{1,20})[\]\)】〕]")
+# 게시판 배지: 목록 CMS 가 제목 앞뒤에 붙이는 '새 글'·'NEW'·'[공지]' (거창·진주시설공단·경남인재평생교육진흥원 등 .web CMS, #18)
+_BADGE_LEAD_RE = re.compile(r"^(?:[\[\(【]\s*(?:공지|필독|NEW|New|new|N)\s*[\]\)】]|공지(?=\s))\s*[:\-·]?\s*")
+_BADGE_TAIL_RE = re.compile(r"\s*(?:[\[\(【]\s*(?:새\s?글|NEW|New|new|N)\s*[\]\)】]|새\s?글|NEW|New|new)\s*$")
 _WS_RE = re.compile(r"\s+")
 _KEY_RE = re.compile(r"[^0-9a-z가-힣]")
 _PHONE_RE = re.compile(r"(?<!\d)0\d{1,2}[-.\s)]?\d{3,4}[-.\s]?\d{4}(?!\d)")
@@ -37,9 +40,19 @@ def nfkc(s: str) -> str:
     return unicodedata.normalize("NFKC", s or "")
 
 
+def strip_badges(t: str) -> str:
+    """목록 CMS 가 붙이는 '새 글'·'NEW'·'[공지]' 배지를 제목 앞뒤에서 떼어낸다 (#18)."""
+    for _ in range(3):  # '[공지] … 새 글 NEW' 처럼 겹쳐 붙는 경우
+        t2 = _BADGE_TAIL_RE.sub("", _BADGE_LEAD_RE.sub("", t)).strip()
+        if t2 == t or not t2:
+            break
+        t = t2
+    return t
+
+
 def normalize_title(title: str) -> tuple[str, list[str]]:
     """제목 정리 + 재공고/긴급 등 플래그 분리."""
-    t = _WS_RE.sub(" ", nfkc(title)).strip()
+    t = strip_badges(_WS_RE.sub(" ", nfkc(title)).strip())
     flags: set[str] = set()
 
     def _sub(m: re.Match) -> str:
@@ -60,7 +73,7 @@ def normalize_title(title: str) -> tuple[str, list[str]]:
 
 
 def norm_key(s: str) -> str:
-    t = nfkc(s).lower()
+    t = strip_badges(_WS_RE.sub(" ", nfkc(s)).strip()).lower()
     for w in FLAG_WORDS:
         t = t.replace(w, "")
     return _KEY_RE.sub("", t)
