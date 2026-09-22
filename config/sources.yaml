@@ -508,6 +508,7 @@ sources:
     tier: 3
     homepage: https://longlife.gnu.ac.kr
     verified: true
+    enabled: false
     adapter:
       type: html_list
       list_url: https://longlife.gnu.ac.kr/board.jsp?sID=0401
@@ -523,7 +524,8 @@ sources:
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: "div#contentsBody" }
     notes: >-
-      공지사항 게시판(2026-09-22 GitHub 러너에서 검증). 링크가 javascript:toPage("번호") 라 홈 화면의 상세 URL 형식으로 조립.
+      공지사항 게시판(2026-09-22 GitHub 러너에서 구조 검증). 그러나 robots.txt 가 'User-agent: * Disallow: /' 라 gia(respect_robots) 수집 불가 → 비활성.
+      사이트 운영자 허락을 받거나 정책을 바꾸기 전까지 수동 확인 대상. 링크가 javascript:toPage("번호") 라 홈 화면의 상세 URL 형식으로 조립.
       매 학기 '[강사 공지] 강좌 개설 신청 안내'가 올라옴(강사가 강좌를 제안하는 방식). 페이징 파라미터 미확인이라 1페이지(10건)만.
   - id: cwnu_lifelong
     name: 창원대학교 평생교육원 공지사항
@@ -576,6 +578,7 @@ sources:
     tier: 3
     homepage: https://www.kyungnam.ac.kr/sites/cce/index.do
     verified: true
+    enabled: false
     adapter:
       type: html_list
       list_url: https://www.kyungnam.ac.kr/cce/14630/subview.do?page={page}
@@ -585,7 +588,7 @@ sources:
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: div.artclView }
     notes: >-
-      평생교육원 채용공고 게시판(2026-09-22 러너 검증, k2web CMS). 게시글이 드묾(2026-05 1건). 상세 artclView.do 는 12KB 조각 페이지라 본문 셀렉터는 추정값.
+      평생교육원 채용공고 게시판(2026-09-22 러너 구조 검증, k2web CMS). robots.txt 가 Googlebot·Bingbot·Yeti 외 전부 'Disallow: /' 라 gia 수집 불가 → 비활성. 게시글이 드묾(2026-05 1건). 상세 artclView.do 는 12KB 조각 페이지라 본문 셀렉터는 추정값.
 
   - id: kyungnam_lifelong_notice
     name: 경남대학교 평생교육원 공지사항
@@ -593,6 +596,7 @@ sources:
     tier: 3
     homepage: https://www.kyungnam.ac.kr/sites/cce/index.do
     verified: true
+    enabled: false
     adapter:
       type: html_list
       list_url: https://www.kyungnam.ac.kr/cce/3489/subview.do?page={page}
@@ -603,7 +607,7 @@ sources:
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: div.artclView }
     notes: >-
-      공지사항(2026-09-22 러너 검증). 수강생 모집이 대부분이라 keywords 로 강사 관련만.
+      공지사항(2026-09-22 러너 구조 검증). robots.txt 전면 차단(채용공고 항목 참조)이라 비활성. 수강생 모집이 대부분이라 keywords 로 강사 관련만.
   - id: inje_lifelong
     name: 인제대학교 평생교육원
     org_type: university
@@ -622,6 +626,7 @@ sources:
     tier: 3
     homepage: https://www.inje.ac.kr
     verified: true
+    enabled: false
     adapter:
       type: html_list
       list_url: https://www.inje.ac.kr/kor/setRoute/B_Page.asp?pCode=PR040030000&varCat=8&page={page}
@@ -632,7 +637,8 @@ sources:
       detail: { fetch: true, body_selector: body }
     notes: >-
       본교 통합 모집/채용 게시판(2026-09-22 러너 검증). 행 컨테이너 div 에 클래스가 없어 dl.title 을 행으로 사용 → 날짜 열을 못 읽으므로 since 필터가 안 걸리고 1페이지 전부를 후보로 봄.
-      계약교수·연구교수 초빙, 계약직 직원 공고가 섞여 있어 keywords 로 거름. 러너에서 인증서 검증 실패(verify=False 로 열림).
+      계약교수·연구교수 초빙, 계약직 직원 공고가 섞여 있어 keywords 로 거름.
+      서버가 중간 인증서를 안 보내 러너의 httpx 에서 CERTIFICATE_VERIFY_FAILED(2026-09-22) → gia http 클라이언트에 소스별 인증서 검증 완화 옵션이 생기기 전까지 비활성.
   - { id: gnu_parttime,   name: 경상국립대 시간강사 공고,  org_type: university, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 20절 5번 결정에 따라 활성화 }
   - { id: cwnu_parttime,  name: 창원대 시간강사 공고,      org_type: university, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
 
@@ -881,6 +887,7 @@ sources:
     tier: 3
     homepage: https://psl.gc.ac.kr/M0101/
     verified: true
+    enabled: false
     adapter:
       type: html_list
       list_url: https://psl.gc.ac.kr/P0401/F0001.asp?page={page}
@@ -892,7 +899,7 @@ sources:
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: div.subConBox, attachment_selector: 'a[href*="F0100.asp"]' }
     notes: >-
-      공지사항(2026-09-22 러너 검증, ?page=2 페이징 정상). '2학기 신규개설강좌 공개모집' 같은 강사 대상 공고가 올라옴. 남해대학(구 경남도립남해대학) 평생교육원은 별도 사이트라 미등록.
+      공지사항(2026-09-22 러너 구조 검증, ?page=2 페이징 정상). robots.txt 가 'User-agent: * Disallow: /' 라 gia 수집 불가 → 비활성. '2학기 신규개설강좌 공개모집' 같은 강사 대상 공고가 올라옴. 남해대학(구 경남도립남해대학) 평생교육원은 별도 사이트라 미등록.
 
 # ---------------------------------------------------------------------------
 # Tier 3-H. 중앙 산하 공공기관 경남 지역본부 (강사 공고 빈도 낮음)  — Phase 3, 기본 비활성
