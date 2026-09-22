@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import date
+from urllib.parse import urlsplit
 
 from ..config import CollectorSettings, SourceConfig
 from .api_json import ApiJsonAdapter
@@ -25,4 +26,18 @@ def build_adapter(cfg: SourceConfig, http: HttpClient, settings: CollectorSettin
     cls = ADAPTERS.get(kind)
     if cls is None:
         raise UnconfiguredSource(f"지원하지 않는 adapter.type: {kind} (지원: api_json, html_list, playwright, search_portal)")
+    if cfg.adapter.get("tls_verify") is False:
+        for host in insecure_hosts(cfg):
+            http.allow_insecure_tls(host)
     return cls(cfg, http, settings, since=since)
+
+
+def insecure_hosts(cfg: SourceConfig) -> list[str]:
+    """adapter.tls_verify: false 인 소스의 URL 값(list_url, endpoint, link_url_template 등)에서 호스트를 모은다."""
+    hosts: list[str] = []
+    for v in cfg.adapter.values():
+        if isinstance(v, str) and v.startswith("http"):
+            host = urlsplit(v).netloc.lower()
+            if host and host not in hosts:
+                hosts.append(host)
+    return hosts
