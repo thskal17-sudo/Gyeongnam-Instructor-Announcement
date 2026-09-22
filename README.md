@@ -3,6 +3,8 @@
 경남 지역 공공기관·정부산하기관·민간기관의 **강사 구인공고**를 매일 자동 수집하고,
 정해진 시각에 신규·마감임박 공고 요약본을 텔레그램/이메일로 받아보는 시스템입니다.
 
+**범위**: 경남 지방 강사 구인공고만 다룹니다. 부산·울산 지역과 대학 부설 평생교육원은 범위 밖이며 별도 프로젝트에서 관리합니다.
+
 현재 상태: **Phase 4 진행 중** (Playwright 어댑터, 검색 포털 어댑터, GitHub Pages 아카이브, 주간 통계). Phase 3: LLM 판별·구조화 추출, 피드백 루프, 평가 명령. Phase 2: 첨부파일 텍스트 추출, onclick 게시판 지원, 이메일 채널, 소스 검증 도구. Phase 1:  (Tier 1 API 어댑터, 규칙 분류기, 마감일 파서, JSONL 저장, Markdown 리포트, 텔레그램 발송, GitHub Actions 스케줄). Tier 1 소스의 API 엔드포인트·필드명은 실측 검증 전이다.
 
 ## 문서
@@ -65,7 +67,6 @@ GitHub Actions는 매일 06:30 KST에 `collect`, 07:30 KST에 `report --send`를
 | `gia/notify/telegram.py`, `email.py` | 텔레그램(4,000자 분할)·이메일(SMTP) 발송 |
 | `docs/SOURCE_VERIFICATION.md` | 게시판 URL·셀렉터를 채우고 검증하는 절차 |
 | `data/`, `reports/` | 수집 원장과 일일 리포트 아카이브 (봇이 커밋) |
-| `data/institutions.json` | 부산·울산·경남 대학 평생교육원 38곳의 게시판 URL·연락처. `config/sources.yaml`의 대학 항목(Tier 3-C, 3-G)을 검증할 때 참고 |
 
 ## 다음 단계
 
