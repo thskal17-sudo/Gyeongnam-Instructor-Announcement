@@ -135,7 +135,7 @@ def main(argv: list[str] | None = None) -> int:
             for f in failures:
                 print(f"[report] 발송 실패 {f}", file=sys.stderr)
         if args.send or args.mark:
-            store.mark_reported(data.keys(), now, bundle.settings.report.closing_days)
+            store.mark_reported(data.keys(), now, bundle.settings.report.closing_soon_days)
             store.save()
         sent_any = args.send and len(failures) < len(bundle.settings.notify.channels)
         return 0 if (not args.send or sent_any) else 1
