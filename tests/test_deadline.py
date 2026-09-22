@@ -108,3 +108,19 @@ def test_later_date_without_context_still_parses():
     text = "공고문 참조. 2026. 9. 30.(수) 18:00"
     res = parse_deadline(text, date(2026, 9, 10))
     assert res.deadline == datetime(2026, 9, 30, 18, 0, tzinfo=KST)
+
+
+def test_short_year_dates_from_attachment_table():
+    """첨부 HWP 표에서 접수기간이 '26.09.10' / '26.09.11' 처럼 두 자리 연도로 줄마다 떨어져 나오는 경우 (창원시설공단 요가 강사 공고)."""
+    ref = date(2026, 9, 10)
+    body = "접수기간\n26.09.10\n26.09.11\n접수번호\n12회 다운로드 | DATE : 2026-09-10 16:50:57"
+    res = parse_deadline(body, ref)
+    assert res.deadline == datetime(2026, 9, 11, 23, 59, tzinfo=KST)
+    assert res.text == "26.09.11"
+    # 게시일과 같은 두 자리 연도 날짜만 있으면 마감으로 잡지 않는다
+    assert parse_deadline("작성일 26.09.10", ref).deadline is None
+    # 문맥이 있으면 그대로
+    assert parse_deadline("접수: 26.9.30(수) 18:00까지", ref).deadline == datetime(2026, 9, 30, 18, 0, tzinfo=KST)
+    # 버전·번호 형태는 날짜로 보지 않는다
+    assert parse_deadline("문서번호 1.26.09.11-3", ref).deadline is None
+    assert parse_known_format("26.09.30") == datetime(2026, 9, 30, 23, 59, tzinfo=KST)

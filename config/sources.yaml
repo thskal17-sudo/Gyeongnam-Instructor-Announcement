@@ -1112,9 +1112,10 @@ sources:
     homepage: https://www.mycf.or.kr/main/
     adapter:
       type: html_list
+      tls_legacy: true   # 구형 TLS 서버 (#15) — 이 호스트만 구형 컨텍스트·검증 생략
       list_url: TODO
     notes: >-
-      서버 TLS 가 DH_KEY_TOO_SMALL 이라 러너 기본 설정으로 handshake 실패(2026-09-22). 구형 TLS 폴백(#15)이 들어오면 재검증. 밀양시청 공공일자리 게시판(miryang)에 재단 채용이 함께 게시되기도 함.
+      서버 TLS 가 DH_KEY_TOO_SMALL 이라 러너 기본 설정으로 handshake 실패(2026-09-22). adapter.tls_legacy: true 로 열 수 있게 됨(#15) → 게시판·셀렉터 확정 후 활성화. 밀양시청 공공일자리 게시판(miryang)에 재단 채용이 함께 게시되기도 함.
   - id: gj_culture
     name: 거제시문화예술재단 채용공고
     org_type: local_public
@@ -1312,10 +1313,11 @@ sources:
     homepage: https://ps.cmu.ac.kr
     adapter:
       type: html_list
+      tls_legacy: true   # 구형 TLS 서버 (#15) — 이 호스트만 구형 컨텍스트·검증 생략
       list_url: TODO
       candidate_list_url: https://ps.cmu.ac.kr/homepage/ps/page/subLocation.do?menu_no=20010801
     notes: >-
-      ps.cmu.ac.kr 은 구형 TLS 라 러너 기본 설정으로는 handshake 실패, SECLEVEL 낮춘 컨텍스트로 열림(2026-09-22). 게시판 후보는 menu_no=20010801. gia http 클라이언트에 구형 TLS 허용이 들어오면 재검증. lead.cmu.ac.kr(평생직업교육대학)은 DNS 실패.
+      ps.cmu.ac.kr 은 구형 TLS 라 러너 기본 설정으로는 handshake 실패, SECLEVEL 낮춘 컨텍스트로 열림(2026-09-22). 게시판 후보는 menu_no=20010801. adapter.tls_legacy: true 로 열 수 있게 됨(#15) → 셀렉터 확정 후 활성화. lead.cmu.ac.kr(평생직업교육대학)은 DNS 실패.
   - id: gimhae_college_lifelong
     name: 김해대학교 평생직업교육원
     org_type: university
@@ -1412,10 +1414,11 @@ sources:
     homepage: https://anytime.koje.ac.kr/anytime
     adapter:
       type: html_list
+      tls_legacy: true   # 구형 TLS 서버 (#15) — 이 호스트만 구형 컨텍스트·검증 생략
       list_url: TODO
       candidate_list_url: https://anytime.koje.ac.kr/anytime/board/6
     notes: >-
-      구형 TLS 라 러너 기본 설정으로는 handshake 실패, SECLEVEL 낮춘 컨텍스트로 열림(2026-09-22). '강사모집' 게시판(board/6)이 따로 있으나 마지막 공지가 2021년. gia http 클라이언트에 구형 TLS 허용이 들어오면 재검증.
+      구형 TLS 라 러너 기본 설정으로는 handshake 실패, SECLEVEL 낮춘 컨텍스트로 열림(2026-09-22). '강사모집' 게시판(board/6)이 따로 있으나 마지막 공지가 2021년. adapter.tls_legacy: true 로 열 수 있게 됨(#15) → 셀렉터 확정 후 활성화.
 
   - id: gndc_lifelong
     name: 국립창원대학교 거창캠퍼스 평생교육원 (구 경남도립거창대학)
