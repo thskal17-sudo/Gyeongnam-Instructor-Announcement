@@ -32,8 +32,8 @@ HEADERS = {
     "sec-ch-ua-mobile": "?0",
     "sec-ch-ua-platform": '"Windows"',
 }
-NOISE = re.compile(r"(nav|menu|header|footer|lnb|gnb|tnb|snb|anb|topmenu|depth|sitemap|quick|util|breadcrumb|location|family|skip|m_menu|slide|banner|share|foot|head)", re.I)
-DETAIL = re.compile(r"(amode=view|(?<!sub)View\.do|Detail\.do|regSn=|/view\.|nttNo=|dataSid=|wr_id=|pan=read|List2Content)", re.I)
+NOISE = re.compile(r"(?<![a-z])(nav|menu|header|footer|lnb|gnb|tnb|snb|anb|topmenu|depth|sitemap|quick|util|breadcrumb|location|family|skip|m_menu|slide|banner|share|foot|head)(?![a-z0-9])", re.I)
+DETAIL = re.compile(r"(amode=view|(?<!sub)View\.do|Detail\.do|regSn=|/view\.|nttNo=|dataSid=|wr_id=|pan=read|List2Content|NttInfo|artclView|/boardview/|/lectopen/view/|bMode=view|btype=view)", re.I)
 
 
 def sel(tag) -> str:
@@ -55,6 +55,21 @@ def short_path(tag) -> str:
     return " > ".join(path(tag).split(" > ")[-3:])
 
 
+class LegacyTLSAdapter(requests.adapters.HTTPAdapter):
+    """TLS 1.0/1.1·약한 암호만 지원하는 구형 서버용 (ice.cs.ac.kr 등)."""
+
+    def init_poolmanager(self, *args, **kwargs):
+        import ssl
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        ctx.minimum_version = ssl.TLSVersion.TLSv1
+        ctx.set_ciphers("DEFAULT:@SECLEVEL=0")
+        ctx.options |= getattr(ssl, "OP_LEGACY_SERVER_CONNECT", 0x4)
+        kwargs["ssl_context"] = ctx
+        return super().init_poolmanager(*args, **kwargs)
+
+
 def fetch(url: str):
     from urllib.parse import urlsplit
     u = urlsplit(url)
@@ -63,7 +78,11 @@ def fetch(url: str):
     for attempt in (1, 2):
         try:
             return sess.get(url, headers=headers, timeout=25)
-        except requests.exceptions.SSLError:
+        except requests.exceptions.SSLError as exc:
+            if "HANDSHAKE_FAILURE" in str(exc) or "handshake" in str(exc).lower():
+                print("  (tls handshake failed, retrying with legacy TLS context)")
+                sess.mount("https://", LegacyTLSAdapter())
+                return sess.get(url, headers=headers, timeout=25, verify=False)
             print("  (ssl verify failed, retrying without verification)")
             return sess.get(url, headers=headers, timeout=25, verify=False)
         except (requests.exceptions.ConnectTimeout, requests.exceptions.ConnectionError) as exc:
@@ -94,11 +113,14 @@ def row_detail(row, limit: int = 14) -> None:
             break
 
 
-def dump_list(soup) -> None:
+def dump_list(soup, noise=None) -> None:
+    noise = NOISE if noise is None else noise
+    found = 0
     for t in soup.find_all("table"):
         rows = t.find_all("tr")
-        if len(rows) < 2 or NOISE.search(path(t)):
+        if len(rows) < 2 or noise.search(path(t)):
             continue
+        found += 1
         print(f"\n[TABLE] {short_path(t)}  rows={len(rows)}")
         for tr in rows[:2]:
             cells = tr.find_all(["th", "td"])
@@ -107,10 +129,11 @@ def dump_list(soup) -> None:
             row_detail(rows[1])
     for ul in soup.find_all(["ul", "ol"]):
         lis = ul.find_all("li", recursive=False)
-        if len(lis) < 3 or not ul.find("a") or NOISE.search(path(ul)):
+        if len(lis) < 3 or not ul.find("a") or noise.search(path(ul)):
             continue
         if sum(len(li.get_text(" ", strip=True)) for li in lis) < 80:
             continue
+        found += 1
         print(f"\n[LIST] {short_path(ul)}  items={len(lis)}")
         print("   li:", sel(lis[0]), "->", lis[0].get_text(" ", strip=True)[:100])
         row_detail(lis[0])
@@ -118,6 +141,10 @@ def dump_list(soup) -> None:
     if pag:
         print("\n[PAGING]", (pag[0].get("href") or "")[:140])
     print("[DATES] sample:", re.findall(r"20\d{2}[.\-/]\s?\d{1,2}[.\-/]\s?\d{1,2}", soup.get_text(" "))[:5])
+    if not found and noise is NOISE:
+        print("\n[RETRY without noise filter]")
+        dump_list(soup, noise=re.compile(r"(?!x)x"))
+        return
     dump_anchor_paths(soup)
 
 
