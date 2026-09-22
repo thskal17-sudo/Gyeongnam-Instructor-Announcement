@@ -543,11 +543,11 @@ sources:
       link_regex: '(\d+)'
       link_url_template: https://www.changwon.ac.kr/lifelong/na/ntt/selectNttInfo.do?mi=4774&bbsId=1787&nttSn={1}
       date_selector: td:nth-child(4)
-      keywords: [강사, 교강사, 강좌 개설, 개설 신청, 모집, 지도사, 지도자]
+      keywords: [강사, 교강사, 강좌 개설, 개설 신청, 개설강좌, 지도사, 지도자]
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: div.ntt_cn }
     notes: >-
-      공지사항 게시판(2026-09-22 러너 검증). 링크는 a.nttInfoBtn 의 data-id(nttSn) 로 상세 URL 조립. 강사 자료실(bbsId=1786)은 재직 강사용 안내라 제외.
+      공지사항 게시판(2026-09-22 러너에서 gia probe 로 검증: 목록 3건·본문 972자·마감 추출 정상). 링크는 a.nttInfoBtn 의 data-id(nttSn) 로 상세 URL 조립. 강사 자료실(bbsId=1786)은 재직 강사용 안내라 제외.
       날짜 형식 '2026. 6. 25'.
 
   - id: cwnu_lifelong_jobs
@@ -749,11 +749,11 @@ sources:
       row_selector: table#tablelist tbody tr
       title_selector: td.text-left a
       date_selector: td:nth-child(4)
-      keywords: [강사, 교강사, 강좌 개설, 개설 신청, 지도사, 지도자]
+      keywords: [강사, 교강사, 강좌 개설, 개설 신청, 개설 제안, 지도사, 지도자]
       paging: { max_pages: 1 }
-      detail: { fetch: true, body_selector: div.board-view-cont }
+      detail: { fetch: true, body_selector: div.board-view }
     notes: >-
-      공지사항(2026-09-22 러너 검증). 날짜 '2026.09.07 16:30'. /board/000001/2 도 1페이지와 같은 내용이라(페이징은 POST) 1페이지(10건)만.
+      공지사항(2026-09-22 러너에서 gia probe 검증: 목록 1건). 상세는 div.board-view-cont 로 2자만 잡혀 상위 div.board-view(제목 포함) 사용. 날짜 '2026.09.07 16:30'. /board/000001/2 도 1페이지와 같은 내용이라(페이징은 POST) 1페이지(10건)만.
 
   - id: masan_lectopen
     name: 마산대학교 평생교육원 강좌 개설 신청
@@ -770,7 +770,7 @@ sources:
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: div.board-view-cont }
     notes: >-
-      강좌 개설 신청 공고(강사가 강좌를 제안하는 모집, 2026-09-22 러너 검증). 모든 행이 강사 대상이므로 keywords 없음.
+      강좌 개설 신청 공고(강사가 강좌를 제안하는 모집, 2026-09-22 러너에서 gia probe 검증: 목록 3건·본문 659자·마감 추출 정상). 모든 행이 강사 대상이므로 keywords 없음.
       6열 '신청기간'(2026.06.01 00:00 ~ 2026.06.30 00:00)의 첫 날짜가 게시일로 잡힘 → 실제 게시일보다 이르게 기록될 수 있음.
   - id: cwmc_lifelong
     name: 창원문성대학교 평생교육원
@@ -811,7 +811,7 @@ sources:
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: "div#bo_v_con", attachment_selector: a.view_file_download }
     notes: >-
-      2026년 신설 사이트, 공지 1건(홈페이지 오픈)뿐(2026-09-22 러너 검증). 목록에 날짜 없음. 그누보드라 상세 본문은 진주보건대와 같은 구조로 가정.
+      2026년 신설 사이트, 공지 1건(홈페이지 오픈)뿐이라 gia probe 수집 실적 0건(2026-09-22). 셀렉터는 구조 덤프 기준이며 목록에 날짜 없음 → 첫 강사 공고가 뜨면 재확인. 그누보드라 상세 본문은 진주보건대와 같은 구조로 가정.
   - id: jinju_health_lifelong
     name: 진주보건대학교 평생교육원
     org_type: university
@@ -828,7 +828,7 @@ sources:
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: "div#bo_v_con", attachment_selector: a.view_file_download }
     notes: >-
-      공지사항(그누보드, 2026-09-22 러너 검증). 날짜 열(td_datetime)이 비어 있어 제목 아래 ul.bo_tit_ul3('지킴이 2026-08-05 102')에서 추출.
+      공지사항(그누보드, 2026-09-22 러너에서 gia probe 검증: 목록 1건·본문 842자·첨부 hwp 추출). 날짜 열(td_datetime)이 비어 있어 제목 아래 ul.bo_tit_ul3('지킴이 2026-08-05 102')에서 추출.
       매 학기 '강좌 개설 신청 공고'(강사 모집)가 올라오고 첨부(hwp)는 download.php 링크.
   - id: dist_lifelong
     name: 동원과학기술대학교 평생교육원 공지사항 (양산)
@@ -836,6 +836,7 @@ sources:
     tier: 3
     homepage: https://center.dist.ac.kr/center/Main.do
     verified: true
+    enabled: false
     adapter:
       type: html_list
       list_url: https://center.dist.ac.kr/center/CMS/Board/Board.do?mCode=MN052&page={page}
@@ -847,7 +848,9 @@ sources:
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: "div#board-wrap" }
     notes: >-
-      공지사항(2026-09-22 러너 검증). 링크는 같은 페이지의 ?mCode=…&mode=view&board_seq= 상대 URL. '2학기 신규 강좌 개설' 공고가 올라옴. 상세 본문 셀렉터는 추정값.
+      공지사항(2026-09-22 러너에서 gia probe 검증: '2학기 신규 교육과정(전담강사) 공개 모집' 1건 수집·본문 1373자·마감 추출 정상).
+      단, robots.txt 가 'User-agent: * Disallow: /*Board.do' (Crawl-delay 10). 파이썬 robotparser 는 와일드카드를 못 읽어 통과시키지만 RFC 9309 기준으로는 차단이므로 비활성.
+      운영자 동의를 받거나 정책을 정하면 enabled 로 전환.
 
   - id: dist_lifelong_instructor
     name: 동원과학기술대학교 평생교육원 강사지원
@@ -855,6 +858,7 @@ sources:
     tier: 3
     homepage: https://center.dist.ac.kr/center/Main.do
     verified: true
+    enabled: false
     schedule: daily_light
     adapter:
       type: html_list
@@ -866,7 +870,7 @@ sources:
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: "div#board-wrap" }
     notes: >-
-      자료실의 '강사지원' 분류(2026-09-22 러너 검증). 시민평생교육강좌 강사모집 공고와 지원서 양식이 게시되나 마지막 글이 2022-12 → 빈도 낮음.
+      자료실의 '강사지원' 분류(2026-09-22 러너 구조 검증). 시민평생교육강좌 강사모집 공고와 지원서 양식이 게시되나 마지막 글이 2022-12 → 빈도 낮음. robots.txt 사유로 비활성(공지사항 항목 참조).
 
   - id: koje_lifelong
     name: 거제대학교 평생학습원
