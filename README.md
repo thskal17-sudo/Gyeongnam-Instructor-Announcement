@@ -30,6 +30,7 @@ python -m pytest -q                      # 오프라인 테스트
 python -m gia probe gojobs --detail      # 소스 하나 시험 수집 (DATA_GO_KR_KEY 필요)
 python -m gia collect --dry-run          # 전체 수집, 저장 안 함
 python -m gia collect                    # 수집·저장 (data/)
+python -m gia collect --refetch --sources cw_fmc  # 이미 알던 URL도 다시 파싱 (파서 수정 후 저장 데이터 보정)
 python -m gia report                     # 요약본 생성·출력 (reports/)
 python -m gia report --send              # 발송 (텔레그램: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID / 이메일: SMTP_*, EMAIL_TO)
 python -m gia sources                    # 소스별 설정 상태

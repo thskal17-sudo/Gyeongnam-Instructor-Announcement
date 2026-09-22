@@ -36,6 +36,7 @@ def _parser() -> argparse.ArgumentParser:
     c.add_argument("--dry-run", action="store_true", help="저장하지 않음")
     c.add_argument("--backfill-days", type=int, default=0)
     c.add_argument("--light", action="store_true", help="schedule=daily_light 소스만")
+    c.add_argument("--refetch", action="store_true", help="이미 알던 URL도 상세를 다시 가져와 재파싱 (파서 수정 후 저장 데이터 보정)")
 
     r = sub.add_parser("report", help="요약본 생성(및 발송)")
     r.add_argument("--send", action="store_true", help="채널로 발송하고 보고 상태를 기록")
@@ -82,7 +83,7 @@ def main(argv: list[str] | None = None) -> int:
         http = HttpClient(bundle.settings.collector)
         try:
             only = [s.strip() for s in args.sources.split(",")] if args.sources else None
-            run = collect(bundle, store, http, only=only, dry_run=args.dry_run, backfill_days=args.backfill_days or None, now=now, light=args.light)
+            run = collect(bundle, store, http, only=only, dry_run=args.dry_run, backfill_days=args.backfill_days or None, now=now, light=args.light, refetch=args.refetch)
         finally:
             http.close()
         c = run.counts()
