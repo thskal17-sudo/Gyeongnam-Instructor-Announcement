@@ -91,6 +91,16 @@ def test_collect_end_to_end(settings, tmp_path, monkeypatch):
     assert run3.totals["new"] == 0 and run3.totals["merged"] >= 2
     fixed = next(p for p in store.values() if "시민강좌" in p.title)
     assert fixed.deadline.isoformat() == "2026-09-30T18:00:00+09:00"
+    assert fixed.canonical_key == board_post.canonical_key  # 같은 URL → 같은 공고, 키 유지
+
+    # 네 번째 실행: adapter.org_name 을 바꾸면 canonical_key 가 달라지지만, 같은 URL 이므로 중복 생성 없이 기관명만 갱신
+    board = next(s for s in bundle.sources if s.id == "board")
+    board.adapter["org_name"] = "경남인재평생교육진흥원 평생학습관"
+    n_before = len(list(store.values()))
+    run4 = collect(bundle, store, _http(settings), now=NOW + timedelta(hours=13), refetch=True)
+    assert run4.totals["new"] == 0 and len(list(store.values())) == n_before
+    renamed = store.get(board_post.canonical_key)
+    assert renamed is not None and renamed.org_name == "경남인재평생교육진흥원 평생학습관"
     assert fixed.status == Status.new  # 한 번도 보고되지 않았으므로 신규로 보고
     assert fixed.canonical_key in select_postings(bundle, store, NOW + timedelta(hours=12)).keys()
 

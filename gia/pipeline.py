@@ -268,7 +268,10 @@ def collect(bundle: ConfigBundle, store: Store, http: HttpClient, only: list[str
             if p:
                 p.last_seen_at = now
         for p in oc.postings:
-            dup = find_duplicate(p, list(store.values()) + batch)
+            # 같은 URL 을 이미 알고 있으면 그 공고다 (기관명·제목 정규화가 바뀌어 canonical_key 가 달라져도 중복 생성 방지)
+            dup = next((d for d in (store.by_url(s.url) for s in p.sources) if d is not None), None)
+            if dup is None:
+                dup = find_duplicate(p, list(store.values()) + batch)
             if dup is None:
                 batch.append(p)
                 store.upsert(p)
