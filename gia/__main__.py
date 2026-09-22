@@ -166,6 +166,13 @@ def main(argv: list[str] | None = None) -> int:
                 res = parse_deadline(raw.body_text, raw.posted_at)
                 rule = score_posting(raw.title, raw.body_text, raw.region_text, raw.org_name or cfg.name)
                 print(f"[detail] 본문 {len(raw.body_text)}자 · 마감 {res.deadline} ({res.deadline_type.value}, '{res.text}') · 점수 {rule.score} {rule.reasons} · 분야 {rule.field}")
+                if res.deadline is None:
+                    # 마감일을 못 찾았을 때: 날짜·접수 문맥이 있는 줄을 보여줘 파서 보강 근거로 삼는다
+                    import re as _re
+                    pat = _re.compile(r"\d{4}\s*[.\-/년]\s*\d{1,2}|\d{1,2}\s*[.\-/월]\s*\d{1,2}|접수|마감|모집기간|까지")
+                    hits = [ln.strip() for ln in raw.body_text.splitlines() if pat.search(ln)]
+                    for ln in hits[:12]:
+                        print(f"  [date?] {ln[:160]}")
                 p = build_posting(raw, cfg, bundle, now)
                 print(f"[posting] {'포함' if p else '제외'}: {p.title if p else ''}")
         finally:
