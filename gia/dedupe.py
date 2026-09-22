@@ -56,6 +56,8 @@ def merge(existing: Posting, incoming: Posting, now: datetime, prefer_incoming: 
             known.add((s.source_id, s.url))
     p.last_seen_at = max(p.last_seen_at, now)
     if prefer_incoming:
+        # 재수집: 기관명·제목 정규화 결과도 새 값으로 (canonical_key/id 는 유지해 링크·피드백이 끊기지 않게)
+        p.org_name, p.title = incoming.org_name, incoming.title
         if incoming.deadline != p.deadline or incoming.deadline_type != p.deadline_type:
             changed = True
             p.deadline, p.deadline_type, p.deadline_text = incoming.deadline, incoming.deadline_type, incoming.deadline_text
