@@ -63,7 +63,10 @@ class LegacyTLSAdapter(requests.adapters.HTTPAdapter):
         ctx = ssl.create_default_context()
         ctx.check_hostname = False
         ctx.verify_mode = ssl.CERT_NONE
-        ctx.minimum_version = ssl.TLSVersion.TLSv1
+        import warnings
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", DeprecationWarning)
+            ctx.minimum_version = ssl.TLSVersion.TLSv1
         ctx.set_ciphers("DEFAULT:@SECLEVEL=0")
         ctx.options |= getattr(ssl, "OP_LEGACY_SERVER_CONNECT", 0x4)
         kwargs["ssl_context"] = ctx
@@ -79,12 +82,19 @@ def fetch(url: str):
         try:
             return sess.get(url, headers=headers, timeout=25)
         except requests.exceptions.SSLError as exc:
-            if "HANDSHAKE_FAILURE" in str(exc) or "handshake" in str(exc).lower():
+            msg = str(exc)
+            if "HANDSHAKE_FAILURE" in msg or "handshake" in msg.lower() or "DH_KEY_TOO_SMALL" in msg or "dh key too small" in msg.lower():
                 print("  (tls handshake failed, retrying with legacy TLS context)")
                 sess.mount("https://", LegacyTLSAdapter())
                 return sess.get(url, headers=headers, timeout=25, verify=False)
             print("  (ssl verify failed, retrying without verification)")
-            return sess.get(url, headers=headers, timeout=25, verify=False)
+            try:
+                return sess.get(url, headers=headers, timeout=25, verify=False)
+            except requests.exceptions.SSLError as exc2:
+                # 검증을 꺼도 안 열리면 암호·프로토콜 문제 → 구형 TLS 컨텍스트로 한 번 더
+                print(f"  (still failing without verification: {str(exc2)[:80]}; retrying with legacy TLS context)")
+                sess.mount("https://", LegacyTLSAdapter())
+                return sess.get(url, headers=headers, timeout=25, verify=False)
         except (requests.exceptions.ConnectTimeout, requests.exceptions.ConnectionError) as exc:
             if attempt == 2:
                 raise

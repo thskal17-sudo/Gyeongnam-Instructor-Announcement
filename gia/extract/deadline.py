@@ -15,6 +15,10 @@ _TIME = r"(?:\s*(?:(?P<ampm>오전|오후)\s*)?(?P<hour>\d{1,2})\s*[:시]\s*(?P<
 _FULL = re.compile(
     r"(?P<year>\d{4})\s*[.년/\-]\s*(?P<month>\d{1,2})\s*[.월/\-]\s*(?P<day>\d{1,2})\s*일?\.?" + _WEEKDAY + _TIME
 )
+# 두 자리 연도 'YY.MM.DD' (첨부 HWP 표의 접수기간 '26.09.10 ~ 26.09.11', 게시판 날짜 열). 앞뒤에 숫자·점이 붙으면 제외
+_SHORT_YEAR = re.compile(
+    r"(?<![\d.\-/])(?P<year>2\d)\s*\.\s*(?P<month>\d{1,2})\s*\.\s*(?P<day>\d{1,2})\.?(?![\d.])" + _WEEKDAY + _TIME
+)
 _PARTIAL = re.compile(
     r"(?<![\d.\-/])(?P<month>\d{1,2})\s*[.월/]\s*(?P<day>\d{1,2})\s*일?\.?(?![\d])" + _WEEKDAY + _TIME
 )
@@ -32,7 +36,7 @@ _NEG_BEFORE = [
 ]
 _RANGE_START = re.compile(r"^\s*(?:~|∼|～|-|–|—|부터)")
 
-_KNOWN_FORMATS = ["%Y%m%d", "%Y-%m-%d", "%Y.%m.%d", "%Y/%m/%d", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d %H:%M", "%Y%m%d%H%M", "%y-%m-%d"]
+_KNOWN_FORMATS = ["%Y%m%d", "%Y-%m-%d", "%Y.%m.%d", "%Y/%m/%d", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d %H:%M", "%Y%m%d%H%M", "%y-%m-%d", "%y.%m.%d"]
 
 
 @dataclass
@@ -78,6 +82,20 @@ def parse_deadline(text: str, ref_date: date | None = None) -> DeadlineResult:
         if sc <= 0 and dt.date() == ref:
             # 게시일과 같은 날짜가 마감 문맥 없이 나오면 작성·서명·첨부 등록 일자로 본다
             # (그누보드 'DATE : 2026-09-10 16:50:57', 공문 말미 '2026년 9월 21일 이사장')
+            continue
+        candidates.append((sc, dt, m.group(0).strip()))
+
+    for m in _SHORT_YEAR.finditer(text):
+        if any(s <= m.start() < e for s, e in spans):
+            continue
+        dt = _build(2000 + int(m.group("year")), int(m.group("month")), int(m.group("day")), m)
+        if dt is None:
+            continue
+        spans.append(m.span())
+        if not in_deadline_window(dt.date(), ref):
+            continue
+        sc = _score(text, m, partial=False)
+        if sc <= 0 and dt.date() == ref:
             continue
         candidates.append((sc, dt, m.group(0).strip()))
 

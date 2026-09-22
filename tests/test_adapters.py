@@ -110,10 +110,10 @@ def test_tls_verify_false_routes_host_to_insecure_client(settings):
                       link_url_template="https://files.example.org/view/{1}", tls_verify=False)
     assert insecure_hosts(cfg) == ["insecure.example.org", "files.example.org"]
     build_adapter(cfg, http, settings.collector)
-    assert http._client_for("https://insecure.example.org/board") is http._insecure_client
-    assert http._client_for("https://files.example.org/view/1") is http._insecure_client
+    assert http._client_for("https://insecure.example.org/board") is http._mode_clients["insecure"]
+    assert http._client_for("https://files.example.org/view/1") is http._mode_clients["insecure"]
     assert http._client_for("https://other.example.org/") is http._client
-    assert http._insecure_client is not http._client
+    assert http._mode_clients["insecure"] is not http._client
     assert http.get("https://insecure.example.org/board").status_code == 200
     assert http.get("https://other.example.org/").status_code == 200
     assert seen == ["insecure.example.org", "other.example.org"]
@@ -121,5 +121,15 @@ def test_tls_verify_false_routes_host_to_insecure_client(settings):
 
     plain = HttpClient(settings.collector, transport=httpx.MockTransport(handler))
     build_adapter(make_source("secure", type="html_list", list_url="https://secure.example.org/board", row_selector="tr"), plain, settings.collector)
-    assert plain._insecure_client is None
+    assert plain._mode_clients == {}
     plain.close()
+
+    legacy = HttpClient(settings.collector, transport=httpx.MockTransport(handler))
+    build_adapter(make_source("old", type="html_list", list_url="https://old.example.org/board", row_selector="tr", tls_legacy=True), legacy, settings.collector)
+    assert legacy._host_mode == {"old.example.org": "legacy"}
+    assert legacy._client_for("https://old.example.org/x") is legacy._mode_clients["legacy"]
+    assert legacy.get("https://old.example.org/board").status_code == 200
+    import ssl
+    ctx = HttpClient.legacy_tls_context()
+    assert ctx.minimum_version == ssl.TLSVersion.TLSv1 and ctx.verify_mode == ssl.CERT_NONE
+    legacy.close()

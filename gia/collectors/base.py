@@ -4,8 +4,10 @@ from __future__ import annotations
 import logging
 import random
 import re
+import ssl
 import threading
 import time
+import warnings
 from datetime import date, datetime
 from typing import Any
 from urllib.parse import urlsplit
@@ -36,14 +38,15 @@ class HttpClient:
         self.settings = settings
         self._transport = transport
         self._client = self._make_client(verify=True)
-        self._insecure_client: httpx.Client | None = None  # tls_verify: false 소스 전용 (호스트 단위)
-        self._insecure_hosts: set[str] = set()
+        # 호스트별 TLS 모드: "insecure"(tls_verify: false) / "legacy"(tls_legacy: true). 모드별 클라이언트는 지연 생성
+        self._host_mode: dict[str, str] = {}
+        self._mode_clients: dict[str, httpx.Client] = {}
         self._last: dict[str, float] = {}
         self._locks: dict[str, threading.Lock] = {}
         self._guard = threading.Lock()
         self._robots: dict[str, RobotFileParser | None] = {}
 
-    def _make_client(self, verify: bool) -> httpx.Client:
+    def _make_client(self, verify: "bool | ssl.SSLContext") -> httpx.Client:
         return httpx.Client(
             headers={"User-Agent": self.settings.user_agent, "Accept-Language": "ko,en;q=0.8"},
             timeout=self.settings.request_timeout_sec,
@@ -52,25 +55,43 @@ class HttpClient:
             verify=verify,
         )
 
-    def allow_insecure_tls(self, host: str) -> None:
-        """해당 호스트만 인증서 검증을 끈다 (adapter.tls_verify: false). 중간 인증서 누락 등 서버 쪽 설정 문제용."""
+    @staticmethod
+    def legacy_tls_context() -> ssl.SSLContext:
+        """TLS 1.0/1.1·약한 암호(DH_KEY_TOO_SMALL 포함)만 지원하는 구형 서버용. 검증도 끈다 (scripts/dump_structure.py 와 동일)."""
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", DeprecationWarning)  # TLSv1 지정 자체가 deprecated 경고를 냄
+            ctx.minimum_version = ssl.TLSVersion.TLSv1
+        ctx.set_ciphers("DEFAULT:@SECLEVEL=0")
+        ctx.options |= getattr(ssl, "OP_LEGACY_SERVER_CONNECT", 0x4)
+        return ctx
+
+    def set_tls_mode(self, host: str, mode: str) -> None:
+        """해당 호스트만 다른 TLS 설정을 쓴다. mode: "insecure"(인증서 검증 끔) / "legacy"(구형 TLS + 검증 끔)."""
         host = host.lower()
-        if host in self._insecure_hosts:
+        if mode not in ("insecure", "legacy"):
+            raise ValueError(f"알 수 없는 TLS 모드: {mode}")
+        if self._host_mode.get(host) == mode:
             return
-        self._insecure_hosts.add(host)
-        if self._insecure_client is None:
-            self._insecure_client = self._make_client(verify=False)
-        log.warning("[http] %s: TLS 인증서 검증 비활성 (tls_verify: false)", host)
+        self._host_mode[host] = mode
+        if mode not in self._mode_clients:
+            self._mode_clients[mode] = self._make_client(verify=False if mode == "insecure" else self.legacy_tls_context())
+        log.warning("[http] %s: %s", host, "TLS 인증서 검증 비활성 (tls_verify: false)" if mode == "insecure" else "구형 TLS 허용·검증 비활성 (tls_legacy: true)")
+
+    def allow_insecure_tls(self, host: str) -> None:
+        """adapter.tls_verify: false — 중간 인증서 누락 등 서버 쪽 설정 문제용."""
+        self.set_tls_mode(host, "insecure")
 
     def _client_for(self, url: str) -> httpx.Client:
-        if self._insecure_client is not None and urlsplit(url).netloc.lower() in self._insecure_hosts:
-            return self._insecure_client
-        return self._client
+        mode = self._host_mode.get(urlsplit(url).netloc.lower()) if self._host_mode else None
+        return self._mode_clients[mode] if mode else self._client
 
     def close(self) -> None:
         self._client.close()
-        if self._insecure_client is not None:
-            self._insecure_client.close()
+        for c in self._mode_clients.values():
+            c.close()
 
     def get(self, url: str, params: dict | None = None, headers: dict | None = None) -> httpx.Response:
         host = urlsplit(url).netloc
