@@ -22,7 +22,7 @@ _SHORT_YEAR = re.compile(
 _PARTIAL = re.compile(
     r"(?<![\d.\-/])(?P<month>\d{1,2})\s*[.월/]\s*(?P<day>\d{1,2})\s*일?\.?(?![\d])" + _WEEKDAY + _TIME
 )
-_UNTIL_FILLED = re.compile(r"채용\s*시\s*까지|충원\s*시\s*까지|상시\s*(?:모집|채용|접수)|적격자\s*채용\s*시|모집\s*시\s*까지")
+_UNTIL_FILLED = re.compile(r"채용\s*시\s*까지|충원\s*시\s*까지|(?:상시|수시)\s*(?:모집|채용|접수)|적격자\s*채용\s*시|모집\s*시\s*까지|연중\s*(?:상시|수시)")
 
 # 마감일 유효 구간: 게시일보다 이만큼 이전이면 과거 날짜(사업연도·근거 규정 등), 이후면 계약·근무기간 종료일로 본다
 PAST_SLACK_DAYS = 30
