@@ -8,7 +8,7 @@ import sys
 from datetime import datetime, timedelta
 from pathlib import Path
 
-from .collectors.base import HttpClient
+from .collectors.base import FetchError, HttpClient
 from .collectors.registry import build_adapter
 from .config import load_bundle
 from .extract.deadline import KST, parse_deadline
@@ -154,7 +154,11 @@ def main(argv: list[str] | None = None) -> int:
                     print(f"[probe] 설정 미완료({cfg.unconfigured_reason()}) — 응답 저장만 수행")
                     return 0
             adapter = build_adapter(cfg, http, bundle.settings.collector, since=now.date() - timedelta(days=bundle.settings.collector.default_days))
-            listings = adapter.fetch_list()
+            try:
+                listings = adapter.fetch_list()
+            except FetchError as e:
+                print(f"[probe] {cfg.name}: 목록 실패 — {e}", file=sys.stderr)
+                return 1
             print(f"[probe] {cfg.name}: 목록 {len(listings)}건")
             for l in listings[: args.limit]:
                 print(f"  - {l.posted_at or '????-??-??'} | {l.org_name or ''} | {l.title} | {l.url}")

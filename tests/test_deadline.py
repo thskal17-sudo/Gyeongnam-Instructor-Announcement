@@ -124,3 +124,10 @@ def test_short_year_dates_from_attachment_table():
     # 버전·번호 형태는 날짜로 보지 않는다
     assert parse_deadline("문서번호 1.26.09.11-3", ref).deadline is None
     assert parse_known_format("26.09.30") == datetime(2026, 9, 30, 23, 59, tzinfo=KST)
+
+
+def test_until_filled_variants():
+    """'수시 접수'(거제대 평생학습원 강사 모집 안내)·'연중 상시' 도 채용 시까지로 본다."""
+    for text in ("1. 모집기간 : 수시 접수", "수시모집", "연중 상시 접수", "상시 모집"):
+        res = parse_deadline(text, date(2026, 9, 22))
+        assert res.deadline is None and res.deadline_type == DeadlineType.until_filled, text
