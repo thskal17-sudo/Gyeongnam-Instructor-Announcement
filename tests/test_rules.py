@@ -36,3 +36,18 @@ def test_field_and_employment():
     assert guess_field("수영 강사 모집", "체육센터") == "sports"
     assert guess_employment("시간강사 모집", "") == "시간강사"
     assert guess_employment("외부강사 위촉 공고", "") == "프리랜서"
+
+
+# --- 2026-09-22 실수집에서 나온 오탐 회귀 테스트 ---
+
+def test_non_instructor_job_titles_are_excluded():
+    """제목에 강사 핵심어가 없고 비강사 직종이면, 본문에 '지도자'가 스쳐도 제외한다."""
+    assert score_posting("2026년 창원시 청원경찰 채용시험 계획 공고", "체력검정은 지도자 입회하에 실시. 창원시", None).score < 30
+    assert score_posting("초등학교 조리원 채용 공고", "지도자 협조. 김해시", None).score < 30
+
+
+def test_non_instructor_penalty_not_applied_when_title_has_core_word():
+    """제목에 강사 핵심어가 있으면 복합 모집일 수 있으므로 감점하지 않는다."""
+    r = score_posting("하동국민체육센터 기간제근로자(헬스지도자, 청사관리원, 매표안내원) 채용", "하동군 체육센터", None)
+    assert r.score >= 70
+    assert not any("비강사" in x for x in r.reasons)

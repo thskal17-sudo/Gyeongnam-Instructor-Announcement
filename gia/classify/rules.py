@@ -4,7 +4,7 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass, field
 
-from ..normalize import GYEONGNAM_WORDS, SIGUN, nfkc
+from ..normalize import mentions_gyeongnam, nfkc
 
 CORE_WORDS = [
     "시간강사", "외래강사", "외래교수", "초빙강사", "초빙교수", "교강사", "훈련교사", "강사",
@@ -20,6 +20,13 @@ EXCLUDE_TITLE = [
 PROCUREMENT_WORDS = ["입찰", "물품", "시설", "임대", "공사"]
 SERVICE_OK_WORDS = ["강의 용역", "교육 용역", "교육 운영 용역", "강사 운영", "교육과정 운영 용역", "교육 위탁"]
 OTHER_REGIONS = ["부산", "울산", "서울", "대구", "경기", "인천", "광주", "대전", "세종", "강원", "충북", "충남", "전북", "전남", "경북", "제주"]
+# 제목이 이 직종만 가리키면 본문에 "지도자" 같은 단어가 스쳐도 강사 공고가 아니다.
+# 제목에 강사 핵심어가 하나도 없을 때만 적용한다 (핵심어가 있으면 복합 모집일 수 있음).
+NON_INSTRUCTOR_JOBS = [
+    "청원경찰", "경비원", "미화원", "환경미화", "조리원", "조리사", "영양사", "운전원", "운전기사",
+    "사무보조", "행정보조", "사무원", "경리", "매표", "안내원", "청사관리", "시설관리원", "관리원",
+    "당직", "수납원", "간호조무", "사회복무", "공무직", "생활지도원", "보안관",
+]
 
 FIELD_KEYWORDS: dict[str, list[str]] = {
     "school": ["방과후", "늘봄", "돌봄", "기간제", "학교스포츠", "학교예술", "초등학교", "중학교", "고등학교", "교육지원청"],
@@ -81,9 +88,15 @@ def score_posting(title: str, body: str = "", region_text: str | None = None, or
         reasons.append(f"+10 강의어({lect[0]})")
 
     region_blob = " ".join([t, r, nfkc(org_name or ""), b[:2000]])
-    if any(w in region_blob for w in GYEONGNAM_WORDS) or any(s in region_blob for s in SIGUN):
+    if mentions_gyeongnam(region_blob):
         score += 15
         reasons.append("+15 경남 지역")
+
+    if not core_t:
+        jobs = [w for w in NON_INSTRUCTOR_JOBS if w in t]
+        if jobs:
+            score -= 40
+            reasons.append(f"-40 비강사 직종({jobs[0]})")
 
     excl = [w for w in EXCLUDE_TITLE if w in t]
     if excl:
@@ -105,8 +118,7 @@ def score_posting(title: str, body: str = "", region_text: str | None = None, or
 
 
 def _other_region(title: str, region_text: str, body: str) -> str | None:
-    def _has_gn(s: str) -> bool:
-        return any(w in s for w in GYEONGNAM_WORDS) or any(x in s for x in SIGUN)
+    _has_gn = mentions_gyeongnam
 
     if region_text:
         hits = [o for o in OTHER_REGIONS if o in region_text]

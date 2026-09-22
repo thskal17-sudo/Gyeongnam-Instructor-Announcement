@@ -29,6 +29,22 @@ def test_regions():
     assert extract_regions("서울시 강남구") == []
 
 
+def test_regions_need_suffix_or_gyeongnam_context():
+    """시군 이름이 다른 단어에 섞여 있을 때 지역으로 잡지 않는다 (2026-09-22 실수집 오탐)."""
+    assert extract_regions("고성능 빔프로젝터를 쓰는 김해시 도서관 강좌") == ["김해"]
+    assert extract_regions("제품 대량 양산 라인") == []
+    assert extract_regions("거창한 규모의 남해안 축제") == []
+    assert extract_regions("최고성적 우수자 / 사천원 지급") == []
+    assert extract_regions("근무지: 경남 고성") == ["경남", "고성"]
+    assert extract_regions("고성군청 평생학습관") == ["고성"]
+
+
+def test_mentions_gyeongnam():
+    from gia.normalize import mentions_gyeongnam
+    assert mentions_gyeongnam("양산시 소재")
+    assert not mentions_gyeongnam("대량 양산 공정")
+
+
 def test_mask_pii():
     out = mask_pii("문의 055-123-4567 / hong@example.com")
     assert "055" not in out and "@" not in out
