@@ -41,6 +41,7 @@ def _parser() -> argparse.ArgumentParser:
     r = sub.add_parser("report", help="요약본 생성(및 발송)")
     r.add_argument("--send", action="store_true", help="채널로 발송하고 보고 상태를 기록")
     r.add_argument("--mark", action="store_true", help="발송 없이 보고 상태만 기록")
+    r.add_argument("--no-mark", action="store_true", help="발송하되 보고 상태를 기록하지 않음 (테스트 발송용)")
     r.add_argument("--print", dest="print_md", action="store_true", help="Markdown을 표준출력으로")
 
     pr = sub.add_parser("probe", help="소스 하나를 시험 수집")
@@ -135,9 +136,11 @@ def main(argv: list[str] | None = None) -> int:
                     failures.append(f"{ch}: 지원하지 않는 채널")
             for f in failures:
                 print(f"[report] 발송 실패 {f}", file=sys.stderr)
-        if args.send or args.mark:
+        if (args.send or args.mark) and not args.no_mark:
             store.mark_reported(data.keys(), now, bundle.settings.report.closing_soon_days)
             store.save()
+        elif args.no_mark:
+            print("[report] --no-mark: 보고 상태를 기록하지 않음 (다음 리포트에도 신규로 표시됨)", file=sys.stderr)
         sent_any = args.send and len(failures) < len(bundle.settings.notify.channels)
         return 0 if (not args.send or sent_any) else 1
 
