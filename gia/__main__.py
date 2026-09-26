@@ -18,6 +18,7 @@ from .classify.llm import LlmClassifier
 from .feedback import LABELS, append_feedback, feedback_path, load_feedback
 from .pipeline import build_posting, collect, enrich_attachments
 from .report.build import email_subject, render_email, render_markdown, render_telegram, select_postings, write_report
+from .excel import build_workbook
 from .site import build_site
 from .stats import compute_stats
 from .store import Store
@@ -68,6 +69,10 @@ def _parser() -> argparse.ArgumentParser:
 
     si = sub.add_parser("site", help="GitHub Pages용 정적 아카이브 생성")
     si.add_argument("--out", default="site")
+
+    xl = sub.add_parser("excel", help="엑셀 파일 생성 (공고목록·요약·수집원 현황)")
+    xl.add_argument("--out", default="reports/경남_강사구인공고.xlsx")
+    xl.add_argument("--include-expired", action="store_true", help="마감된 공고도 포함 (기본은 제외)")
 
     sub.add_parser("status", help="저장소 요약")
     return p
@@ -225,6 +230,18 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "site":
         info = build_site(list(store.values()), Path(args.reports_dir), Path(args.out), now)
         print(f"[site] {args.out}/ 생성 · 활성 공고 {info['active']}건 · 리포트 {info['reports']}개")
+        return 0
+
+    if args.cmd == "excel":
+        postings = list(store.values())
+        if not args.include_expired:
+            postings = [p for p in postings if p.status != Status.expired]
+        postings = [p for p in postings if "피드백제외" not in p.flags]
+        path = build_workbook(
+            postings, bundle.sources, Path(args.out), now,
+            source_names={s.id: s.name for s in bundle.sources},
+        )
+        print(f"[excel] {path} · 공고 {len(postings)}건 · 수집원 {len(bundle.sources)}곳")
         return 0
 
     if args.cmd == "status":
