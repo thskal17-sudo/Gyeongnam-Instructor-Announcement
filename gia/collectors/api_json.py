@@ -27,9 +27,11 @@ _PERCENT_ESCAPE = re.compile(r"%[0-9A-Fa-f]{2}")
 
 
 def normalize_api_key(name: str, value: Any) -> Any:
-    if name not in KEY_PARAMS or not isinstance(value, str) or not _PERCENT_ESCAPE.search(value):
+    if name not in KEY_PARAMS or not isinstance(value, str):
         return value
-    return unquote(value)
+    # Secrets 에 붙여넣을 때 딸려오는 앞뒤 공백·줄바꿈도 같은 오류를 낸다.
+    value = value.strip()
+    return unquote(value) if _PERCENT_ESCAPE.search(value) else value
 
 
 class ApiJsonAdapter(SourceAdapter):

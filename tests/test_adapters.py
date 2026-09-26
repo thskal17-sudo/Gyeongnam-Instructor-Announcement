@@ -182,8 +182,12 @@ def test_encoding_form_api_key_is_decoded_once(settings, monkeypatch):
     assert normalize_api_key("authKey", encoded) == raw
     # Decoding 키(이미 원본)는 그대로 둔다 — 퍼센트 이스케이프가 없다.
     assert normalize_api_key("serviceKey", raw) == raw
+    # 붙여넣을 때 딸려온 앞뒤 공백·줄바꿈은 떼어낸다.
+    assert normalize_api_key("serviceKey", f"  {raw}\n") == raw
+    assert normalize_api_key("serviceKey", f"{encoded}\n") == raw
     # 키가 아닌 파라미터는 건드리지 않는다.
     assert normalize_api_key("keyword", "%EA%B0%95%EC%82%AC") == "%EA%B0%95%EC%82%AC"
+    assert normalize_api_key("keyword", " 강사 ") == " 강사 "
 
     seen: list[str] = []
 
