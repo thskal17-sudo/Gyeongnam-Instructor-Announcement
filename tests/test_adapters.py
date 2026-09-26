@@ -133,3 +133,40 @@ def test_tls_verify_false_routes_host_to_insecure_client(settings):
     ctx = HttpClient.legacy_tls_context()
     assert ctx.minimum_version == ssl.TLSVersion.TLSv1 and ctx.verify_mode == ssl.CERT_NONE
     legacy.close()
+
+
+def test_4xx_error_carries_server_reason(settings):
+    """4xx 는 상태 코드만 남기지 말고 서버가 알려준 거부 사유까지 실어야 한다 (공공데이터포털 403 진단)."""
+    import pytest
+
+    from gia.collectors.base import FetchError
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(
+            403,
+            headers={"returnAuthMsg": "SERVICE_ACCESS_DENIED_ERROR", "returnReasonCode": "20"},
+            text="<OpenAPI_ServiceResponse>\n  <cmmMsgHeader>\n    <errMsg>SERVICE ERROR</errMsg>\n  </cmmMsgHeader>\n</OpenAPI_ServiceResponse>",
+        )
+
+    http = HttpClient(settings.collector, transport=httpx.MockTransport(handler))
+    with pytest.raises(FetchError) as e:
+        http.get("https://apis.data.go.kr/1051000/recruitment/list")
+    msg = str(e.value)
+    assert "HTTP 403" in msg
+    assert "returnAuthMsg=SERVICE_ACCESS_DENIED_ERROR" in msg
+    assert "returnReasonCode=20" in msg
+    assert "SERVICE ERROR" in msg
+    http.close()
+
+
+def test_4xx_without_reason_stays_short(settings):
+    """본문·헤더가 비면 기존처럼 짧은 메시지 그대로."""
+    import pytest
+
+    from gia.collectors.base import FetchError
+
+    http = HttpClient(settings.collector, transport=httpx.MockTransport(lambda r: httpx.Response(404)))
+    with pytest.raises(FetchError) as e:
+        http.get("https://example.org/gone")
+    assert str(e.value) == "HTTP 404 https://example.org/gone"
+    http.close()
