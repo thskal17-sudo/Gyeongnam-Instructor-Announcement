@@ -75,6 +75,44 @@ def test_dday_and_summary_use_formulas(tmp_path):
     assert all("'공고목록'!" in f for f in formulas if f.startswith(("=COUNTIF(", "=COUNTIFS(")))
 
 
+def test_summary_uses_exact_match_except_region(tmp_path):
+    """부분 일치를 쓰면 '마감'이 '마감임박'까지 세어 값이 부풀려진다.
+    지역만 한 칸에 여러 값이 들어가므로 거기서만 부분 일치를 쓴다."""
+    path = build_workbook(_postings(), _sources(), tmp_path / "out.xlsx", NOW)
+    ws = load_workbook(path)["요약"]
+    section = None
+    seen = {}
+    for r in range(4, ws.max_row + 1):
+        a, b = ws[f"A{r}"].value, ws[f"B{r}"].value
+        if a and not isinstance(b, str) and str(a).endswith("별"):
+            section = a
+        elif isinstance(b, str) and b.startswith("=COUNTIF("):
+            seen.setdefault(section, set()).add("부분" if '"*"&' in b else "정확")
+    assert seen["상태별"] == {"정확"}
+    assert seen["분야별"] == {"정확"}
+    assert seen["고용형태별"] == {"정확"}
+    assert seen["지역별"] == {"부분"}
+
+
+def test_summary_ranges_cover_every_data_row(tmp_path):
+    """범위가 데이터 행 전체를 정확히 덮어야 한다 (off-by-one 이면 조용히 틀린 값이 나온다)."""
+    import re
+
+    postings = _postings()
+    path = build_workbook(postings, _sources(), tmp_path / "out.xlsx", NOW)
+    ws = load_workbook(path)["요약"]
+    last = FIRST_DATA_ROW + len(postings) - 1
+    pattern = re.compile(r"'공고목록'!\$[A-Z]+\$(\d+):\$[A-Z]+\$(\d+)")
+    found = 0
+    for row in ws.iter_rows():
+        for c in row:
+            if isinstance(c.value, str) and c.value.startswith("=COUNTIF"):
+                for start, end in pattern.findall(c.value):
+                    assert (int(start), int(end)) == (FIRST_DATA_ROW, last)
+                    found += 1
+    assert found > 0
+
+
 def test_hyperlink_on_source_url(tmp_path):
     path = build_workbook(_postings(), _sources(), tmp_path / "out.xlsx", NOW)
     ws = load_workbook(path)["공고목록"]

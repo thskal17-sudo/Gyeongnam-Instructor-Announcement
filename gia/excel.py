@@ -150,8 +150,14 @@ def build_postings_sheet(ws: Worksheet, postings: Sequence[Posting], now: dateti
     ws.freeze_panes = f"A{FIRST_DATA_ROW}"
 
 
-def _count_block(ws: Worksheet, row: int, heading: str, value_col: str, labels: Iterable[str], n: int) -> int:
-    """요약 시트에 집계 표 하나를 쓰고 다음 빈 행을 돌려준다. 수치는 모두 COUNTIF 수식."""
+def _count_block(
+    ws: Worksheet, row: int, heading: str, value_col: str, labels: Iterable[str], n: int, partial: bool = False
+) -> int:
+    """요약 시트에 집계 표 하나를 쓰고 다음 빈 행을 돌려준다. 수치는 모두 COUNTIF 수식.
+
+    partial=True 는 한 칸에 값이 여러 개 들어가는 열(지역: "창원, 김해")에만 쓴다.
+    다른 열에 쓰면 이름이 겹치는 항목을 겹쳐 센다 ("마감"이 "마감임박"까지 세는 식).
+    """
     ws[f"A{row}"] = heading
     ws[f"A{row}"].font = SECTION_FONT
     row += 1
@@ -165,11 +171,12 @@ def _count_block(ws: Worksheet, row: int, heading: str, value_col: str, labels: 
     target = f"'공고목록'!${value_col}${FIRST_DATA_ROW}:${value_col}${last}"
     status = f"'공고목록'!${COL['상태']}${FIRST_DATA_ROW}:${COL['상태']}${last}"
     start = row
+    criteria = f'"*"&A{{row}}&"*"' if partial else "A{row}"
     for label in labels:
         ws[f"A{row}"] = label
-        # 부분 일치(지역은 "창원, 김해"처럼 여러 값이 한 칸에 들어간다)
-        ws[f"B{row}"] = f'=COUNTIF({target},"*"&A{row}&"*")'
-        ws[f"C{row}"] = f'=COUNTIFS({target},"*"&A{row}&"*",{status},"<>마감")'
+        crit = criteria.format(row=row)
+        ws[f"B{row}"] = f"=COUNTIF({target},{crit})"
+        ws[f"C{row}"] = f'=COUNTIFS({target},{crit},{status},"<>마감")'
         for c in "ABC":
             ws[f"{c}{row}"].font = BASE_FONT
             ws[f"{c}{row}"].border = BORDER
@@ -200,7 +207,8 @@ def build_summary_sheet(ws: Worksheet, postings: Sequence[Posting], now: datetim
 
     row = _count_block(ws, 4, "상태별", COL["상태"], STATUS_ORDER, n)
     row = _count_block(ws, row, "분야별", COL["분야"], fields, n)
-    row = _count_block(ws, row, "지역별", COL["지역"], regions, n)
+    # 지역만 부분 일치: 한 칸에 "창원, 김해"처럼 여러 지역이 들어간다
+    row = _count_block(ws, row, "지역별", COL["지역"], regions, n, partial=True)
     row = _count_block(ws, row, "고용형태별", COL["고용형태"], sorted({p.employment_type for p in postings}), n)
 
     notes = [
