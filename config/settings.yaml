@@ -37,4 +37,5 @@ interests:
   keywords: []         # 예: [한국어, 디지털, 성인문해]
 
 notify:
-  channels: [telegram]   # email을 추가하려면 SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, EMAIL_FROM, EMAIL_TO 설정
+  channels: [email]   # 이메일 발송. 저장소 Secrets 에 SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD, EMAIL_FROM, EMAIL_TO 필요
+                      # 텔레그램을 함께 쓰려면 [email, telegram] 로 두고 TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID 등록

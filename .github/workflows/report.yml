@@ -7,6 +7,9 @@ on:
       send:
         description: "실제 발송 여부 (false면 파일만 생성)"
         default: "true"
+      email_to:
+        description: "테스트 수신자 (입력하면 이 주소로만 보내고 보고 상태를 기록하지 않음)"
+        default: ""
 concurrency:
   group: pipeline
   cancel-in-progress: false
@@ -35,10 +38,17 @@ jobs:
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
-          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          EMAIL_TO: ${{ github.event.inputs.email_to || secrets.EMAIL_TO }}
         run: |
           if [ "${{ github.event.inputs.send }}" = "false" ]; then
             python -m gia report --print
+          elif [ -n "${{ github.event.inputs.email_to }}" ]; then
+            echo "테스트 발송: ${{ github.event.inputs.email_to }} (보고 상태 기록 안 함)"
+            if [ -z "$SMTP_HOST" ]; then
+              echo "::error::SMTP_HOST 미설정 — 저장소 Secrets 에 SMTP_HOST/SMTP_USER/SMTP_PASSWORD 를 등록해야 발송됩니다."
+              exit 1
+            fi
+            python -m gia report --send --no-mark
           elif [ -n "$TELEGRAM_BOT_TOKEN" ] || [ -n "$SMTP_HOST" ]; then
             python -m gia report --send
           else
@@ -46,7 +56,7 @@ jobs:
             python -m gia report --mark
           fi
       - name: commit report
-        if: always()
+        if: always() && github.event.inputs.email_to == ''
         run: |
           git config user.name "gia-bot"
           git config user.email "gia-bot@users.noreply.github.com"
