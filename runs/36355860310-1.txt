@@ -1,0 +1,82 @@
+====================================================================================================
+URL: https://www.yangsan.go.kr/portal/saeol/gosi/list.do?mid=0102010000
+status=200 final=https://www.yangsan.go.kr/portal/saeol/gosi/list.do?mid=0102010000 encoding=UTF-8 bytes=474709
+title: 고시/공고 목록 
+
+	
+	
+	
+		
+			| 고시ㆍ공고
+			
+		
+	
+		
+			| 양산소식
+			
+		
+	
+		
+	
+		
+	
+		
+	
+	| 
+
+[TABLE] div#conts.conts > form#list > table.bod_list.taC.gosi  rows=11
+   row: tr -> th.list_num:번호 | th.list_notice_num:고시공고번호 | th:제목 | th.list_dept:담당부서 | th.list_date:등록일
+   row: tr -> td.list_num:1146 | td:양산시 공고 제2026-2647호 | td.taL.list_tit:2026년 아이돌봄사 모집 공고 | td.list_dept:여성청소년과 | td.list_date:2026-09-28
+      td.list_num :: own='1146' all='1146'
+      td :: own='양산시 공고  \n제2026-2647호' all='양산시 공고 제2026-2647호'
+      td.taL.list_tit :: own='' all='2026년 아이돌봄사 모집 공고'
+      a href=# onclick=req.post(this); return false; attrs={'data-action': '/portal/saeol/gosi/view.do?notAncmtMgtNo'} :: own='2026년 아이돌봄사 모집 공고' all='2026년 아이돌봄사 모집 공고'
+      td.list_dept :: own='여성청소년과' all='여성청소년과'
+      td.list_date :: own='2026-09-28' all='2026-09-28'
+[DATES] sample: ['2026-09-28', '2026.1.1', '2026-09-28', '2026-09-28', '2026-09-28']
+
+[ANCHORS] most common link paths
+   x10 tbody > tr > td.taL.list_tit > a  href=# {'data-action': '/portal/saeol/gosi/view.do?notAncmtMgtNo', 'onclick': 'req.post(this); return false;'} text='2026년 아이돌봄사 모집 공고'
+      row? tr :: '1146 양산시 공고 제2026-2647호 2026년 아이돌봄사 모집 공고 여성청소년과 2026-09-28'
+
+[LINKS] board candidates (98)
+   '양산소식' -> https://www.yangsan.go.kr/portal/saeol/gosi/list.do?mid=0102010000
+   '양산소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0100000000
+   '고시ㆍ공고' -> https://www.yangsan.go.kr/portal/contents.do?mid=0102000000
+   '고시/공고' -> https://www.yangsan.go.kr/portal/contents.do?mid=0102010000
+   '새소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0101000000
+   '새소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0101010000
+   '타기관소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0101020000
+   '입찰공고' -> https://www.yangsan.go.kr/portal/contents.do?mid=0102020000
+   '시험공고' -> https://www.yangsan.go.kr/portal/contents.do?mid=0102030000
+   '기업일자리정보' -> https://www.yangsan.go.kr/job/contents.do?mid=0201010000
+   '시정소식지' -> https://www.yangsan.go.kr/portal/contents.do?mid=0106020000
+   '시정소식지 구독신청' -> https://www.yangsan.go.kr/portal/contents.do?mid=0106020400
+   '양산시정 소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0106060000
+   '개별·공동주택가격(안)열람' -> https://www.realtyprice.kr/notice/town/searchOpinion.htm
+   '개별주택가격 열람' -> https://www.realtyprice.kr/notice/hpindividual/search.htm
+   '공동주택가격열람' -> https://www.realtyprice.kr/notice/town/nfSiteLink.htm 
+   '지방세 새소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0205040102
+   '불법주정차 단속 알림서비스' -> https://www.yangsan.go.kr/parkingsms/re_new/
+   '예산 건의게시판' -> https://www.yangsan.go.kr/portal/contents.do?mid=0303030000
+   '새소식(자료실)' -> https://www.yangsan.go.kr/portal/contents.do?mid=0303040000
+   '자유게시판' -> https://www.yangsan.go.kr/portal/contents.do?mid=0308000000
+   '인구정책 소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0401150300
+   '적극행정 게시판' -> https://www.yangsan.go.kr/portal/contents.do?mid=0409040000
+   '새소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0507020103
+   '민원편람 및 소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0507020105
+   '새소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0507020203
+   '민원편람 및 소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0507020205
+   '새소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0507020303
+   '민원편람 및 소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0507020305
+   '새소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0507030103
+   '민원편람 및 소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0507030105
+   '새소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0507030203
+   '민원편람 및 소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0507030205
+   '기업일자리경제포털' -> https://www.yangsan.go.kr/job/main.do
+   '새소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0507030303
+   '새소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0507030403
+   '민원편람 및 소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0507030405
+   '새소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0507160103
+   '새소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0507160503
+   '민원편람 및 소식' -> https://www.yangsan.go.kr/portal/contents.do?mid=0507160505
