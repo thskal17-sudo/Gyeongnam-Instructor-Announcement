@@ -1,28 +1,123 @@
+{#
+  본문은 오늘 볼 것만 표로 싣는다(신규·마감임박). 전체 목록과 수집 현황은 첨부 엑셀로
+  보낸다 — 본문에 다 넣으면 길어서 정작 급한 건을 놓친다.
+
+  메일은 웹이 아니다. 지메일은 <link> 웹폰트를 막으므로 Pretendard 는 기기에 깔려
+  있을 때만 잡히고, 아니면 시스템 한글 폰트로 떨어진다. flex·grid 는 아웃룩에서
+  깨지므로 표로 짠다. CSS 는 <style> 블록이 잘려 나가는 클라이언트가 있어 전부 인라인.
+#}
+{% set F = "'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',system-ui,sans-serif" %}
+{% macro dcell(p) %}
+{% if p|dday %}{{ p|dday }}{% elif p.deadline_type.value == 'until_filled' %}채용시까지{% else %}원문확인{% endif %}
+{% endmacro %}
+{% macro table(rows) %}
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;margin:0 0 4px;">
+  <tr>
+    {% for h, w in [("마감", "72"), ("분야", "88"), ("기관", "150"), ("제목", "")] %}
+    <th width="{{ w }}" style="background:#1b64da;color:#ffffff;font-size:12px;font-weight:700;text-align:left;padding:9px 10px;border:1px solid #1b64da;white-space:nowrap;">{{ h }}</th>
+    {% endfor %}
+  </tr>
+  {% for p in rows %}
+  {% set hot = p|urgent %}
+  <tr style="background:{{ '#fff0f1' if hot else ('#ffffff' if loop.index is odd else '#f9fafb') }};">
+    <td style="font-size:13px;font-weight:700;color:{{ '#f04452' if hot else '#4e5968' }};padding:10px;border:1px solid #e5e8eb;white-space:nowrap;">{{ dcell(p)|trim }}</td>
+    <td style="font-size:12px;color:#4e5968;padding:10px;border:1px solid #e5e8eb;">{{ p.field|field_name }}</td>
+    <td style="font-size:12px;color:#4e5968;padding:10px;border:1px solid #e5e8eb;">{{ p.org_name }}</td>
+    <td style="font-size:13px;padding:10px;border:1px solid #e5e8eb;line-height:1.45;">
+      <a href="{{ p.primary_url }}" style="color:#1b64da;text-decoration:underline;font-weight:600;">{{ p.title }}</a>
+      {% if p.one_line_summary %}<div style="font-size:12px;color:#8b95a1;margin-top:4px;">{{ p.one_line_summary }}{% if p.pay %} · {{ p.pay }}{% endif %}</div>{% endif %}
+      {% if '판별유보' in p.flags %}<div style="font-size:11px;color:#8b95a1;margin-top:3px;">⚠ 강사 공고 여부 확인 필요</div>{% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endmacro %}
+{% macro heading(text, n) %}
+<div style="font-size:15px;font-weight:700;color:#191f28;letter-spacing:-0.01em;margin:26px 0 10px;">{{ text }} ({{ n }})</div>
+{% endmacro %}
+{% macro empty() %}
+<div style="background:#f2f4f6;border-radius:10px;padding:22px;text-align:center;font-size:13px;color:#8b95a1;">없음</div>
+{% endmacro %}
 <!DOCTYPE html>
-<html lang="ko"><head><meta charset="utf-8"><title>경남 강사 구인공고 {{ r.date_str }}</title></head>
-<body style="font-family:-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:14px;line-height:1.5;color:#222;max-width:720px;margin:0 auto;padding:16px;">
-<h2 style="margin:0 0 4px;">경남 강사 구인공고 일일 요약 — {{ r.date_str }}</h2>
-<p style="margin:0 0 16px;color:#555;">신규 <b>{{ r.new|length }}건</b> · 마감 임박 <b>{{ r.closing|length }}건</b> · 변경 <b>{{ r.updated|length }}건</b></p>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>경남 강사공고 {{ r.date_str }}</title></head>
+<body style="margin:0;padding:0;background:#f2f4f6;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#f2f4f6;">
+<tr><td align="center" style="padding:20px 10px 36px;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="820" style="width:100%;max-width:820px;background:#ffffff;border:1px solid #e5e8eb;border-radius:14px;font-family:{{ F }};">
 
-{% if r.overview %}<p style="background:#f4f6f8;padding:8px 12px;border-radius:6px;">{{ r.overview }}</p>{% endif %}
-<h3 style="border-bottom:1px solid #ddd;padding-bottom:4px;">⏰ 마감 임박 ({{ r.closing_days }}일 이내)</h3>
-{% for p in r.closing %}
-<p style="margin:0 0 12px;"><b>[{{ p.field|field_name }}] {{ p.org_name }} · <a href="{{ p.primary_url }}">{{ p.title }}</a></b> — {{ p|dday }}<br>
-<span style="color:#555;">마감 {{ p|deadline_str }} · {{ p.region|region_str }} · {{ p.employment_type }}{% if '판별유보' in p.flags %} · ⚠ 강사 공고 여부 확인 필요{% endif %}{% if '재공고' in p.flags %} · 재공고{% endif %}</span></p>
-{% else %}<p>없음</p>{% endfor %}
+  <tr><td style="padding:26px 26px 0;">
+    <div style="font-size:21px;font-weight:800;letter-spacing:-0.03em;color:#191f28;margin:0 0 8px;">
+      경남 지방 강사 구인공고 {{ r.date_str }}
+    </div>
+    <div style="font-size:13px;color:#4e5968;line-height:1.6;">
+      신규 <b style="color:#191f28;">{{ r.new|length }}건</b> ·
+      마감임박(D-{{ r.closing_days }}) <b style="color:#f04452;">{{ r.closing|length }}건</b> ·
+      진행중 전체 <b style="color:#191f28;">{{ active_total }}건</b>
+      {% if attached %}— 전체 목록은 첨부 엑셀을 확인하세요.{% endif %}
+    </div>
+    {% if r.overview %}
+    <div style="border-left:3px solid #3182f6;background:#f9fafb;border-radius:0 8px 8px 0;padding:11px 14px;margin:14px 0 0;font-size:13px;line-height:1.6;color:#4e5968;">{{ r.overview }}</div>
+    {% endif %}
+  </td></tr>
 
-<h3 style="border-bottom:1px solid #ddd;padding-bottom:4px;">🆕 신규 공고</h3>
-{% for p in r.new %}
-<p style="margin:0 0 12px;"><b>[{{ p.field|field_name }}] {{ p.org_name }} · <a href="{{ p.primary_url }}">{{ p.title }}</a></b><br>
-<span style="color:#555;">마감 {{ p|deadline_str }} · {{ p.region|region_str }} · {{ p.employment_type }}{% if '판별유보' in p.flags %} · ⚠ 강사 공고 여부 확인 필요{% endif %}{% if '재공고' in p.flags %} · 재공고{% endif %}{% if '첨부추출실패' in p.flags and not p.deadline %} · 첨부 추출 실패{% endif %}</span>{% if p.one_line_summary %}<br><span>{{ p.one_line_summary }}{% if p.pay %} · {{ p.pay }}{% endif %}</span>{% endif %}</p>
-{% else %}<p>없음</p>{% endfor %}
+  <tr><td style="padding:0 26px;">
+    {{ heading("🆕 신규 공고", r.new|length) }}
+    {% if r.new %}{{ table(r.new) }}{% else %}{{ empty() }}{% endif %}
 
-<h3 style="border-bottom:1px solid #ddd;padding-bottom:4px;">🔄 변경 공고</h3>
-{% for p in r.updated %}
-<p style="margin:0 0 8px;">[{{ p.field|field_name }}] {{ p.org_name }} · <a href="{{ p.primary_url }}">{{ p.title }}</a> — 마감 {{ p|deadline_str }}{% if p.flags %} ({{ p.flags|join(', ') }}){% endif %}</p>
-{% else %}<p>없음</p>{% endfor %}
+    {{ heading("⏰ 마감임박", r.closing|length) }}
+    {% if r.closing %}{{ table(r.closing) }}{% else %}{{ empty() }}{% endif %}
 
-{% if r.run %}{% set c = r.run.counts() %}
-<p style="margin-top:24px;color:#888;font-size:12px;">수집 소스 정상 {{ c.ok + c.empty }} / 실패 {{ c.fail }} / 미설정 {{ c.unconfigured }}{% if c.fail %} · 실패: {% for s in r.run.sources if s.status == 'fail' %}{{ s.source_id }}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}</p>
-{% endif %}
+    {% if r.updated %}
+    {{ heading("🔄 변경 공고", r.updated|length) }}
+    {{ table(r.updated) }}
+    {% endif %}
+  </td></tr>
+
+  {% if r.weekly %}
+  <tr><td style="padding:0 26px;">
+    {{ heading("📊 주간 통계", "%d일"|format(r.weekly.days)) }}
+    <div style="font-size:13px;color:#4e5968;line-height:1.7;margin:0 0 10px;">
+      최근 {{ r.weekly.days }}일 신규 <b style="color:#191f28;">{{ r.weekly.total }}건</b> ·
+      현재 활성 <b style="color:#191f28;">{{ r.weekly.active_total }}건</b> ·
+      7일 내 마감 <b style="color:#f04452;">{{ r.weekly.closing_next_week }}건</b>
+    </div>
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;">
+      <tr>
+        {% for label, items in [("분야", r.weekly.by_field|dictsort(by='value', reverse=true)),
+                                ("지역", r.weekly.by_region|dictsort(by='value', reverse=true))] %}
+        <td width="50%" valign="top" style="padding:0 8px 0 0;">
+          <div style="font-size:12px;font-weight:700;color:#8b95a1;margin:0 0 6px;">{{ label }}</div>
+          {% for k, v in items[:5] %}
+          <div style="font-size:13px;color:#4e5968;padding:4px 0;border-bottom:1px solid #f2f4f6;">
+            {{ k|field_name if label == "분야" else k }}
+            <b style="color:#191f28;float:right;">{{ v }}</b>
+          </div>
+          {% endfor %}
+        </td>
+        {% endfor %}
+      </tr>
+    </table>
+  </td></tr>
+  {% endif %}
+
+  <tr><td style="padding:22px 26px 26px;">
+    {% if r.run %}{% set c = r.run.counts() %}
+    <div style="font-size:12px;color:#8b95a1;line-height:1.7;border-top:1px solid #e5e8eb;padding-top:14px;">
+      수집 소스 정상 <b style="color:#4e5968;">{{ c.ok + c.empty }}</b> ·
+      실패 <b style="color:{{ '#f04452' if c.fail else '#4e5968' }};">{{ c.fail }}</b> ·
+      미설정 <b style="color:#4e5968;">{{ c.unconfigured }}</b>
+      {% if c.fail %}<br>실패 소스: {% for s in r.run.sources if s.status == 'fail' %}{{ s.source_id }}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}
+      <br>이 메일은 GitHub Actions 에서 매일 자동 발송됩니다.
+    </div>
+    {% endif %}
+    {% if site_url %}
+    <div style="margin:16px 0 0;">
+      <a href="{{ site_url }}" style="display:inline-block;background:#3182f6;color:#ffffff;font-size:14px;font-weight:700;text-decoration:none;padding:12px 24px;border-radius:10px;">전체 목록 보기</a>
+    </div>
+    {% endif %}
+  </td></tr>
+
+</table>
+</td></tr></table>
 </body></html>

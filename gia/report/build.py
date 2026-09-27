@@ -10,7 +10,7 @@ from jinja2 import Environment, PackageLoader, select_autoescape
 from ..config import ConfigBundle
 from ..extract.deadline import KST
 from ..models import FIELD_NAMES, ORG_TYPE_ORDER, Posting, RunLog, Status
-from ..stats import compute_stats
+from ..stats import Stats, compute_stats
 from ..store import Store
 
 _WEEKDAYS = "월화수목금토일"
@@ -29,6 +29,7 @@ class ReportData:
     repo_url: str = ""
     overview: str | None = None
     weekly_md: str | None = None
+    weekly: "Stats | None" = None   # 메일은 마크다운을 못 그린다. 같은 값을 구조체로도 들고 간다
 
     def keys(self) -> list[str]:
         return [p.canonical_key for p in self.closing + self.new + self.updated]
@@ -36,7 +37,12 @@ class ReportData:
 
 def select_postings(bundle: ConfigBundle, store: Store, now: datetime) -> ReportData:
     rs = bundle.settings.report
-    horizon = now + timedelta(days=rs.closing_soon_days)
+    # '3일 이내'는 날짜로 센다. 지금 시각에 N일을 더하면 마감이 그날 23:59 인 공고가
+    # 창 밖으로 밀려, D-3 짜리가 하루 늦은 D-2 에야 처음 뜬다. 한국 공고는 마감이
+    # 23:59 인 경우가 대부분이라 사실상 경고가 하루씩 늦어진다. dday() 와 site.py 의
+    # urgent 표시도 날짜 차이로 재므로, 여기만 시각 기준이면 표시와 선별이 어긋난다.
+    horizon = (now.astimezone(KST) + timedelta(days=rs.closing_soon_days)).replace(
+        hour=23, minute=59, second=59, microsecond=999999)
     closing: list[Posting] = []
     new: list[Posting] = []
     updated: list[Posting] = []
@@ -55,11 +61,12 @@ def select_postings(bundle: ConfigBundle, store: Store, now: datetime) -> Report
     updated.sort(key=lambda p: p.last_seen_at, reverse=True)
     names = {s.id: s.name for s in bundle.sources}
     d = now.astimezone(KST)
-    weekly = compute_stats(store.values(), now, 7).to_markdown() if rs.weekly_stats_weekday == d.weekday() else None
+    weekly = compute_stats(store.values(), now, 7) if rs.weekly_stats_weekday == d.weekday() else None
     return ReportData(
         date_str=f"{d:%Y-%m-%d} ({_WEEKDAYS[d.weekday()]})",
         closing=closing, new=new, updated=updated, run=store.last_run(), source_names=names,
-        telegram_max_items=rs.telegram_max_items, closing_days=rs.closing_soon_days, weekly_md=weekly,
+        telegram_max_items=rs.telegram_max_items, closing_days=rs.closing_soon_days,
+        weekly_md=weekly.to_markdown() if weekly else None, weekly=weekly,
         repo_url=bundle.settings.collector.user_agent.split("+")[-1].rstrip(")") if "+" in bundle.settings.collector.user_agent else "",
     )
 
@@ -113,15 +120,35 @@ def render_telegram(data: ReportData, now: datetime) -> str:
     return env.get_template("telegram.html.j2").render(r=data, now=now)
 
 
-def render_email(data: ReportData, now: datetime) -> str:
+def is_urgent(p: Posting, now: datetime, days: int = 3) -> bool:
+    """마감이 코앞이면 메일에서 빨갛게 세운다. site.py 의 .urgent 와 같은 기준."""
+    if not p.deadline:
+        return False
+    left = (p.deadline.astimezone(KST).date() - now.astimezone(KST).date()).days
+    return 0 <= left <= days
+
+
+def render_email(data: ReportData, now: datetime, site_url: str = "",
+                 active_total: int | None = None, attached: bool = False) -> str:
     env = _env()
     env.filters["dday"] = lambda p: dday(p, now)
-    return env.get_template("email.html.j2").render(r=data, now=now)
+    env.filters["urgent"] = lambda p: is_urgent(p, now, data.closing_days)
+    if active_total is None:
+        active_total = len(data.closing) + len(data.new) + len(data.updated)
+    return env.get_template("email.html.j2").render(
+        r=data, now=now, site_url=site_url, active_total=active_total, attached=attached)
 
 
-def email_subject(data: ReportData, now: datetime) -> str:
+def email_subject(data: ReportData, now: datetime, test: bool = False) -> str:
+    """채널 제목. 표시를 여기서 붙여야 채널이 늘어도 빠지지 않는다.
+
+    점검 발송(--notify-test)은 공고가 없는 날에도 나가므로, 제목만 보고 진짜
+    공고 알림과 구별되어야 한다.
+    """
     d = now.astimezone(KST)
-    return f"[경남 강사공고] {d.month:02d}/{d.day:02d} 신규 {len(data.new)} · 마감임박 {len(data.closing)}"
+    head = "[테스트] " if test else ""
+    return (f"{head}[경남 강사공고] {d.month}/{d.day}({_WEEKDAYS[d.weekday()]}) "
+            f"신규 {len(data.new)}건 · 마감임박 {len(data.closing)}건")
 
 
 def write_report(md: str, reports_dir: Path, now: datetime) -> Path:
