@@ -7,7 +7,28 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Iterable
 
-from .models import Posting, RunLog, Status
+from .extract.deadline import KST, in_deadline_window
+from .models import DeadlineType, Posting, RunLog, Status
+
+
+def sanitize_deadline(p: Posting) -> bool:
+    """게시일 기준 유효 구간을 벗어난 마감일을 미상으로 되돌린다. 바꿨으면 True.
+
+    마감일 창 검증이 들어오기 전에 저장된 기록에는 계약기간 종료일이나 근거 규정의
+    연도가 마감일로 남아 있다. 원문에 다시 닿을 수 없는 소스도 있어(국내 IP 차단)
+    재파싱으로는 고칠 수 없으므로, 읽을 때마다 걸러 낸다. 지금 파서는 이런 값을
+    애초에 만들지 않으므로 새 기록에는 걸리지 않는다.
+    """
+    if not p.deadline or not p.posted_at:
+        return False
+    if in_deadline_window(p.deadline.astimezone(KST).date(), p.posted_at):
+        return False
+    p.deadline = None
+    p.deadline_type = DeadlineType.unknown
+    p.deadline_text = None
+    if "마감일무효" not in p.flags:
+        p.flags.append("마감일무효")
+    return True
 
 
 class Store:
@@ -31,6 +52,7 @@ class Store:
                         line = line.strip()
                         if line:
                             p = Posting.model_validate(json.loads(line))
+                            sanitize_deadline(p)
                             self.postings[p.canonical_key] = p
         self.seen_urls = self._read_json(self.index_dir / "seen_urls.json", {})
         self.excluded_urls = self._read_json(self.index_dir / "excluded_urls.json", {})
