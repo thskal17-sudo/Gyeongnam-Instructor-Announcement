@@ -36,3 +36,37 @@ def test_send_email_builds_multipart():
     assert msg["Subject"] == "[경남 강사공고] 09/21" and "a@x.org" in msg["To"]
     parts = [p.get_content_type() for p in msg.walk()]
     assert "text/plain" in parts and "text/html" in parts
+
+
+def test_smtp_env_is_cleaned():
+    """Secrets 에 딸려온 공백·줄바꿈과 Gmail 앱 비밀번호의 표시용 공백을 떼어낸다."""
+    from gia.notify.email import SmtpConfig
+
+    cfg = SmtpConfig.from_env({
+        "SMTP_HOST": " smtp.gmail.com\n",
+        "SMTP_PORT": " 465 ",
+        "SMTP_USER": "  me@gmail.com\n",
+        "SMTP_PASSWORD": "abcd efgh ijkl mnop\n",
+        "EMAIL_FROM": " me@gmail.com ",
+        "EMAIL_TO": " you@gmail.com , other@gmail.com ",
+    })
+    assert cfg is not None
+    assert cfg.host == "smtp.gmail.com"
+    assert cfg.port == 465
+    assert cfg.user == "me@gmail.com"
+    assert cfg.password == "abcdefghijklmnop"
+    assert cfg.sender == "me@gmail.com"
+    assert cfg.to == ["you@gmail.com", "other@gmail.com"]
+
+
+def test_non_app_password_keeps_inner_spaces():
+    """앱 비밀번호 형태가 아닌 암호는 가운데 공백도 값의 일부이므로 건드리지 않는다."""
+    from gia.notify.email import SmtpConfig
+
+    cfg = SmtpConfig.from_env({
+        "SMTP_HOST": "mail.example.org",
+        "SMTP_PASSWORD": "  correct horse battery staple  ",
+        "EMAIL_TO": "you@example.org",
+    })
+    assert cfg is not None
+    assert cfg.password == "correct horse battery staple"

@@ -1,10 +1,24 @@
 """이메일 발송 (SMTP). docs/DESIGN.md 10절."""
 from __future__ import annotations
 
+import re
 import smtplib
 from dataclasses import dataclass, field
 from email.message import EmailMessage
 from typing import Callable
+
+# Gmail 앱 비밀번호는 "abcd efgh ijkl mnop" 처럼 4자씩 끊어 보여주지만 공백은 값의 일부가 아니다.
+_APP_PASSWORD = re.compile(r"^[a-z]{4}( [a-z]{4}){3}$", re.I)
+
+
+def _clean(v: str | None) -> str | None:
+    """Secrets 에 붙여넣을 때 딸려온 앞뒤 공백·줄바꿈을 떼어낸다."""
+    return v.strip() if isinstance(v, str) else v
+
+
+def _clean_password(v: str | None) -> str | None:
+    v = _clean(v)
+    return v.replace(" ", "") if v and _APP_PASSWORD.match(v) else v
 
 
 @dataclass
@@ -19,13 +33,14 @@ class SmtpConfig:
 
     @classmethod
     def from_env(cls, env: dict) -> "SmtpConfig | None":
-        host = env.get("SMTP_HOST")
+        host = _clean(env.get("SMTP_HOST"))
         to = [x.strip() for x in (env.get("EMAIL_TO") or "").split(",") if x.strip()]
         if not host or not to:
             return None
+        user = _clean(env.get("SMTP_USER"))
         return cls(
-            host=host, port=int(env.get("SMTP_PORT") or 587), user=env.get("SMTP_USER"),
-            password=env.get("SMTP_PASSWORD"), sender=env.get("EMAIL_FROM") or env.get("SMTP_USER"), to=to,
+            host=host, port=int(_clean(env.get("SMTP_PORT")) or 587), user=user,
+            password=_clean_password(env.get("SMTP_PASSWORD")), sender=_clean(env.get("EMAIL_FROM")) or user, to=to,
         )
 
 
