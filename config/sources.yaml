@@ -324,8 +324,16 @@ sources:
     homepage: https://www.yangsan.go.kr
     adapter:
       type: html_list
-      list_url: TODO
-      candidate_list_url: https://www.yangsan.go.kr/portal/saeol/gosi/list.do?mid=0102010000
+      list_url: https://www.yangsan.go.kr/portal/saeol/gosi/list.do?mid=0102010000&pageIndex={page}
+      row_selector: table.bod_list.gosi tbody tr
+      title_selector: td.list_tit a
+      # 링크가 req.post(this) 라 href 는 '#' 이지만, data-action 에 상세 GET 주소가 통째로 들어 있다
+      link_attr: data-action
+      date_selector: td.list_date
+      org_name: 양산시
+      keywords: [강사, 교강사, 지도사, 지도자, 강의, 방과후, 돌봄, 교육]
+      paging: { max_pages: 2 }
+      detail: { fetch: true, body_selector: div.bod_view div.view_cont }
     notes: >-
       고시/공고 목록(table.bod_list.gosi, td.list_tit a, td.list_date)은 열리지만 링크가 req.post(this) POST 방식이라 현 어댑터로 상세 URL을 만들 수 없음. 상세는 GET /portal/saeol/gosi/view.do?notAncmtMgtNo=... 로 열림(2026-09-22 러너에서 재확인: 본문 div.bod_view div.view_cont, 첨부는 goDownload(...) onclick) → 행의 hidden input 지원 필요(Phase 4). 채용안내(job/board/post/list.do?bcIdx=31)도 같은 방식
   # --- 10개 군 ---

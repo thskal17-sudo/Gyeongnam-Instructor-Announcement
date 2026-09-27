@@ -116,7 +116,9 @@ def row_detail(row, limit: int = 14) -> None:
             extra = f" href={ (el.get('href') or '')[:90] } onclick={ (el.get('onclick') or '')[:60] }"
             data = {k: v for k, v in el.attrs.items() if k not in ("href", "onclick", "class", "title")}
             if data:
-                extra += f" attrs={ {k: str(v)[:40] for k, v in list(data.items())[:5]} }"
+                # data-action 같은 속성에 상세 URL 이 통째로 들어 있는 게시판이 있다(양산).
+                # 40자에서 자르면 주소가 파라미터 이름에서 끊겨 없는 것처럼 보인다
+                extra += f" attrs={ {k: str(v)[:160] for k, v in list(data.items())[:5]} }"
         print(f"      {sel(el)}{extra} :: own={own[:40]!r} all={txt[:50]!r}")
         n += 1
         if n >= limit:
