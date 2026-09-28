@@ -9,6 +9,9 @@ on:
       send:
         description: "실제 발송 여부 (false면 파일만 생성)"
         default: "true"
+      email_to:
+        description: "테스트 수신자 (입력하면 이 주소로만 보내고 보고 상태를 기록하지 않음)"
+        default: ""
       notify_test:
         description: "공고가 없어도 알림을 한 번 보내 채널 점검 (true/false)"
         default: "false"
@@ -41,19 +44,27 @@ jobs:
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
-          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          EMAIL_TO: ${{ github.event.inputs.email_to || secrets.EMAIL_TO }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SITE_URL: https://thskal17-sudo.github.io/Gyeongnam-Instructor-Announcement/
         run: |
           if [ "${{ github.event.inputs.send }}" = "false" ]; then
             python -m gia report --print
+          elif [ -n "${{ github.event.inputs.email_to }}" ]; then
+            echo "테스트 발송: ${{ github.event.inputs.email_to }} (보고 상태 기록 안 함)"
+            if [ -z "$SMTP_HOST" ]; then
+              echo "::error::SMTP_HOST 미설정 — 저장소 Secrets 에 SMTP_HOST/SMTP_USER/SMTP_PASSWORD 를 등록해야 발송됩니다."
+              exit 1
+            fi
+            python -m gia report --send --no-mark
           elif [ "${{ github.event.inputs.notify_test }}" = "true" ]; then
             python -m gia report --send --notify-test
           else
+            # 깃허브 이슈 채널은 비밀값이 없어도 돈다. 예전처럼 --mark 로 빠지지 않는다
             python -m gia report --send
           fi
       - name: commit report
-        if: always()
+        if: always() && github.event.inputs.email_to == ''
         run: |
           git config user.name "gia-bot"
           git config user.email "gia-bot@users.noreply.github.com"

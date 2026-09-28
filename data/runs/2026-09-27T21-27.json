@@ -1,0 +1,49 @@
+{
+ "finished_at": "2026-09-27T21:28:43.814606+09:00",
+ "llm_cache_read_tokens": 0,
+ "llm_calls": 0,
+ "llm_errors": 0,
+ "llm_excluded": 0,
+ "llm_input_tokens": 0,
+ "llm_output_tokens": 0,
+ "llm_refusals": 0,
+ "notes": [
+  "백필 30일",
+  "재수집: 이미 알던 URL도 상세를 다시 파싱"
+ ],
+ "run_id": "2026-09-27T21-27",
+ "sources": [
+  {
+   "detail_fetched": 1,
+   "duration_ms": 6651,
+   "errors": [],
+   "listed": 20,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "changwon",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "hadong",
+   "status": "fail",
+   "updated": 0
+  }
+ ],
+ "started_at": "2026-09-27T21:27:18.888883+09:00",
+ "totals": {
+  "closing_soon": 8,
+  "expired": 9,
+  "merged": 0,
+  "new": 0,
+  "updated": 0
+ }
+}
