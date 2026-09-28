@@ -44,6 +44,8 @@ def _parser() -> argparse.ArgumentParser:
     r.add_argument("--mark", action="store_true", help="발송 없이 보고 상태만 기록")
     r.add_argument("--no-mark", action="store_true", help="발송하되 보고 상태를 기록하지 않음 (테스트 발송용)")
     r.add_argument("--print", dest="print_md", action="store_true", help="Markdown을 표준출력으로")
+    r.add_argument("--notify-test", action="store_true",
+                   help="공고가 없어도 알림을 한 번 보내 채널이 살아 있는지 확인")
 
     pr = sub.add_parser("probe", help="소스 하나를 시험 수집")
     pr.add_argument("source_id")
@@ -114,6 +116,7 @@ def main(argv: list[str] | None = None) -> int:
         failures: list[str] = []
         if args.send:
             channels = bundle.settings.notify.channels
+            subject = email_subject(data, now, test=args.notify_test)
             if "telegram" in channels:
                 token, chat = os.environ.get("TELEGRAM_BOT_TOKEN"), os.environ.get("TELEGRAM_CHAT_ID")
                 if not token or not chat:
@@ -132,12 +135,49 @@ def main(argv: list[str] | None = None) -> int:
                     failures.append("email: SMTP_HOST/EMAIL_TO 없음")
                 else:
                     try:
-                        n = send_email(cfg, email_subject(data, now), render_email(data, now), md)
-                        print(f"[report] 이메일 {n}명에게 전송", file=sys.stderr)
+                        # 전체 목록·수집 현황은 첨부로 뺀다. 본문에 다 넣으면 길어서
+                        # 정작 급한 건을 놓친다
+                        xlsx: list[tuple[str, bytes]] = []
+                        try:
+                            from .report.excel import build_workbook, workbook_name
+                            xlsx = [(workbook_name(now), build_workbook(data, store, bundle, now))]
+                        except Exception as e:  # noqa: BLE001
+                            # 첨부가 실패해도 본문은 보낸다 — 알림이 통째로 빠지는 쪽이 더 나쁘다
+                            print(f"[report] 엑셀 첨부 생략: {e}", file=sys.stderr)
+                        active_total = sum(1 for p in store.values()
+                                           if p.status.value != "expired"
+                                           and not (p.deadline and p.deadline < now)
+                                           and "피드백제외" not in p.flags)
+                        html = render_email(data, now, os.environ.get("SITE_URL", ""),
+                                            active_total=active_total, attached=bool(xlsx))
+                        n = send_email(cfg, subject, html, md, attachments=xlsx)
+                        print(f"[report] 이메일 {n}명에게 전송"
+                              + (f" (첨부 {xlsx[0][0]})" if xlsx else " (첨부 없음)"), file=sys.stderr)
                     except Exception as e:  # noqa: BLE001
                         failures.append(f"email: {e}")
+            if "github" in channels:
+                repo, token = os.environ.get("GITHUB_REPOSITORY"), os.environ.get("GITHUB_TOKEN")
+                if not repo or not token:
+                    failures.append("github: GITHUB_REPOSITORY/GITHUB_TOKEN 없음")
+                elif not (data.new or data.closing or args.notify_test):
+                    # 조용한 날에는 열지 않는다. 매일 이슈가 열리면 알림이 배경 소음이 된다
+                    print("[report] 깃허브 이슈 생략(신규·마감임박 없음)", file=sys.stderr)
+                else:
+                    from .notify.github_issue import (
+                        default_assignees, issue_body, send_issue,
+                    )
+                    try:
+                        who = os.environ.get("NOTIFY_ASSIGNEES", "")
+                        assignees = ([w.strip() for w in who.split(",") if w.strip()]
+                                     if who else default_assignees(repo))
+                        url = send_issue(repo, token, subject,
+                                         issue_body(md, os.environ.get("SITE_URL", "")),
+                                         labels=["공고"], assignees=assignees)
+                        print(f"[report] 깃허브 이슈 {url}", file=sys.stderr)
+                    except Exception as e:  # noqa: BLE001
+                        failures.append(f"github: {e}")
             for ch in channels:
-                if ch not in ("telegram", "email"):
+                if ch not in ("telegram", "email", "github"):
                     failures.append(f"{ch}: 지원하지 않는 채널")
             for f in failures:
                 print(f"[report] 발송 실패 {f}", file=sys.stderr)

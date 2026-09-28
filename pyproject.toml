@@ -14,6 +14,7 @@ dependencies = [
   "olefile>=0.46",
   "openpyxl>=3.1",
   "anthropic>=1.0",
+  "openpyxl>=3.1",   # 일일 요약에 붙이는 엑셀 첨부 (gia/report/excel.py)
 ]
 
 [project.optional-dependencies]
