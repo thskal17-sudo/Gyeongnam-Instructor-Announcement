@@ -93,12 +93,12 @@ def parse_list_html(html: str, page_url: str, a: dict, cfg, since: date) -> tupl
     return out, oldest_on_page
 
 
-def extract_body_html(html: str, selector: str) -> str:
+def extract_body_html(html: str, selector: str, fallback_to_body: bool = True) -> str:
     tree = HTMLParser(html)
     for tag in ("script", "style", "noscript"):
         for n in tree.css(tag):
             n.decompose()
-    node = tree.css_first(selector) or tree.body
+    node = tree.css_first(selector) or (tree.body if fallback_to_body else None)
     if node is None:
         return ""
     text = node.text(separator="\n", strip=True)
@@ -145,4 +145,9 @@ class HtmlListAdapter(SourceAdapter):
         html = decode_html(r, d.get("encoding") or self.a.get("encoding"))
         body = extract_body_html(html, d.get("body_selector") or "body")
         attachments = extract_attachments_html(html, listing.url, d.get("attachment_selector"))
-        return RawPosting(**listing.model_dump(), body_text=body, attachments=attachments, fetched_at=datetime.now(KST))
+        raw = RawPosting(**listing.model_dump(), body_text=body, attachments=attachments, fetched_at=datetime.now(KST))
+        if d.get("content_selector"):
+            # 판별에는 머리 정보(지역·직종)까지 담긴 body 를 쓰고, 저장할 발췌는 본문 글만 담는다
+            # 셀렉터가 안 맞으면 페이지 전체로 물러나지 않고 비워 둔다 — 그러면 body 발췌를 쓴다
+            raw.extra["content_text"] = extract_body_html(html, d["content_selector"], fallback_to_body=False)
+        return raw

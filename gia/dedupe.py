@@ -77,6 +77,9 @@ def merge(existing: Posting, incoming: Posting, now: datetime, prefer_incoming: 
                 changed = True
     if not p.region and incoming.region:
         p.region = list(incoming.region)
+    # 본문 발췌는 새로 읽은 쪽이 최신이다. 의미 있는 변경으로 치지는 않는다(재공지 알림을 부르지 않게)
+    if incoming.body_excerpt:
+        p.body_excerpt = incoming.body_excerpt
     if p.relevance_score < incoming.relevance_score:
         p.relevance_score = incoming.relevance_score
         p.score_reasons = list(incoming.score_reasons)

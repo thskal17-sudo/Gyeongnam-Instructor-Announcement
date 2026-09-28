@@ -129,14 +129,17 @@ def is_urgent(p: Posting, now: datetime, days: int = 3) -> bool:
 
 
 def render_email(data: ReportData, now: datetime, site_url: str = "",
-                 active_total: int | None = None, attached: bool = False) -> str:
+                 active_total: int | None = None, attached: bool = False,
+                 gangsaitda: tuple[int, int] | None = None) -> str:
+    """gangsaitda: 강사잇다 양식을 붙였으면 (바로 올릴 줄, 보류 줄)."""
     env = _env()
     env.filters["dday"] = lambda p: dday(p, now)
     env.filters["urgent"] = lambda p: is_urgent(p, now, data.closing_days)
     if active_total is None:
         active_total = len(data.closing) + len(data.new) + len(data.updated)
     return env.get_template("email.html.j2").render(
-        r=data, now=now, site_url=site_url, active_total=active_total, attached=attached)
+        r=data, now=now, site_url=site_url, active_total=active_total, attached=attached,
+        gangsaitda=gangsaitda)
 
 
 def email_subject(data: ReportData, now: datetime, test: bool = False) -> str:

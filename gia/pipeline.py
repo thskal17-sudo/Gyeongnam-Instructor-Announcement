@@ -18,7 +18,7 @@ from .dedupe import canonical_key, find_duplicate, merge
 from .feedback import apply_feedback, feedback_path, load_feedback
 from .extract.attachments import extract_text, file_extension
 from .extract.deadline import KST, DeadlineType, parse_deadline, parse_known_format
-from .models import Posting, RawPosting, RunLog, SourceRef, SourceRunResult, Status
+from .models import Posting, RawListing, RawPosting, RunLog, SourceRef, SourceRunResult, Status
 from .models import FIELD_NAMES
 from .normalize import clean_url, extract_regions, mask_pii, normalize_title, standardize_org, strip_surrogates
 from .store import Store
@@ -33,6 +33,24 @@ class SourceOutcome:
     touched: list[str] = field(default_factory=list)  # 이미 알던 URL (last_seen 갱신)
     excluded: list[str] = field(default_factory=list)  # 규칙 점수 미달 URL
     bodies: dict[str, tuple[str, str | None]] = field(default_factory=dict)  # canonical_key → (본문, 근무지 필드) — LLM 입력용
+
+
+EXCERPT_MAX = 4000
+
+
+def body_excerpt(raw: RawPosting) -> str:
+    """저장할 본문 발췌. 전화·메일은 가린다.
+
+    content_selector 로 본문 글만 뽑았으면 그것에 첨부 글을 붙이고(창원시설공단처럼 본문은
+    제목 한 줄, 내용은 HWP 첨부에 있는 곳), 아니면 첨부가 이미 붙은 body_text 를 쓴다.
+    """
+    if "content_text" in raw.extra:
+        # 본문 칸이 비었어도 전체 틀(body_text)로 물러나지 않는다. 틀에는 작성자 실명·이전 글
+        # 제목이 있고, 발췌는 공개 저장소에 들어간다. 비면 양식에서 보류로 남을 뿐이다
+        content = (str(raw.extra["content_text"] or "") + "\n\n" + str(raw.extra.get("attachment_text") or "")).strip()
+    else:
+        content = raw.body_text or ""
+    return mask_pii(content).strip()[:EXCERPT_MAX]
 
 
 def build_posting(raw: RawPosting, cfg: SourceConfig, bundle: ConfigBundle, now: datetime) -> Posting | None:
@@ -76,6 +94,7 @@ def build_posting(raw: RawPosting, cfg: SourceConfig, bundle: ConfigBundle, now:
     key = canonical_key(org, title)
     content_hash = hashlib.sha1(f"{title}|{deadline_dt.isoformat() if deadline_dt else ''}|{body[:5000]}".encode()).hexdigest()
     return Posting(
+        body_excerpt=body_excerpt(raw),
         id=key[:12], canonical_key=key, title=title, org_name=org, org_type=cfg.org_type,
         field=rule.field, employment_type=rule.employment_type, region=regions,
         posted_at=posted, posted_at_inferred=inferred,
@@ -112,6 +131,8 @@ def enrich_attachments(raw: RawPosting, http: HttpClient, cs) -> None:
             errors.append(f"{name}: {res.error}")
     if parts:
         raw.body_text = ((raw.body_text or "") + "\n\n" + "\n\n".join(parts)).strip()
+        # content_selector 로 본문 글만 따로 뽑은 소스는 발췌에 첨부 글을 다시 붙여야 한다
+        raw.extra["attachment_text"] = "\n\n".join(parts)
     if errors:
         raw.extra["attachment_errors"] = errors
 
@@ -175,9 +196,42 @@ def run_source(cfg: SourceConfig, bundle: ConfigBundle, store: Store, http: Http
             out.bodies[p.canonical_key] = (mask_pii(raw.body_text or ""), raw.region_text)
         else:
             out.excluded.append(url)
+    if res.status != "fail":
+        backfill_bodies(cfg, adapter, store, out, http, cs, t0)
     adapter.close()
     res.duration_ms = int((time.monotonic() - t0) * 1000)
     return out
+
+
+def backfill_bodies(cfg: SourceConfig, adapter, store: Store, out: SourceOutcome, http: HttpClient | None,
+                    cs, t0: float) -> None:
+    """본문 발췌가 빈 진행 중 공고를 상세 주소로 다시 열어 채운다.
+
+    본문 저장은 강사잇다 양식을 붙이면서 들어왔다. 그 전에 모은 공고는 발췌가 비어 있는데,
+    게시판 1페이지에서 밀려난 글은 목록 단계에서 다시 만나지 못한다. 상세 주소는 그대로이니
+    그 주소로 직접 연다. 한 번 채운 공고는 다시 열지 않는다.
+    """
+    fresh = {p.canonical_key for p in out.postings}
+    todo = [p for p in list(store.values())
+            if not p.body_excerpt and p.status != Status.expired
+            and p.sources and p.sources[0].source_id == cfg.id
+            and p.canonical_key not in fresh]
+    for p in todo[: cs.body_backfill_per_source]:
+        if time.monotonic() - t0 > cs.source_time_budget_sec:
+            out.result.errors.append("시간 예산 초과: 본문 백필 중단")
+            break
+        listing = RawListing(source_id=cfg.id, title=p.title, url=p.primary_url,
+                             org_name=p.org_name, posted_at=p.posted_at)
+        try:
+            raw = adapter.fetch_detail(listing)
+        except Exception as e:  # noqa: BLE001 - 백필 실패는 다음 실행에서 다시 시도하면 된다
+            out.result.errors.append(f"본문 백필 실패 {listing.url}: {e}"[:300])
+            continue
+        if http is not None:
+            enrich_attachments(raw, http, cs)  # 목록 단계와 같은 발췌가 되도록 첨부 글도 읽는다
+        # 소스마다 다른 스레드에서 돌지만 자기 소스 공고만 건드리므로 서로 겹치지 않는다
+        p.body_excerpt = body_excerpt(raw)
+        out.result.detail_fetched += 1
 
 
 def apply_extraction(p: Posting, ext: Extraction) -> None:

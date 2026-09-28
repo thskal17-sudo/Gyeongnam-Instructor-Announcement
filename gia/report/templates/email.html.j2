@@ -56,6 +56,13 @@
       진행중 전체 <b style="color:#191f28;">{{ active_total }}건</b>
       {% if attached %}— 전체 목록은 첨부 엑셀을 확인하세요.{% endif %}
     </div>
+    {% if gangsaitda %}
+    <div style="font-size:13px;color:#4e5968;line-height:1.6;margin-top:4px;">
+      강사잇다 양식 첨부: 바로 올릴 줄 <b style="color:#191f28;">{{ gangsaitda[0] }}</b> ·
+      보류 <b style="color:#191f28;">{{ gangsaitda[1] }}</b>
+      {% if gangsaitda[1] %}(보류 줄은 메모 칸을 보고 원문에서 빈칸을 채운 뒤 '보류'를 지우세요){% endif %}
+    </div>
+    {% endif %}
     {% if r.overview %}
     <div style="border-left:3px solid #3182f6;background:#f9fafb;border-radius:0 8px 8px 0;padding:11px 14px;margin:14px 0 0;font-size:13px;line-height:1.6;color:#4e5968;">{{ r.overview }}</div>
     {% endif %}
