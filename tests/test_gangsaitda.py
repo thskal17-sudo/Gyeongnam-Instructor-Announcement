@@ -270,3 +270,15 @@ def test_excerpt_keeps_attachment_text_when_content_selector_used():
     assert ex.startswith("요가 강사 모집")
     assert "1. 계약기간" in ex
     assert "홍길동" not in ex  # 작성자 실명은 본문 칸 밖이라 저장하지 않는다
+
+
+def test_empty_content_does_not_fall_back_to_page_chrome():
+    """본문 칸이 비어도 작성자 실명이 있는 전체 틀로 물러나지 않는다(늘푸른전당, 2026-09-28)."""
+    from gia.pipeline import body_excerpt
+    raw = RawPosting(source_id="cw_fmc", title="t", url="https://x.org/1", fetched_at=NOW,
+                     body_text="작성자\n정민경\n본문\n이전글\n다른 공고", extra={"content_text": ""})
+    assert body_excerpt(raw) == ""
+
+
+def test_clean_detail_drops_attachment_markers():
+    assert clean_detail("[첨부: %EC%9D%91.hwp]\n1. 모집분야: 요가") == "1. 모집분야: 요가"

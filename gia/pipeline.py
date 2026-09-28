@@ -44,9 +44,10 @@ def body_excerpt(raw: RawPosting) -> str:
     content_selector 로 본문 글만 뽑았으면 그것에 첨부 글을 붙이고(창원시설공단처럼 본문은
     제목 한 줄, 내용은 HWP 첨부에 있는 곳), 아니면 첨부가 이미 붙은 body_text 를 쓴다.
     """
-    content = str(raw.extra.get("content_text") or "")
-    if content:
-        content = (content + "\n\n" + str(raw.extra.get("attachment_text") or "")).strip()
+    if "content_text" in raw.extra:
+        # 본문 칸이 비었어도 전체 틀(body_text)로 물러나지 않는다. 틀에는 작성자 실명·이전 글
+        # 제목이 있고, 발췌는 공개 저장소에 들어간다. 비면 양식에서 보류로 남을 뿐이다
+        content = (str(raw.extra["content_text"] or "") + "\n\n" + str(raw.extra.get("attachment_text") or "")).strip()
     else:
         content = raw.body_text or ""
     return mask_pii(content).strip()[:EXCERPT_MAX]
