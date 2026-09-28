@@ -184,6 +184,8 @@ sources:
       detail:
         fetch: true
         body_selector: div.prgr-bd-view
+        # 저장할 발췌는 머리 표(작성자·전화번호·첨부 이름)를 뺀 본문 글만. 2026-09-28 러너 덤프로 확인
+        content_selector: div.bd-view__vcontent div.txt
     notes: >-
       도내 학교·교육지원청의 강사·방과후·돌봄 공고가 모이는 통합 포털(2026-09-21 GitHub 러너에서 검증).
       목록 3열은 접수기간이라 게시일 대신 접수 시작일이 잡힘. 첨부는 javascript 다운로드라 미추출.

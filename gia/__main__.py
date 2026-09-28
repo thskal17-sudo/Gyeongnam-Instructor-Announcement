@@ -76,6 +76,9 @@ def _parser() -> argparse.ArgumentParser:
     xl.add_argument("--out", default="reports/경남_강사구인공고.xlsx")
     xl.add_argument("--include-expired", action="store_true", help="마감된 공고도 포함 (기본은 제외)")
 
+    gs = sub.add_parser("gangsaitda", help="강사잇다 공고 올리기 양식(.xlsx) 생성")
+    gs.add_argument("--out", default=None, help="저장 경로 (기본 reports/강사잇다_공고_YYYY-MM-DD.xlsx)")
+
     sub.add_parser("status", help="저장소 요약")
     return p
 
@@ -144,15 +147,26 @@ def main(argv: list[str] | None = None) -> int:
                         except Exception as e:  # noqa: BLE001
                             # 첨부가 실패해도 본문은 보낸다 — 알림이 통째로 빠지는 쪽이 더 나쁘다
                             print(f"[report] 엑셀 첨부 생략: {e}", file=sys.stderr)
+                        gs_counts: tuple[int, int] | None = None
+                        try:
+                            # 강사잇다에 그대로 올리는 양식. 요약 엑셀과 쓰임이 달라 따로 붙인다
+                            from .report.gangsaitda import build_gangsaitda, gangsaitda_name
+                            blob, ready, held = build_gangsaitda(store, now)
+                            xlsx.append((gangsaitda_name(now), blob))
+                            gs_counts = (ready, held)
+                            print(f"[report] 강사잇다 양식: 올릴 줄 {ready} · 보류 {held}", file=sys.stderr)
+                        except Exception as e:  # noqa: BLE001
+                            print(f"[report] 강사잇다 양식 첨부 생략: {e}", file=sys.stderr)
                         active_total = sum(1 for p in store.values()
                                            if p.status.value != "expired"
                                            and not (p.deadline and p.deadline < now)
                                            and "피드백제외" not in p.flags)
                         html = render_email(data, now, os.environ.get("SITE_URL", ""),
-                                            active_total=active_total, attached=bool(xlsx))
+                                            active_total=active_total, attached=bool(xlsx),
+                                            gangsaitda=gs_counts)
                         n = send_email(cfg, subject, html, md, attachments=xlsx)
                         print(f"[report] 이메일 {n}명에게 전송"
-                              + (f" (첨부 {xlsx[0][0]})" if xlsx else " (첨부 없음)"), file=sys.stderr)
+                              + (f" (첨부 {', '.join(name for name, _ in xlsx)})" if xlsx else " (첨부 없음)"), file=sys.stderr)
                     except Exception as e:  # noqa: BLE001
                         failures.append(f"email: {e}")
             if "github" in channels:
@@ -270,6 +284,15 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "site":
         info = build_site(list(store.values()), Path(args.reports_dir), Path(args.out), now)
         print(f"[site] {args.out}/ 생성 · 활성 공고 {info['active']}건 · 리포트 {info['reports']}개")
+        return 0
+
+    if args.cmd == "gangsaitda":
+        from .report.gangsaitda import build_gangsaitda, gangsaitda_name
+        blob, ready, held = build_gangsaitda(store, now)
+        out = Path(args.out or f"reports/{gangsaitda_name(now)}")
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_bytes(blob)
+        print(f"[gangsaitda] {out} · 바로 올릴 줄 {ready} · 보류 {held}")
         return 0
 
     if args.cmd == "excel":

@@ -107,6 +107,10 @@ class Posting(BaseModel):
     last_seen_at: datetime
     last_reported_at: datetime | None = None
     reannouncement_of: str | None = None
+    # 개인정보(전화·메일)를 가린 본문 앞부분. 강사잇다 양식의 상세 내용·수업 일정을 뽑는 데 쓴다.
+    # 공개 아카이브(site.py)는 필드를 골라 내보내므로 여기로 새지 않지만, data/ 는 공개 저장소에
+    # 커밋되므로 가리지 않은 값(접수 메일 등)은 여기에 두지 않는다
+    body_excerpt: str = ""
 
     @property
     def primary_url(self) -> str:

@@ -46,6 +46,7 @@ class CollectorSettings(BaseModel):
     attachment_max_mb: int = 10
     max_detail_errors_per_source: int = 5
     attachment_max_files: int = 3
+    body_backfill_per_source: int = 15  # 본문 발췌가 빈 진행 중 공고를 한 번에 몇 건까지 다시 열지
     attachment_extensions: list[str] = Field(default_factory=lambda: [".hwp", ".hwpx", ".pdf", ".docx"])
 
 
