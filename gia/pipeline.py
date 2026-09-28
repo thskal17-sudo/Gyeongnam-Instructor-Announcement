@@ -39,8 +39,16 @@ EXCERPT_MAX = 4000
 
 
 def body_excerpt(raw: RawPosting) -> str:
-    """저장할 본문 발췌. content_selector 로 뽑은 본문 글을 우선하고, 전화·메일은 가린다."""
-    content = str(raw.extra.get("content_text") or "") or raw.body_text or ""
+    """저장할 본문 발췌. 전화·메일은 가린다.
+
+    content_selector 로 본문 글만 뽑았으면 그것에 첨부 글을 붙이고(창원시설공단처럼 본문은
+    제목 한 줄, 내용은 HWP 첨부에 있는 곳), 아니면 첨부가 이미 붙은 body_text 를 쓴다.
+    """
+    content = str(raw.extra.get("content_text") or "")
+    if content:
+        content = (content + "\n\n" + str(raw.extra.get("attachment_text") or "")).strip()
+    else:
+        content = raw.body_text or ""
     return mask_pii(content).strip()[:EXCERPT_MAX]
 
 
@@ -122,6 +130,8 @@ def enrich_attachments(raw: RawPosting, http: HttpClient, cs) -> None:
             errors.append(f"{name}: {res.error}")
     if parts:
         raw.body_text = ((raw.body_text or "") + "\n\n" + "\n\n".join(parts)).strip()
+        # content_selector 로 본문 글만 따로 뽑은 소스는 발췌에 첨부 글을 다시 붙여야 한다
+        raw.extra["attachment_text"] = "\n\n".join(parts)
     if errors:
         raw.extra["attachment_errors"] = errors
 
@@ -186,13 +196,14 @@ def run_source(cfg: SourceConfig, bundle: ConfigBundle, store: Store, http: Http
         else:
             out.excluded.append(url)
     if res.status != "fail":
-        backfill_bodies(cfg, adapter, store, out, cs, t0)
+        backfill_bodies(cfg, adapter, store, out, http, cs, t0)
     adapter.close()
     res.duration_ms = int((time.monotonic() - t0) * 1000)
     return out
 
 
-def backfill_bodies(cfg: SourceConfig, adapter, store: Store, out: SourceOutcome, cs, t0: float) -> None:
+def backfill_bodies(cfg: SourceConfig, adapter, store: Store, out: SourceOutcome, http: HttpClient | None,
+                    cs, t0: float) -> None:
     """본문 발췌가 빈 진행 중 공고를 상세 주소로 다시 열어 채운다.
 
     본문 저장은 강사잇다 양식을 붙이면서 들어왔다. 그 전에 모은 공고는 발췌가 비어 있는데,
@@ -215,6 +226,8 @@ def backfill_bodies(cfg: SourceConfig, adapter, store: Store, out: SourceOutcome
         except Exception as e:  # noqa: BLE001 - 백필 실패는 다음 실행에서 다시 시도하면 된다
             out.result.errors.append(f"본문 백필 실패 {listing.url}: {e}"[:300])
             continue
+        if http is not None:
+            enrich_attachments(raw, http, cs)  # 목록 단계와 같은 발췌가 되도록 첨부 글도 읽는다
         # 소스마다 다른 스레드에서 돌지만 자기 소스 공고만 건드리므로 서로 겹치지 않는다
         p.body_excerpt = body_excerpt(raw)
         out.result.detail_fetched += 1

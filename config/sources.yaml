@@ -700,7 +700,9 @@ sources:
       date_selector: td.td_datetime
       keywords: [강사, 도급강사, 교강사, 지도사, 지도자, 강습, 코치, 트레이너]
       paging: { max_pages: 2 }
-      detail: { fetch: true, body_selector: "div#bo_v", attachment_selector: a.view_file_download }
+      # 판별은 div#bo_v(제목·작성자 포함)로, 저장 발췌는 본문 칸만 — 작성자 실명이 공개 저장소에 쌓이지 않게.
+      # 본문 칸은 대개 제목 한 줄이고 내용은 HWP 첨부에 있어 발췌에 첨부 글이 붙는다(2026-09-28 러너 덤프)
+      detail: { fetch: true, body_selector: "div#bo_v", content_selector: "div#bo_v_con", attachment_selector: a.view_file_download }
     notes: >-
       채용정보(그누보드, 2026-09-22 러너에서 gia probe 검증: 400일 창에서 요가·줌바·탁구 도급강사, 수영강습 등 7건 수집, 마감 추출 정상). 강사 공고가 잦음(주 수 건). 본문이 짧고 공고문은 hwp 첨부.
   - id: cw_culture

@@ -52,7 +52,8 @@ def to_row(p: Posting) -> dict[str, object]:
         "기관명": expand_school_name(p.org_name) if p.org_type == OrgType.edu_office else p.org_name,
         "지역": region_label(p.region),
         "마감일": p.deadline.astimezone(KST).date().isoformat() if p.deadline else "",
-        "수업 일정": extract_schedule(body),
+        # 접수 마감 뒤에 시작하는 날짜 범위만 일정으로 본다 — 표 형식 공고에서 접수 기간을 거르려고
+        "수업 일정": extract_schedule(body, not_before=p.deadline.astimezone(KST).date() if p.deadline else None),
         "상세 내용": clean_detail(body, title),
         "수업 대상": extract_target(body),
         "모집 인원": extract_headcount(body),

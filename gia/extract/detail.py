@@ -10,6 +10,7 @@
 from __future__ import annotations
 
 import re
+from datetime import date
 
 # 줄 머리의 번호·글머리: '2.', '나.', '1)', '(1)', '①', '◦', '○', '-', '※' …
 _PREFIX = r"^\s*(?:\(?\d{1,2}[.)]|[가-하][.)]|[①-⑳]|[○◦•·∙\-\*※□■▶►▪])?\s*"
@@ -21,7 +22,16 @@ _BULLET = re.compile(r"^\s*[○◦•·∙\-\*▪]\s*")
 _SCHEDULE_PERIOD = [
     r"계약\s*기간", r"임용\s*기간", r"근무\s*기간", r"운영\s*기간", r"수업\s*기간", r"강의\s*기간",
     r"교육\s*기간", r"위촉\s*기간", r"활동\s*기간", r"강좌\s*기간", r"(?:수업|강의|교육|운영|근무)\s*일시",
+    # 학교 공고는 '채용기간'이 근무 기간이다(접수는 '접수기간'). 맨 끝의 '기간'은 '3. 기간: …' 꼴 —
+    # 줄 머리에서만 맞추므로 '접수기간'·'공고 기간'·'기간제' 에는 걸리지 않는다
+    r"채용\s*기간", r"기\s*간",
 ]
+# 표로 된 공고는 칸 이름과 값이 따로 떨어져 '2026.10. 1. ~ 2026.12.31.' 만 한 줄로 남는다
+_RANGE_LINE = re.compile(
+    r"^\D{0,4}(?P<y>20\d{2})\s*[.년/-]\s*(?P<m>\d{1,2})\s*[.월/-]\s*(?P<d>\d{1,2})[^~∼～]{0,12}[~∼～]\s*\S"
+)
+_DATEISH = re.compile(r"\d{1,2}\s*[.월/]\s*\d{1,2}")
+_NOT_SCHEDULE = re.compile(r"접수|공고|서류|면접|발표|전형|제출|게시|등록|결과")
 _SCHEDULE_TIME = [r"(?:수업|강의|근무|운영|교육)\s*(?:시간|요일)", r"근무\s*형태"]
 _TARGET = [r"(?:수업|교육|운영|수강|참여|프로그램)\s*대상", r"대상\s*(?:학생|학년)", r"대상"]
 _HEADCOUNT = [r"(?:채용|모집|선발|위촉)\s*(?:예정\s*)?인원", r"인\s*원"]
@@ -43,8 +53,12 @@ def _label_re(labels: list[str]) -> re.Pattern[str]:
     return re.compile(_PREFIX + r"(?:" + "|".join(labels) + r")(?:" + _SEP + r"(?P<val>.*)|\s*)$")
 
 
-def _labeled(text: str, labels: list[str], follow: int = 6) -> list[str]:
-    """항목 값을 줄 목록으로. 같은 줄 값이 있으면 그것 하나, 없으면 이어지는 글머리 줄들."""
+def _labeled(text: str, labels: list[str], follow: int = 6, want: re.Pattern[str] | None = None) -> list[str]:
+    """항목 값을 줄 목록으로. 같은 줄 값이 있으면 그것 하나, 없으면 이어지는 글머리 줄들.
+
+    want 를 주면 이어지는 줄 가운데 그 꼴인 것만 받는다 — 표 머리 '기간' 아래 줄이
+    다른 칸 값('물리(과학), 1명')일 수 있어서다.
+    """
     lines = _lines(text)
     pat = _label_re(labels)
     for i, ln in enumerate(lines):
@@ -62,17 +76,45 @@ def _labeled(text: str, labels: list[str], follow: int = 6) -> list[str]:
                 continue
             if _NEXT_ITEM.match(nxt) and not _BULLET.match(nxt):
                 break
+            if want is not None and not want.search(nxt):
+                continue
             out.append(_BULLET.sub("", nxt).strip())
         if out:
             return out
     return []
 
 
-def extract_schedule(text: str) -> str:
-    """수업 일정: 기간 줄 + (있으면) 시간·요일 줄."""
-    period = _labeled(text, _SCHEDULE_PERIOD, follow=2)
+def _unlabeled_ranges(text: str, not_before: date) -> list[str]:
+    """이름표 없는 날짜 범위 줄. 접수 마감(not_before) 이후에 시작하는 것만 — 접수·전형 기간을 거른다."""
+    out: list[str] = []
+    for ln in _lines(text):
+        if out and not _RANGE_LINE.match(ln):
+            break  # 붙어 있는 범위 줄만 모은다('11.23.~12.4.', '12.28.~12.31.')
+        m = _RANGE_LINE.match(ln)
+        if not m or _NOT_SCHEDULE.search(ln):
+            continue
+        try:
+            start = date(int(m["y"]), int(m["m"]), int(m["d"]))
+        except ValueError:
+            continue
+        if start >= not_before:
+            out.append(ln)
+            if len(out) == 3:
+                break
+    return out
+
+
+def extract_schedule(text: str, not_before: date | None = None) -> str:
+    """수업 일정: 기간 줄 + (있으면) 시간·요일 줄.
+
+    not_before(보통 접수 마감일)를 주면, 이름표가 없는 표 형식 공고에서 그 뒤에 시작하는
+    날짜 범위 줄을 일정으로 본다. 마감일을 모르면 이 추정은 하지 않는다.
+    """
+    period = _labeled(text, _SCHEDULE_PERIOD, follow=2, want=_DATEISH)[:1]
+    if not period and not_before is not None:
+        period = [", ".join(_unlabeled_ranges(text, not_before))]
     when = _labeled(text, _SCHEDULE_TIME, follow=1)
-    parts = [p for p in (period[:1] + when[:1]) if p]
+    parts = [p for p in (period + when[:1]) if p]
     return " / ".join(parts)[:160]
 
 
@@ -104,13 +146,26 @@ def extract_documents(text: str) -> str:
     return ", ".join(docs)[:300]
 
 
+def _glue_fragments(lines: list[str]) -> list[str]:
+    """글자 단위로 끊긴 줄('2026','년','9','월')을 앞 줄에 붙인다.
+
+    본문을 span 마다 줄로 떼는 사이트가 있다(통영국제음악재단). 세 글자 이하이고 번호·글머리로
+    시작하지 않는 줄만 붙인다.
+    """
+    out: list[str] = []
+    for ln in lines:
+        if out and ln and len(ln) <= 3 and not _NEXT_ITEM.match(ln) and not _BULLET.match(ln):
+            out[-1] = out[-1] + ln
+        else:
+            out.append(ln)
+    return out
+
+
 def clean_detail(text: str, title: str = "") -> str:
     """상세 내용: 게시판 틀 줄을 빼고 1,500자 안쪽에서 줄 단위로 자른다."""
     out: list[str] = []
     size = 0
-    for ln in _lines(text):
-        if not ln or _NOISE_LINE.match(ln):
-            continue
+    for ln in _glue_fragments([ln for ln in _lines(text) if ln and not _NOISE_LINE.match(ln)]):
         if not out and title and ln.replace(" ", "") == title.replace(" ", ""):
             continue  # 본문 첫 줄이 제목을 되풀이하면 뺀다
         if size + len(ln) + 1 > _DETAIL_MAX:

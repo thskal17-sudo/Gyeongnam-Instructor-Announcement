@@ -213,7 +213,7 @@ def test_backfill_fills_old_postings_by_url(tmp_path, settings):
 
     stub = Stub()
     out = SourceOutcome(result=SourceRunResult(source_id="gne"))
-    backfill_bodies(make_source("gne"), stub, store, out, settings.collector, t0=__import__("time").monotonic())
+    backfill_bodies(make_source("gne"), stub, store, out, None, settings.collector, t0=__import__("time").monotonic())
     assert stub.calls == ["https://x.org/view/9"]
     assert store.postings[old.canonical_key].body_excerpt.startswith("2. 계약기간")
     assert store.postings[other.canonical_key].body_excerpt == ""
@@ -221,7 +221,7 @@ def test_backfill_fills_old_postings_by_url(tmp_path, settings):
 
     # 한 번 채운 공고는 다시 열지 않는다
     stub.calls.clear()
-    backfill_bodies(make_source("gne"), stub, store, out, settings.collector, t0=__import__("time").monotonic())
+    backfill_bodies(make_source("gne"), stub, store, out, None, settings.collector, t0=__import__("time").monotonic())
     assert stub.calls == []
 
 
@@ -257,3 +257,16 @@ def test_report_email_attaches_gangsaitda_file(tmp_path, monkeypatch):
     assert any(n.startswith("경남_강사구인공고_") for n in sent["names"])
     assert any(n.startswith("강사잇다_공고_") for n in sent["names"])
     assert "강사잇다 양식 첨부" in sent["html"]
+
+
+def test_excerpt_keeps_attachment_text_when_content_selector_used():
+    """본문 칸은 제목 한 줄이고 내용이 HWP 첨부에 있는 곳(창원시설공단): 발췌에 첨부 글을 붙인다."""
+    from gia.pipeline import body_excerpt
+    raw = RawPosting(source_id="cw_fmc", title="t", url="https://x.org/1", fetched_at=NOW,
+                     body_text="작성자 홍길동\n요가 강사 모집\n\n[첨부: 공고.hwp]\n1. 계약기간: 2026. 11. 1. ~ 12. 31.",
+                     extra={"content_text": "요가 강사 모집",
+                            "attachment_text": "[첨부: 공고.hwp]\n1. 계약기간: 2026. 11. 1. ~ 12. 31."})
+    ex = body_excerpt(raw)
+    assert ex.startswith("요가 강사 모집")
+    assert "1. 계약기간" in ex
+    assert "홍길동" not in ex  # 작성자 실명은 본문 칸 밖이라 저장하지 않는다
