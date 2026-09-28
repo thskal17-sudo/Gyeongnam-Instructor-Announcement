@@ -1,7 +1,9 @@
 name: report
 on:
   schedule:
-    - cron: "30 22 * * *"   # 07:30 KST
+    # 06:05 KST. 정시·반시를 피해 잡는다 — 07:30 으로 두었더니 매일 09:30~10:00 에
+    # 돌았다(2026-09-24~27 실행 기록). 밀려도 07시대에는 도착하도록 당겼다
+    - cron: "5 21 * * *"    # 06:05 KST
   workflow_dispatch:
     inputs:
       send:
