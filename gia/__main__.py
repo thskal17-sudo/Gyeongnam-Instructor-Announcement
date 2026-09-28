@@ -46,6 +46,8 @@ def _parser() -> argparse.ArgumentParser:
     r.add_argument("--print", dest="print_md", action="store_true", help="Markdown을 표준출력으로")
     r.add_argument("--notify-test", action="store_true",
                    help="공고가 없어도 알림을 한 번 보내 채널이 살아 있는지 확인")
+    r.add_argument("--channels", default=None,
+                   help="이번에만 쓸 채널(쉼표 구분, 설정 무시). 예: email — 테스트 메일이 깃허브 이슈까지 열지 않게")
 
     pr = sub.add_parser("probe", help="소스 하나를 시험 수집")
     pr.add_argument("source_id")
@@ -117,9 +119,11 @@ def main(argv: list[str] | None = None) -> int:
             print(md)
         print(f"[report] {path} · 신규 {len(data.new)} · 마감임박 {len(data.closing)} · 변경 {len(data.updated)}", file=sys.stderr)
         failures: list[str] = []
+        channels = ([c.strip() for c in args.channels.split(",") if c.strip()]
+                    if args.channels else bundle.settings.notify.channels)
         if args.send:
-            channels = bundle.settings.notify.channels
-            subject = email_subject(data, now, test=args.notify_test)
+            # --no-mark 는 테스트 발송이다. 받은 편지함에서 진짜 알림과 구별되게 제목에 표시한다
+            subject = email_subject(data, now, test=args.notify_test or args.no_mark)
             if "telegram" in channels:
                 token, chat = os.environ.get("TELEGRAM_BOT_TOKEN"), os.environ.get("TELEGRAM_CHAT_ID")
                 if not token or not chat:
@@ -200,7 +204,7 @@ def main(argv: list[str] | None = None) -> int:
             store.save()
         elif args.no_mark:
             print("[report] --no-mark: 보고 상태를 기록하지 않음 (다음 리포트에도 신규로 표시됨)", file=sys.stderr)
-        sent_any = args.send and len(failures) < len(bundle.settings.notify.channels)
+        sent_any = args.send and len(failures) < len(channels)
         return 0 if (not args.send or sent_any) else 1
 
     if args.cmd == "probe":
