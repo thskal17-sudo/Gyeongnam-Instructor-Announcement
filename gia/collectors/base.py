@@ -31,6 +31,19 @@ class UnconfiguredSource(Exception):
     pass
 
 
+# 공공데이터포털은 거부 사유를 본문이나 헤더(returnAuthMsg)에만 담아 보낸다.
+_REASON_HEADERS = ("returnAuthMsg", "returnReasonCode")
+
+
+def _reason(r: httpx.Response) -> str:
+    """4xx 응답에서 서버가 알려준 거부 사유를 한 줄로 뽑는다. 없으면 빈 문자열."""
+    parts = [f"{h}={r.headers[h]}" for h in _REASON_HEADERS if h in r.headers]
+    body = " ".join((r.text or "").split())[:200]
+    if body:
+        parts.append(body)
+    return f" — {' | '.join(parts)}" if parts else ""
+
+
 class HttpClient:
     """도메인별 요청 간격, 재시도, robots.txt 확인을 담당한다."""
 
@@ -112,7 +125,7 @@ class HttpClient:
                     time.sleep(2 ** attempt * 0.5 if self.settings.per_domain_delay_sec else 0)
                     continue
                 if r.status_code >= 400:
-                    raise FetchError(f"HTTP {r.status_code} {url}")
+                    raise FetchError(f"HTTP {r.status_code} {url}{_reason(r)}")
                 return r
             raise FetchError(f"재시도 실패: {last_err}")
 

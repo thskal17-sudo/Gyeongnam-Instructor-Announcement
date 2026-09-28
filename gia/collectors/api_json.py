@@ -2,9 +2,11 @@
 from __future__ import annotations
 
 import json
+import re
 import xml.etree.ElementTree as ET
 from datetime import date, datetime, timedelta
 from typing import Any
+from urllib.parse import unquote
 
 import httpx
 
@@ -16,6 +18,21 @@ from .base import FetchError, SourceAdapter, get_path, matches_keywords, parse_d
 
 REGION_ALIASES = {"@gyeongnam": GYEONGNAM_WORDS + SIGUN}
 
+# 공공데이터포털·워크넷은 인증키를 Encoding/Decoding 두 형태로 발급한다.
+# httpx 가 params 를 다시 URL 인코딩하므로 Encoding 키(%2B…)를 그대로 넘기면
+# %252B 로 이중 인코딩되어 "등록되지 않은 서비스키"(reasonCode 30)가 난다.
+# 어느 쪽을 Secrets 에 넣어도 동작하도록 한 번 디코딩해서 넘긴다.
+KEY_PARAMS = ("serviceKey", "authKey", "ServiceKey")
+_PERCENT_ESCAPE = re.compile(r"%[0-9A-Fa-f]{2}")
+
+
+def normalize_api_key(name: str, value: Any) -> Any:
+    if name not in KEY_PARAMS or not isinstance(value, str):
+        return value
+    # Secrets 에 붙여넣을 때 딸려오는 앞뒤 공백·줄바꿈도 같은 오류를 낸다.
+    value = value.strip()
+    return unquote(value) if _PERCENT_ESCAPE.search(value) else value
+
 
 class ApiJsonAdapter(SourceAdapter):
     type_name = "api_json"
@@ -25,7 +42,7 @@ class ApiJsonAdapter(SourceAdapter):
         since = self.since or (today - timedelta(days=self.settings.default_days))
         a = substitute_placeholders(resolve_env(self.a), today, since)
         endpoint = a["endpoint"]
-        params = dict(a.get("params") or {})
+        params = {k: normalize_api_key(k, v) for k, v in (a.get("params") or {}).items()}
         fmt = (a.get("format") or "json").lower()
         paging = a.get("paging") or {}
         max_pages = int(paging.get("max_pages") or self.settings.default_pages)

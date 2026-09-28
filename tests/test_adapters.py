@@ -133,3 +133,73 @@ def test_tls_verify_false_routes_host_to_insecure_client(settings):
     ctx = HttpClient.legacy_tls_context()
     assert ctx.minimum_version == ssl.TLSVersion.TLSv1 and ctx.verify_mode == ssl.CERT_NONE
     legacy.close()
+
+
+def test_4xx_error_carries_server_reason(settings):
+    """4xx 는 상태 코드만 남기지 말고 서버가 알려준 거부 사유까지 실어야 한다 (공공데이터포털 403 진단)."""
+    import pytest
+
+    from gia.collectors.base import FetchError
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        return httpx.Response(
+            403,
+            headers={"returnAuthMsg": "SERVICE_ACCESS_DENIED_ERROR", "returnReasonCode": "20"},
+            text="<OpenAPI_ServiceResponse>\n  <cmmMsgHeader>\n    <errMsg>SERVICE ERROR</errMsg>\n  </cmmMsgHeader>\n</OpenAPI_ServiceResponse>",
+        )
+
+    http = HttpClient(settings.collector, transport=httpx.MockTransport(handler))
+    with pytest.raises(FetchError) as e:
+        http.get("https://apis.data.go.kr/1051000/recruitment/list")
+    msg = str(e.value)
+    assert "HTTP 403" in msg
+    assert "returnAuthMsg=SERVICE_ACCESS_DENIED_ERROR" in msg
+    assert "returnReasonCode=20" in msg
+    assert "SERVICE ERROR" in msg
+    http.close()
+
+
+def test_4xx_without_reason_stays_short(settings):
+    """본문·헤더가 비면 기존처럼 짧은 메시지 그대로."""
+    import pytest
+
+    from gia.collectors.base import FetchError
+
+    http = HttpClient(settings.collector, transport=httpx.MockTransport(lambda r: httpx.Response(404)))
+    with pytest.raises(FetchError) as e:
+        http.get("https://example.org/gone")
+    assert str(e.value) == "HTTP 404 https://example.org/gone"
+    http.close()
+
+
+def test_encoding_form_api_key_is_decoded_once(settings, monkeypatch):
+    """공공데이터포털 Encoding 키(%2B…)를 넣어도 이중 인코딩되지 않고 원래 키로 전달된다."""
+    from gia.collectors.api_json import normalize_api_key
+
+    raw = "abc+def/ghi=="
+    encoded = "abc%2Bdef%2Fghi%3D%3D"
+    assert normalize_api_key("serviceKey", encoded) == raw
+    assert normalize_api_key("authKey", encoded) == raw
+    # Decoding 키(이미 원본)는 그대로 둔다 — 퍼센트 이스케이프가 없다.
+    assert normalize_api_key("serviceKey", raw) == raw
+    # 붙여넣을 때 딸려온 앞뒤 공백·줄바꿈은 떼어낸다.
+    assert normalize_api_key("serviceKey", f"  {raw}\n") == raw
+    assert normalize_api_key("serviceKey", f"{encoded}\n") == raw
+    # 키가 아닌 파라미터는 건드리지 않는다.
+    assert normalize_api_key("keyword", "%EA%B0%95%EC%82%AC") == "%EA%B0%95%EC%82%AC"
+    assert normalize_api_key("keyword", " 강사 ") == " 강사 "
+
+    seen: list[str] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen.append(request.url.params["serviceKey"])
+        return httpx.Response(200, json={"result": []}, headers={"content-type": "application/json"})
+
+    monkeypatch.setenv("DATA_GO_KR_KEY", encoded)
+    cfg = make_source("gojobs", "portal", type="api_json", endpoint="https://api.example.org/list", format="json",
+                      params={"serviceKey": "${DATA_GO_KR_KEY}"}, items_path="result",
+                      field_map={"title": "t", "url": "u"})
+    http = HttpClient(settings.collector, transport=httpx.MockTransport(handler))
+    ApiJsonAdapter(cfg, http, settings.collector).fetch_list()
+    assert seen == [raw]
+    http.close()
