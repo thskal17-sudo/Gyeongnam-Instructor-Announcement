@@ -76,6 +76,12 @@ jobs:
             # 깃허브 이슈 채널은 비밀값이 없어도 돈다. 예전처럼 --mark 로 빠지지 않는다
             python -m gia report --send --once-daily
           fi
+      # 울산 저장소(ulsan-shcool-public-company)의 '오늘의 브리핑'이 이 파일을 읽어
+      # 울산·경남·평생교육원 강사잇다 양식을 한 파일로 합쳐 첨부한다. 실패해도 리포트 커밋은 계속한다
+      - name: 강사잇다 양식 저장 (브리핑 합본용)
+        if: always() && github.event.inputs.email_to == '' && github.event.inputs.test_email != 'true'
+        continue-on-error: true
+        run: python -m gia gangsaitda --out reports/gangsaitda/latest.xlsx
       - name: commit report
         if: always() && github.event.inputs.email_to == '' && github.event.inputs.test_email != 'true'
         run: |
