@@ -227,6 +227,26 @@ def dump(url: str) -> None:
     if len(r.content) < 2000:
         print("body (short):", re.sub(r"\s+", " ", r.text)[:600])
         return
+    grep = os.environ.get("GREP")
+    if grep:
+        # 첨부 링크가 javascript:fnKfileDownload('...') 처럼 함수 호출이면, 그 함수가 만드는
+        # 실제 주소를 알아야 한다. 페이지에 딸린 스크립트에서 찾아 보여 준다
+        print(f"\n[GREP] {grep}")
+        pat = re.compile(grep, re.I)
+        seen = 0
+        for chunk in [r.text] + [sc.get("src") or "" for sc in soup.find_all("script")]:
+            for m in pat.finditer(chunk or ""):
+                lo, hi = max(0, m.start() - 200), min(len(chunk), m.end() + 400)
+                print("   ...", re.sub(r"\s+", " ", chunk[lo:hi]))
+                seen += 1
+                if seen >= 6:
+                    break
+            if seen >= 6:
+                break
+        if not seen:
+            print("   (없음)")
+        print("   [SCRIPT src]", [sc.get("src") for sc in soup.find_all("script") if sc.get("src")][:12])
+
     sel_env = os.environ.get("BODY_SELECTOR")
     if sel_env:
         for node in soup.select(sel_env)[:3]:
