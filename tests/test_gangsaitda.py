@@ -282,3 +282,32 @@ def test_empty_content_does_not_fall_back_to_page_chrome():
 
 def test_clean_detail_drops_attachment_markers():
     assert clean_detail("[첨부: %EC%9D%91.hwp]\n1. 모집분야: 요가") == "1. 모집분야: 요가"
+
+
+def test_test_email_sends_mail_only(tmp_path, monkeypatch):
+    """--channels email 이면 설정에 github 가 있어도 이슈를 열지 않고, --no-mark 는 제목에 [테스트]를 단다."""
+    import re as _re
+    import shutil
+    from pathlib import Path
+
+    import gia.notify.email as email_mod
+    import gia.notify.github_issue as issue_mod
+    from gia import __main__ as cli
+
+    sent: dict = {}
+    monkeypatch.setattr(email_mod, "send_email",
+                        lambda cfg, subject, html, text, smtp_factory=None, attachments=None: sent.setdefault("subject", subject) and 1)
+    monkeypatch.setattr(issue_mod, "send_issue", lambda *a, **k: pytest.fail("테스트 메일이 이슈를 열었다"))
+    for k, v in {"SMTP_HOST": "smtp.example.org", "EMAIL_TO": "me@example.org",
+                 "GITHUB_REPOSITORY": "o/r", "GITHUB_TOKEN": "t"}.items():
+        monkeypatch.setenv(k, v)
+    repo = Path(cli.__file__).resolve().parents[1]
+    work = tmp_path / "work"
+    shutil.copytree(repo / "config", work / "config")
+    (work / "data").mkdir()
+    f = work / "config" / "settings.yaml"
+    f.write_text(_re.sub(r"channels:\s*\[[^\]]*\]", "channels: [github, email]", f.read_text(encoding="utf-8")), encoding="utf-8")
+    monkeypatch.chdir(work)
+
+    assert cli.main(["report", "--send", "--no-mark", "--notify-test", "--channels", "email"]) == 0
+    assert sent["subject"].startswith("[테스트]")
