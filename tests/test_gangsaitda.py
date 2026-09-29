@@ -326,9 +326,11 @@ def test_hwp_private_use_bullet_is_treated_as_bullet():
 
 
 def test_filename_comes_from_query_when_path_has_none():
-    """통영국제음악재단은 'download.asp?file=공고문.pdf' 꼴로 준다.
+    """'download.asp?file=공고문.pdf' 꼴로 주는 곳이 있다.
 
-    경로만 보면 확장자가 '.asp' 라 형식을 모르는 파일로 버려졌다(첨부추출실패).
+    경로만 보면 확장자가 '.asp' 라 형식을 모르는 파일로 버려진다. (이 꼴을 쓰는
+    통영국제음악재단은 정작 robots.txt 가 그 경로를 막아 첨부를 읽지 않는다 —
+    docs/SOURCE_STATUS.md 참고. 이름 인식은 그와 별개로 맞아야 한다.)
     """
     from gia.extract.attachments import file_extension, filename_from_url
 
