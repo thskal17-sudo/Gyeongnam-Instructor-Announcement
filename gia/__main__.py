@@ -48,6 +48,8 @@ def _parser() -> argparse.ArgumentParser:
                    help="공고가 없어도 알림을 한 번 보내 채널이 살아 있는지 확인")
     r.add_argument("--channels", default=None,
                    help="이번에만 쓸 채널(쉼표 구분, 설정 무시). 예: email — 테스트 메일이 깃허브 이슈까지 열지 않게")
+    r.add_argument("--once-daily", action="store_true",
+                   help="오늘(KST) 이미 보고했으면 아무것도 하지 않음 — 수집 직후 실행과 예비 예약 실행이 겹쳐도 한 번만 나가게")
 
     pr = sub.add_parser("probe", help="소스 하나를 시험 수집")
     pr.add_argument("source_id")
@@ -107,6 +109,9 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     if args.cmd == "report":
+        if args.once_daily and store.reported_on(now.date()):
+            print(f"[report] 오늘 이미 보고함({store.state['last_report_at']}) — 건너뜀", file=sys.stderr)
+            return 0
         data = select_postings(bundle, store, now)
         if bundle.settings.report.daily_overview_llm and (data.new or data.closing):
             llm = LlmClassifier.from_settings(bundle.settings.classifier)
