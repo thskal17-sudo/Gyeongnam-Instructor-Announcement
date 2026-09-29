@@ -9,6 +9,9 @@ from ..normalize import mentions_gyeongnam, nfkc
 CORE_WORDS = [
     "시간강사", "외래강사", "외래교수", "초빙강사", "초빙교수", "교강사", "훈련교사", "강사",
     "지도자", "지도사", "튜터", "코치", "멘토", "한국어교원", "예술강사", "스포츠강사",
+    # 체육센터는 가르치는 자리를 '강사'가 아니라 '수영강습'처럼 강습으로만 적는 일이 잦다.
+    # 수강생 쪽 글에도 이 말이 나오지만 그쪽 제목은 EXCLUDE_TITLE 에서 걸린다
+    "강습",
 ]
 HIRE_WORDS = ["모집", "채용", "공모", "위촉", "공개채용", "인력풀", "선발", "공개모집", "구인", "채용공고", "위촉공고", "초빙"]
 LECTURE_WORDS = ["강의", "수업", "교육과정 운영", "프로그램 운영", "출강", "강좌", "교육 운영", "교육운영"]
@@ -26,6 +29,9 @@ NON_INSTRUCTOR_JOBS = [
     "청원경찰", "경비원", "미화원", "환경미화", "조리원", "조리사", "영양사", "운전원", "운전기사",
     "사무보조", "행정보조", "사무원", "경리", "매표", "안내원", "청사관리", "시설관리원", "관리원",
     "당직", "수납원", "간호조무", "사회복무", "공무직", "생활지도원", "보안관",
+    # 가르치는 자리면 제목에 과목이나 '강사'·'지도자'가 함께 붙는다. 그 말이 하나도
+    # 없이 '기간제근로자'만 있으면 행정·관리 자리다
+    "기간제근로자", "초단시간근로자",
 ]
 
 FIELD_KEYWORDS: dict[str, list[str]] = {
@@ -115,6 +121,25 @@ def score_posting(title: str, body: str = "", region_text: str | None = None, or
 
     score = max(0, min(100, score))
     return RuleResult(score=score, reasons=reasons, field=guess_field(t, b), employment_type=guess_employment(t, b))
+
+
+def title_veto(title: str) -> str | None:
+    """제목만 보고 강사 공고가 아니라고 단정되면 그 사유를, 아니면 None 을 돌려준다.
+
+    저장된 공고에는 본문이 통째로 남지 않는다(발췌뿐이다). 그래서 이미 저장된 것을
+    지금 규칙으로 전부 다시 채점하면, 본문에서 나오던 지역·강의어 점수를 잃어 멀쩡한
+    공고가 기준 아래로 떨어진다. 실제로 이 저장소의 40건을 재채점해 보면 10건이
+    그렇게 내려갔다 — 규칙이 달라져서가 아니라 본문이 없어서다.
+
+    그래서 본문이 있든 없든 결론이 같은 판정만 여기서 본다. NON_INSTRUCTOR_JOBS 는
+    본래 그런 규칙이다. 제목이 그 직종만 가리키고 강사 핵심어가 하나도 없으면, 본문에
+    '지도자'가 스쳐도 강사 공고가 아니다.
+    """
+    t = nfkc(title)
+    if any(w in t for w in CORE_WORDS):
+        return None
+    jobs = [w for w in NON_INSTRUCTOR_JOBS if w in t]
+    return f"비강사 직종({jobs[0]})" if jobs else None
 
 
 def _other_region(title: str, region_text: str, body: str) -> str | None:

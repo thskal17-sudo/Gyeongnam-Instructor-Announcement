@@ -39,6 +39,8 @@ python -m gia sources                    # 소스별 설정 상태
 python -m gia feedback <id> false_positive  # 오탐 신고 (다음 수집부터 숨김). id는 리포트 링크 옆 12자리
 python -m gia eval [--llm]               # 라벨 세트(tests/eval/labeled.jsonl)로 정밀도·재현율 측정
 python -m gia stats --days 7             # 최근 7일 통계 (월요일 리포트에 자동 포함)
+python -m gia prune [--apply]            # 판별 규칙이 바뀌기 전에 저장된 비강사 공고 걸러내기 (기본은 보여주기만)
+python -m gia report --send --once-daily # 그날 이미 보냈으면 건너뛴다 (자동 실행이 겹칠 때)
 python -m gia site --out site            # GitHub Pages용 정적 아카이브 생성 (pages.yml이 main 푸시 시 배포)
 python -m gia probe <id> --save-fixture  # 응답을 tests/fixtures/live/<id>/에 저장 (셀렉터 정할 때)
 ```

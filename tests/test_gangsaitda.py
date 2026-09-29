@@ -313,6 +313,46 @@ def test_test_email_sends_mail_only(tmp_path, monkeypatch):
     assert sent["subject"].startswith("[테스트]")
 
 
+# --- 2026-09-29: 첨부에서 수업 일정을 찾지 못하던 원인들 ---
+
+def test_hwp_private_use_bullet_is_treated_as_bullet():
+    """HWP 는 글머리 기호를 윙딩 글꼴의 사용자 지정 영역에 넣는다(U+F06D 등).
+
+    김해시 진영한빛도서관 공고의 첨부가 그렇다. 이 글자를 글머리로 보지 않으면
+    '계약 기간 : …' 줄이 항목으로 잡히지 않아 수업 일정이 빈칸으로 남았다.
+    """
+    body = " 계약 기간 : 2027. 01. ~ 12. (1년)\n 강의횟수 : 주 1~2회"
+    assert extract_schedule(body) == "2027. 01. ~ 12. (1년)"
+
+
+def test_filename_comes_from_query_when_path_has_none():
+    """'download.asp?file=공고문.pdf' 꼴로 주는 곳이 있다.
+
+    경로만 보면 확장자가 '.asp' 라 형식을 모르는 파일로 버려진다. (이 꼴을 쓰는
+    통영국제음악재단은 정작 robots.txt 가 그 경로를 막아 첨부를 읽지 않는다 —
+    docs/SOURCE_STATUS.md 참고. 이름 인식은 그와 별개로 맞아야 한다.)
+    """
+    from gia.extract.attachments import file_extension, filename_from_url
+
+    url = "https://timf.org/site/download.asp?bid=1&file=2026+%EA%B3%B5%EA%B3%A0%2Epdf"
+    assert file_extension(filename_from_url(url)) == ".pdf"
+    # 경로에 이름이 있으면 그것을 그대로 쓴다
+    assert filename_from_url("https://x/a/공고문.hwp") == "공고문.hwp"
+
+
+def test_notice_attachment_is_read_before_blank_form():
+    """첨부는 몇 개까지만 읽는다. 빈 응시원서가 그 칸을 다 쓰면 일정도 자격도 안 나온다."""
+    from gia.pipeline import _attachment_rank
+
+    names = [
+        "[서식7] 방과후학교 프로그램 운영 제안서.hwp",
+        "도급강사 지원서류응시원서 등 8종.hwp",
+        "2026.방과후학교외부강사(금융)채용공고.hwp",
+    ]
+    assert sorted(names, key=_attachment_rank)[0] == "2026.방과후학교외부강사(금융)채용공고.hwp"
+    # 이름에 '공고'가 함께 있으면 서식으로 밀어내지 않는다
+    assert _attachment_rank("강사 모집 공고 및 서식.hwp") < _attachment_rank("응시원서.hwp")
+
 def test_once_daily_skips_second_report_same_day(tmp_path, monkeypatch):
     """수집 직후 실행과 예비 예약 실행이 겹쳐도 메일은 하루 한 번만 나간다."""
     import re as _re
