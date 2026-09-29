@@ -158,6 +158,24 @@ class Store:
         self.refresh_statuses(now, closing_days)
         self.state["last_report_at"] = now.isoformat()
 
+    def reported_today(self, now: datetime) -> bool:
+        """오늘(한국 날짜) 이미 보고를 보냈으면 True.
+
+        예약 실행이 밀리는 탓에 수집이 끝나면 곧바로 보고하도록(workflow_run) 바꾸면서,
+        예비 예약까지 걸어 두었다. 둘 다 돌면 같은 날 메일이 두 번 간다. 날짜로 센다 —
+        '24시간 지났나'로 세면 밀린 시각이 다음 날 기준이 되어 하루씩 뒤로 끌린다.
+        """
+        stamp = self.state.get("last_report_at")
+        if not stamp:
+            return False
+        try:
+            last = datetime.fromisoformat(stamp)
+        except ValueError:
+            return False
+        if last.tzinfo is None:
+            last = last.replace(tzinfo=KST)
+        return last.astimezone(KST).date() == now.astimezone(KST).date()
+
     # ---- helpers -----------------------------------------------------
     @staticmethod
     def _read_json(path: Path, default):

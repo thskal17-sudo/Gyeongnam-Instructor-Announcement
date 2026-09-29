@@ -40,11 +40,12 @@ python -m gia feedback <id> false_positive  # 오탐 신고 (다음 수집부터
 python -m gia eval [--llm]               # 라벨 세트(tests/eval/labeled.jsonl)로 정밀도·재현율 측정
 python -m gia stats --days 7             # 최근 7일 통계 (월요일 리포트에 자동 포함)
 python -m gia prune [--apply]            # 판별 규칙이 바뀌기 전에 저장된 비강사 공고 걸러내기 (기본은 보여주기만)
+python -m gia report --send --once-daily # 그날 이미 보냈으면 건너뛴다 (자동 실행이 겹칠 때)
 python -m gia site --out site            # GitHub Pages용 정적 아카이브 생성 (pages.yml이 main 푸시 시 배포)
 python -m gia probe <id> --save-fixture  # 응답을 tests/fixtures/live/<id>/에 저장 (셀렉터 정할 때)
 ```
 
-GitHub Actions는 매일 06:30 KST에 `collect`, 07:30 KST에 `report --send`를 실행하고 결과를 커밋한다. `pages.yml`은 `main`에 데이터·리포트가 커밋될 때 정적 아카이브를 GitHub Pages로 배포한다 (저장소 Settings → Pages → Source를 "GitHub Actions"로 설정 필요).
+GitHub Actions는 매일 01:13·04:43 KST에 `collect`를 실행하고, `collect`가 끝나면 `report --send --once-daily`가 곧바로 따라 돈다(`workflow_run`). 06:37 KST 예비 예약이 하나 더 있으나 그날 이미 보냈으면 `--once-daily`가 건너뛴다. 예약 실행이 2~4시간 밀리는 일이 잦아 새벽으로 당기고 두 번으로 나눴다. `pages.yml`은 `main`에 데이터·리포트가 커밋될 때 정적 아카이브를 GitHub Pages로 배포한다 (저장소 Settings → Pages → Source를 "GitHub Actions"로 설정 필요).
 필요한 저장소 Secrets: `DATA_GO_KR_KEY`, `WORKNET_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`. LLM 판별을 켜면 `ANTHROPIC_API_KEY`도 필요.
 
 ### LLM 판별 켜기
