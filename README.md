@@ -21,7 +21,7 @@
 sources.yaml ─▶ Collector ─▶ Normalizer/Deduper ─▶ Classifier(규칙+LLM) ─▶ Store(JSONL)
                                                                              │
                      텔레그램 / 이메일 / reports/ ◀── Notifier ◀── Summarizer ◀┘
-                     (매일 07:30 KST, GitHub Actions cron)
+                     (매일 새벽 수집 직후, GitHub Actions)
 ```
 
 ## 실행 방법
@@ -43,7 +43,7 @@ python -m gia site --out site            # GitHub Pages용 정적 아카이브 �
 python -m gia probe <id> --save-fixture  # 응답을 tests/fixtures/live/<id>/에 저장 (셀렉터 정할 때)
 ```
 
-GitHub Actions는 매일 06:30 KST에 `collect`, 07:30 KST에 `report --send`를 실행하고 결과를 커밋한다. `pages.yml`은 `main`에 데이터·리포트가 커밋될 때 정적 아카이브를 GitHub Pages로 배포한다 (저장소 Settings → Pages → Source를 "GitHub Actions"로 설정 필요).
+GitHub Actions는 매일 01:17 KST(예비 04:17)에 `collect`를 예약하고, 예약 수집이 끝나면 곧바로 `report --send --once-daily`를 실행해 결과를 커밋한다. GitHub 예약 실행은 몇 시간씩 밀리곤 해서(3~4시간 관측) 새벽으로 잡았고, 수집과 발송을 따로 예약하지 않고 이어 붙였다. 07:47 KST 예비 예약은 그날 수집이 한 번도 돌지 않았을 때만 보낸다(`--once-daily`가 하루 한 번만 보내게 막는다). `pages.yml`은 `main`에 데이터·리포트가 커밋될 때 정적 아카이브를 GitHub Pages로 배포한다 (저장소 Settings → Pages → Source를 "GitHub Actions"로 설정 필요).
 필요한 저장소 Secrets: `DATA_GO_KR_KEY`, `WORKNET_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`. LLM 판별을 켜면 `ANTHROPIC_API_KEY`도 필요.
 
 ### LLM 판별 켜기

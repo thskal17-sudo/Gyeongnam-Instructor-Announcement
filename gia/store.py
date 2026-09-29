@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import json
 from collections import defaultdict
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Iterable
 
@@ -143,6 +143,16 @@ class Store:
                 p.status = Status.active
         self.refresh_statuses(now, closing_days)
         self.state["last_report_at"] = now.isoformat()
+
+    def reported_on(self, day: date) -> bool:
+        """그날(KST) 보고를 이미 기록했는가."""
+        last = self.state.get("last_report_at")
+        if not last:
+            return False
+        try:
+            return datetime.fromisoformat(last).astimezone(KST).date() == day
+        except ValueError:
+            return False
 
     # ---- helpers -----------------------------------------------------
     @staticmethod
