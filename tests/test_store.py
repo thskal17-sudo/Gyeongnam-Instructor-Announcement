@@ -108,3 +108,23 @@ def test_sanitize_deadline_keeps_valid_ones():
     none = _posting(deadline=None)
     assert sanitize_deadline(none) is False
     assert none.flags == []
+
+
+def test_drop_moves_url_to_excluded(tmp_path):
+    """지운 공고의 주소는 제외 목록으로 가야 한다. 안 그러면 다음 수집이 다시 주워 온다."""
+    s = Store(tmp_path)
+    p = make_posting("창원시 청원경찰 채용시험 계획 공고", deadline=NOW + timedelta(days=10))
+    s.upsert(p)
+    s.save()
+
+    url = p.sources[0].url
+    assert s.drop(p.canonical_key) is not None
+    assert s.get(p.canonical_key) is None
+    assert url not in s.seen_urls
+    assert url in s.excluded_urls
+    s.save()
+
+    s2 = Store(tmp_path).load()
+    assert s2.get(p.canonical_key) is None
+    assert url in s2.excluded_urls
+    assert s2.drop(p.canonical_key) is None, "없는 공고를 지워도 터지지 않는다"

@@ -100,6 +100,20 @@ class Store:
         with files[-1].open(encoding="utf-8") as fh:
             return RunLog.model_validate(json.load(fh))
 
+    def drop(self, key: str) -> Posting | None:
+        """공고를 저장소에서 지우고 그 주소를 제외 목록으로 옮긴다.
+
+        제외 목록에 넣지 않으면 다음 수집이 같은 글을 새 공고로 다시 주워 온다.
+        """
+        p = self.postings.pop(key, None)
+        if p is None:
+            return None
+        today = datetime.now(KST).date().isoformat()
+        for src in p.sources:
+            self.seen_urls.pop(src.url, None)
+            self.excluded_urls[src.url] = today
+        return p
+
     # ---- access ------------------------------------------------------
     def get(self, key: str) -> Posting | None:
         return self.postings.get(key)

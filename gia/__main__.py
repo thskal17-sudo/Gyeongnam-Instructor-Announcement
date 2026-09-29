@@ -81,6 +81,9 @@ def _parser() -> argparse.ArgumentParser:
     gs = sub.add_parser("gangsaitda", help="강사잇다 공고 올리기 양식(.xlsx) 생성")
     gs.add_argument("--out", default=None, help="저장 경로 (기본 reports/강사잇다_공고_YYYY-MM-DD.xlsx)")
 
+    pn = sub.add_parser("prune", help="지금 규칙으로는 강사 공고가 아닌 저장분을 걸러낸다")
+    pn.add_argument("--apply", action="store_true", help="실제로 지운다 (기본은 보여주기만)")
+
     sub.add_parser("status", help="저장소 요약")
     return p
 
@@ -309,6 +312,24 @@ def main(argv: list[str] | None = None) -> int:
             source_names={s.id: s.name for s in bundle.sources},
         )
         print(f"[excel] {path} · 공고 {len(postings)}건 · 수집원 {len(bundle.sources)}곳")
+        return 0
+
+    if args.cmd == "prune":
+        from .classify.rules import title_veto
+
+        hits = [(k, p, v) for k, p in store.postings.items() if (v := title_veto(p.title))]
+        if not hits:
+            print("[prune] 걸러낼 공고 없음")
+            return 0
+        for _, p, why in hits:
+            print(f"  [{p.relevance_score}] {p.title}\n      {why} · {p.org_name}")
+        if not args.apply:
+            print(f"[prune] {len(hits)}건 — 실제로 지우려면 --apply")
+            return 0
+        for k, _, _ in hits:
+            store.drop(k)
+        store.save()
+        print(f"[prune] {len(hits)}건 삭제")
         return 0
 
     if args.cmd == "status":
