@@ -1,4 +1,4 @@
-from datetime import timedelta
+from datetime import date, timedelta
 
 from gia.models import Status
 from gia.store import Store
@@ -130,7 +130,7 @@ def test_drop_moves_url_to_excluded(tmp_path):
     assert s2.drop(p.canonical_key) is None, "없는 공고를 지워도 터지지 않는다"
 
 
-def test_reported_today_counts_by_kst_date(tmp_path):
+def test_reported_on_counts_by_kst_date(tmp_path):
     """하루 한 번 제한은 '24시간'이 아니라 한국 날짜로 센다.
 
     시간으로 세면, 밀려서 늦게 돈 날의 시각이 다음 날 기준이 되어 발송 시각이
@@ -140,16 +140,16 @@ def test_reported_today_counts_by_kst_date(tmp_path):
 
     KST = timezone(timedelta(hours=9))
     s = Store(tmp_path)
-    assert s.reported_today(datetime(2026, 9, 29, 9, 0, tzinfo=KST)) is False, "보낸 적 없으면 False"
+    assert s.reported_on(date(2026, 9, 29)) is False, "보낸 적 없으면 False"
 
     s.state["last_report_at"] = datetime(2026, 9, 29, 2, 0, tzinfo=KST).isoformat()
-    assert s.reported_today(datetime(2026, 9, 29, 23, 0, tzinfo=KST)) is True, "같은 날이면 막는다"
+    assert s.reported_on(date(2026, 9, 29)) is True, "같은 날이면 막는다"
     # 21시간밖에 안 지났지만 날이 바뀌었으므로 보낸다
-    assert s.reported_today(datetime(2026, 9, 30, 1, 0, tzinfo=KST)) is False
+    assert s.reported_on(date(2026, 9, 30)) is False
 
     # UTC 로 적힌 기록도 한국 날짜로 환산한다 (9/29 23:00 UTC = 9/30 08:00 KST)
     s.state["last_report_at"] = datetime(2026, 9, 29, 23, 0, tzinfo=timezone.utc).isoformat()
-    assert s.reported_today(datetime(2026, 9, 30, 9, 0, tzinfo=KST)) is True
+    assert s.reported_on(date(2026, 9, 30)) is True
 
     s.state["last_report_at"] = "말이 안 되는 값"
-    assert s.reported_today(datetime(2026, 9, 30, 9, 0, tzinfo=KST)) is False, "못 읽으면 막지 않는다"
+    assert s.reported_on(date(2026, 9, 30)) is False, "못 읽으면 막지 않는다"

@@ -352,3 +352,42 @@ def test_notice_attachment_is_read_before_blank_form():
     assert sorted(names, key=_attachment_rank)[0] == "2026.방과후학교외부강사(금융)채용공고.hwp"
     # 이름에 '공고'가 함께 있으면 서식으로 밀어내지 않는다
     assert _attachment_rank("강사 모집 공고 및 서식.hwp") < _attachment_rank("응시원서.hwp")
+
+def test_once_daily_skips_second_report_same_day(tmp_path, monkeypatch):
+    """수집 직후 실행과 예비 예약 실행이 겹쳐도 메일은 하루 한 번만 나간다."""
+    import re as _re
+    import shutil
+    from pathlib import Path
+
+    import gia.notify.email as email_mod
+    from gia import __main__ as cli
+
+    sent: list[str] = []
+    monkeypatch.setattr(email_mod, "send_email",
+                        lambda cfg, subject, html, text, smtp_factory=None, attachments=None: sent.append(subject) or 1)
+    for k, v in {"SMTP_HOST": "smtp.example.org", "EMAIL_TO": "me@example.org"}.items():
+        monkeypatch.setenv(k, v)
+    repo = Path(cli.__file__).resolve().parents[1]
+    work = tmp_path / "work"
+    shutil.copytree(repo / "config", work / "config")
+    (work / "data").mkdir()
+    f = work / "config" / "settings.yaml"
+    f.write_text(_re.sub(r"channels:\s*\[[^\]]*\]", "channels: [email]", f.read_text(encoding="utf-8")), encoding="utf-8")
+    monkeypatch.chdir(work)
+
+    assert cli.main(["report", "--send", "--once-daily"]) == 0
+    assert cli.main(["report", "--send", "--once-daily"]) == 0
+    assert len(sent) == 1
+    # 손으로 돌리면(--once-daily 없이) 다시 보낸다
+    assert cli.main(["report", "--send"]) == 0
+    assert len(sent) == 2
+
+
+def test_reported_on_uses_kst_date(tmp_path):
+    from datetime import date
+    from gia.store import Store
+    s = Store(tmp_path)
+    assert not s.reported_on(date(2026, 9, 29))
+    s.state["last_report_at"] = "2026-09-28T16:30:00+00:00"  # 09-29 01:30 KST
+    assert s.reported_on(date(2026, 9, 29))
+    assert not s.reported_on(date(2026, 9, 28))
