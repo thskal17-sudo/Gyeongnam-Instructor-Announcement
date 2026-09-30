@@ -19,6 +19,7 @@ from .feedback import LABELS, append_feedback, feedback_path, load_feedback
 from .pipeline import build_posting, collect, enrich_attachments
 from .report.build import email_subject, render_email, render_markdown, render_telegram, select_postings, write_report
 from .excel import build_workbook
+from . import logsafe
 from .site import build_site
 from .stats import compute_stats
 from .store import Store, new_failures
@@ -95,6 +96,7 @@ def _parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
     logging.basicConfig(level=logging.DEBUG if args.verbose else logging.INFO, format="%(levelname)s %(name)s: %(message)s", stream=sys.stderr)
+    logsafe.install()  # httpx 가 남기는 요청 URL 에서 인증키를 가린다 — Actions 로그는 공개다
     bundle = load_bundle(Path(args.config_dir))
     store = Store(Path(args.data_dir)).load()
     now = datetime.now(KST)
