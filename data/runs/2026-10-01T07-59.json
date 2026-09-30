@@ -1,0 +1,487 @@
+{
+ "finished_at": "2026-10-01T08:01:04.164823+09:00",
+ "llm_cache_read_tokens": 0,
+ "llm_calls": 0,
+ "llm_errors": 0,
+ "llm_excluded": 0,
+ "llm_input_tokens": 0,
+ "llm_output_tokens": 0,
+ "llm_refusals": 0,
+ "notes": [],
+ "run_id": "2026-10-01T07-59",
+ "sources": [
+  {
+   "detail_fetched": 0,
+   "duration_ms": 14777,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gojobs",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.endpoint"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "alio",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "cleaneye",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "환경변수 WORKNET_API_KEY 없음"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "work24",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gyeongnam_go",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 2011,
+   "errors": [],
+   "listed": 4,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gne",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 3484,
+   "errors": [],
+   "listed": 20,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "changwon",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "jinju",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1163,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "tongyeong",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 2313,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "sacheon",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 3932,
+   "errors": [],
+   "listed": 20,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gimhae",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "miryang",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "geoje",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 2632,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "yangsan",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "uiryeong",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "haman",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "changnyeong",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "goseong",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "namhae",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "hadong",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "sancheong",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "hamyang",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1279,
+   "errors": [],
+   "listed": 6,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "geochang",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "hapcheon",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1491,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_hrd",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1258,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_hrd_programs",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1660,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_caf",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1077,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_ssw",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1228,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_ri",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1240,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_tour",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 4097,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_youth",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1520,
+   "errors": [],
+   "listed": 1,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "cw_fmc",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1330,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "cw_culture",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1025,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "jj_fmc",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 5238,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "kopo_changwon",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 3427,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "kopo_jinju",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "kosha_gn",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1564,
+   "errors": [],
+   "listed": 1,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "timf",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_cultural_centers",
+   "status": "unconfigured",
+   "updated": 0
+  }
+ ],
+ "started_at": "2026-10-01T07:59:33.900506+09:00",
+ "totals": {
+  "closing_soon": 10,
+  "expired": 17,
+  "merged": 0,
+  "new": 0,
+  "updated": 0
+ }
+}
