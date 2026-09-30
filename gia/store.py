@@ -11,6 +11,19 @@ from .extract.deadline import KST, in_deadline_window
 from .models import DeadlineType, Posting, RunLog, Status
 
 
+def new_failures(run: RunLog, earlier: list[RunLog]) -> list[str]:
+    """이번 수집에서 새로 실패한 소스.
+
+    소스마다 앞선 기록 중 가장 최근 상태와 견준다. 그때도 실패한 곳(하동처럼 늘 막히는 곳)은
+    빼고 센다. 소스 몇 개만 다시 돌린 기록이 끼어 있어도 소스별로 보므로 괜찮다.
+    """
+    last: dict[str, str] = {}
+    for r in earlier:
+        for s in r.sources:
+            last[s.source_id] = s.status
+    return [s.source_id for s in run.sources if s.status == "fail" and last.get(s.source_id) != "fail"]
+
+
 def sanitize_deadline(p: Posting) -> bool:
     """게시일 기준 유효 구간을 벗어난 마감일을 미상으로 되돌린다. 바꿨으면 True.
 
@@ -92,13 +105,18 @@ class Store:
         return path
 
     def last_run(self) -> RunLog | None:
+        runs = self.recent_runs(1)
+        return runs[-1] if runs else None
+
+    def recent_runs(self, n: int) -> list[RunLog]:
+        """최근 수집 기록 n개, 오래된 것부터."""
         if not self.runs_dir.exists():
-            return None
-        files = sorted(self.runs_dir.glob("*.json"))
-        if not files:
-            return None
-        with files[-1].open(encoding="utf-8") as fh:
-            return RunLog.model_validate(json.load(fh))
+            return []
+        out = []
+        for f in sorted(self.runs_dir.glob("*.json"))[-n:]:
+            with f.open(encoding="utf-8") as fh:
+                out.append(RunLog.model_validate(json.load(fh)))
+        return out
 
     def drop(self, key: str) -> Posting | None:
         """공고를 저장소에서 지우고 그 주소를 제외 목록으로 옮긴다.
