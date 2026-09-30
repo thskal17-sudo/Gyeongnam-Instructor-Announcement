@@ -41,11 +41,12 @@ python -m gia eval [--llm]               # 라벨 세트(tests/eval/labeled.json
 python -m gia stats --days 7             # 최근 7일 통계 (월요일 리포트에 자동 포함)
 python -m gia prune [--apply]            # 판별 규칙이 바뀌기 전에 저장된 비강사 공고 걸러내기 (기본은 보여주기만)
 python -m gia report --send --once-daily # 그날 이미 보냈으면 건너뛴다 (자동 실행이 겹칠 때)
+python -m gia report --send --once-daily --hold-if-degraded 3  # 오늘 첫 수집에서 3곳 이상 새로 실패했으면 미룬다
 python -m gia site --out site            # GitHub Pages용 정적 아카이브 생성 (pages.yml이 main 푸시 시 배포)
 python -m gia probe <id> --save-fixture  # 응답을 tests/fixtures/live/<id>/에 저장 (셀렉터 정할 때)
 ```
 
-GitHub Actions는 매일 01:17 KST(예비 04:17)에 `collect`를 예약하고, 예약 수집이 끝나면 곧바로 `report --send --once-daily`를 실행해 결과를 커밋한다. GitHub 예약 실행은 몇 시간씩 밀리곤 해서(3~4시간 관측) 새벽으로 잡았고, 수집과 발송을 따로 예약하지 않고 이어 붙였다. 07:47 KST 예비 예약은 그날 수집이 한 번도 돌지 않았을 때만 보낸다(`--once-daily`가 하루 한 번만 보내게 막는다). `pages.yml`은 `main`에 데이터·리포트가 커밋될 때 정적 아카이브를 GitHub Pages로 배포한다 (저장소 Settings → Pages → Source를 "GitHub Actions"로 설정 필요).
+GitHub Actions는 매일 01:17 KST(예비 04:17)에 `collect`를 예약하고, 예약 수집이 끝나면 곧바로 `report --send --once-daily`를 실행해 결과를 커밋한다. GitHub 예약 실행은 몇 시간씩 밀리곤 해서(3~4시간 관측) 새벽으로 잡았고, 수집과 발송을 따로 예약하지 않고 이어 붙였다. 07:47 KST 예비 예약은 그날 수집이 한 번도 돌지 않았을 때만 보낸다(`--once-daily`가 하루 한 번만 보내게 막는다). 오늘 첫 수집에서 새로 실패한 소스가 3곳 이상이면(늘 막히는 곳은 빼고 센다) 그 수집 뒤에는 보내지 않고 두 번째 수집 뒤에 보낸다(`--hold-if-degraded 3`). 사이트 여러 곳이 새벽에 한꺼번에 시간 초과로 빠지는 날이 있어서다. `pages.yml`은 `main`에 데이터·리포트가 커밋될 때 정적 아카이브를 GitHub Pages로 배포한다 (저장소 Settings → Pages → Source를 "GitHub Actions"로 설정 필요).
 필요한 저장소 Secrets: `DATA_GO_KR_KEY`, `WORKNET_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`. LLM 판별을 켜면 `ANTHROPIC_API_KEY`도 필요.
 
 ### LLM 판별 켜기

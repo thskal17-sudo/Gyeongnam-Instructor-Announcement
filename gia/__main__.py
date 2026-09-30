@@ -21,7 +21,7 @@ from .report.build import email_subject, render_email, render_markdown, render_t
 from .excel import build_workbook
 from .site import build_site
 from .stats import compute_stats
-from .store import Store
+from .store import Store, new_failures
 
 
 def _parser() -> argparse.ArgumentParser:
@@ -50,6 +50,8 @@ def _parser() -> argparse.ArgumentParser:
                    help="이번에만 쓸 채널(쉼표 구분, 설정 무시). 예: email — 테스트 메일이 깃허브 이슈까지 열지 않게")
     r.add_argument("--once-daily", action="store_true",
                    help="오늘(KST) 이미 보고했으면 아무것도 하지 않음 — 수집 직후 실행과 예비 예약 실행이 겹쳐도 한 번만 나가게")
+    r.add_argument("--hold-if-degraded", type=int, default=0, metavar="N",
+                   help="오늘 첫 수집에서 새로 실패한 소스가 N곳 이상이면 보내지 않고 다음 수집을 기다림 (0이면 끔)")
 
     pr = sub.add_parser("probe", help="소스 하나를 시험 수집")
     pr.add_argument("source_id")
@@ -115,6 +117,18 @@ def main(argv: list[str] | None = None) -> int:
         if args.once_daily and store.reported_on(now.date()):
             print(f"[report] 오늘 이미 보고함({store.state['last_report_at']}) — 건너뜀", file=sys.stderr)
             return 0
+        if args.hold_if_degraded:
+            # 사이트 여러 곳이 한꺼번에 시간 초과로 빠진 수집으로 그날 메일을 보내지 않는다
+            # (2026-09-30 05:51 수집: 10곳 실패, 2시간 뒤 수집은 1곳 실패). 오늘 첫 수집일 때만
+            # 미룬다 — 두 번째 수집(또는 예비 예약)이 남아 있어서다. 그 뒤로는 있는 대로 보낸다
+            runs = store.recent_runs(10)
+            today = [r for r in runs if r.started_at.astimezone(KST).date() == now.date()]
+            if len(today) == 1:
+                fails = new_failures(today[0], [r for r in runs if r is not today[0]])
+                if len(fails) >= args.hold_if_degraded:
+                    print(f"::warning::[report] 오늘 첫 수집에서 {len(fails)}곳이 새로 실패해 발송을 미룸 "
+                          f"({', '.join(fails)}) — 다음 수집 뒤에 보냅니다")  # ::warning:: 은 표준출력이어야 Actions 가 알아본다
+                    return 0
         data = select_postings(bundle, store, now)
         if bundle.settings.report.daily_overview_llm and (data.new or data.closing):
             llm = LlmClassifier.from_settings(bundle.settings.classifier)
