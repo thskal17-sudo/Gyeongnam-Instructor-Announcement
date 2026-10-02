@@ -233,3 +233,18 @@ def test_api_json_logs_filter_counts_and_empty_shape(settings, monkeypatch, capl
     assert "첫 페이지에 'result' 항목 없음" in caplog.text
     assert "resultCode" in caplog.text and "not registered" in caplog.text
     assert "SECRETKEY123" not in caplog.text, "인증키는 로그에 남기지 않는다"
+
+
+def test_eminwon_saeol_list(settings):
+    """새올 고시공고: onclick=searchDetail('id') 행을 읽고 제목 키워드로 채용·모집만 남긴다 (2026-10-03)."""
+    import yaml
+    anchor = yaml.safe_load(Path("config/sources.yaml").read_text(encoding="utf-8"))["x-eminwon"]
+    anchor = {**anchor, "paging": {"max_pages": 1}}  # 고정 응답이라 쪽 넘김은 보지 않는다
+    cfg = make_source("hadong", "local_gov", type="html_list", **anchor,
+                      list_url="http://eminwon.example.go.kr/emwp/list?pageIndex={page}",
+                      link_url_template="http://eminwon.example.go.kr/emwp/view?not_ancmt_mgt_no={1}")
+    http = _client(settings, {"/emwp/list": ("text/html", "eminwon_list.html")})
+    listings = HtmlListAdapter(cfg, http, settings.collector, since=date(2026, 9, 25)).fetch_list()
+    assert [(l.title, l.url, l.posted_at) for l in listings] == [
+        ("2026년 하동군 평생학습센터 프로그램 강사 모집 공고",
+         "http://eminwon.example.go.kr/emwp/view?not_ancmt_mgt_no=45253", date(2026, 10, 2))]
