@@ -2,11 +2,12 @@
 from __future__ import annotations
 
 import json
+import logging
 import re
 import xml.etree.ElementTree as ET
 from datetime import date, datetime, timedelta
 from typing import Any
-from urllib.parse import unquote
+from urllib.parse import quote, unquote
 
 import httpx
 
@@ -17,6 +18,8 @@ from ..normalize import GYEONGNAM_WORDS, SIGUN
 from .base import FetchError, SourceAdapter, get_path, matches_keywords, parse_date_loose, substitute_placeholders
 
 REGION_ALIASES = {"@gyeongnam": GYEONGNAM_WORDS + SIGUN}
+
+log = logging.getLogger(__name__)
 
 # 공공데이터포털·워크넷은 인증키를 Encoding/Decoding 두 형태로 발급한다.
 # httpx 가 params 를 다시 URL 인코딩하므로 Encoding 키(%2B…)를 그대로 넘기면
@@ -64,18 +67,34 @@ class ApiJsonAdapter(SourceAdapter):
             if isinstance(page_items, dict):
                 page_items = [page_items]
             if not page_items:
+                if page == start_page:
+                    # 200 으로 오면서 결과가 비는 경우: 오류 코드를 본문에 싣는 API 이거나
+                    # items_path 가 틀렸다. 어느 쪽인지 알 수 있게 응답 모양을 남긴다
+                    log.info("%s: 첫 페이지에 '%s' 항목 없음 — 응답 키 %s · 앞부분 %s",
+                             self.cfg.id, a.get("items_path"), _shape(data),
+                             _redact(" ".join(r.text.split())[:300], params))
                 break
             items.extend(page_items)
             if not page_param or len(page_items) < size:
                 break
 
         out: list[RawListing] = []
+        dropped: dict[str, int] = {}
         for it in items:
             if not isinstance(it, dict):
                 continue
             listing = self._to_listing(it, a)
-            if listing and self._passes(listing, a, since):
+            why = "제목 없음" if listing is None else self._reject(listing, a, since)
+            if why:
+                dropped[why] = dropped.get(why, 0) + 1
+            else:
                 out.append(listing)
+        if items:
+            # 필터에 다 걸러져 0건이 되면 겉으로는 빈 응답과 구별이 안 된다
+            log.info("%s: 응답 %d건 → 통과 %d건 (걸러짐: %s)", self.cfg.id, len(items), len(out),
+                     ", ".join(f"{k} {v}" for k, v in dropped.items()) or "없음")
+            if not out and isinstance(items[0], dict):
+                log.info("%s: 첫 항목 필드 %s", self.cfg.id, sorted(items[0])[:30])
         return out
 
     def fetch_detail(self, listing: RawListing) -> RawPosting:
@@ -131,18 +150,38 @@ class ApiJsonAdapter(SourceAdapter):
             deadline_text=deadline_text or None, region_text=region_text or None, extra=extra,
         )
 
-    def _passes(self, l: RawListing, a: dict, since: date) -> bool:
+    def _reject(self, l: RawListing, a: dict, since: date) -> str:
+        """걸러지는 이유. 통과하면 빈 문자열."""
         blob = " ".join([l.title, str(l.extra.get("body_text", ""))])
         if not matches_keywords(blob, a.get("keywords")):
-            return False
+            return "키워드"
         rf = a.get("region_filter")
         if isinstance(rf, str):
             rf = REGION_ALIASES.get(rf, [rf])
         if rf and l.region_text and not any(w in l.region_text for w in rf):
-            return False
+            return "지역"
         if l.posted_at and l.posted_at < since:
-            return False
-        return True
+            return "기간"
+        return ""
+
+
+def _shape(data: Any, depth: int = 2) -> Any:
+    """응답 구조만 (값 없이) 추린다. 로그에 실어 items_path 를 맞출 때 쓴다."""
+    if isinstance(data, dict):
+        return {k: (_shape(v, depth - 1) if depth > 0 else type(v).__name__) for k, v in list(data.items())[:12]}
+    if isinstance(data, list):
+        return f"list[{len(data)}]"
+    return type(data).__name__
+
+
+def _redact(text: str, params: dict) -> str:
+    """응답이 요청 인증키를 되돌려 주는 API 가 있어 로그에서 가린다."""
+    for k in KEY_PARAMS:
+        v = params.get(k)
+        if isinstance(v, str) and len(v) >= 8:
+            for form in (v, quote(v, safe=""), quote(v)):
+                text = text.replace(form, "***")
+    return text
 
 
 def xml_to_obj(el: ET.Element) -> Any:

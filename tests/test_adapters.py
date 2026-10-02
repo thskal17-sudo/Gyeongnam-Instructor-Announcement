@@ -203,3 +203,33 @@ def test_encoding_form_api_key_is_decoded_once(settings, monkeypatch):
     ApiJsonAdapter(cfg, http, settings.collector).fetch_list()
     assert seen == [raw]
     http.close()
+
+
+
+def test_api_json_logs_filter_counts_and_empty_shape(settings, monkeypatch, caplog):
+    """0건일 때 원인이 필터인지 빈 응답인지 로그로 구별된다 (나라일터 403 → 0건, 2026-09-30)."""
+    import json
+    import logging
+
+    monkeypatch.setenv("DATA_GO_KR_KEY", "SECRETKEY123")
+    cfg = make_source("gojobs", "portal", type="api_json", endpoint="https://api.example.org/list",
+                      params={"serviceKey": "${DATA_GO_KR_KEY}"}, items_path="result", keywords=["강사"],
+                      field_map={"title": "t"})
+
+    def serve(body: dict) -> HttpClient:
+        return HttpClient(settings.collector, transport=httpx.MockTransport(
+            lambda req: httpx.Response(200, content=json.dumps(body, ensure_ascii=False).encode(),
+                                       headers={"content-type": "application/json"})))
+
+    with caplog.at_level(logging.INFO, logger="gia.collectors.api_json"):
+        assert ApiJsonAdapter(cfg, serve({"result": [{"t": "사무원 채용"}, {"t": "행정 보조"}]}), settings.collector).fetch_list() == []
+    assert "응답 2건 → 통과 0건 (걸러짐: 키워드 2)" in caplog.text
+    assert "첫 항목 필드 ['t']" in caplog.text
+
+    caplog.clear()
+    with caplog.at_level(logging.INFO, logger="gia.collectors.api_json"):
+        empty = {"resultCode": 30, "resultMsg": "key SECRETKEY123 not registered", "result": []}
+        assert ApiJsonAdapter(cfg, serve(empty), settings.collector).fetch_list() == []
+    assert "첫 페이지에 'result' 항목 없음" in caplog.text
+    assert "resultCode" in caplog.text and "not registered" in caplog.text
+    assert "SECRETKEY123" not in caplog.text, "인증키는 로그에 남기지 않는다"
