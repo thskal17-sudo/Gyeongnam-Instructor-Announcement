@@ -252,6 +252,14 @@ def dump(url: str) -> None:
         for node in soup.select(sel_env)[:3]:
             print(f"\n[BODY TEXT] {short_path(node)}")
             print(node.get_text("\n", strip=True)[:3000])
+    raw_sel = os.environ.get("RAW_SELECTOR")
+    if raw_sel:
+        # 행 구조(onclick·td 순서)를 요약 없이 봐야 할 때. 스크립트는 빼고 원본 HTML 을 그대로 싣는다
+        for sc in soup.find_all("script"):
+            sc.decompose()
+        for node in soup.select(raw_sel)[:2]:
+            print(f"\n[RAW HTML] {short_path(node)}")
+            print(re.sub(r"\n\s*\n+", "\n", str(node))[:8000])
     if DETAIL.search(url):
         dump_detail(soup)
     else:
