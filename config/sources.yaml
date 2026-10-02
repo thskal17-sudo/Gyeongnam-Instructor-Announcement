@@ -19,7 +19,7 @@ defaults:
 # ---------------------------------------------------------------------------
 sources:
   - id: gojobs
-    name: 나라일터·공공기관 채용정보 (인사혁신처)
+    name: 공공기관 채용정보 (재정경제부·잡알리오)
     org_type: portal
     tier: 1
     schedule: daily_light
@@ -31,6 +31,10 @@ sources:
       params:
         serviceKey: "${DATA_GO_KR_KEY}"
         resultType: json
+        # 전국 모든 공공기관 공고를 주므로 요청 단계에서 줄인다. 거르지 않으면 앞 500건 안에
+        # 경남 강사 공고가 하나도 없어 0건이 됐다(2026-09-30 probe: 키워드 499·지역 1 탈락)
+        ongoingYn: "Y"        # 진행 중인 공고만
+        workRgnLst: R3022     # 근무지 경남 (코드정의서 R3000 계열: R3016 울산, R3014 부산)
       paging: { page_param: pageNo, size_param: numOfRows, size: 100, max_pages: 5 }
       items_path: result
       field_map:
@@ -45,8 +49,10 @@ sources:
       region_filter: "@gyeongnam"
       detail: { fetch: false }
     notes: >-
-      공공데이터포털 '인사혁신처_공공기관 채용정보' API 기준으로 작성. 엔드포인트·필드명(recrutPbancTtl,
-      instNm, pbancBgngYmd, pbancEndYmd, workRgnNmLst, srcUrl)은 `gia probe gojobs`로 실측 후 verified: true.
+      id 는 예전 이름(gojobs)을 그대로 쓰지만, 엔드포인트(1051000)는 공공데이터포털 '재정경제부_공공기관
+      채용정보 조회서비스'(잡알리오, 데이터셋 15125273)다. 2026-09-29 활용 승인 뒤부터 200 으로 응답한다.
+      필드명은 2026-09-30 probe 로 실측했다. 요청 변수: ongoingYn(Y/N), workRgnLst(지역 코드, 쉼표 구분),
+      recrutPbancTtl(제목 부분일치), pbancBgngYmd/pbancEndYmd(공고 시작일 범위, YYYY-MM-DD).
       환경변수 DATA_GO_KR_KEY 필요.
 
   - id: alio
@@ -66,7 +72,8 @@ sources:
       keywords: [강사, 교강사, 시간강사, 외래교수, 훈련교사]
       region_filter: "@gyeongnam"
       detail: { fetch: false }
-    notes: gojobs(인사혁신처 API)가 공공기관 채용을 이미 포함하면 중복이므로 검증 후 enabled 여부 결정
+    enabled: false
+    notes: gojobs 가 이 API(1051000/recruitment/list)를 이미 쓴다(2026-10-02 확인). 중복이라 끈다
 
   - id: cleaneye
     name: 클린아이 잡플러스 (행안부, 지방공기업·출자출연기관)
