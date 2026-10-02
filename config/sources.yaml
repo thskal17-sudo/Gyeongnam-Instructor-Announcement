@@ -18,12 +18,14 @@ defaults:
 # Tier 1. 통합 채용 포털 (API 우선)  — Phase 1
 # ---------------------------------------------------------------------------
 # 새올(eminwon) 행정 고시공고 공통 설정. 시군 홈페이지가 GitHub 러너 IP 를 막아도 새올 서버는 열리는 곳이 많다.
-# 행: 번호 / 공고번호(링크) / 제목(링크) / 담당부서 / 등록일 / 조회수. 링크는 onclick="searchDetail('관리번호')".
+# 행: 번호 / 공고번호 / 제목 / 담당부서 / 등록일 (/ 조회수). 상세는 onclick="searchDetail('관리번호')" 인데
+# 군마다 onclick 위치가 다르다 — 하동은 칸 안의 <a>, 의령은 <td> 자체. 둘 다 받도록 [onclick] 로 찾는다.
+# 의령은 긴 제목을 목록에서 '...' 로 자른다(상세에는 전체 제목).
 # 채용 분류 코드(05)는 시군마다 달라(하동 05=채용, 의령 05=0건) 전체 분류를 받고 제목으로 거른다.
 x-eminwon: &eminwon
-  row_selector: "tr:has(> td > a[onclick*='searchDetail'])"
-  title_selector: "td:nth-of-type(3) a"
-  link_selector: "td:nth-of-type(3) a"
+  row_selector: "tr:has(> td[onclick*='searchDetail']), tr:has(> td > a[onclick*='searchDetail'])"
+  title_selector: "td:nth-of-type(3)"
+  link_selector: "[onclick*='searchDetail']"
   link_attr: onclick
   link_regex: "searchDetail\\('(\\d+)'\\)"
   date_selector: "td:nth-of-type(5)"

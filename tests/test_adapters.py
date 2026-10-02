@@ -245,6 +245,10 @@ def test_eminwon_saeol_list(settings):
                       link_url_template="http://eminwon.example.go.kr/emwp/view?not_ancmt_mgt_no={1}")
     http = _client(settings, {"/emwp/list": ("text/html", "eminwon_list.html")})
     listings = HtmlListAdapter(cfg, http, settings.collector, since=date(2026, 9, 25)).fetch_list()
-    assert [(l.title, l.url, l.posted_at) for l in listings] == [
+    # 셀렉터 묶음(A, B)은 묶음 순서대로 돌려주므로 순서는 보지 않는다
+    assert sorted((l.title, l.url, l.posted_at) for l in listings) == sorted([
         ("2026년 하동군 평생학습센터 프로그램 강사 모집 공고",
-         "http://eminwon.example.go.kr/emwp/view?not_ancmt_mgt_no=45253", date(2026, 10, 2))]
+         "http://eminwon.example.go.kr/emwp/view?not_ancmt_mgt_no=45253", date(2026, 10, 2)),
+        # 의령형: onclick 이 <a> 가 아니라 <td> 에 붙어 있다
+        ("2026년 의령군 체육회 생활체육지도자 채용 공고",
+         "http://eminwon.example.go.kr/emwp/view?not_ancmt_mgt_no=36475", date(2026, 10, 1))])
