@@ -14,6 +14,9 @@ on:
       grep:
         description: "dump 시 페이지 스크립트에서 이 정규식 둘레를 출력 (예: fnKfileDownload)"
         default: ""
+      raw_selector:
+        description: "dump 시 이 CSS 셀렉터의 원본 HTML 을 출력 (행 구조·onclick 확인용, 예: form table)"
+        default: ""
       days:
         description: "probe 수집 기간(일). 비우면 settings.yaml 의 default_days(14). 게시가 뜸한 게시판 셀렉터 확인용으로 90 등"
         default: ""
@@ -38,6 +41,7 @@ jobs:
           URLS: ${{ github.event.inputs.urls }}
           BODY_SELECTOR: ${{ github.event.inputs.body_selector }}
           GREP: ${{ github.event.inputs.grep }}
+          RAW_SELECTOR: ${{ github.event.inputs.raw_selector }}
         run: python scripts/dump_structure.py 2>&1 | tee -a "$PROBE_OUT"
       - name: gia probe
         if: ${{ github.event.inputs.sources != '' }}

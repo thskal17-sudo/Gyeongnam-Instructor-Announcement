@@ -17,9 +17,28 @@ defaults:
 # ---------------------------------------------------------------------------
 # Tier 1. 통합 채용 포털 (API 우선)  — Phase 1
 # ---------------------------------------------------------------------------
+# 새올(eminwon) 행정 고시공고 공통 설정. 시군 홈페이지가 GitHub 러너 IP 를 막아도 새올 서버는 열리는 곳이 많다.
+# 행: 번호 / 공고번호 / 제목 / 담당부서 / 등록일 (/ 조회수). 상세는 onclick="searchDetail('관리번호')" 인데
+# 군마다 onclick 위치가 다르다 — 하동은 칸 안의 <a>, 의령은 <td> 자체. 둘 다 받도록 [onclick] 로 찾는다.
+# 의령은 긴 제목을 목록에서 '...' 로 자른다(상세에는 전체 제목).
+# 채용 분류 코드(05)는 시군마다 달라(하동 05=채용, 의령 05=0건) 전체 분류를 받고 제목으로 거른다.
+x-eminwon: &eminwon
+  row_selector: "tr:has(> td[onclick*='searchDetail']), tr:has(> td > a[onclick*='searchDetail'])"
+  title_selector: "td:nth-of-type(3)"
+  link_selector: "[onclick*='searchDetail']"
+  link_attr: onclick
+  link_regex: "searchDetail\\('(\\d+)'\\)"
+  date_selector: "td:nth-of-type(5)"
+  keywords: [채용, 모집, 강사, 기간제, 위촉, 선발, 인력풀, 지도사, 코치, 튜터]
+  paging: { max_pages: 4 }
+  detail:
+    fetch: true
+    body_selector: form
+    content_selector: "td[colspan='4'][style*='word-break']"
+
 sources:
   - id: gojobs
-    name: 나라일터·공공기관 채용정보 (인사혁신처)
+    name: 공공기관 채용정보 (재정경제부·잡알리오)
     org_type: portal
     tier: 1
     schedule: daily_light
@@ -31,6 +50,10 @@ sources:
       params:
         serviceKey: "${DATA_GO_KR_KEY}"
         resultType: json
+        # 전국 모든 공공기관 공고를 주므로 요청 단계에서 줄인다. 거르지 않으면 앞 500건 안에
+        # 경남 강사 공고가 하나도 없어 0건이 됐다(2026-09-30 probe: 키워드 499·지역 1 탈락)
+        ongoingYn: "Y"        # 진행 중인 공고만
+        workRgnLst: R3022     # 근무지 경남 (코드정의서 R3000 계열: R3016 울산, R3014 부산)
       paging: { page_param: pageNo, size_param: numOfRows, size: 100, max_pages: 5 }
       items_path: result
       field_map:
@@ -45,8 +68,10 @@ sources:
       region_filter: "@gyeongnam"
       detail: { fetch: false }
     notes: >-
-      공공데이터포털 '인사혁신처_공공기관 채용정보' API 기준으로 작성. 엔드포인트·필드명(recrutPbancTtl,
-      instNm, pbancBgngYmd, pbancEndYmd, workRgnNmLst, srcUrl)은 `gia probe gojobs`로 실측 후 verified: true.
+      id 는 예전 이름(gojobs)을 그대로 쓰지만, 엔드포인트(1051000)는 공공데이터포털 '재정경제부_공공기관
+      채용정보 조회서비스'(잡알리오, 데이터셋 15125273)다. 2026-09-29 활용 승인 뒤부터 200 으로 응답한다.
+      필드명은 2026-09-30 probe 로 실측했다. 요청 변수: ongoingYn(Y/N), workRgnLst(지역 코드, 쉼표 구분),
+      recrutPbancTtl(제목 부분일치), pbancBgngYmd/pbancEndYmd(공고 시작일 범위, YYYY-MM-DD).
       환경변수 DATA_GO_KR_KEY 필요.
 
   - id: alio
@@ -66,7 +91,8 @@ sources:
       keywords: [강사, 교강사, 시간강사, 외래교수, 훈련교사]
       region_filter: "@gyeongnam"
       detail: { fetch: false }
-    notes: gojobs(인사혁신처 API)가 공공기관 채용을 이미 포함하면 중복이므로 검증 후 enabled 여부 결정
+    enabled: false
+    notes: gojobs 가 이 API(1051000/recruitment/list)를 이미 쓴다(2026-10-02 확인). 중복이라 끈다
 
   - id: cleaneye
     name: 클린아이 잡플러스 (행안부, 지방공기업·출자출연기관)
@@ -352,10 +378,12 @@ sources:
     homepage: https://www.uiryeong.go.kr
     adapter:
       type: html_list
-      list_url: TODO
-      candidate_list_url: https://www.uiryeong.go.kr/board/list.uiryeong?boardId=BBS_0000112&menuCd=DOM_000000204004004002&startPage={page}
+      <<: *eminwon
+      list_url: http://eminwon.uiryeong.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectListOfrNotAncmt&methodnm=selectListOfrNotAncmtHomepage&homepage_pbs_yn=Y&subCheck=Y&ofr_pageSize=50&not_ancmt_se_code=01,02,03,04,05&initValue=Y&countYn=Y&list_gubun=A&epcCheck=Y&Key=B_Subject&pageIndex={page}
+      link_url_template: http://eminwon.uiryeong.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_mgt_no={1}
     notes: >-
-      구인정보 게시판 후보. 러너 연결 시간초과(2026-09-21). 2026-09-22 브라우저형 헤더·Referer·재시도 적용 후 3개 러너(westus3×2, centralus)에서 재시도 → 동일 실패. GitHub 호스티드 러너 IP 대역을 일관되게 차단하는 것으로 판단, 국내 IP(자체 호스팅 러너·프록시) 또는 로컬 `python -m gia probe` 필요
+      새올(eminwon) 고시공고 목록. 홈페이지 구인정보 게시판(BBS_0000112)은 GitHub 러너 IP 를 막지만 새올 서버는 열린다
+      (2026-10-03 probe). 고시공고 전체에서 제목 키워드로 채용·모집 공고만 남긴다
   - id: haman
     name: 함안군
     org_type: local_gov
@@ -363,10 +391,12 @@ sources:
     homepage: https://www.haman.go.kr
     adapter:
       type: html_list
-      list_url: TODO
-      candidate_list_url: https://www.haman.go.kr/00059/06642/06644.web?cpage={page}
+      <<: *eminwon
+      list_url: http://eminwon.haman.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectListOfrNotAncmt&methodnm=selectListOfrNotAncmtHomepage&homepage_pbs_yn=Y&subCheck=Y&ofr_pageSize=50&not_ancmt_se_code=01,02,03,04,05&initValue=Y&countYn=Y&list_gubun=A&epcCheck=Y&Key=B_Subject&pageIndex={page}
+      link_url_template: http://eminwon.haman.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_mgt_no={1}
     notes: >-
-      채용공고 게시판 후보. 러너 연결 시간초과(2026-09-21). 2026-09-22 브라우저형 헤더·Referer·재시도 적용 후 3개 러너(westus3×2, centralus)에서 재시도 → 동일 실패. GitHub 호스티드 러너 IP 대역을 일관되게 차단하는 것으로 판단, 국내 IP(자체 호스팅 러너·프록시) 또는 로컬 `python -m gia probe` 필요
+      새올(eminwon) 고시공고 목록. 홈페이지 채용공고 게시판(06644.web)은 GitHub 러너 IP 를 막지만 새올 서버는 열린다
+      (2026-10-03 probe). 고시공고 전체에서 제목 키워드로 채용·모집 공고만 남긴다
   - id: changnyeong
     name: 창녕군
     org_type: local_gov
@@ -374,10 +404,15 @@ sources:
     homepage: https://www.cng.go.kr
     adapter:
       type: html_list
-      list_url: TODO
-      candidate_list_url: https://www.cng.go.kr/03518/01566.web?cpage={page}
+      <<: *eminwon
+      # 창녕은 번호 칸이 <th> 라 <td> 순서가 하나 당겨진다: 공고번호 / 제목(td.subject) / 담당부서 / 등록일
+      title_selector: "td.subject"
+      date_selector: "td:nth-of-type(4)"
+      list_url: http://eminwon.cng.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectListOfrNotAncmt&methodnm=selectListOfrNotAncmtHomepage&homepage_pbs_yn=Y&subCheck=Y&ofr_pageSize=50&not_ancmt_se_code=01,02,03,04,05&initValue=Y&countYn=Y&list_gubun=A&epcCheck=Y&Key=B_Subject&pageIndex={page}
+      link_url_template: http://eminwon.cng.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_mgt_no={1}
     notes: >-
-      채용정보 > 채용공고 게시판 후보(기타채용은 01567.web). 러너 연결 시간초과(2026-09-21). 2026-09-22 브라우저형 헤더·Referer·재시도 적용 후 3개 러너(westus3×2, centralus)에서 재시도 → 동일 실패. GitHub 호스티드 러너 IP 대역을 일관되게 차단하는 것으로 판단, 국내 IP(자체 호스팅 러너·프록시) 또는 로컬 `python -m gia probe` 필요
+      새올(eminwon) 고시공고 목록. 홈페이지 채용공고 게시판(01566.web)은 GitHub 러너 IP 를 막지만 새올 서버는 열린다
+      (2026-10-03 probe). 고시공고 전체에서 제목 키워드로 채용·모집 공고만 남긴다
   - id: goseong
     name: 고성군
     org_type: local_gov
@@ -385,10 +420,12 @@ sources:
     homepage: https://www.goseong.go.kr
     adapter:
       type: html_list
-      list_url: TODO
-      candidate_list_url: https://www.goseong.go.kr/board/list.goseong?boardId=BBS_0000015&menuCd=DOM_000000103001014000&startPage={page}
+      <<: *eminwon
+      list_url: http://eminwon.goseong.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectListOfrNotAncmt&methodnm=selectListOfrNotAncmtHomepage&homepage_pbs_yn=Y&subCheck=Y&ofr_pageSize=50&not_ancmt_se_code=01,02,03,04,05&initValue=Y&countYn=Y&list_gubun=A&epcCheck=Y&Key=B_Subject&pageIndex={page}
+      link_url_template: http://eminwon.goseong.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_mgt_no={1}
     notes: >-
-      고시공고 게시판 후보(통합공지사항은 boardId=BBS_0000118). 러너에서 400 'Request Blocked'(WAF)(2026-09-21). 브라우저형 헤더로도 동일 → UA가 아니라 IP 기준 차단. 2026-09-22 브라우저형 헤더·Referer·재시도 적용 후 3개 러너(westus3×2, centralus)에서 재시도 → 동일 실패. GitHub 호스티드 러너 IP 대역을 일관되게 차단하는 것으로 판단, 국내 IP(자체 호스팅 러너·프록시) 또는 로컬 `python -m gia probe` 필요
+      새올(eminwon) 고시공고 목록. 홈페이지 고시공고 게시판(BBS_0000015, WAF 400)은 GitHub 러너 IP 를 막지만 새올 서버는 열린다
+      (2026-10-03 probe). 고시공고 전체에서 제목 키워드로 채용·모집 공고만 남긴다
   - id: namhae
     name: 남해군
     org_type: local_gov
@@ -396,29 +433,25 @@ sources:
     homepage: https://www.namhae.go.kr
     adapter:
       type: html_list
-      list_url: TODO
-      candidate_list_url: https://www.namhae.go.kr/modules/saeol/gosi.do?siteGubun=portal&pageCd=WW0512090402&cpage={page}
+      <<: *eminwon
+      list_url: http://eminwon.namhae.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectListOfrNotAncmt&methodnm=selectListOfrNotAncmtHomepage&homepage_pbs_yn=Y&subCheck=Y&ofr_pageSize=50&not_ancmt_se_code=01,02,03,04,05&initValue=Y&countYn=Y&list_gubun=A&epcCheck=Y&Key=B_Subject&pageIndex={page}
+      link_url_template: http://eminwon.namhae.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_mgt_no={1}
     notes: >-
-      공고/고시 게시판 후보. 러너 연결 시간초과(2026-09-21). 2026-09-22 브라우저형 헤더·Referer·재시도 적용 후 3개 러너(westus3×2, centralus)에서 재시도 → 동일 실패. GitHub 호스티드 러너 IP 대역을 일관되게 차단하는 것으로 판단, 국내 IP(자체 호스팅 러너·프록시) 또는 로컬 `python -m gia probe` 필요
+      새올(eminwon) 고시공고 목록. 홈페이지 공고/고시 게시판(modules/saeol/gosi.do)은 GitHub 러너 IP 를 막지만 새올 서버는 열린다
+      (2026-10-03 probe). 고시공고 전체에서 제목 키워드로 채용·모집 공고만 남긴다
   - id: hadong
     name: 하동군
     org_type: local_gov
     tier: 2
     homepage: https://www.hadong.go.kr
-    verified: true
     adapter:
       type: html_list
-      list_url: https://www.hadong.go.kr/specialty/00224/00412.web?gcode=4146&cpage={page}
-      row_selector: ul.lst1 > li.li1
-      title_selector: strong.t1
-      link_selector: a.a1
-      date_selector: span.t3:nth-of-type(1)
-      org_selector: span.t3:nth-of-type(2)
-      detail:
-        fetch: true
-        body_selector: div.bbs1view1 div.substance
-        attachment_selector: a[href*="/board/download.do"]
-    notes: 채용공고 게시판(2026-09-21 검증). 주간 '채용정보' 묶음 글도 섞여 있음
+      <<: *eminwon
+      list_url: http://eminwon.hadong.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectListOfrNotAncmt&methodnm=selectListOfrNotAncmtHomepage&homepage_pbs_yn=Y&subCheck=Y&ofr_pageSize=50&not_ancmt_se_code=01,02,03,04,05&initValue=Y&countYn=Y&list_gubun=A&epcCheck=Y&Key=B_Subject&pageIndex={page}
+      link_url_template: http://eminwon.hadong.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_mgt_no={1}
+    notes: >-
+      새올(eminwon) 고시공고 목록. 홈페이지 채용공고 게시판(00412.web, 2026-09-21 검증했으나 이후 매일 시간초과)은 GitHub 러너 IP 를 막지만 새올 서버는 열린다
+      (2026-10-03 probe). 고시공고 전체에서 제목 키워드로 채용·모집 공고만 남긴다
   - id: sancheong
     name: 산청군
     org_type: local_gov
@@ -468,10 +501,12 @@ sources:
     homepage: https://www.hc.go.kr
     adapter:
       type: html_list
-      list_url: TODO
-      candidate_list_url: https://www.hc.go.kr/08998.web?cpage={page}
+      <<: *eminwon
+      list_url: http://eminwon.hc.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectListOfrNotAncmt&methodnm=selectListOfrNotAncmtHomepage&homepage_pbs_yn=Y&subCheck=Y&ofr_pageSize=50&not_ancmt_se_code=01,02,03,04,05&initValue=Y&countYn=Y&list_gubun=A&epcCheck=Y&Key=B_Subject&pageIndex={page}
+      link_url_template: http://eminwon.hc.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_mgt_no={1}
     notes: >-
-      채용공고 게시판 후보(웹 검색으로 08998.web이 채용공고 게시판임을 확인). 러너에서 error.html 로 meta refresh(2026-09-21). 2026-09-22 브라우저형 헤더·Referer·재시도 적용 후 3개 러너(westus3×2, centralus)에서 재시도 → 동일 실패. GitHub 호스티드 러너 IP 대역을 일관되게 차단하는 것으로 판단, 국내 IP(자체 호스팅 러너·프록시) 또는 로컬 `python -m gia probe` 필요
+      새올(eminwon) 고시공고 목록. 홈페이지 채용공고 게시판(08998.web, error.html 리다이렉트)은 GitHub 러너 IP 를 막지만 새올 서버는 열린다
+      (2026-10-03 probe). 고시공고 전체에서 제목 키워드로 채용·모집 공고만 남긴다
 
 # ---------------------------------------------------------------------------
 # Tier 3-A. 경남 출자·출연기관 / 지방공기업  — Phase 2~3
