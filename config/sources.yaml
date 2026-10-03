@@ -405,6 +405,9 @@ sources:
     adapter:
       type: html_list
       <<: *eminwon
+      # 창녕은 번호 칸이 <th> 라 <td> 순서가 하나 당겨진다: 공고번호 / 제목(td.subject) / 담당부서 / 등록일
+      title_selector: "td.subject"
+      date_selector: "td:nth-of-type(4)"
       list_url: http://eminwon.cng.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectListOfrNotAncmt&methodnm=selectListOfrNotAncmtHomepage&homepage_pbs_yn=Y&subCheck=Y&ofr_pageSize=50&not_ancmt_se_code=01,02,03,04,05&initValue=Y&countYn=Y&list_gubun=A&epcCheck=Y&Key=B_Subject&pageIndex={page}
       link_url_template: http://eminwon.cng.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_mgt_no={1}
     notes: >-
