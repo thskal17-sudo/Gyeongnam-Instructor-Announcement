@@ -252,3 +252,27 @@ def test_eminwon_saeol_list(settings):
         # 의령형: onclick 이 <a> 가 아니라 <td> 에 붙어 있다
         ("2026년 의령군 체육회 생활체육지도자 채용 공고",
          "http://eminwon.example.go.kr/emwp/view?not_ancmt_mgt_no=36475", date(2026, 10, 1))])
+
+
+def test_eminwon_detail_full_title_and_js_attachment(settings):
+    """새올 상세: 목록에서 '...' 로 잘린 제목을 '제목' 칸으로 되찾고, goDownLoad 첨부를 FileDown.jsp 주소로 만든다."""
+    import yaml
+
+    from gia.extract.attachments import file_extension, filename_from_url
+    from gia.models import RawListing
+    anchor = yaml.safe_load(Path("config/sources.yaml").read_text(encoding="utf-8"))["x-eminwon"]
+    cfg = make_source("uiryeong", "local_gov", type="html_list", **anchor,
+                      list_url="http://eminwon.example.go.kr/emwp/list?pageIndex={page}",
+                      link_url_template="http://eminwon.example.go.kr/emwp/view?not_ancmt_mgt_no={1}")
+    http = _client(settings, {"/emwp/view": ("text/html", "eminwon_detail.html")})
+    listing = RawListing(source_id="uiryeong", title="2026년 의령군 평생학습센터 하반기 프로그램 강사(요가·서예...",
+                         url="http://eminwon.example.go.kr/emwp/view?not_ancmt_mgt_no=36475")
+    raw = HtmlListAdapter(cfg, http, settings.collector).fetch_detail(listing)
+    assert raw.title == "2026년 의령군 평생학습센터 하반기 프로그램 강사(요가·서예·스마트폰 활용) 모집 공고"
+    assert raw.extra["content_text"].startswith("의령군 평생학습센터")
+    assert len(raw.attachments) == 1
+    url = raw.attachments[0]
+    assert url.startswith("http://eminwon.example.go.kr/emwp/jsp/ofr/FileDown.jsp?user_file_nm=")
+    assert "file_path=/ntishome/file/upload/ofr/ofr/20261002" in url
+    # 첨부 받기 단계가 확장자로 거르므로, 주소에서 원래 파일 이름을 읽을 수 있어야 한다
+    assert filename_from_url(url) == "강사 모집 공고문.hwpx" and file_extension(filename_from_url(url)) == ".hwpx"

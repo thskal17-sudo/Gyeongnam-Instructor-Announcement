@@ -35,6 +35,11 @@ x-eminwon: &eminwon
     fetch: true
     body_selector: form
     content_selector: "td[colspan='4'][style*='word-break']"
+    title_label: 제목          # 목록이 '...' 로 자른 제목을 상세의 '제목' 칸으로 되찾는다
+    # 첨부는 javascript:goDownLoad('원래이름','저장이름','경로') → FileDown.jsp (2026-10-03 확인)
+    attachment_selector: "a[href*='goDownLoad']"
+    attachment_regex: "goDownLoad\\('([^']*)',\\s*'([^']*)',\\s*'([^']*)'\\)"
+    attachment_url_template: "/emwp/jsp/ofr/FileDown.jsp?user_file_nm={1}&sys_file_nm={2}&file_path={3}"
 
 sources:
   - id: gojobs
