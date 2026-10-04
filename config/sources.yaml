@@ -501,6 +501,25 @@ sources:
     notes: >-
       취업정보 > 시험채용정보 게시판(2026-09-21 검증). 민간 구인글(요양보호사 등)도 섞여 있어 분류기 점수로 거름.
       최신 글 제목 끝에 '새 글' 배지(span.t1)가 붙어 옴 → normalize_title 에서 제거 필요(후속)
+  - id: geochang_eminwon
+    name: 거창군(새올)
+    org_type: local_gov
+    tier: 2
+    enabled: false
+    homepage: https://www.geochang.go.kr
+    adapter:
+      type: html_list
+      <<: *eminwon
+      list_url: http://eminwon.geochang.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectListOfrNotAncmt&methodnm=selectListOfrNotAncmtHomepage&homepage_pbs_yn=Y&subCheck=Y&ofr_pageSize=50&not_ancmt_se_code=01,02,03,04,05&initValue=Y&countYn=Y&list_gubun=A&epcCheck=Y&Key=B_Subject&pageIndex={page}
+      link_url_template: http://eminwon.geochang.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_mgt_no={1}
+    notes: >-
+      `geochang` 홈페이지 게시판이 막히는 날을 대비한 예비 경로. 2026-10-04 probe 로 확인:
+      서버는 열리고(HTTP 200, 고시공고 51행) 기존 eminwon 앵커로 셀렉터 수정 없이 목록 11건을 읽었다.
+      그런데 켜지 않는다 — 고시공고 게시판이라 강사 공고가 없다(통과한 11건이 태양광 참여가구·불법주정차
+      기간제근로자·착한가격업소 등, 상세를 받은 1건은 5점으로 제외). 거창은 홈페이지 게시판으로도
+      9~10월 저장 0건이라 막혀도 잃는 것이 없다.
+      켤 때 먼저 고칠 것: 첨부 파일명이 암호화돼 있어(user_file_nm 값에 확장자가 없다)
+      `FileDown.jsp: 지원하지 않는 형식` 이 나고, 본문이 2자만 잡힌다. 다른 새올 7곳과 다른 점이다
   - id: hapcheon
     name: 합천군
     org_type: local_gov
