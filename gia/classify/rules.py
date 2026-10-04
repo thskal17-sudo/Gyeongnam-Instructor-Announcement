@@ -13,6 +13,12 @@ CORE_WORDS = [
     # 수강생 쪽 글에도 이 말이 나오지만 그쪽 제목은 EXCLUDE_TITLE 에서 걸린다
     "강습",
 ]
+# 핵심어가 다른 낱말에 우연히 박힌 경우. 핵심어를 찾기 전에 지운다
+# (하동 '섬진강사랑의집' 의 '강사' → 강사 공고로 잡혔다, 2026-10-04)
+FALSE_CORE_COMPOUNDS = ["강사랑"]
+# 사람이 아니라 운영 기관·법인을 뽑는 공고. 제목만으로 강사 공고가 아니라고 단정할 수 있다
+# ('방과후학교 개인위탁 외부강사' 처럼 사람을 뽑는 '위탁'은 걸리지 않게 '수탁'·'민간위탁'만 본다)
+ORG_RECRUIT_WORDS = ["수탁기관", "수탁운영", "수탁법인", "수탁자 모집", "수탁자 공개모집", "민간위탁"]
 HIRE_WORDS = ["모집", "채용", "공모", "위촉", "공개채용", "인력풀", "선발", "공개모집", "구인", "채용공고", "위촉공고", "초빙"]
 LECTURE_WORDS = ["강의", "수업", "교육과정 운영", "프로그램 운영", "출강", "강좌", "교육 운영", "교육운영"]
 EXCLUDE_TITLE = [
@@ -63,6 +69,12 @@ class RuleResult:
     employment_type: str = "기타"
 
 
+def _core_hits(text: str) -> list[str]:
+    for w in FALSE_CORE_COMPOUNDS:
+        text = text.replace(w, " ")
+    return [w for w in CORE_WORDS if w in text]
+
+
 def score_posting(title: str, body: str = "", region_text: str | None = None, org_name: str | None = None) -> RuleResult:
     t = nfkc(title)
     b = nfkc(body)[:4000]
@@ -70,12 +82,12 @@ def score_posting(title: str, body: str = "", region_text: str | None = None, or
     score = 0
     reasons: list[str] = []
 
-    core_t = [w for w in CORE_WORDS if w in t]
+    core_t = _core_hits(t)
     if core_t:
         score += 50
         reasons.append(f"+50 제목 핵심어({core_t[0]})")
     else:
-        core_b = [w for w in CORE_WORDS if w in b]
+        core_b = _core_hits(b)
         if core_b:
             score += 25
             reasons.append(f"+25 본문 핵심어({core_b[0]})")
@@ -104,7 +116,7 @@ def score_posting(title: str, body: str = "", region_text: str | None = None, or
             score -= 40
             reasons.append(f"-40 비강사 직종({jobs[0]})")
 
-    excl = [w for w in EXCLUDE_TITLE if w in t]
+    excl = [w for w in EXCLUDE_TITLE + ORG_RECRUIT_WORDS if w in t]
     if excl:
         score -= 60
         reasons.append(f"-60 제외어({excl[0]})")
@@ -136,7 +148,10 @@ def title_veto(title: str) -> str | None:
     '지도자'가 스쳐도 강사 공고가 아니다.
     """
     t = nfkc(title)
-    if any(w in t for w in CORE_WORDS):
+    org = [w for w in ORG_RECRUIT_WORDS if w in t]
+    if org:
+        return f"기관 모집({org[0]})"
+    if _core_hits(t):
         return None
     jobs = [w for w in NON_INSTRUCTOR_JOBS if w in t]
     return f"비강사 직종({jobs[0]})" if jobs else None

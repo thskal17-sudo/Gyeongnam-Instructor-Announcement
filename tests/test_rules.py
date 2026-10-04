@@ -13,6 +13,9 @@ EXCLUDE = [
     ("강사 합격자 발표", "", "경남"),
     ("체육시설 물품 구매 입찰 공고", "강사 휴게실 비품", "경남"),
     ("2026년 하반기 시간강사 모집", "근무지: 부산광역시 해운대구", "부산"),
+    # '섬진강사랑의집' 의 '강사' 는 핵심어가 아니고, 수탁 법인을 뽑는 공고다 (하동, 2026-10-04)
+    ("장애인거주시설(섬진강사랑의집) 수탁운영법인 모집 공고", "", "경남 하동"),
+    ("하동군 노인복지관 민간위탁 수탁기관 공개모집", "", "경남 하동"),
 ]
 
 
@@ -77,3 +80,16 @@ def test_title_veto_only_fires_without_core_word():
     assert title_veto("하동국민체육센터 기간제근로자(헬스지도자, 청사관리원) 채용") is None
     assert title_veto("[마산회원체육센터]기간제근로자(수영강습) 공개경쟁모집 공고") is None
     assert title_veto("2026. 금송중학교 시간강사(특수) 채용 공고") is None
+
+
+def test_person_recruit_with_wichak_is_not_org_recruit():
+    """학교의 '개인위탁 외부강사'는 사람을 뽑는 공고다 — '수탁'·'민간위탁' 거르기에 걸리면 안 된다."""
+    r = score_posting("2026. 방과후학교 프로그램(뉴스포츠) 개인위탁 외부강사 모집", "", "경남")
+    assert r.score >= 70
+
+
+def test_title_veto_org_recruit_and_false_compound():
+    from gia.classify.rules import title_veto
+    assert title_veto("장애인거주시설(섬진강사랑의집) 수탁운영법인 모집 공고") == "기관 모집(수탁운영)"
+    assert title_veto("섬진강사랑 축제 기간제근로자 채용") == "비강사 직종(기간제근로자)"
+    assert title_veto("섬진강 사랑방 프로그램 강사 모집") is None
