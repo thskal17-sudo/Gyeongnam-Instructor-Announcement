@@ -1113,7 +1113,26 @@ sources:
       list_url: https://www.ycf.or.kr/bbs/MNQIB002000M/list
     notes: >-
       채용공고 목록이 JS 렌더링이라 서버 HTML 에는 개인정보 처리방침 표만 있음(2026-09-22) → playwright 어댑터(#16)로 재검증.
-  - { id: gn_cultural_centers, name: 시군 문화원 (18개 묶음), org_type: private, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 창원·진주·통영·사천·김해·밀양·거제·양산·의령·함안·창녕·고성·남해·하동·산청·함양·거창·합천 문화원. 사이트가 있는 곳만 개별 항목으로 분리 등록 }
+  - id: ha_cc
+    name: 함안문화원 공지사항
+    org_type: private
+    tier: 3
+    homepage: http://www.hacc.or.kr
+    verified: true
+    schedule: daily_light
+    adapter:
+      type: html_list
+      list_url: http://www.hacc.or.kr/bbs/board.php?bo_table=notice&page={page}
+      row_selector: form#fboardlist table tbody tr
+      title_selector: td.td_subject a
+      date_selector: td.td_date
+      keywords: [강사, 지도사, 지도자, 강사진]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: "article#bo_v", content_selector: "div#bo_v_con", attachment_selector: a.view_file_download }
+    notes: >-
+      공지사항(그누보드, 2026-10-05 러너 덤프). 문화학교 강사 모집 공고가 올라온다(2026-07-27·08-05 통기타 강사, 공고문 pdf·지원서 hwpx 첨부).
+      행사·수강생 안내가 대부분이라 keywords 로 거른다. 한 쪽 15건, 글이 뜸해 1쪽만 본다.
+  - { id: gn_cultural_centers, name: 시군 문화원 (18개 묶음), org_type: private, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: "창원·진주·통영·사천·김해·밀양·거제·양산·의령·창녕·고성·남해·하동·산청·함양·거창·합천 문화원. 사이트가 있는 곳만 개별 항목으로 분리 등록(함안은 ha_cc). 2026-10-05 러너 확인: 진주(jjcc.or.kr)·통영(tongyeong.kccf.or.kr) 연결 시간초과, 양산(yangsancc.or.kr, WordPress kboard)·남해(ccnh.or.kr/html/community/notice.php)는 열리나 최근 글에 강사 모집 없어 보류, 밀양 등 *.kccf.or.kr 는 연합회 화면만 나옴" }
 
 # ---------------------------------------------------------------------------
 # Tier 3-E. 시군 도서관  — Phase 3
