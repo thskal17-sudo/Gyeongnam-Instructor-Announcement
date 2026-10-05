@@ -31,6 +31,10 @@ x-eminwon: &eminwon
   date_selector: "td:nth-of-type(5)"
   keywords: [채용, 모집, 강사, 기간제, 위촉, 선발, 인력풀, 지도사, 코치, 튜터]
   paging: { max_pages: 4 }
+  # 새올 서버는 가끔 수십 초씩 응답을 멈춘다(고성 robots.txt 25초 무응답·목록은 같은 때 정상,
+  # 2026-10-05). 기본 20초·즉시 재시도로는 멈춘 사이에 세 번을 다 써서 실패했다
+  timeout_sec: 40
+  retries: 3
   detail:
     fetch: true
     body_selector: form
