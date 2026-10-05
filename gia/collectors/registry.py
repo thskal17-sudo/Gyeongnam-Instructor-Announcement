@@ -32,6 +32,9 @@ def build_adapter(cfg: SourceConfig, http: HttpClient, settings: CollectorSettin
     elif cfg.adapter.get("tls_verify") is False:
         for host in insecure_hosts(cfg):
             http.set_tls_mode(host, "insecure")
+    if cfg.adapter.get("timeout_sec") or cfg.adapter.get("retries"):
+        for host in insecure_hosts(cfg):  # 이름과 달리 소스의 URL 호스트 전부를 모은다
+            http.set_host_policy(host, cfg.adapter.get("timeout_sec"), cfg.adapter.get("retries"))
     return cls(cfg, http, settings, since=since)
 
 

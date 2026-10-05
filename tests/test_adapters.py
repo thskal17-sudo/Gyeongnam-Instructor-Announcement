@@ -276,3 +276,31 @@ def test_eminwon_detail_full_title_and_js_attachment(settings):
     assert "file_path=/ntishome/file/upload/ofr/ofr/20261002" in url
     # 첨부 받기 단계가 확장자로 거르므로, 주소에서 원래 파일 이름을 읽을 수 있어야 한다
     assert filename_from_url(url) == "강사 모집 공고문.hwpx" and file_extension(filename_from_url(url)) == ".hwpx"
+
+
+def test_host_policy_waits_longer_and_retries_only_that_host():
+    """adapter.timeout_sec·retries 는 그 소스의 호스트에만 걸린다 (새올 고성 시간초과, 2026-10-05)."""
+    from gia.collectors.registry import build_adapter
+    from gia.config import CollectorSettings
+
+    calls: list[tuple[str, float]] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls.append((request.url.host, request.extensions["timeout"]["read"]))
+        if request.url.path == "/robots.txt":
+            return httpx.Response(404)
+        if request.url.host == "slow.example.go.kr" and len([c for c in calls if c[0] == "slow.example.go.kr"]) < 4:
+            raise httpx.ReadTimeout("멈춤", request=request)
+        return httpx.Response(200, text="<html></html>")
+
+    cs = CollectorSettings(per_domain_delay_sec=0)
+    http = HttpClient(cs, transport=httpx.MockTransport(handler))
+    cfg = make_source("goseong", type="html_list", list_url="http://slow.example.go.kr/list?p={page}",
+                      row_selector="tr", timeout_sec=40, retries=3)
+    build_adapter(cfg, http, cs)
+    assert http.get("http://slow.example.go.kr/list").status_code == 200   # 2번 멈춘 뒤 3번째에 받음
+    slow = [t for h, t in calls if h == "slow.example.go.kr"]
+    assert slow[1:] == [40.0, 40.0, 40.0]           # robots.txt 다음 목록 요청 세 번, 모두 40초
+    calls.clear()
+    http.get("http://fast.example.org/x")
+    assert [t for h, t in calls if h == "fast.example.org"][-1] == cs.request_timeout_sec  # 다른 호스트는 그대로
