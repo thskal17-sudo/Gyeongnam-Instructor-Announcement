@@ -101,6 +101,12 @@ def extract_body_html(html: str, selector: str, fallback_to_body: bool = True) -
     for tag in ("script", "style", "noscript"):
         for n in tree.css(tag):
             n.decompose()
+    # 본문을 편집기용 <textarea> 에 HTML 째로 넣어 두는 게시판이 있다(양산시시설관리공단).
+    # textarea 안은 태그가 아니라 글자로 읽혀 '<p>' 가 그대로 남으므로 한 번 더 풀어 글만 남긴다
+    for n in tree.css("textarea"):
+        inner = HTMLParser(n.text(deep=True) or "")
+        plain = inner.body.text(separator="\n", strip=True) if inner.body else ""
+        n.replace_with(plain)
     node = tree.css_first(selector) or (tree.body if fallback_to_body else None)
     if node is None:
         return ""

@@ -840,10 +840,11 @@ sources:
       org_selector: td.boardName
       keywords: [강사, 위촉강사, 교강사, 지도사, 지도자, 강습, 코치, 트레이너]
       paging: { max_pages: 1 }
-      detail: { fetch: true, body_selector: body, attachment_selector: 'a[href*="/sisul/file/download/"]' }
+      # 본문은 div.boardViewCon 안 <textarea id=content> 에 HTML 째로 들어 있다(2026-10-06 러너 덤프)
+      detail: { fetch: true, body_selector: div.boardView_Wrap, content_selector: div.boardViewCon, attachment_selector: 'a[href*="/sisul/file/download/"]' }
     notes: >-
-      채용정보(2026-09-22 러너 구조 검증). 웅상센트럴파크 스쿼시 위촉강사, 요가·필라테스 외부강사 등 강사 공고가 잦아 가치가 높으나,
-      인증서 검증 실패(러너 requests 가 verify=False 로만 열림)라 gia httpx 도 실패할 것으로 보여 비활성. 인증서 완화 옵션이 생기면 활성화.
+      채용정보(2026-09-22 러너 구조 검증). 웅상센트럴파크 스쿼시 위촉강사, 반다비·주민편익시설 수영 위촉강사 등 강사 공고가 잦다.
+      서버 인증서 검증이 실패해 tls_verify: false 로 연다(2026-10-06 gia probe: 120일 창 목록 9건, '수영 위촉강사 인력풀 모집 공고' 포함·마감 추출 정상).
 
   - id: gj_fmc
     name: 거제해양관광개발공사 채용정보

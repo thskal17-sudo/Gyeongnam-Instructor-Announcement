@@ -62,3 +62,15 @@ def test_fixtures_still_yield_rows(path: str):
     """저장된 게시판 픽스처에서 셀렉터가 여전히 뭔가를 찾는다 (0건이면 조용한 고장)."""
     tree = HTMLParser(Path(path).read_text(encoding="utf-8", errors="replace"))
     assert any(tree.css(sel) for sel in configured_selectors()), f"{Path(path).name}: 맞는 셀렉터가 하나도 없다"
+
+
+def test_body_inside_textarea_is_read_as_text():
+    """양산시시설관리공단은 본문을 <textarea> 에 HTML 째로 둔다. 태그가 글자로 남으면 안 된다."""
+    from gia.collectors.html_list import extract_body_html
+    html = ("<div class='boardView_Wrap'><div class='boardViewTitle'>수영 위촉강사 모집 공고</div>"
+            "<div class='boardViewCon'><textarea id='content'><p>□ 모집 분야: 수영</p>"
+            "<p>접수: 10. 6.(화) 17:00</p></textarea></div></div>")
+    body = extract_body_html(html, "div.boardViewCon")
+    assert "<p>" not in body
+    assert "□ 모집 분야: 수영" in body and "접수: 10. 6.(화) 17:00" in body
+    assert extract_body_html(html, "div.boardView_Wrap").startswith("수영 위촉강사 모집 공고")
