@@ -826,11 +826,12 @@ sources:
     name: 양산시시설관리공단 채용정보
     org_type: local_public
     tier: 3
-    enabled: false
     homepage: https://www.yssisul.or.kr/sisul/
     verified: true
     adapter:
       type: html_list
+      # 서버가 중간 인증서를 보내지 않아 검증이 실패한다(2026-09-22). 이 호스트만 검증을 끈다
+      tls_verify: false
       list_url: https://www.yssisul.or.kr/sisul/board/BBSMSTR_G/article
       row_selector: table.boardList tbody tr
       title_selector: td.boardTitle a.articleTitle
