@@ -751,6 +751,26 @@ sources:
       detail: { fetch: true, body_selector: "div#kboard-document" }
     notes: >-
       채용공고(워드프레스 kboard, 2026-09-22 러너 구조 검증). 청소년활동 강사·자원활동가 모집이 산하 사이트(say.gnysf.co.kr, kdream.gnysf.co.kr)에도 뜸.
+  - id: gn_youth_notice
+    name: 경상남도미래세대재단 공지사항
+    org_type: local_public
+    tier: 3
+    homepage: https://gnysf.co.kr
+    verified: true
+    schedule: daily_light
+    adapter:
+      type: html_list
+      list_url: https://gnysf.co.kr/notice_board/?pageid={page}
+      row_selector: div#kboard-default-list table tbody tr
+      title_selector: td.kboard-list-title a
+      date_selector: td.kboard-list-date
+      org_selector: td.kboard-list-user
+      keywords: [강사, 교강사, 지도사, 지도자, 멘토]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: "div#kboard-document" }
+    notes: >-
+      공지사항(kboard, 2026-10-08 러너 덤프). 채용공고 게시판(gn_youth)과 별도로 '청소년국제교류 활동지도자(통역) 모집'
+      같은 지도자 모집이 여기에만 올라온다. '청소년지도자 어울마당 참가안내' 같은 행사 글은 점수 65 로 기준(70) 아래.
   - id: cw_fmc
     name: 창원시설공단 채용정보
     org_type: local_public
@@ -866,7 +886,50 @@ sources:
       detail: { fetch: true, body_selector: "article#bo_v", attachment_selector: a.view_file_download }
     notes: >-
       채용정보(그누보드, 2026-09-22 러너 구조 검증). robots.txt 가 gia UA 를 차단해(gia probe: robots.txt 차단) 비활성. 기간제 근로자 채용 위주.
-  - { id: gn_lifelong_centers, name: 시군 평생학습관·여성회관·청소년수련관 (묶음), org_type: local_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 시군청 게시판에 통합 게시되는지 확인 후 개별 분리 }
+  - id: cw_lll
+    name: 창원특례시 평생학습관 공지사항
+    org_type: local_gov
+    tier: 3
+    homepage: https://www.changwon.go.kr/lll/
+    verified: true
+    schedule: daily_light
+    adapter:
+      type: html_list
+      list_url: https://www.changwon.go.kr/lll/home/notice.do?page={page}
+      row_selector: div.board-list > div.board-list__row
+      title_selector: div.board-list__title a
+      date_selector: div.board-list__date
+      keywords: [강사, 지도사, 지도자, 강사진, 강사풀]
+      paging: { max_pages: 2 }
+      detail: { fetch: true }
+    notes: >-
+      평생학습관 공지사항(2026-10-08 러너 덤프). 수강생 모집·행사 안내가 대부분이고 평생학습 강좌 강사 모집이
+      가끔 올라온다(2025-01 중앙평생학습센터 강사 모집 첨부가 /lll/upload 에 있음). 창원시청 채용 게시판에도
+      함께 오르는 경우가 있어 중복은 병합된다.
+  - id: gh_lll
+    name: 김해시 평생학습관 공지사항
+    org_type: local_gov
+    tier: 3
+    homepage: https://www.gimhae.go.kr/edu.web
+    verified: true
+    schedule: daily_light
+    adapter:
+      type: html_list
+      list_url: https://www.gimhae.go.kr/05912/05913.web?gcode=1348&cpage={page}
+      row_selector: ul.lst1 > li.li1
+      title_selector: strong.t1
+      link_selector: a.a1
+      date_selector: span.t3:nth-of-type(2)
+      keywords: [강사, 지도사, 지도자, 강사진, 강사풀]
+      paging: { max_pages: 2 }
+      detail:
+        fetch: true
+        body_selector: div.bbs1view1 div.substance
+        attachment_selector: a.filename[href*="DownloadEx.do"]
+    notes: >-
+      평생학습관 공지사항(2026-10-08 러너 덤프, 김해시청과 같은 CMS 라 gimhae 셀렉터를 그대로 씀).
+      생활문화평생학습관·도서관 강좌 소식이 올라온다. 도서관 강사 채용은 김해시청 채용 게시판에도 오른다.
+  - { id: gn_lifelong_centers, name: 시군 평생학습관·여성회관·청소년수련관 (묶음), org_type: local_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: "사이트가 있는 곳만 개별 분리(cw_lll, gh_lll, gn_youth_notice). 2026-10-08 러너 확인: 김해시여성센터(ghwomencenter.or.kr) 연결 시간초과, 김해시 청소년센터는 김해시청 하위 메뉴뿐(게시판 없음), cwyouth.or.kr 은 응답이 깨져 확인 못 함" }
 
 # ---------------------------------------------------------------------------
 # Tier 3-B. 중앙정부 산하 공공기관 (경남 소재 본사·지사·캠퍼스)  — Phase 2~3
