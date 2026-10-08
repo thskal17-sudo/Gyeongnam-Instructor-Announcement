@@ -898,10 +898,11 @@ sources:
       list_url: https://www.changwon.go.kr/lll/home/notice.do?page={page}
       row_selector: div.board-list > div.board-list__row
       title_selector: div.board-list__title a
-      date_selector: div.board-list__date
+      # 행은 div 다섯 칸: 공지표시 / 제목 / 작성부서 / 작성일 / 첨부 (2026-10-08 러너 덤프)
+      date_selector: "div:nth-of-type(4)"
       keywords: [강사, 지도사, 지도자, 강사진, 강사풀]
       paging: { max_pages: 2 }
-      detail: { fetch: true }
+      detail: { fetch: true, body_selector: article.board-view }
     notes: >-
       평생학습관 공지사항(2026-10-08 러너 덤프). 수강생 모집·행사 안내가 대부분이고 평생학습 강좌 강사 모집이
       가끔 올라온다(2025-01 중앙평생학습센터 강사 모집 첨부가 /lll/upload 에 있음). 창원시청 채용 게시판에도
@@ -919,7 +920,8 @@ sources:
       row_selector: ul.lst1 > li.li1
       title_selector: strong.t1
       link_selector: a.a1
-      date_selector: span.t3:nth-of-type(2)
+      # 시청 채용 게시판과 달리 첫 span.t3 가 날짜('2026-09-28'), 둘째는 작성부서
+      date_selector: i.wrap1t3 > span.t3
       keywords: [강사, 지도사, 지도자, 강사진, 강사풀]
       paging: { max_pages: 2 }
       detail:
@@ -927,8 +929,8 @@ sources:
         body_selector: div.bbs1view1 div.substance
         attachment_selector: a.filename[href*="DownloadEx.do"]
     notes: >-
-      평생학습관 공지사항(2026-10-08 러너 덤프, 김해시청과 같은 CMS 라 gimhae 셀렉터를 그대로 씀).
-      생활문화평생학습관·도서관 강좌 소식이 올라온다. 도서관 강사 채용은 김해시청 채용 게시판에도 오른다.
+      평생학습관 공지사항(2026-10-08 러너 덤프, 김해시청과 같은 CMS). '찾아가는 배달강좌 강사 모집',
+      '찾아가는 장애인 학습드림 강사 모집'처럼 평생학습 강사 모집이 시청 채용 게시판과 별도로 올라온다.
   - { id: gn_lifelong_centers, name: 시군 평생학습관·여성회관·청소년수련관 (묶음), org_type: local_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: "사이트가 있는 곳만 개별 분리(cw_lll, gh_lll, gn_youth_notice). 2026-10-08 러너 확인: 김해시여성센터(ghwomencenter.or.kr) 연결 시간초과, 김해시 청소년센터는 김해시청 하위 메뉴뿐(게시판 없음), cwyouth.or.kr 은 응답이 깨져 확인 못 함" }
 
 # ---------------------------------------------------------------------------
