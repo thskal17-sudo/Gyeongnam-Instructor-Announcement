@@ -1,17 +1,24 @@
 ====================================================================================================
-URL: https://www.welfare.net/
-status=200 final=https://www.welfare.net/ encoding=utf-8 bytes=9271
-title: 한국사회복지사협회
+URL: https://www.bokji.net/
+  (connect failed, retrying once: HTTPSConnectionPool(host='www.bokji.net', port=443): Max retries exceeded with u)
+  FETCH ERROR: HTTPSConnectionPool(host='www.bokji.net', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bokji.net', port=443) at 0x7fc6b003f770>, 'Connection to
+====================================================================================================
+URL: http://www.gncsw.or.kr/
+status=200 final=https://gncsw.or.kr/ encoding=utf-8 bytes=11273
+title: 
 
-[GREP] _nuxt|apiBase|baseURL|api\.welfare
-   ... rty="og:title" content="한국사회복지사협회"> <meta property="og:site_name" content="한국사회복지사협회"> <meta property="og:description" content="사회복지사의 가치, 대한민국 복지의 미래입니다."> <meta property="og:image" content="https://api.welfare.net/main/files/uploads/seo/welfare.png"> <meta property="og:locale" content="ko_KR"> <meta property="og:image:type" content="image/png"> <meta property="og:image:width" content="1200"> <meta property="og:image:height" content="630"> <meta property="og:type" content="website"> <meta property="og:url" content="https://www.welfare.net/"> <link rel="icon" type="image/ico" href="/favicon.ico"> <script
-   ... /stdauth/ds_auth_ptb/asset/js/ptb_ezauth_proc.js" type="text/javascript"></script> <script src="https://cert.mobile-ok.com/resources/js/index.js" type="text/javascript"></script> <script src="https://api.welfare.net/main/files/uploads/netfunnel-statics/agents/client/javascript/netfunnel-javascript-agent.js" data-nf-server-url="https://standby.welfare.net" data-nf-setting-url="https://standby.welfare.net/assets/nf-setting/1/nf-setting.json" data-nf-vwr-page-url="https://api.welfare.net/main/files/uploads/netfunnel-statics/assets/vwr-page/1/index.html" data-nf-retry-count="1" data-nf-network-timeout="1000"
-   ... ipt/netfunnel-javascript-agent.js" data-nf-server-url="https://standby.welfare.net" data-nf-setting-url="https://standby.welfare.net/assets/nf-setting/1/nf-setting.json" data-nf-vwr-page-url="https://api.welfare.net/main/files/uploads/netfunnel-statics/assets/vwr-page/1/index.html" data-nf-retry-count="1" data-nf-network-timeout="1000" data-nf-print-log="false" data-nf-use-credential="false" data-nf-error-bypass="false"></script> <script src="https://api.welfare.net/main/files/uploads/netfunnel-statics/agents/eum/browser/eum-browser.js" defer></script> <link rel="stylesheet" href="/__main/entry.C6K7GtIf.
-   ... sets/vwr-page/1/index.html" data-nf-retry-count="1" data-nf-network-timeout="1000" data-nf-print-log="false" data-nf-use-credential="false" data-nf-error-bypass="false"></script> <script src="https://api.welfare.net/main/files/uploads/netfunnel-statics/agents/eum/browser/eum-browser.js" defer></script> <link rel="stylesheet" href="/__main/entry.C6K7GtIf.css"> <link rel="stylesheet" href="/__main/swiper-vue.Bs3d9ZnH.css"> <link rel="modulepreload" as="script" crossorigin href="/__main/entry.xJcjoeeB.js"> <link rel="modulepreload" as="script" crossorigin href="/__main/swiper-vue.B40GeXmP.js"> <link rel="pr
-   ... /sub.BnMLTE67.js"> <script type="module" src="/__main/entry.xJcjoeeB.js" crossorigin></script> <script id="unhead:payload" type="application/json">{"title":"한국사회복지사협회"}</script></head><body><div id="__nuxt"></div><script type="application/json" id="__NUXT_DATA__" data-ssr="false">[{"_errors":1,"serverRendered":2,"data":3,"state":4,"once":5},{},false,{},{},["Set"]]</script> <script>window.__NUXT__={};window.__NUXT__.config={public:{IMG_BASE_URL:"https://api.welfare.net/main",KAKAO_JAVASCRIPT_KEY:"3b9a3307417e22f1756c5e88c66fdf83",NAVER_LOGIN_CLIENT_ID:"RgxD5ZSZDuGhETDFgF_8",SOCIAL_CALLBACK_URL:"unde
-   ... ain/entry.xJcjoeeB.js" crossorigin></script> <script id="unhead:payload" type="application/json">{"title":"한국사회복지사협회"}</script></head><body><div id="__nuxt"></div><script type="application/json" id="__NUXT_DATA__" data-ssr="false">[{"_errors":1,"serverRendered":2,"data":3,"state":4,"once":5},{},false,{},{},["Set"]]</script> <script>window.__NUXT__={};window.__NUXT__.config={public:{IMG_BASE_URL:"https://api.welfare.net/main",KAKAO_JAVASCRIPT_KEY:"3b9a3307417e22f1756c5e88c66fdf83",NAVER_LOGIN_CLIENT_ID:"RgxD5ZSZDuGhETDFgF_8",SOCIAL_CALLBACK_URL:"undefined",printBaseUrl:"https://rpt.welfare.net/ClipR
-   [SCRIPT src] ['https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js', 'https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=3b9a3307417e22f1756c5e88c66fdf83&libraries=services', 'https://cdn.iamport.kr/js/iamport.payment-1.2.0.js', 'https://cert.ez-iok.com/stdauth/ds_auth_ptb/asset/js/ptb_ezauth_proc.js', 'https://cert.mobile-ok.com/resources/js/index.js', 'https://api.welfare.net/main/files/uploads/netfunnel-statics/agents/client/javascript/netfunnel-javascript-agent.js', 'https://api.welfare.net/main/files/uploads/netfunnel-statics/agents/eum/browser/eum-browser.js', '/__main/entry.xJcjoeeB.js']
+[GREP] 구인|채용|강사|복지관
+   (없음)
+   [SCRIPT src] []
 [DATES] sample: []
 
 [RETRY without noise filter]
 [DATES] sample: []
+====================================================================================================
+URL: https://www.gnwelfare.or.kr/
+  (connect failed, retrying once: HTTPSConnectionPool(host='www.gnwelfare.or.kr', port=443): Max retries exceeded )
+  FETCH ERROR: HTTPSConnectionPool(host='www.gnwelfare.or.kr', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.gnwelfare.or.kr', port=443) at 0x7fc6af910830>, 'C
+====================================================================================================
+URL: https://www.gnsocial.or.kr/
+  (connect failed, retrying once: HTTPSConnectionPool(host='www.gnsocial.or.kr', port=443): Max retries exceeded w)
+  FETCH ERROR: HTTPSConnectionPool(host='www.gnsocial.or.kr', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPSConnection(host='www.gnsocial.or.kr', port=443): Failed to resolve 'www.

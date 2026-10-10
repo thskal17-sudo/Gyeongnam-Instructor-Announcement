@@ -1,0 +1,24 @@
+====================================================================================================
+URL: https://www.bokji.net/
+  (connect failed, retrying once: HTTPSConnectionPool(host='www.bokji.net', port=443): Max retries exceeded with u)
+  FETCH ERROR: HTTPSConnectionPool(host='www.bokji.net', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.bokji.net', port=443) at 0x7fc6b003f770>, 'Connection to
+====================================================================================================
+URL: http://www.gncsw.or.kr/
+status=200 final=https://gncsw.or.kr/ encoding=utf-8 bytes=11273
+title: 
+
+[GREP] 구인|채용|강사|복지관
+   (없음)
+   [SCRIPT src] []
+[DATES] sample: []
+
+[RETRY without noise filter]
+[DATES] sample: []
+====================================================================================================
+URL: https://www.gnwelfare.or.kr/
+  (connect failed, retrying once: HTTPSConnectionPool(host='www.gnwelfare.or.kr', port=443): Max retries exceeded )
+  FETCH ERROR: HTTPSConnectionPool(host='www.gnwelfare.or.kr', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.gnwelfare.or.kr', port=443) at 0x7fc6af910830>, 'C
+====================================================================================================
+URL: https://www.gnsocial.or.kr/
+  (connect failed, retrying once: HTTPSConnectionPool(host='www.gnsocial.or.kr', port=443): Max retries exceeded w)
+  FETCH ERROR: HTTPSConnectionPool(host='www.gnsocial.or.kr', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPSConnection(host='www.gnsocial.or.kr', port=443): Failed to resolve 'www.
