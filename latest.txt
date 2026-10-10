@@ -3,47 +3,10 @@ URL: https://www.welfare.net/
 status=200 final=https://www.welfare.net/ encoding=utf-8 bytes=9271
 title: 한국사회복지사협회
 
-[GREP] 구인|채용|강사
-   (없음)
-   [SCRIPT src] ['https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js', 'https://dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=3b9a3307417e22f1756c5e88c66fdf83&libraries=services', 'https://cdn.iamport.kr/js/iamport.payment-1.2.0.js', 'https://cert.ez-iok.com/stdauth/ds_auth_ptb/asset/js/ptb_ezauth_proc.js', 'https://cert.mobile-ok.com/resources/js/index.js', 'https://api.welfare.net/main/files/uploads/netfunnel-statics/agents/client/javascript/netfunnel-javascript-agent.js', 'https://api.welfare.net/main/files/uploads/netfunnel-statics/agents/eum/browser/eum-browser.js', '/__main/entry.xJcjoeeB.js']
+[RAW HTML] 
+<body><div id="__nuxt"></div>
+</body>
 [DATES] sample: []
 
 [RETRY without noise filter]
 [DATES] sample: []
-====================================================================================================
-URL: https://www.gnasw.or.kr/
-  (connect failed, retrying once: HTTPSConnectionPool(host='www.gnasw.or.kr', port=443): Max retries exceeded with)
-  FETCH ERROR: HTTPSConnectionPool(host='www.gnasw.or.kr', port=443): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPSConnection(host='www.gnasw.or.kr', port=443): Failed to resolve 'www.gnasw.
-====================================================================================================
-URL: http://www.gnsw.or.kr/
-  (connect failed, retrying once: HTTPConnectionPool(host='www.gnsw.or.kr', port=80): Max retries exceeded with ur)
-  FETCH ERROR: HTTPConnectionPool(host='www.gnsw.or.kr', port=80): Max retries exceeded with url: / (Caused by NameResolutionError("HTTPConnection(host='www.gnsw.or.kr', port=80): Failed to resolve 'www.gnsw.or.kr' 
-====================================================================================================
-URL: https://www.welfare.or.kr/
-  (ssl verify failed, retrying without verification)
-status=200 final=http://errdoc.gabia.io/403.html encoding=utf-8 bytes=9625
-title: 403 Forbidden
-
-[GREP] 구인|채용|강사
-   (없음)
-   [SCRIPT src] []
-[DATES] sample: []
-
-[RETRY without noise filter]
-[DATES] sample: []
-
-[ANCHORS] most common link paths
-   x4 div.hosting-app > dl > dd > a.point-color  href=https://sslhosting.gabia.com/service {'target': '_blank', 'rel': "['noopener']", 'title': '새창'} text='[SSL 보안서버 인증서]'
-      row? div.hosting-app :: 'HTTPS 접속 여부 확인 SSL 인증서가 설치되지 않은 경우 HTTPS 방식으로 접근할 수 없습니다. HTTP 방식으로 접근하시거나, https://로 접속이 필요한 경우 SSL 보안서버 인증서를 신청해 주시기 바'
-====================================================================================================
-URL: https://www.ghwf.or.kr/
-  (connect failed, retrying once: HTTPSConnectionPool(host='www.ghwf.or.kr', port=443): Max retries exceeded with )
-  FETCH ERROR: HTTPSConnectionPool(host='www.ghwf.or.kr', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.ghwf.or.kr', port=443) at 0x7fa86cf29580>, 'Connection 
-====================================================================================================
-URL: http://www.gusansw.or.kr/
-  (connect failed, retrying once: HTTPConnectionPool(host='www.gusansw.or.kr', port=80): Max retries exceeded with)
-  FETCH ERROR: HTTPConnectionPool(host='www.gusansw.or.kr', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPConnection(host='www.gusansw.or.kr', port=80) at 0x7fa86cf2bf80>, 'Connectio
-====================================================================================================
-URL: http://www.ghsenior.or.kr/
-  (connect failed, retrying once: HTTPConnectionPool(host='www.ghsenior.or.kr', port=80): Max retries exceeded wit)
-  FETCH ERROR: HTTPConnectionPool(host='www.ghsenior.or.kr', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPConnection(host='www.ghsenior.or.kr', port=80) at 0x7fa86cf2ba70>, 'Connect
