@@ -1,0 +1,121 @@
+====================================================================================================
+URL: https://www.gimhae.go.kr/00976/02310/01518.web
+status=200 final=https://www.gimhae.go.kr/00976/02310/01518.web encoding=UTF-8 bytes=194839
+title: 여성복지관련기관 | 김해분야포털
+
+[GREP] 사회복지관
+   ... tle="새 창">18 김해시도시개발공사</a></li> <li> <a href="https://www.ghwf.or.kr/" target="_blank" title="새 창">19 김해시복지재단</a></li> <li> <a href="http://www.gusansw.or.kr" target="_blank" title="새 창">20 김해시복지재단 구산사회복지관 </a></li> <li> <a href="http://www.ghsenior.or.kr" target="_blank" title="새 창">21 김해시복지재단 김해시노인종합복지관 </a></li> <li> <a href="http://www.ghwomencenter.or.kr" target="_blank" title="새 창">22 김해시복지재단 김해시여성센터 </a></li> <li><a href="https://www.gimhae.go.kr/job" target="_blank" title="새 창">23 김해시 일자리지원센터</a> </li> <li> <a href="http://www.gibf.or.kr" target="_blank" title="새 창">24 김해의생명산업진흥원 </a></li> 
+   [SCRIPT src] ['/_res/portal/share/js/hammer.min.js', '/_res/portal/share/js/iscroll-min.js', '/_res/portal/share/js/jquery-1.12.4.min.js', '/_res/portal/share/js/jquery.easing.1.3.js', '/_res/portal/share/js/script_base.js', '/_res/portal/share/js/script_gesture1.js', '/_res/portal/share/js/script_scroll1section1.js', '/_res/portal/share/js/script.js', '//developers.kakao.com/sdk/js/kakao.min.js', '/scms-static/jspdf/bluebird.min.js', '/scms-static/jspdf/html2canvas.min.js', '/scms-static/jspdf/jspdf.min.js']
+
+[TABLE] div.scroll1wrap > div.scroll1cont > table.t3.tttac.ttvam  rows=6
+   row: tr -> th:기관명 | th:주요사업 | th:소재지 | th:대표자 | th:연락처
+   row: tr -> th:김해시여성센터 바로가기 | td.tal:교육강좌 운영(인문학, 교양, 취업연계 기술·기 | td.tal:경상남도 김해시 신어산길 46 (삼방동) | td:김호재 | td:055-329-0400
+      th :: own='김해시여성센터' all='김해시여성센터 바로가기'
+      a.button.default.ic1t1ic1 href=http://www.ghwomencenter.or.kr/ onclick= attrs={'target': '_blank'} :: own='바로가기' all='바로가기'
+      td.tal :: own='' all='교육강좌 운영(인문학, 교양, 취업연계 기술·기능 교육) 가족복지지원 프로그램 운영·개발 '
+      ul.bu :: own='' all='교육강좌 운영(인문학, 교양, 취업연계 기술·기능 교육) 가족복지지원 프로그램 운영·개발 '
+      li :: own='교육강좌 운영(인문학, 교양, 취업연계 기술·기능 교육)' all='교육강좌 운영(인문학, 교양, 취업연계 기술·기능 교육)'
+      li :: own='가족복지지원 프로그램 운영·개발' all='가족복지지원 프로그램 운영·개발'
+      li :: own='시설이용자녀 일시보육 및 장남감은행 운영' all='시설이용자녀 일시보육 및 장남감은행 운영'
+      li :: own='여성지원활동센터 운영(여성지원봉사자 모집, 배치, 교육)' all='여성지원활동센터 운영(여성지원봉사자 모집, 배치, 교육)'
+      td.tal :: own='경상남도 김해시 신어산길 46\t(삼방동)' all='경상남도 김해시 신어산길 46 (삼방동)'
+      td :: own='김호재' all='김호재'
+      td :: own='' all='055-329-0400'
+      a href=tel:055-329-0400 onclick= :: own='055-329-0400' all='055-329-0400'
+
+[LIST] div#snb1.snb1 > div.d2 > ul  items=8
+   li: li.m1 -> 보건복지정보검색
+      a href=/00976/02310/02309.web onclick= :: own='보건복지정보검색' all='보건복지정보검색'
+
+[LIST] li.m2 > div.d3 > ul  items=3
+   li: li.m1 -> 일반현황 장애인 단체 현황 장애인 생활시설 장애인 지역사회재활시설 장애인 직업재활시설 기타시설
+      a href=/00986.web onclick= :: own='일반현황' all='일반현황'
+      div.d4 :: own='' all='장애인 단체 현황 장애인 생활시설 장애인 지역사회재활시설 장애인 직업재활시설 기타시설'
+      ul :: own='' all='장애인 단체 현황 장애인 생활시설 장애인 지역사회재활시설 장애인 직업재활시설 기타시설'
+      li.m1 :: own='' all='장애인 단체 현황'
+      a href=/00976/02310/00986.web onclick= :: own='장애인 단체 현황' all='장애인 단체 현황'
+      li.m2 :: own='' all='장애인 생활시설'
+      a href=/00976/02310/00987.web onclick= :: own='장애인 생활시설' all='장애인 생활시설'
+      li.m3 :: own='' all='장애인 지역사회재활시설'
+      a href=/00976/02310/00988.web onclick= :: own='장애인 지역사회재활시설' all='장애인 지역사회재활시설'
+      li.m4 :: own='' all='장애인 직업재활시설'
+      a href=/00976/02310/00989.web onclick= :: own='장애인 직업재활시설' all='장애인 직업재활시설'
+      li.m5 :: own='' all='기타시설'
+      a href=/00976/02310/00990.web onclick= :: own='기타시설' all='기타시설'
+
+[LIST] li.m4 > div.d3 > ul  items=4
+   li: li.m1 -> 청소년정책 청소년이란? 보호 상담 시설
+      a href=/01406.web onclick= :: own='청소년정책' all='청소년정책'
+      div.d4 :: own='' all='청소년이란? 보호 상담 시설'
+      ul :: own='' all='청소년이란? 보호 상담 시설'
+      li.m1 :: own='' all='청소년이란?'
+      a href=/00976/02310/01406.web onclick= :: own='청소년이란?' all='청소년이란?'
+      li.m2 :: own='' all='보호 상담 시설'
+      a href=/00976/02310/01407.web onclick= :: own='보호 상담 시설' all='보호 상담 시설'
+
+[LIST] li.m5.on > div.d3 > ul  items=7
+   li: li.m1.on -> 여성복지관련 기관 및 단체소개 여성복지관련기관 여성단체소개
+      a href=/01518.web onclick= :: own='여성복지관련 기관 및 단체소개' all='여성복지관련 기관 및 단체소개'
+      div.d4 :: own='' all='여성복지관련기관 여성단체소개'
+      ul :: own='' all='여성복지관련기관 여성단체소개'
+      li.m1.on :: own='' all='여성복지관련기관'
+      a href=/00976/02310/01518.web onclick= :: own='여성복지관련기관' all='여성복지관련기관'
+      li.m2 :: own='' all='여성단체소개'
+      a href=/00976/02310/01519.web onclick= :: own='여성단체소개' all='여성단체소개'
+
+[LIST] li.m6 > div.d3 > ul  items=6
+   li: li.m1 -> 아동복지관련 기관 및 단체 아동양육시설 공동생활가정 아동보호전문기관 드림스타트 가정위탁 지원센터
+      a href=/05572.web onclick= :: own='아동복지관련 기관 및 단체' all='아동복지관련 기관 및 단체'
+      div.d4 :: own='' all='아동양육시설 공동생활가정 아동보호전문기관 드림스타트 가정위탁 지원센터'
+      ul :: own='' all='아동양육시설 공동생활가정 아동보호전문기관 드림스타트 가정위탁 지원센터'
+      li.m1 :: own='' all='아동양육시설'
+      a href=/00976/02310/05572.web onclick= :: own='아동양육시설' all='아동양육시설'
+      li.m2 :: own='' all='공동생활가정'
+      a href=/00976/02310/05573.web onclick= :: own='공동생활가정' all='공동생활가정'
+      li.m3 :: own='' all='아동보호전문기관'
+      a href=/00976/02310/05574.web onclick= :: own='아동보호전문기관' all='아동보호전문기관'
+      li.m4 :: own='' all='드림스타트'
+      a href=/00976/02310/05575.web onclick= :: own='드림스타트' all='드림스타트'
+      li.m5 :: own='' all='가정위탁 지원센터'
+      a href=/00976/02310/05576.web onclick= :: own='가정위탁 지원센터' all='가정위탁 지원센터'
+[DATES] sample: []
+
+[ANCHORS] most common link paths
+   x5 tbody > tr > td > a  href=tel:055-329-0400 {'title': '전화걸기'} text='055-329-0400'
+      row? tr :: '김해시여성센터 바로가기 교육강좌 운영(인문학, 교양, 취업연계 기술·기능 교육) 가족복지지원 프로그램 운영·개발 시설이용자녀 일시보육 및 장남감은행 운영 여성지원활동센터 운영(여성지원봉사자 모집, 배치, 교육) 경상'
+   x3 div.d4 > ul > li.m1 > a  href=/00976/02310/01409.web  text='청소년 긴급전화 1388'
+      row? li.m1 :: '청소년 긴급전화 1388'
+   x2 div.d4 > ul > li.m4 > a  href=/00976/02310/00989.web  text='장애인 직업재활시설'
+      row? li.m4 :: '장애인 직업재활시설'
+   x1 div#container > div#wrap > div#quickmenu1.init > a.b1.b1_s.talktalk  href=https://www.gimhae.go.kr/chatbot/index.html  text='물어보세요 김해톡톡'
+      row? div#quickmenu1.init :: '물어보세요 김해톡톡 TOP'
+
+[LINKS] board candidates (28)
+   '일자리지원센터' -> https://www.gimhae.go.kr/job/
+   '기업지원소식' -> https://www.gimhae.go.kr/08614/08615.web
+   '공지사항' -> https://www.gimhae.go.kr/00847/00861/05996.web
+   '일자리찾기' -> http://www.gimhae.go.kr/job/html/sub/01_01.jsp
+   '인재찾기' -> http://www.gimhae.go.kr/job/html/sub/02.jsp
+   '일자리소식' -> http://www.gimhae.go.kr/job/html/sub/05_02.jsp
+   '주간취업정보' -> http://www.gimhae.go.kr/job/html/sub/05_06.jsp
+   '김해시최고명장' -> https://www.gimhae.go.kr/job/html/sub/08_01.jsp
+   '분묘개장공고' -> https://www.gimhae.go.kr/00976/02310/01011.web
+   '보건소식' -> https://www.gimhae.go.kr/00976/01553/08005.web
+   '공지사항' -> https://www.gimhae.go.kr/00976/01420/05020.web
+   '청소년소식' -> https://www.gimhae.go.kr/00976/01420/05021.web
+   '공지사항' -> https://www.gimhae.go.kr/00976/01477/01507.web
+   '알림/뉴스' -> https://www.gimhae.go.kr/04840.web
+   '꿈드림 공지사항' -> https://www.gimhae.go.kr/00976/01487/07390.web
+   '공지사항' -> https://www.gimhae.go.kr/00976/08083/08091.web
+   '월간소식' -> https://www.gimhae.go.kr/00976/08083/08093.web
+   '대포천 소식' -> https://www.gimhae.go.kr/01544/01729/01780.web
+   '공지사항' -> https://www.gimhae.go.kr/01548/02089/02153.web
+   '공지사항' -> https://www.gimhae.go.kr/01545/01857/05513.web
+   '공지사항' -> https://www.gimhae.go.kr/01547/01952/04740.web
+   '공지사항' -> https://www.gimhae.go.kr/00915/09417/09426.web
+   '주정차단속 문자알림서비스' -> https://www.gimhae.go.kr/parkingsms
+   '알림 마당' -> https://www.gimhae.go.kr/00915/02207/08553.web
+   '자전거 등록인증 게시판' -> https://www.gimhae.go.kr/00915/02207/09373.web
+   '드림스타트 공지사항' -> https://www.gimhae.go.kr/00976/02310/09296.web
+   '23 김해시 일자리지원센터' -> https://www.gimhae.go.kr/job
+   '34 주정차 단속알림 서비스' -> https://www.gimhae.go.kr/parkingsms/
