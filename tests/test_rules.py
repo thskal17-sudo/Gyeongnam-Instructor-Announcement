@@ -93,3 +93,10 @@ def test_title_veto_org_recruit_and_false_compound():
     assert title_veto("장애인거주시설(섬진강사랑의집) 수탁운영법인 모집 공고") == "기관 모집(수탁운영)"
     assert title_veto("섬진강사랑 축제 기간제근로자 채용") == "비강사 직종(기간제근로자)"
     assert title_veto("섬진강 사랑방 프로그램 강사 모집") is None
+
+
+def test_appointee_list_is_not_a_recruitment():
+    """'위촉대상자 공고'는 뽑힌 사람 명단(결과)이다. 강사 핵심어가 있어도 기준 아래로 떨어진다."""
+    r = score_posting("2026년 함안군 민방위 교육 강사 위촉대상자 공고", "", "경상남도 함안군")
+    assert r.score < 70
+    assert score_posting("2026년 함안군 민방위 교육 강사 위촉 공고", "", "경상남도 함안군").score >= 70

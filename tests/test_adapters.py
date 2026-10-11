@@ -304,3 +304,12 @@ def test_host_policy_waits_longer_and_retries_only_that_host():
     calls.clear()
     http.get("http://fast.example.org/x")
     assert [t for h, t in calls if h == "fast.example.org"][-1] == cs.request_timeout_sec  # 다른 호스트는 그대로
+
+
+def test_header_filename_decodes_euc_kr():
+    """새올 FileDown.jsp 는 한글 파일 이름을 EUC-KR 바이트 그대로 보낸다."""
+    from gia.collectors.base import filename_from_headers
+    name = "2026년 민방위 교육 강사 공고.hwpx"
+    for enc in ("cp949", "utf-8"):
+        cd = 'attachment; filename="' + name.encode(enc).decode("latin-1") + '"'
+        assert filename_from_headers({"content-disposition": cd}) == name
