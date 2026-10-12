@@ -1,12 +1,12 @@
-::group::probe cleaneye
-INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
-INFO httpx: HTTP Request: GET https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo?serviceKey=***&type=xml&sidoCd=007015&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
-INFO gia.collectors.api_json: cleaneye: 응답 16건 → 통과 4건 (걸러짐: 키워드 12)
-[probe] 클린아이 잡플러스 (행안부, 지방공기업·출자출연기관): 목록 4건
-  - 2026-10-12 | 창원시설공단 | 2026년 용원국민체육센터 생활체육 도급강사 모집 공고 | https://job.cleaneye.go.kr/user/ypCareersData.do?idx=80216
-  - 2026-10-12 | 김해시도시개발공사 | 김해시도시개발공사 장유스포츠센터팀 배분제 위탁강사(배드민턴) 모집 공고 | https://job.cleaneye.go.kr/user/ypCareersData.do?idx=80275
-  - 2026-10-12 | 창원시설공단 | 내서스포츠센터 프로그램 도급강사 공개경쟁모집 공고 | https://job.cleaneye.go.kr/user/ypCareersData.do?idx=80264
-  - 2026-10-06 | 창원시설공단 | 시민생활체육관 탁구 프로그램 도급강사 공개모집 공고 | https://job.cleaneye.go.kr/user/ypCareersData.do?idx=80004
-[detail] 본문 1자 · 마감 None (unknown, 'None') · 점수 85 ['+50 제목 핵심어(강사)', '+20 채용어(모집)', '+15 경남 지역'] · 분야 sports
-[posting] 포함: 2026년 용원국민체육센터 생활체육 도급강사 모집 공고
-::endgroup::
+====================================================================================================
+URL: https://www.gangsaitda.com/jobs
+status=200 final=https://www.gangsaitda.com/jobs encoding=utf-8 bytes=10841
+title: 
+
+[GREP] 정관청소년센터|남구시설관리공단|기장종합사회복지관
+   (없음)
+   [SCRIPT src] []
+[DATES] sample: []
+
+[RETRY without noise filter]
+[DATES] sample: []

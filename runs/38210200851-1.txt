@@ -1,0 +1,12 @@
+====================================================================================================
+URL: https://www.gangsaitda.com/jobs
+status=200 final=https://www.gangsaitda.com/jobs encoding=utf-8 bytes=10841
+title: 
+
+[GREP] 정관청소년센터|남구시설관리공단|기장종합사회복지관
+   (없음)
+   [SCRIPT src] []
+[DATES] sample: []
+
+[RETRY without noise filter]
+[DATES] sample: []
