@@ -94,7 +94,7 @@ class ApiJsonAdapter(SourceAdapter):
             log.info("%s: 응답 %d건 → 통과 %d건 (걸러짐: %s)", self.cfg.id, len(items), len(out),
                      ", ".join(f"{k} {v}" for k, v in dropped.items()) or "없음")
             if not out and isinstance(items[0], dict):
-                log.info("%s: 첫 항목 필드 %s", self.cfg.id, sorted(items[0])[:30])
+                log.info("%s: 첫 항목 필드 %s", self.cfg.id, sorted(items[0])[:80])
         return out
 
     def fetch_detail(self, listing: RawListing) -> RawPosting:
