@@ -109,16 +109,34 @@ sources:
     tier: 1
     schedule: daily_light
     homepage: https://job.cleaneye.go.kr
+    verified: true
     adapter:
-      type: html_list
-      list_url: TODO          # 지역=경남 검색 결과 URL ({page} 자리표시자 사용 가능)
-      row_selector: TODO
-      title_selector: a
-      date_selector: TODO
-      org_selector: TODO
-      keywords: [강사, 교강사, 시간강사, 지도자, 지도사]
-      detail: { fetch: true, body_selector: TODO }
-    notes: 경남 출자출연기관 채용 대부분 커버. API 유무 확인 필요
+      type: api_json
+      # 공공데이터포털 15159757 '행정안전부 한국지역정보개발원_채용정보 조회 서비스' (2026-10-12 승인, 개인 인증키 그대로)
+      # type=xml 이 없으면 NOTEXISTPARAMETER_ERROR(type), sidoCd 가 없으면 NONOTEXISTDATA_ERROR.
+      # sidoCd: 007002 부산 · 007003 대구 · 007007 울산 · 007014 경북 · 007015 경남 · 007016 제주 · 007017 세종 (2026-10-12 probe)
+      # 응답은 모집중인 공고만 온다(STATUS '모집중'). 시설공단·도시개발공사의 생활체육 도급강사 공고가 잦다
+      endpoint: https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo
+      format: xml
+      params:
+        serviceKey: "${DATA_GO_KR_KEY}"
+        type: xml
+        sidoCd: "007015"
+      paging: { page_param: pageNo, size_param: numOfRows, size: 100, max_pages: 3 }
+      items_path: response.openXmlEmployInfo-body.items.item
+      field_map:
+        title: ENT_TITLE
+        org_name: ENT_NAME
+        posted_at: PUB_DATE
+        deadline: PUB_END_DATE
+        url: URL
+        body: DUTY_DETAIL
+      date_formats: ["%Y-%m-%d"]
+      keywords: [강사, 교강사, 시간강사, 지도자, 지도사, 코치, 트레이너, 강습]
+      detail: { fetch: false }
+    notes: >-
+      경남 출자출연기관·지방공기업 채용 통합 API. 2026-10-12 probe: 경남 모집중 16건 중 강사 4건
+      (창원시설공단 도급강사 3, 김해시도시개발공사 배드민턴 위탁강사 1). 김해시도시개발공사처럼 해외 IP 를 막는 기관 공고도 여기로 들어온다.
 
   - id: work24
     name: 고용24 / 워크넷 (고용노동부)
