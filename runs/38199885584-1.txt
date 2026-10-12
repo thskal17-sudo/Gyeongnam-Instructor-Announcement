@@ -1,0 +1,4 @@
+====================================================================================================
+URL: https://www.data.go.kr/data/15159757/openapi.do
+  (connect failed, retrying once: HTTPSConnectionPool(host='www.data.go.kr', port=443): Max retries exceeded with )
+  FETCH ERROR: HTTPSConnectionPool(host='www.data.go.kr', port=443): Max retries exceeded with url: /data/15159757/openapi.do (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.data.go.kr', port=443) at 0x7ff
