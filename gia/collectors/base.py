@@ -265,10 +265,18 @@ def filename_from_headers(headers) -> str | None:
     m = _CD_PLAIN.search(cd)
     if m:
         name = m.group(1).strip()
+        # 헤더 값은 latin-1 로 읽혀 온다. 원래 바이트를 UTF-8, 안 되면 EUC-KR(cp949)로 푼다.
+        # 새올 FileDown.jsp 는 한글 이름을 EUC-KR 로 보내 '2026³â ÇÔ¾È±º…'처럼 깨졌다(2026-10-09 함안)
         try:
-            return name.encode("latin-1").decode("utf-8")
-        except (UnicodeEncodeError, UnicodeDecodeError):
+            raw = name.encode("latin-1")
+        except UnicodeEncodeError:
             return unquote(name)
+        for enc in ("utf-8", "cp949"):
+            try:
+                return raw.decode(enc)
+            except UnicodeDecodeError:
+                continue
+        return unquote(name)
     return None
 
 def get_path(obj: Any, path: str | None) -> Any:
