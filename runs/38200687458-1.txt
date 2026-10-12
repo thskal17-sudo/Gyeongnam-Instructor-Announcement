@@ -1,0 +1,81 @@
+24:  default_days: 365
+::group::probe cleaneye_007002
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo?serviceKey=***&type=xml&sidoCd=007002&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
+INFO gia.collectors.api_json: cleaneye_007002: 응답 15건 → 통과 15건 (걸러짐: 없음)
+[probe] cleaneye 시험 007002: 목록 15건
+  - ????-??-?? | 재단법인 부산광역시사회서비스원 | 2026년 부산광역시사회서비스원 3차 기간제 채용 공고 | 
+  - ????-??-?? | 부산신용보증재단 | 2026년 제4차 기간제 계약직원 채용 | 
+  - ????-??-?? | 부산시설공단 | 2026년 부산시설공단 청년 체험형 인턴 공개채용 공고 | 
+  - ????-??-?? | 부산광역시남구시설관리공단 | 2026년 제7회 기간제근로자 채용공고 | 
+  - ????-??-?? | 부산광역시남구시설관리공단 | 2026년 제5회 시간강사 채용공고 | 
+[detail] 본문 0자 · 마감 None (unknown, 'None') · 점수 0 ['-30 핵심어 없음', '+20 채용어(채용)'] · 분야 school
+[posting] 제외: 
+::endgroup::
+::group::probe cleaneye_007003
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo?serviceKey=***&type=xml&sidoCd=007003&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
+INFO gia.collectors.api_json: cleaneye_007003: 응답 13건 → 통과 13건 (걸러짐: 없음)
+[probe] cleaneye 시험 007003: 목록 13건
+  - ????-??-?? | 수성문화재단 | 2026 수성문화재단 미술관 전문 학예인력 채용 공고 | 
+  - ????-??-?? | 달성문화재단 | 선비체험관(송해기념관) 기간제 채용공고 | 
+  - ????-??-?? | 대구의료원 | 대구의료원 전문의(계약형 지역필수의사제) 공개 초빙 공고(외과) | 
+  - ????-??-?? | 대구의료원 | 대구의료원 전문의(계약형 지역필수의사제) 공개 초빙 공고(내과) | 
+  - ????-??-?? | 대구의료원 | 대구의료원 전문의(계약형 지역필수의사제) 공개 초빙 공고(응급의학과) | 
+[detail] 본문 0자 · 마감 None (unknown, 'None') · 점수 0 ['-30 핵심어 없음', '+20 채용어(채용)'] · 분야 arts
+[posting] 제외: 
+::endgroup::
+::group::probe cleaneye_007007
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo?serviceKey=***&type=xml&sidoCd=007007&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
+INFO gia.collectors.api_json: cleaneye_007007: 응답 4건 → 통과 4건 (걸러짐: 없음)
+[probe] cleaneye 시험 007007: 목록 4건
+  - ????-??-?? | 재단법인 울산광역시 복지가족진흥사회서비스원 | (재)울산광역시 복지가족진흥사회서비스원 2026년 제2회 직원 채용 공고 | 
+  - ????-??-?? | 울산광역시남구도시관리공단 | 울산광역시남구도시관리공단 임원(이사장, 비상임이사) 후보자 모집 공고 | 
+  - ????-??-?? | 울산테크노파크 | 울산테크노파크 원장 채용 공고 (제2026-012호) | 
+  - ????-??-?? | 재단법인 울주복지재단 | (재)울주복지재단 2026년 제10회 기간제근로자 채용 공고 | 
+[detail] 본문 0자 · 마감 None (unknown, 'None') · 점수 0 ['-30 핵심어 없음', '+20 채용어(채용)'] · 분야 counsel_welfare
+[posting] 제외: 
+::endgroup::
+::group::probe cleaneye_007014
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo?serviceKey=***&type=xml&sidoCd=007014&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
+INFO gia.collectors.api_json: cleaneye_007014: 응답 27건 → 통과 27건 (걸러짐: 없음)
+[probe] cleaneye 시험 007014: 목록 27건
+  - ????-??-?? | 재단법인 경북연구원 | 경북연구원 2026년 제9차 행정보조원 공개채용 | 
+  - ????-??-?? | 울진군의료원 | 울진군의료원 의사채용 공고(이비인후과) | 
+  - ????-??-?? | 울진군의료원 | 울진군의료원 의사채용공고(산부인과) | 
+  - ????-??-?? | 울진군의료원 | 울진군의료원 약사 채용 공고 | 
+  - ????-??-?? | 울진군의료원 | 울진군의료원 의사 채용공고(마취통증의학과, 영상의학과) | 
+[detail] 본문 0자 · 마감 None (unknown, 'None') · 점수 0 ['-30 핵심어 없음', '+20 채용어(채용)', '-40 비강사 직종(행정보조)'] · 분야 other
+[posting] 제외: 
+::endgroup::
+::group::probe cleaneye_007015
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo?serviceKey=***&type=xml&sidoCd=007015&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
+INFO gia.collectors.api_json: cleaneye_007015: 응답 16건 → 통과 16건 (걸러짐: 없음)
+[probe] cleaneye 시험 007015: 목록 16건
+  - ????-??-?? | 재단법인 경상남도 투자경제진흥원 | (재)경남투자경제진흥원 원장 공개모집 공고 | 
+  - ????-??-?? | 창원시설공단 | 2026년 용원국민체육센터 생활체육 도급강사 모집 공고 | 
+  - ????-??-?? | 밀양물산 주식회사 | 밀양물산 주식회사 임원 공개모집 공고 | 
+  - ????-??-?? | 재단법인 남해군관광문화재단 | 독일마을 기념품점 기간제근로자 채용 공고 | 
+  - ????-??-?? | 양산시장애인복지관 | 양산시장애인복지관 재활사(육아휴직대체인력) 채용 공고 | 
+[detail] 본문 0자 · 마감 None (unknown, 'None') · 점수 5 ['-30 핵심어 없음', '+20 채용어(모집)', '+15 경남 지역'] · 분야 other
+[posting] 제외: 
+::endgroup::
+::group::probe cleaneye_007017
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo?serviceKey=***&type=xml&sidoCd=007017&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
+INFO gia.collectors.api_json: cleaneye_007017: 응답 1건 → 통과 1건 (걸러짐: 없음)
+[probe] cleaneye 시험 007017: 목록 1건
+  - ????-??-?? | 세종도시교통공사 | [모집공고] 세종도시교통공사 2026년 제6회 기간제근로자(휴직대체) 채용 공고 | 
+[detail] 본문 0자 · 마감 None (unknown, 'None') · 점수 0 ['-30 핵심어 없음', '+20 채용어(모집)', '-40 비강사 직종(기간제근로자)', '-30 조달어(공사)'] · 분야 school
+[posting] 제외: 
+::endgroup::
+::group::probe cleaneye_fields
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo?serviceKey=***&type=xml&sidoCd=007016&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
+INFO gia.collectors.api_json: cleaneye_fields: 응답 10건 → 통과 0건 (걸러짐: 키워드 10)
+INFO gia.collectors.api_json: cleaneye_fields: 첫 항목 필드 ['ACCUSATION', 'ADDRESS', 'DUTY_DETAIL', 'EMPLOY_GB', 'EMPLOY_NUM', 'EMPYEAR', 'ENT_GB', 'ENT_KIND', 'ENT_LICENSE1', 'ENT_LICENSE2', 'ENT_LICENSE3', 'ENT_LICENSE4', 'ENT_NAME', 'ENT_RECRUIT', 'ENT_TITLE', 'EXHIBIT', 'FILE_NAME1', 'FILE_NAME2', 'FILE_NAME3', 'JOB_SEEK_ETC', 'JOB_TYPE', 'JUDGE_METHOD', 'LOCAL_NAME', 'LOCAL_REASON', 'LOCAL_YN', 'NO', 'OFFICE_HOURS', 'POSITION', 'PUB_DATE', 'PUB_END_DATE']
+[probe] cleaneye 필드 확인: 목록 0건
+::endgroup::
