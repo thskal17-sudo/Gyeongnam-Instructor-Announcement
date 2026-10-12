@@ -45,6 +45,12 @@ jobs:
         env:
           DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
           WORKNET_API_KEY: ${{ secrets.WORKNET_API_KEY }}
+          # 국내 프록시(선택). 비어 있으면 러너 IP 로 그냥 나간다 — 지금까지와 같다.
+          # 지자체·대학 상당수가 러너 IP 대역을 막는다(docs/SOURCE_VERIFICATION.md)
+          HTTPS_PROXY: ${{ secrets.HTTPS_PROXY }}
+          HTTP_PROXY: ${{ secrets.HTTPS_PROXY }}
+          # 깃허브로 가는 길은 프록시를 타지 않는다 (커밋·푸시는 러너에서 직접)
+          NO_PROXY: github.com,api.github.com,codeload.github.com,objects.githubusercontent.com
         run: |
           ARGS=""
           if [ "${{ github.event.inputs.backfill_days }}" != "" ] && [ "${{ github.event.inputs.backfill_days }}" != "0" ]; then ARGS="$ARGS --backfill-days ${{ github.event.inputs.backfill_days }}"; fi

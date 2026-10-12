@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import logging
+import os
 import random
 import re
 import ssl
@@ -62,6 +63,22 @@ class HttpClient:
         self._locks: dict[str, threading.Lock] = {}
         self._guard = threading.Lock()
         self._robots: dict[str, RobotFileParser | None] = {}
+        log.info("[http] 나가는 경로: %s", self.egress_note())
+
+    @staticmethod
+    def egress_note() -> str:
+        """어느 경로로 나가는지. 프록시가 걸려 있으면 그 호스트를 돌려준다.
+
+        지자체·대학 상당수가 GitHub 러너 IP 대역을 막는다(docs/SOURCE_VERIFICATION.md).
+        국내 프록시를 HTTPS_PROXY 로 넣으면 httpx 가 trust_env 로 알아서 쓰지만, 그러면
+        실패 원인을 볼 때 어느 IP 로 나간 수집인지 구분이 안 된다. 그래서 한 줄 남긴다.
+        """
+        for name in ("HTTPS_PROXY", "https_proxy", "HTTP_PROXY", "http_proxy"):
+            raw = (os.environ.get(name) or "").strip()
+            if raw:
+                parts = urlsplit(raw if "://" in raw else f"http://{raw}")
+                return f"프록시 {parts.scheme}://{parts.hostname}" + (f":{parts.port}" if parts.port else "")
+        return "러너 IP 직접"
 
     def _make_client(self, verify: "bool | ssl.SSLContext") -> httpx.Client:
         return httpx.Client(

@@ -11,6 +11,28 @@ from .base import FetchError, SourceAdapter
 from .html_list import extract_attachments_html, extract_body_html, parse_list_html
 
 
+def proxy_config() -> dict | None:
+    """브라우저에 넘길 프록시 설정. 환경변수에 없으면 None.
+
+    bypass 를 꼭 같이 넘긴다. httpx·requests 는 NO_PROXY 를 알아서 지키는데 브라우저는
+    안 지킨다. 안 넘기면 테스트의 127.0.0.1 처럼 프록시를 타면 안 되는 주소까지 타서,
+    프록시가 걸린 환경에서만 조용히 실패한다(2026-10-12 로컬 테스트에서 실제로 겪었다).
+    """
+    server = None
+    for name in ("HTTPS_PROXY", "https_proxy", "HTTP_PROXY", "http_proxy"):
+        raw = (os.environ.get(name) or "").strip()
+        if raw:
+            server = raw if "://" in raw else f"http://{raw}"
+            break
+    if not server:
+        return None
+    cfg = {"server": server}
+    bypass = (os.environ.get("NO_PROXY") or os.environ.get("no_proxy") or "").strip()
+    if bypass:
+        cfg["bypass"] = bypass
+    return cfg
+
+
 def find_chromium() -> str | None:
     """실행 파일 경로: GIA_CHROMIUM_PATH > PLAYWRIGHT_BROWSERS_PATH 안의 chrome > Playwright 기본."""
     explicit = os.environ.get("GIA_CHROMIUM_PATH")
@@ -45,6 +67,12 @@ class PlaywrightListAdapter(SourceAdapter):
             exe = find_chromium()
             if exe:
                 kw["executable_path"] = exe
+            # httpx 는 trust_env 로 HTTPS_PROXY 를 알아서 쓰지만 브라우저는 안 본다.
+            # 넘기지 않으면 html_list 소스만 국내 IP 로 나가고 playwright 소스는 러너 IP 로
+            # 나가, 같은 실행 안에서 경로가 갈린다
+            proxy = proxy_config()
+            if proxy:
+                kw["proxy"] = proxy
             try:
                 self._browser = self._pw.chromium.launch(**kw)
             except Exception as e:  # noqa: BLE001
