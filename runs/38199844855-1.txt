@@ -1,0 +1,6 @@
+::group::probe cleaneye
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo?serviceKey=***&type=xml&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
+INFO gia.collectors.api_json: cleaneye: 첫 페이지에 'response.body.items.item' 항목 없음 — 응답 키 {'response': {'openXmlEmployInfo-header': {'resultCode': 'str', 'resultMsg': 'str'}}} · 앞부분 <?xml version="1.0" encoding="UTF-8"?> <response> <openXmlEmployInfo-header> <resultCode>3</resultCode> <resultMsg>NONOTEXISTDATA_ERROR</resultMsg> </openXmlEmployInfo-header> </response>
+[probe] 클린아이 잡플러스 (행안부, 지방공기업·출자출연기관): 목록 0건
+::endgroup::
