@@ -1,20 +1,40 @@
 24:  default_days: 60
-::group::probe cleaneye_fields
-INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
-INFO httpx: HTTP Request: GET https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo?serviceKey=***&type=xml&sidoCd=007016&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
-INFO gia.collectors.api_json: cleaneye_fields: 응답 10건 → 통과 0건 (걸러짐: 키워드 10)
-INFO gia.collectors.api_json: cleaneye_fields: 첫 항목 필드 ['ACCUSATION', 'ADDRESS', 'DUTY_DETAIL', 'EMPLOY_GB', 'EMPLOY_NUM', 'EMPYEAR', 'ENT_GB', 'ENT_KIND', 'ENT_LICENSE1', 'ENT_LICENSE2', 'ENT_LICENSE3', 'ENT_LICENSE4', 'ENT_NAME', 'ENT_RECRUIT', 'ENT_TITLE', 'EXHIBIT', 'FILE_NAME1', 'FILE_NAME2', 'FILE_NAME3', 'JOB_SEEK_ETC', 'JOB_TYPE', 'JUDGE_METHOD', 'LOCAL_NAME', 'LOCAL_REASON', 'LOCAL_YN', 'NO', 'OFFICE_HOURS', 'POSITION', 'PUB_DATE', 'PUB_END_DATE', 'REFERENCE', 'RETIREMENT', 'RE_MAN_YN', 'SIDO_CD', 'SPECIAL_ITEM', 'STATUS', 'UPD_DATE', 'URL', 'WORK_PLACE', 'YEARINCOME']
-[probe] cleaneye 필드 확인: 목록 0건
-::endgroup::
-::group::probe cleaneye_007015
+::group::probe cleaneye_v1
 INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
 INFO httpx: HTTP Request: GET https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo?serviceKey=***&type=xml&sidoCd=007015&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
-INFO gia.collectors.api_json: cleaneye_007015: 응답 16건 → 통과 4건 (걸러짐: 키워드 12)
-[probe] cleaneye 시험 007015: 목록 4건
-  - 2026-10-12 | 창원시설공단 | 2026년 용원국민체육센터 생활체육 도급강사 모집 공고 | 
-  - 2026-10-12 | 김해시도시개발공사 | 김해시도시개발공사 장유스포츠센터팀 배분제 위탁강사(배드민턴) 모집 공고 | 
-  - 2026-10-12 | 창원시설공단 | 내서스포츠센터 프로그램 도급강사 공개경쟁모집 공고 | 
-  - 2026-10-06 | 창원시설공단 | 시민생활체육관 탁구 프로그램 도급강사 공개모집 공고 | 
-[detail] 본문 0자 · 마감 None (unknown, 'None') · 점수 85 ['+50 제목 핵심어(강사)', '+20 채용어(모집)', '+15 경남 지역'] · 분야 sports
-[posting] 포함: 2026년 용원국민체육센터 생활체육 도급강사 모집 공고
+INFO gia.collectors.api_json: cleaneye_v1: 응답 16건 → 통과 16건 (걸러짐: 없음)
+[probe] cleaneye 값 v1: 목록 16건
+  - ????-??-?? | https://job.cleaneye.go.kr/user/ypCareersData.do?idx=80017 | 2026-10-14 | 
+  - ????-??-?? | https://job.cleaneye.go.kr/user/ypCareersData.do?idx=80216 | 2026-10-20 | 
+  - ????-??-?? | https://job.cleaneye.go.kr/user/ypCareersData.do?idx=80146 | 2026-10-20 | 
+  - ????-??-?? | https://job.cleaneye.go.kr/user/ypCareersData.do?idx=80156 | 2026-10-19 | 
+  - ????-??-?? | https://job.cleaneye.go.kr/user/ypCareersData.do?idx=80136 | 2026-10-13 | 
+[detail] 본문 0자 · 마감 None (unknown, 'None') · 점수 0 ['-30 핵심어 없음'] · 분야 other
+[posting] 제외: 
+::endgroup::
+::group::probe cleaneye_v2
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo?serviceKey=***&type=xml&sidoCd=007015&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
+INFO gia.collectors.api_json: cleaneye_v2: 응답 16건 → 통과 16건 (걸러짐: 없음)
+[probe] cleaneye 값 v2: 목록 16건
+  - ????-??-?? | 경력 | 모집중 | 
+  - ????-??-?? | 신입+경력 | 모집중 | 
+  - ????-??-?? | 경력 | 모집중 | 
+  - ????-??-?? | 신입+경력 | 모집중 | 
+  - ????-??-?? | 신입+경력 | 모집중 | 
+[detail] 본문 0자 · 마감 None (unknown, 'None') · 점수 0 ['-30 핵심어 없음', '+20 채용어(모집)'] · 분야 other
+[posting] 제외: 
+::endgroup::
+::group::probe cleaneye_v3
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo?serviceKey=***&type=xml&sidoCd=007015&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
+INFO gia.collectors.api_json: cleaneye_v3: 응답 16건 → 통과 16건 (걸러짐: 없음)
+[probe] cleaneye 값 v3: 목록 16건
+  - ????-??-?? | null | - | 
+  - ????-??-?? | null | - | 
+  - ????-??-?? | null | - | 
+  - ????-??-?? | null | - | 
+  - ????-??-?? | null | - | 
+[detail] 본문 0자 · 마감 None (unknown, 'None') · 점수 0 ['-30 핵심어 없음'] · 분야 other
+[posting] 제외: 
 ::endgroup::
