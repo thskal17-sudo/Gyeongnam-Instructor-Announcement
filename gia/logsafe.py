@@ -13,11 +13,15 @@ import re
 from urllib.parse import quote
 
 _KEY_QUERY = re.compile(r"(?i)\b((?:service|auth)key=)[^&\s\"'<>]+")
+# 프록시 주소는 http://아이디:비밀번호@호스트:포트 형태로 올 수 있다. 사용자 정보만 가린다
+# (호스트는 남겨 둬야 어느 경로로 나갔는지 로그에서 확인할 수 있다)
+_URL_USERINFO = re.compile(r"(?i)\b([a-z][a-z0-9+.-]*://)[^/\s:@]+:[^/\s@]+@")
 SECRET_ENVS = ("DATA_GO_KR_KEY", "WORKNET_API_KEY")
 
 
 def redact(text: str) -> str:
     text = _KEY_QUERY.sub(r"\1***", text)
+    text = _URL_USERINFO.sub(r"\1***:***@", text)
     for name in SECRET_ENVS:
         v = (os.environ.get(name) or "").strip()
         if len(v) >= 8:
