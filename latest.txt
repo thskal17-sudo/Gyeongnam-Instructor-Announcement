@@ -3,7 +3,31 @@ URL: https://www.gangsaitda.com/jobs
 status=200 final=https://www.gangsaitda.com/jobs encoding=utf-8 bytes=10841
 title: 
 
-[GREP] 정관청소년센터|남구시설관리공단|기장종합사회복지관
+[GREP] 정관청소년|/api/|_next/static/chunks/app
+   (없음)
+   [SCRIPT src] []
+[DATES] sample: []
+
+[RETRY without noise filter]
+[DATES] sample: []
+====================================================================================================
+URL: https://www.gangsaitda.com/api/jobs
+status=404 final=https://www.gangsaitda.com/api/jobs encoding=utf-8 bytes=5315
+title: 
+
+[GREP] 정관청소년|/api/|_next/static/chunks/app
+   (없음)
+   [SCRIPT src] []
+[DATES] sample: []
+
+[RETRY without noise filter]
+[DATES] sample: []
+====================================================================================================
+URL: https://www.gangsaitda.com/
+status=200 final=https://www.gangsaitda.com/ encoding=utf-8 bytes=8937
+title: 
+
+[GREP] 정관청소년|/api/|_next/static/chunks/app
    (없음)
    [SCRIPT src] []
 [DATES] sample: []
