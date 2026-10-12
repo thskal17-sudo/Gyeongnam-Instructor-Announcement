@@ -1,15 +1,30 @@
 ::group::probe cleaneye_t1
-[probe] cleaneye 시험 t1: 목록 실패 — 재시도 실패: timed out
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo?serviceKey=***&type=xml&sidoCd=48&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
+INFO gia.collectors.api_json: cleaneye_t1: 첫 페이지에 'response.body.items.item' 항목 없음 — 응답 키 {'response': {'openXmlEmployInfo-header': {'resultCode': 'str', 'resultMsg': 'str'}}} · 앞부분 <?xml version="1.0" encoding="UTF-8"?> <response> <openXmlEmployInfo-header> <resultCode>3</resultCode> <resultMsg>NONOTEXISTDATA_ERROR</resultMsg> </openXmlEmployInfo-header> </response>
+[probe] cleaneye 시험 t1: 목록 0건
 ::endgroup::
 ::group::probe cleaneye_t2
-[probe] cleaneye 시험 t2: 목록 실패 — 재시도 실패: timed out
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo?serviceKey=***&type=xml&sidoCd=4800000000&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
+INFO gia.collectors.api_json: cleaneye_t2: 첫 페이지에 'response.body.items.item' 항목 없음 — 응답 키 {'response': {'openXmlEmployInfo-header': {'resultCode': 'str', 'resultMsg': 'str'}}} · 앞부분 <?xml version="1.0" encoding="UTF-8"?> <response> <openXmlEmployInfo-header> <resultCode>3</resultCode> <resultMsg>NONOTEXISTDATA_ERROR</resultMsg> </openXmlEmployInfo-header> </response>
+[probe] cleaneye 시험 t2: 목록 0건
 ::endgroup::
 ::group::probe cleaneye_t3
-[probe] cleaneye 시험 t3: 목록 실패 — 재시도 실패: timed out
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo?serviceKey=***&type=xml&sidoCd=007016&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
+INFO gia.collectors.api_json: cleaneye_t3: 첫 페이지에 'response.body.items.item' 항목 없음 — 응답 키 {'response': {'openXmlEmployInfo-header': {'resultCode': 'str', 'resultMsg': 'str'}, 'openXmlEmployInfo-body': {'items': 'dict', 'totalCount': 'str'}}} · 앞부분 <?xml version="1.0" encoding="UTF-8"?> <response> <openXmlEmployInfo-header> <resultCode>0</resultCode> <resultMsg>SUCCESS_INFO</resultMsg> </openXmlEmployInfo-header> <openXmlEmployInfo-body> <items> <item> <ENT_NAME>서귀포의료원</ENT_NAME> <ENT_TITLE>직원 수시모집 공고 - 의사직(응급의학과)</ENT_TITLE> <ENT_GB>지방출연기관</E
+[probe] cleaneye 시험 t3: 목록 0건
 ::endgroup::
 ::group::probe cleaneye_t4
-[probe] cleaneye 시험 t4: 목록 실패 — 재시도 실패: timed out
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo?serviceKey=***&type=xml&numOfRows=100&pageNo=1 "HTTP/1.1 200 OK"
+INFO gia.collectors.api_json: cleaneye_t4: 첫 페이지에 'response.body.items.item' 항목 없음 — 응답 키 {'response': {'openXmlEmployInfo-header': {'resultCode': 'str', 'resultMsg': 'str'}}} · 앞부분 <?xml version="1.0" encoding="UTF-8"?> <response> <openXmlEmployInfo-header> <resultCode>3</resultCode> <resultMsg>NONOTEXISTDATA_ERROR</resultMsg> </openXmlEmployInfo-header> </response>
+[probe] cleaneye 시험 t4: 목록 0건
 ::endgroup::
 ::group::probe cleaneye_t5
-[probe] cleaneye 시험 t5: 목록 실패 — 재시도 실패: timed out
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo?serviceKey=***&type=xml&sido=%EA%B2%BD%EB%82%A8&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
+INFO gia.collectors.api_json: cleaneye_t5: 첫 페이지에 'response.body.items.item' 항목 없음 — 응답 키 {'response': {'openXmlEmployInfo-header': {'resultCode': 'str', 'resultMsg': 'str'}}} · 앞부분 <?xml version="1.0" encoding="UTF-8"?> <response> <openXmlEmployInfo-header> <resultCode>3</resultCode> <resultMsg>NONOTEXISTDATA_ERROR</resultMsg> </openXmlEmployInfo-header> </response>
+[probe] cleaneye 시험 t5: 목록 0건
 ::endgroup::
