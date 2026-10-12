@@ -1,0 +1,46 @@
+====================================================================================================
+URL: https://www.data.go.kr/data/15159757/openapi.do
+status=200 final=https://www.data.go.kr/data/15159757/openapi.do encoding=UTF-8 bytes=205092
+title: 행정안전부 한국지역정보개발원_채용정보 조회 서비스 | 공공데이터포털
+
+[GREP] apis\.data\.go\.kr|B551982|요청주소|serviceKey|pageNo|numOfRows|sido|Sido|SIDO|resultType|type=
+   ...  <title>행정안전부 한국지역정보개발원_채용정보 조회 서비스 | 공공데이터포털</title> <link rel="apple-touch-icon" sizes="180x180" href="/common/img/favicon/favicon.ico"> <link rel="icon" type="image/png" sizes="512x512" href="/common/img/favicon/favicon_512.png"> <link rel="icon" type="image/png" sizes="192x192" href="/common/img/favicon/favicon_192.png"> <link rel="icon" type="image/png" sizes="96x96" href="/common/img/favicon/favicon_96.png"> <!-- css --> <link href="/common/css/import.css" media="all" rel="stylesheet" type="text/css"> <link href="/common/component/compone
+   ... <link rel="apple-touch-icon" sizes="180x180" href="/common/img/favicon/favicon.ico"> <link rel="icon" type="image/png" sizes="512x512" href="/common/img/favicon/favicon_512.png"> <link rel="icon" type="image/png" sizes="192x192" href="/common/img/favicon/favicon_192.png"> <link rel="icon" type="image/png" sizes="96x96" href="/common/img/favicon/favicon_96.png"> <!-- css --> <link href="/common/css/import.css" media="all" rel="stylesheet" type="text/css"> <link href="/common/component/component.css" media="all" rel="stylesheet" type="text/css"> <link href="/common/portal/css/layout.cs
+   ... ="icon" type="image/png" sizes="512x512" href="/common/img/favicon/favicon_512.png"> <link rel="icon" type="image/png" sizes="192x192" href="/common/img/favicon/favicon_192.png"> <link rel="icon" type="image/png" sizes="96x96" href="/common/img/favicon/favicon_96.png"> <!-- css --> <link href="/common/css/import.css" media="all" rel="stylesheet" type="text/css"> <link href="/common/component/component.css" media="all" rel="stylesheet" type="text/css"> <link href="/common/portal/css/layout.css" rel="stylesheet" type="text/css"> <link href="/common/portal/css/contents.css" rel="stylesh
+   ... vicon/favicon_192.png"> <link rel="icon" type="image/png" sizes="96x96" href="/common/img/favicon/favicon_96.png"> <!-- css --> <link href="/common/css/import.css" media="all" rel="stylesheet" type="text/css"> <link href="/common/component/component.css" media="all" rel="stylesheet" type="text/css"> <link href="/common/portal/css/layout.css" rel="stylesheet" type="text/css"> <link href="/common/portal/css/contents.css" rel="stylesheet" type="text/css"> <link href="/common/portal/css/main.css" rel="stylesheet" type="text/css"> <link rel="preload" as="image" href="/common/img/s
+   ... avicon/favicon_96.png"> <!-- css --> <link href="/common/css/import.css" media="all" rel="stylesheet" type="text/css"> <link href="/common/component/component.css" media="all" rel="stylesheet" type="text/css"> <link href="/common/portal/css/layout.css" rel="stylesheet" type="text/css"> <link href="/common/portal/css/contents.css" rel="stylesheet" type="text/css"> <link href="/common/portal/css/main.css" rel="stylesheet" type="text/css"> <link rel="preload" as="image" href="/common/img/sub_bg.jpg"> <style> .index-text a {display: inline-block;width: 160px;color: #DF1860;fo
+   ... edia="all" rel="stylesheet" type="text/css"> <link href="/common/component/component.css" media="all" rel="stylesheet" type="text/css"> <link href="/common/portal/css/layout.css" rel="stylesheet" type="text/css"> <link href="/common/portal/css/contents.css" rel="stylesheet" type="text/css"> <link href="/common/portal/css/main.css" rel="stylesheet" type="text/css"> <link rel="preload" as="image" href="/common/img/sub_bg.jpg"> <style> .index-text a {display: inline-block;width: 160px;color: #DF1860;font-weight: 500;} .index-list > li {position: relative;padding: 0px 0 4px 13p
+   [SCRIPT src] ['/common/js/jquery-3.7.1.min.js', '/common/js/plugin/slick.min.js', '/common/js/plugin/swiper-bundle.min.js', '/common/js/component/ui-script.js', '/common/portal/js/custom.js', '/js/biz/cmm/cmm/loading.js', '/js/biz/cmm/cmm/script_cmmFunction.js', '/js/biz/cmm/cmm/script_cmmPopup.js', '/js/biz/cmm/cmm/script_numberUtil.js', '/js/biz/cmm/cmm/script_openSourceSetting.js', '/js/biz/cmm/cmm/script_stringUtil.js', '/js/biz/cmm/cmm/script_codeSetting.js']
+
+[TABLE] div.conts-area > div.krds-table-wrap > table.tbl.col.data.data_type2  rows=11
+   row: tr -> th:에러메시지 | th:에러코드 | th:설명
+   row: tr -> td:APPLICATION_ERROR | td:01 | td.text-balance:GW 내부 처리 중 예기치 않은 오류가 발생했습
+      td :: own='APPLICATION_ERROR' all='APPLICATION_ERROR'
+      td :: own='01' all='01'
+      td.text-balance :: own='GW 내부 처리 중 예기치 않은 오류가 발생했습니다. 잠시 후 다시 호출' all='GW 내부 처리 중 예기치 않은 오류가 발생했습니다. 잠시 후 다시 호출하고, 문제가 반복'
+
+[TABLE] div > div.krds-table-wrap > table.tbl.col.data.data_type2  rows=4
+   row: tr -> th:에러메시지 | th:에러코드 | th:설명
+   row: tr -> td:SERVICE_ACCESS_DENIED_ERRO | td:20 | td.text-balance:해당 API 서비스에 대한 이용 권한이 확인되지
+      td :: own='SERVICE_ACCESS_DENIED_ERROR' all='SERVICE_ACCESS_DENIED_ERROR'
+      td :: own='20' all='20'
+      td.text-balance :: own='해당 API 서비스에 대한 이용 권한이 확인되지 않습니다. 활용신청 여부' all='해당 API 서비스에 대한 이용 권한이 확인되지 않습니다. 활용신청 여부와 승인 또는 일시'
+
+[LIST] div.data-report > div.line-box.type2 > ul.info-ul.row  items=5
+   li: li -> OpenAPI 명 행정안전부 한국지역정보개발원_채용정보 조회 서비스
+      strong.key :: own='OpenAPI 명' all='OpenAPI 명'
+      div.value :: own='행정안전부 한국지역정보개발원_채용정보 조회 서비스' all='행정안전부 한국지역정보개발원_채용정보 조회 서비스'
+
+[LIST] div.data-report > div.line-box.type2 > ul.info-ul.row  items=5
+   li: li -> 비용부과유무 무료
+      strong.key :: own='비용부과유무' all='비용부과유무'
+      div.value :: own='무료' all='무료'
+[DATES] sample: ['2026-06-08', '2026-06-09']
+
+[ANCHORS] most common link paths
+   x1 ul.info-ul.row > li.half > div.value > a.link.underline  href=/tcs/dss/selectDataSetList.do?dType=&keyword=&orgNm=행정안전부%20한국지역정보개발원&conditionType=search {'target': '_blank', 'title': '새창으로 이동'} text='행정안전부 한국지역정보개발원'
+      row? div.value :: '행정안전부 한국지역정보개발원'
+   x1 li > div.value > div.value > a  href=/ugs/selectPortalPolicyView.do {'target': '_blank', 'title': '새 창으로 공공데이터포털 정책 열기'} text='이용허락범위 제한 없음'
+      row? div.value :: '이용허락범위 제한 없음'
+   x1 div.data-info-body.scroll-check > div#tab-layer-api-04.section-link > div.con-box.bg-gray > a.krds-btn.medium.tertiary  href=/catalog/15159757/openapi.json {'target': '_blank', 'title': '새창으로 이동'} text='Schema.org'
+      row? div.con-box.bg-gray :: '※ 데이터 연계 및 검색을 위한 표준 메타데이터입니다. Schema.org DCAT'
