@@ -138,6 +138,50 @@ sources:
       경남 출자출연기관·지방공기업 채용 통합 API. 2026-10-12 probe: 경남 모집중 16건 중 강사 4건
       (창원시설공단 도급강사 3, 김해시도시개발공사 배드민턴 위탁강사 1). 김해시도시개발공사처럼 해외 IP 를 막는 기관 공고도 여기로 들어온다.
 
+  # 나라일터(인사혁신처) 일반채용 모집공고. 공공데이터포털에 나라일터 Open API 가 따로 없어(2026-10-13 확인)
+  # 목록을 기관명 검색(searchSelectninsttnm, GET)으로 읽는다. 부산·경북판과 같은 방식.
+  # 행: 번호 / 공고명(a href=javascript:fn_apmView('020','공고번호')) / 기관명 / 공고게시일 / 접수마감일 / 조회
+  # 상세 표(table#apmViewTbl)에 '접수마감일' 칸과 본문(textarea#content)이 있다. 2026-10-13 러너 덤프로 확인
+  - id: narailteo_gyeongnam
+    name: "나라일터 모집공고 (기관명에 '경상남도' 포함)"
+    org_type: portal
+    tier: 1
+    schedule: daily_light
+    homepage: https://www.gojobs.go.kr
+    verified: true
+    adapter: &narailteo
+      type: html_list
+      list_url: "https://www.gojobs.go.kr/apmList.do?menuNo=401&searchJobsecode=020&searchSelectninsttnm=%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84&pageIndex={page}"
+      row_selector: "table#apmTbl > tbody > tr"
+      title_selector: td.ta_l a
+      link_selector: td.ta_l a
+      link_regex: "fn_apmView\\('(\\d+)',\\s*'(\\d+)'\\)"
+      link_url_template: "https://www.gojobs.go.kr/apmView.do?empmnsn={2}&searchJobsecode={1}&menuNo=401&selMenuNo=400"
+      org_selector: "td:nth-child(3)"
+      date_selector: "td:nth-child(4)"
+      date_formats: ["%Y-%m-%d"]
+      keywords: [강사, 교강사, 시간강사, 지도자, 지도사, 코치, 트레이너, 강습, 방과후, 늘봄]
+      paging: { max_pages: 5 }   # 쪽당 10건. 수집 기간보다 오래된 쪽에 닿으면 그 전에 멈춘다
+      detail:
+        fetch: true
+        body_selector: table#apmViewTbl
+    notes: >-
+      '경상남도 진주시'·'경상남도 거제시'·'경상남도교육청' 처럼 도·시군·교육청 공고가 나온다.
+      진주·거제·산청·함양처럼 해외 IP 를 막는 시군의 채용 공고도 여기로 받는다.
+
+  - id: narailteo_gn
+    name: "나라일터 모집공고 (기관명에 '경남' 포함)"
+    org_type: portal
+    tier: 1
+    schedule: daily_light
+    homepage: https://www.gojobs.go.kr
+    verified: true
+    adapter:
+      <<: *narailteo
+      list_url: "https://www.gojobs.go.kr/apmList.do?menuNo=401&searchJobsecode=020&searchSelectninsttnm=%EA%B2%BD%EB%82%A8&pageIndex={page}"
+      paging: { max_pages: 2 }
+    notes: "'경남연구원'·'○○경남사무소'·'경남지방병무청' 처럼 이름에 '경남'이 든 공공기관 공고."
+
   - id: work24
     name: 고용24 / 워크넷 (고용노동부)
     org_type: portal
