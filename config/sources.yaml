@@ -190,13 +190,14 @@ sources:
     homepage: https://www.work24.go.kr
     adapter:
       type: api_json
-      endpoint: https://openapi.work.go.kr/opi/opi/opia/wantedApi.do
+      # 2024년 고용24 이관 뒤 주소 (울산판 work24_api 와 같음). 키는 work24.go.kr 에서 받은 채용정보 인증키
+      endpoint: https://www.work24.go.kr/cm/openApi/call/wk/callOpenApiSvcInfo210L01.do
       format: xml
       params:
         authKey: "${WORKNET_API_KEY}"
         callTp: L
         returnType: XML
-        region: "48000"       # 경남 지역코드 (확인 필요)
+        region: "48000"       # 경남
         keyword: 강사
       paging: { page_param: startPage, size_param: display, size: 100, max_pages: 5 }
       items_path: wantedRoot.wanted
@@ -204,7 +205,7 @@ sources:
         title: title
         org_name: company
         posted_at: regDt
-        deadline: closeDate
+        deadline: closeDt
         region: region
         url: wantedInfoUrl
       date_formats: ["%y-%m-%d", "%Y-%m-%d"]
