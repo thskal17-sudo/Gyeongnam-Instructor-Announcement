@@ -81,6 +81,9 @@ class SourceConfig(BaseModel):
     region_hint: list[str] = Field(default_factory=list)
     adapter: dict[str, Any] = Field(default_factory=dict)
     notes: str | None = None
+    # 해외 IP 를 막는 사이트. 한국 PC(자체 실행기, korea.yml)가 읽어 korea-relay 브랜치에 올리고,
+    # GitHub 수집은 사이트 대신 그 기록을 읽는다(gia/korea.py)
+    korea_only: bool = False
 
     def unconfigured_reason(self) -> str | None:
         """어댑터 설정이 아직 채워지지 않았으면 이유를 돌려준다."""

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, datetime
+from typing import Any
 from urllib.parse import urlsplit
 
 from ..config import CollectorSettings, SourceConfig
@@ -8,6 +9,7 @@ from .api_json import ApiJsonAdapter
 from .base import HttpClient, SourceAdapter, UnconfiguredSource
 from .html_list import HtmlListAdapter
 from .playwright_list import PlaywrightListAdapter
+from .relay import RelayAdapter
 from .search_portal import SearchPortalAdapter
 
 ADAPTERS: dict[str, type[SourceAdapter]] = {
@@ -18,10 +20,15 @@ ADAPTERS: dict[str, type[SourceAdapter]] = {
 }
 
 
-def build_adapter(cfg: SourceConfig, http: HttpClient, settings: CollectorSettings, since: date | None = None) -> SourceAdapter:
+def build_adapter(cfg: SourceConfig, http: HttpClient, settings: CollectorSettings, since: date | None = None,
+                  relay: dict[str, Any] | None = None, use_relay: bool = False,
+                  now: datetime | None = None) -> SourceAdapter:
+    """use_relay=True 면 korea_only 소스는 사이트 대신 한국 PC 기록(relay)을 읽는다 (GitHub 수집)."""
     reason = cfg.unconfigured_reason()
     if reason:
         raise UnconfiguredSource(reason)
+    if cfg.korea_only and use_relay:
+        return RelayAdapter(cfg, http, settings, since=since, relay=relay, now=now)
     kind = cfg.adapter.get("type")
     cls = ADAPTERS.get(kind)
     if cls is None:

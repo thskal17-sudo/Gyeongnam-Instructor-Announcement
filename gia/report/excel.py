@@ -116,7 +116,7 @@ def _status_sheet(wb: Workbook, data: ReportData, bundle: ConfigBundle, now: dat
     _head(ws, 4, cols)
 
     by_id = {s.source_id: s for s in (data.run.sources if data.run else [])}
-    STATUS = {"ok": "정상", "empty": "0건", "fail": "실패", "unconfigured": "미설정"}
+    STATUS = {"ok": "정상", "empty": "0건", "fail": "실패", "unconfigured": "미설정", "skipped": "한국 PC 대기"}
 
     r = 5
     for s in sorted(bundle.sources, key=lambda x: (not x.enabled, x.id)):
