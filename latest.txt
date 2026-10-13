@@ -1,38 +1,42 @@
-====================================================================================================
-URL: https://www.gojobs.go.kr/apmView.do?empmnsn=305407&searchJobsecode=020&menuNo=401&selMenuNo=400
-status=200 final=https://www.gojobs.go.kr/apmView.do?empmnsn=305407&searchJobsecode=020&menuNo=401&selMenuNo=400 encoding=utf-8 bytes=144185
-title: 나라일터
-
-[GREP] function gfn_fileDown|gfn_fileDown\s*=
-   (없음)
-   [SCRIPT src] ['/jsp/draft/js/jquery-1.12.4.min.js', '/MagicLine4Web/ML4Web/js/ext/jquery-ui.min.js', '/js/jquery.nanoscroller.min.js', '/jsp/cmmn/js/common.js?v=1791856299529', '/jsp/draft/js/owl.carousel.min.js', '/jsp/apm/apmView.js']
-
-[BODY candidates]
-   div#contents > div#sub_content.sub_content > div.inner  textlen=970 :: '모집공고 >\xa0\xa0일반채용\n                            \xa0\xa0>\xa0\xa0\n                            \n\t   '
-   div.inner > form#viewForm > div.sub_table_detail.br-table.sub_table_detail1.mt10  textlen=808 :: '일반채용 모집공고\n                    \t\n                    \t내용 읽기 - 공고명, 기관명, 조회, 등록일, '
-   div#wrap  textlen=1533 :: '일반채용 모집공고 상시모집공고 나의 관심채용정보 모집공고 >\xa0\xa0일반채용\n                            \xa0\xa0>\xa0\xa0\n      '
-   table#apmViewTbl > tr > td  textlen=483 :: '안녕하세요.\n경남연구원 경영기획팀입니다.\n2025년도 경남연구원 직원 채용(경상남도 인구전략연구센터)을 아래와 같이 공고하오니, 많은 관심과 참'
-   div#sub_content.sub_content > div.inner > div.sub_title.clear_after  textlen=150 :: '모집공고 >\xa0\xa0일반채용\n                            \xa0\xa0>\xa0\xa0\n                            \n\t   '
-
-[ATTACH candidates]
-   td > p.download > a href=javascript:gfn_fileDown('2026년도 직원 채용 공고문(경상남도 인구전략연구센터).hwp','3443216080062577','employ/경남연구원') onclick= text='2026년도 직원 채용 공고문(경상남도 인구전략연구센터).hwp'
-[DATES] sample: ['2026-10-12', '2026-10-22', '2026-10-22', '2026.10.12', '2026.10.22']
-24:  default_days: 30
-::group::probe narailteo_gyeongnam
+::group::probe narailteo
 INFO gia.http: [http] 나가는 경로: 러너 IP 직접
-INFO httpx: HTTP Request: GET https://www.gojobs.go.kr/robots.txt "HTTP/1.1 200 OK"
-INFO httpx: HTTP Request: GET https://www.gojobs.go.kr/apmList.do?menuNo=401&searchJobsecode=020&searchSelectninsttnm=%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84&pageIndex=1 "HTTP/1.1 200 OK"
-INFO httpx: HTTP Request: GET https://www.gojobs.go.kr/apmList.do?menuNo=401&searchJobsecode=020&searchSelectninsttnm=%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84&pageIndex=2 "HTTP/1.1 200 OK"
-INFO httpx: HTTP Request: GET https://www.gojobs.go.kr/apmView.do?empmnsn=304663&searchJobsecode=020&menuNo=401&selMenuNo=400 "HTTP/1.1 200 OK"
-[probe] 나라일터 모집공고 (기관명에 '경상남도' 포함): 목록 2건
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/1760000/PblJobService/getList?serviceKey=***&Pblanc_ty=&Instt_se=&Sort_order=desc&Begin_de=2026-09-29&End_de=2026-10-13&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/1760000/PblJobService/getList?serviceKey=***&Pblanc_ty=&Instt_se=&Sort_order=desc&Begin_de=2026-09-29&End_de=2026-10-13&pageNo=2&numOfRows=100 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/1760000/PblJobService/getList?serviceKey=***&Pblanc_ty=&Instt_se=&Sort_order=desc&Begin_de=2026-09-29&End_de=2026-10-13&pageNo=3&numOfRows=100 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/1760000/PblJobService/getList?serviceKey=***&Pblanc_ty=&Instt_se=&Sort_order=desc&Begin_de=2026-09-29&End_de=2026-10-13&pageNo=4&numOfRows=100 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/1760000/PblJobService/getList?serviceKey=***&Pblanc_ty=&Instt_se=&Sort_order=desc&Begin_de=2026-09-29&End_de=2026-10-13&pageNo=5&numOfRows=100 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/1760000/PblJobService/getList?serviceKey=***&Pblanc_ty=&Instt_se=&Sort_order=desc&Begin_de=2026-09-29&End_de=2026-10-13&pageNo=6&numOfRows=100 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/1760000/PblJobService/getList?serviceKey=***&Pblanc_ty=&Instt_se=&Sort_order=desc&Begin_de=2026-09-29&End_de=2026-10-13&pageNo=7&numOfRows=100 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/1760000/PblJobService/getList?serviceKey=***&Pblanc_ty=&Instt_se=&Sort_order=desc&Begin_de=2026-09-29&End_de=2026-10-13&pageNo=8&numOfRows=100 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/1760000/PblJobService/getList?serviceKey=***&Pblanc_ty=&Instt_se=&Sort_order=desc&Begin_de=2026-09-29&End_de=2026-10-13&pageNo=9&numOfRows=100 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/1760000/PblJobService/getList?serviceKey=***&Pblanc_ty=&Instt_se=&Sort_order=desc&Begin_de=2026-09-29&End_de=2026-10-13&pageNo=10&numOfRows=100 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/1760000/PblJobService/getList?serviceKey=***&Pblanc_ty=&Instt_se=&Sort_order=desc&Begin_de=2026-09-29&End_de=2026-10-13&pageNo=11&numOfRows=100 "HTTP/1.1 200 OK"
+INFO gia.collectors.api_json: narailteo: 응답 1068건 → 통과 1건 (걸러짐: 키워드 986, 지역 81)
+[probe] 나라일터 공공취업정보 (인사혁신처): 목록 1건
   - 2026-09-30 | 경상남도교육청 한일여자고등학교 | 2026학년도 한일여고 전일제시간강사(기계) 채용 재공고 | https://www.gojobs.go.kr/apmView.do?empmnsn=304663&searchJobsecode=020&menuNo=401&selMenuNo=400
-  - 2026-09-14 | 경상남도교육청 한일여자고등학교 | 2026학년도 한일여고 전일제시간강사(기계) 채용 공고 | https://www.gojobs.go.kr/apmView.do?empmnsn=303503&searchJobsecode=020&menuNo=401&selMenuNo=400
-[detail] 본문 536자 · 마감 2026-10-05 23:59:00+09:00 (fixed, '2026년10월5일') · 점수 85 ['+50 제목 핵심어(시간강사)', '+20 채용어(채용)', '+15 경남 지역'] · 분야 school
+[detail] 본문 0자 · 마감 None (unknown, 'None') · 점수 85 ['+50 제목 핵심어(시간강사)', '+20 채용어(채용)', '+15 경남 지역'] · 분야 other
 [posting] 포함: 2026학년도 한일여고 전일제시간강사(기계) 채용
 ::endgroup::
-::group::probe narailteo_gn
+::group::probe cleaneye
 INFO gia.http: [http] 나가는 경로: 러너 IP 직접
-INFO httpx: HTTP Request: GET https://www.gojobs.go.kr/robots.txt "HTTP/1.1 200 OK"
-INFO httpx: HTTP Request: GET https://www.gojobs.go.kr/apmList.do?menuNo=401&searchJobsecode=020&searchSelectninsttnm=%EA%B2%BD%EB%82%A8&pageIndex=1 "HTTP/1.1 200 OK"
-[probe] 나라일터 모집공고 (기관명에 '경남' 포함): 목록 0건
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/B551982/openApiEmployInfo/openXmlEmployInfo?serviceKey=***&type=xml&sidoCd=007015&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
+INFO gia.collectors.api_json: cleaneye: 응답 23건 → 통과 6건 (걸러짐: 키워드 17)
+[probe] 클린아이 잡플러스 (행안부, 지방공기업·출자출연기관): 목록 6건
+  - 2026-10-12 | 창원시설공단 | 2026년 용원국민체육센터 생활체육 도급강사 모집 공고 | https://job.cleaneye.go.kr/user/ypCareersData.do?idx=80216
+  - 2026-10-12 | 김해시도시개발공사 | 김해시도시개발공사 장유스포츠센터팀 배분제 위탁강사(배드민턴) 모집 공고 | https://job.cleaneye.go.kr/user/ypCareersData.do?idx=80275
+  - 2026-10-12 | 창원시설공단 | 내서스포츠센터 프로그램 도급강사 공개경쟁모집 공고 | https://job.cleaneye.go.kr/user/ypCareersData.do?idx=80264
+  - 2026-10-06 | 창원시설공단 | 시민생활체육관 탁구 프로그램 도급강사 공개모집 공고 | https://job.cleaneye.go.kr/user/ypCareersData.do?idx=80004
+  - 2026-10-16 | 창원시설공단 | 마산합포스포츠센터 생활체육 프로그램 도급강사 공개경쟁모집 공고 | https://job.cleaneye.go.kr/user/ypCareersData.do?idx=80365
+[detail] 본문 1자 · 마감 None (unknown, 'None') · 점수 85 ['+50 제목 핵심어(강사)', '+20 채용어(모집)', '+15 경남 지역'] · 분야 sports
+[posting] 포함: 2026년 용원국민체육센터 생활체육 도급강사 모집 공고
+::endgroup::
+::group::probe gojobs
+INFO gia.http: [http] 나가는 경로: 러너 IP 직접
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/robots.txt "HTTP/1.1 400 Bad Request"
+INFO httpx: HTTP Request: GET https://apis.data.go.kr/1051000/recruitment/list?serviceKey=***&resultType=json&ongoingYn=Y&workRgnLst=R3022&pageNo=1&numOfRows=100 "HTTP/1.1 200 OK"
+INFO gia.collectors.api_json: gojobs: 응답 74건 → 통과 0건 (걸러짐: 키워드 74)
+INFO gia.collectors.api_json: gojobs: 첫 항목 필드 ['acbgCondLst', 'acbgCondNmLst', 'aplyQlfcCn', 'decimalDay', 'disqlfcRsn', 'files', 'hireTypeLst', 'hireTypeNmLst', 'instNm', 'ncsCdLst', 'ncsCdNmLst', 'nonatchRsn', 'ongoingYn', 'pbadmsStdInstCd', 'pbancBgngYmd', 'pbancEndYmd', 'pblntInstCd', 'prefCn', 'prefCondCn', 'recrutNope', 'recrutPbancTtl', 'recrutPblntSn', 'recrutSe', 'recrutSeNm', 'replmprYn', 'scrnprcdrMthdExpln', 'srcUrl', 'steps', 'workRgnLst', 'workRgnNmLst']
+[probe] 공공기관 채용정보 (재정경제부·잡알리오): 목록 0건
 ::endgroup::
