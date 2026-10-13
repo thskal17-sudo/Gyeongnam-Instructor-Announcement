@@ -1,0 +1,25 @@
+====================================================================================================
+URL: https://www.gojobs.go.kr/
+status=200 final=https://www.gojobs.go.kr/ encoding=utf-8 bytes=283
+title: 나라일터
+body (short): <!DOCTYPE html> <html lang="ko"> <head> <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title>나라일터</title> <script> document.location.href="/mainIndex.do" </script> </head> <body></body> </html>
+====================================================================================================
+URL: https://www.gojobs.go.kr/robots.txt
+status=200 final=https://www.gojobs.go.kr/robots.txt encoding=UTF-8 bytes=69
+title: 
+body (short): User-agent : Googlebot Disallow: /../../search/search.do 
+====================================================================================================
+URL: https://www.gojobs.go.kr/apmList.do
+status=200 final=https://www.gojobs.go.kr/apmList.do encoding=utf-8 bytes=134875
+title: 나라일터
+
+[TABLE] div.bg_fff.clear_after.mrtp > fieldset > table#searchTbl.bdtable1  rows=6
+   row: tr -> th:기  관  명 | td:
+   row: tr -> th:공  고  명 | td:
+      th :: own='' all='공\xa0\xa0고\xa0\xa0명'
+      label :: own='공\xa0\xa0고\xa0\xa0명' all='공\xa0\xa0고\xa0\xa0명'
+[DATES] sample: []
+
+[ANCHORS] most common link paths
+   x1 div#sub_content.sub_content > div#infoImg.inner > div#mrtpBtn.mrtp.center > a#infoLink.btn_blue  href=javascript:void(0); {'id': 'infoLink'} text='기존 모집공고 바로가기'
+      row? div#mrtpBtn.mrtp.center :: '기존 모집공고 바로가기'
