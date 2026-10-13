@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import logging
+import os
 import re
 import time
 from concurrent.futures import ThreadPoolExecutor
@@ -13,6 +14,7 @@ from .classify.llm import Extraction, LlmClassifier
 from .classify.rules import score_posting
 from .collectors.base import FetchError, HttpClient, UnconfiguredSource
 from .collectors.registry import build_adapter
+from .collectors.relay import RELAY_ENV, KoreaRelayMissing, load_relay
 from .config import ConfigBundle, MissingSecret, SourceConfig
 from .dedupe import canonical_key, find_duplicate, merge
 from .feedback import apply_feedback, feedback_path, load_feedback
@@ -124,8 +126,8 @@ def _attachment_rank(name: str) -> int:
 
 def enrich_attachments(raw: RawPosting, http: HttpClient, cs) -> None:
     """첨부파일 텍스트를 본문 뒤에 붙인다. 실패는 extra['attachment_errors']에 기록."""
-    if cs.attachment_max_files <= 0 or not raw.attachments:
-        return
+    if cs.attachment_max_files <= 0 or not raw.attachments or raw.extra.get("relay_enriched"):
+        return  # 한국 PC 기록은 거기서 이미 첨부 글을 붙였다. 여기서 다시 열면 해외 IP 라 막힌다
     allowed = {e.lower() for e in cs.attachment_extensions}
     usable = [u for u in raw.attachments if file_extension(filename_from_url(u)) in allowed or file_extension(filename_from_url(u)) == ""]
     picked = sorted(usable, key=lambda u: _attachment_rank(filename_from_url(u)))[: cs.attachment_max_files]
@@ -155,14 +157,14 @@ def enrich_attachments(raw: RawPosting, http: HttpClient, cs) -> None:
 
 
 def run_source(cfg: SourceConfig, bundle: ConfigBundle, store: Store, http: HttpClient, now: datetime, since: date | None,
-               refetch: bool = False) -> SourceOutcome:
+               refetch: bool = False, relay: dict | None = None, use_relay: bool = False) -> SourceOutcome:
     """refetch=True면 이미 알던 URL도 상세를 다시 가져와 재파싱한다 (파서 수정 후 저장된 공고를 바로잡을 때)."""
     cs = bundle.settings.collector
     res = SourceRunResult(source_id=cfg.id)
     out = SourceOutcome(result=res)
     t0 = time.monotonic()
     try:
-        adapter = build_adapter(cfg, http, cs, since=since)
+        adapter = build_adapter(cfg, http, cs, since=since, relay=relay, use_relay=use_relay, now=now)
     except UnconfiguredSource as e:
         res.status, res.errors = "unconfigured", [str(e)]
         return out
@@ -170,6 +172,10 @@ def run_source(cfg: SourceConfig, bundle: ConfigBundle, store: Store, http: Http
         listings = adapter.fetch_list()
     except MissingSecret as e:
         res.status, res.errors = "unconfigured", [str(e)]
+        return out
+    except KoreaRelayMissing as e:
+        # 한국 PC 가 꺼진 날이다. 실패로 세면 --hold-if-degraded 가 그날 메일을 미룬다
+        res.status, res.errors = "skipped", [str(e)]
         return out
     except (FetchError, Exception) as e:  # noqa: BLE001 - 소스 격리
         res.status, res.errors = "fail", [f"목록 실패: {type(e).__name__}: {e}"[:300]]
@@ -213,7 +219,7 @@ def run_source(cfg: SourceConfig, bundle: ConfigBundle, store: Store, http: Http
             out.bodies[p.canonical_key] = (mask_pii(raw.body_text or ""), raw.region_text)
         else:
             out.excluded.append(url)
-    if res.status != "fail":
+    if res.status != "fail" and getattr(adapter, "supports_backfill", True):
         backfill_bodies(cfg, adapter, store, out, http, cs, t0)
     adapter.close()
     res.duration_ms = int((time.monotonic() - t0) * 1000)
@@ -327,8 +333,13 @@ def collect(bundle: ConfigBundle, store: Store, http: HttpClient, only: list[str
     if fb_applied:
         run.notes.append(f"피드백 적용 {fb_applied}건")
 
+    # GitHub 수집(collect.yml)은 GIA_KOREA_RELAY 로 한국 PC 기록 경로를 넘긴다. 이 변수가 있으면
+    # korea_only 소스는 사이트 대신 그 기록을 읽는다. 없으면(국내 PC 에서 손으로 돌릴 때) 사이트를 직접 읽는다
+    relay_path = os.environ.get(RELAY_ENV, "").strip()
+    relay = load_relay(relay_path) if relay_path else None
     with ThreadPoolExecutor(max_workers=max(1, cs.concurrency)) as ex:
-        outcomes = list(ex.map(lambda c: run_source(c, bundle, store, http, now, since, refetch=refetch), selected))
+        outcomes = list(ex.map(lambda c: run_source(c, bundle, store, http, now, since, refetch=refetch,
+                                                    relay=relay, use_relay=bool(relay_path)), selected))
 
     llm = llm if llm is not None else LlmClassifier.from_settings(bundle.settings.classifier)
     if llm is not None:

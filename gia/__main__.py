@@ -89,6 +89,11 @@ def _parser() -> argparse.ArgumentParser:
     pn = sub.add_parser("prune", help="지금 규칙으로는 강사 공고가 아닌 저장분을 걸러낸다")
     pn.add_argument("--apply", action="store_true", help="실제로 지운다 (기본은 보여주기만)")
 
+    ko = sub.add_parser("korea-export", help="한국 PC: 해외 차단 사이트(korea_only)를 읽어 중계 기록(relay.json) 작성")
+    ko.add_argument("--out", default="relay.json")
+    ko.add_argument("--prev", default=None, help="지난번 relay.json (있으면 이미 읽은 글의 상세를 다시 열지 않음)")
+    ko.add_argument("--sources", help="쉼표로 구분한 source id (비우면 korea_only 전부)")
+
     sub.add_parser("status", help="저장소 요약")
     return p
 
@@ -271,6 +276,25 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"[posting] {'포함' if p else '제외'}: {p.title if p else ''}")
         finally:
             http.close()
+        return 0
+
+    if args.cmd == "korea-export":
+        import json
+
+        from .collectors.relay import load_relay
+        from .korea import export_relay
+
+        http = HttpClient(bundle.settings.collector)
+        try:
+            only = [x.strip() for x in args.sources.split(",")] if args.sources else None
+            since = now.date() - timedelta(days=bundle.settings.collector.default_days)
+            relay = export_relay(bundle, http, now, since, prev=load_relay(args.prev), only=only)
+        finally:
+            http.close()
+        Path(args.out).write_text(json.dumps(relay, ensure_ascii=False, indent=1), encoding="utf-8")
+        for sid, e in relay["sources"].items():
+            print(f"  - {sid}: {e['status']} · {len(e['items'])}건" + (f" · {e['error']}" if e["error"] else ""))
+        print(f"[korea-export] {args.out} · 소스 {len(relay['sources'])}곳")
         return 0
 
     if args.cmd == "sources":

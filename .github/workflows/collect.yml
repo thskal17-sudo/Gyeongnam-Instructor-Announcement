@@ -50,8 +50,18 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -e .
+      # 해외 IP 를 막는 사이트(korea_only)는 한국 PC 가 읽어 korea-relay 브랜치에 올려 둔다(korea.yml).
+      # 그 기록을 받아 두면 collect 가 사이트 대신 읽는다. 없으면 그 소스들만 '건너뜀'이 된다
+      - name: 한국 PC 수집 기록 가져오기
+        run: |
+          if git fetch -q --depth=1 origin korea-relay 2>/dev/null && git show FETCH_HEAD:relay.json > "$RUNNER_TEMP/korea-relay.json"; then
+            python -c "import json,sys; r=json.load(open(sys.argv[1],encoding='utf-8')); print('한국 PC 기록', r['generated_at'], '· 소스', len(r['sources']))" "$RUNNER_TEMP/korea-relay.json"
+          else
+            echo "한국 PC 기록 없음 (korea-relay 브랜치 없음)"
+          fi
       - name: collect
         env:
+          GIA_KOREA_RELAY: ${{ runner.temp }}/korea-relay.json
           DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
           WORKNET_API_KEY: ${{ secrets.WORKNET_API_KEY }}
           # 국내 프록시(선택). 비어 있으면 러너 IP 로 그냥 나간다 — 지금까지와 같다.
