@@ -35,6 +35,7 @@ PC 에 하나 더 깔아도 된다.
    ```
 4. Settings → Actions → Runners 에 `<PC이름>-gn-korea` 가 **Idle(초록)** 이면 끝.
 5. 시험: Actions → **korea** → Run workflow. 끝나면 `korea-relay` 브랜치에 `relay.json` 이 생긴다.
+6. 첫 korea_only 소스를 넣을 때 `korea.yml` 의 예약(schedule)을 켠다. 실행기 없이 예약이 돌면 작업이 하루 동안 기다리다 실패하고 실패 알림이 가서 꺼 두었다.
 
 패키지를 바꾼 뒤(`pyproject.toml`)에는 토큰 없이 스크립트를 다시 실행하면 패키지만 새로 깐다.
 
