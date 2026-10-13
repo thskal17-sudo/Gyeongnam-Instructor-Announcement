@@ -1,0 +1,50 @@
+====================================================================================================
+URL: https://www.epost.kr/search.RetrieveIntegrationNewZipCdList.comm?keyword=%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EB%B6%81%EA%B5%AC%20%EB%82%99%EB%8F%99%EB%8C%80%EB%A1%9C1694%EB%B2%88%EA%B8%B8%204
+status=200 final=https://www.epost.kr/search.RetrieveIntegrationNewZipCdList.comm?keyword=%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EB%B6%81%EA%B5%AC%20%EB%82%99%EB%8F%99%EB%8C%80%EB%A1%9C1694%EB%B2%88%EA%B8%B8%204 encoding=utf-8 bytes=26452
+title: 우편번호검색 - 통합검색 우편번호
+
+[GREP] 1694
+   ...  <!-- 1,2차 안전반영을 위해서 아이디 걸어 놓음 --> <div class="box_wrap1"> <div class="search_pop"> <input type="text" title="검색어를 입력해주세요." name="keyword" id="keyword" size="50" value="부산광역시 북구 낙동대로1694번길 4" style="ime-mode:active;"/> <a id="btnZipSearch" href="javascript:void(0);" title="검색"><label for="">검색</label></a> </div> <ul class="ul_list w_250 f_l"> <li>정확한 주소를 모르시는 경우 <ul class="v2"> <li class="w_230">시/군/구 + 도로명, 동명 또는 건물명<br/> <font class="f_s_12">예) 동해시 중앙로, 여수 중앙동, 대전 현대아파트</font></li> </ul> </li> <!-- 
+   ...  </tr> </thead> <tbody> <!-- 제목영역 --> <tr class="title2"> <th scope="row">46502</th> <td class="t_a_l l_h_18"> 부산광역시 북구 낙동대로1694번길 4 (구포동)<br /> 부산광역시 북구 구포동 1060-394 </td> <td><a class="btn_s gray" href="#" onclick= "javascript:viewDetail('46502','부산광역시 북구 낙동대로1694번길 4 (구포동)','4, Nakdong-daero 1694beon-gil, Buk-gu, Busan, 46502, Rep. of KOREA','부산광역시 북구 구포동 1060-394', '0');" title="보기">더보기</a></td> </tr> <!-- //제목영역 --> <!-- 해당 내용 --> <tr class="vie
+   ... "> 부산광역시 북구 낙동대로1694번길 4 (구포동)<br /> 부산광역시 북구 구포동 1060-394 </td> <td><a class="btn_s gray" href="#" onclick= "javascript:viewDetail('46502','부산광역시 북구 낙동대로1694번길 4 (구포동)','4, Nakdong-daero 1694beon-gil, Buk-gu, Busan, 46502, Rep. of KOREA','부산광역시 북구 구포동 1060-394', '0');" title="보기">더보기</a></td> </tr> <!-- //제목영역 --> <!-- 해당 내용 --> <tr class="view"> <td class="p_l_86px" colspan="3"> 4, Nakdong-daero 1694beon-gil, Buk-gu, Busan, 46502, Rep. of KOREA <br /><span id="spanJibbea01_0">
+   ...  4 (구포동)<br /> 부산광역시 북구 구포동 1060-394 </td> <td><a class="btn_s gray" href="#" onclick= "javascript:viewDetail('46502','부산광역시 북구 낙동대로1694번길 4 (구포동)','4, Nakdong-daero 1694beon-gil, Buk-gu, Busan, 46502, Rep. of KOREA','부산광역시 북구 구포동 1060-394', '0');" title="보기">더보기</a></td> </tr> <!-- //제목영역 --> <!-- 해당 내용 --> <tr class="view"> <td class="p_l_86px" colspan="3"> 4, Nakdong-daero 1694beon-gil, Buk-gu, Busan, 46502, Rep. of KOREA <br /><span id="spanJibbea01_0"></span> <br /><span id
+   ... '0');" title="보기">더보기</a></td> </tr> <!-- //제목영역 --> <!-- 해당 내용 --> <tr class="view"> <td class="p_l_86px" colspan="3"> 4, Nakdong-daero 1694beon-gil, Buk-gu, Busan, 46502, Rep. of KOREA <br /><span id="spanJibbea01_0"></span> <br /><span id="spanJibbea02_0"></span> </td> </tr> <!-- //해당 내용 --> </tbody> </table> </div> </div> </div> </div> <p class="t_a_c"> <a class="btn_m basic icon w_210" href="#" onclick="return iconDown();">
+   ... llZipCd" name="callZipCd" method="post" target=""> <input type="hidden" name="addr" value=""/> <input type="hidden" name="zip" value=""/> <input type="hidden" name="oriAddr" value="부산광역시 북구 낙동대로1694번길 4"/> </form> <form name="sform" id="sform" method="post" action="https://www.epost.go.kr/popup/zipcodeLinkNotice.jsp"> <input type="hidden" name="where" value="epost" /> </form> <iframe id="downcount" name="downcount" title="내려받기" width="0" height="0"></iframe> <form name="idown" id="idown" method="post" action="/search.RegisterDownLoadInfo.comm"> <input type="hidden" name="gubun"
+   [SCRIPT src] ['/np2assets/js/jquery-1.11.0.min.js', '/np2assets/js/tab_menu.js', '/np2assets/js/common.js', '/jscripts/comm/n_common.js', '/jscripts/netfunnel.js?a=2023', '/jscripts/NetFunnell_skin.js?a=2023']
+[DATES] sample: []
+
+[RETRY without noise filter]
+
+[TABLE] div.bbs_list > div.bbs_list_box.listTJQ > table.table_list  rows=3
+   row: tr -> th:우편번호 | th:주소 | th.bg_image_no:English/집배코드
+   row: tr.title2 -> th:46502 | td.t_a_l.l_h_18:부산광역시 북구 낙동대로1694번길 4 (구포동 | td:더보기
+      th :: own='46502' all='46502'
+      td.t_a_l.l_h_18 :: own='부산광역시 북구 낙동대로1694번길 4 (구포동)\n\t\t\t\t\t\t\t\t\t\t\t부' all='부산광역시 북구 낙동대로1694번길 4 (구포동) 부산광역시 북구 구포동 1060-394'
+      td :: own='' all='더보기'
+      a.btn_s.gray href=# onclick=javascript:viewDetail('46502','부산광역시 북구 낙동대로1694번길 4 (구포동)', :: own='더보기' all='더보기'
+[DATES] sample: []
+====================================================================================================
+URL: https://www.epost.go.kr/search.RetrieveIntegrationNewZipCdList.comm?keyword=%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EB%B6%81%EA%B5%AC%20%EB%82%99%EB%8F%99%EB%8C%80%EB%A1%9C1694%EB%B2%88%EA%B8%B8%204
+status=200 final=https://www.epost.go.kr/search.RetrieveIntegrationNewZipCdList.comm?keyword=%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%EB%B6%81%EA%B5%AC%20%EB%82%99%EB%8F%99%EB%8C%80%EB%A1%9C1694%EB%B2%88%EA%B8%B8%204 encoding=utf-8 bytes=26452
+title: 우편번호검색 - 통합검색 우편번호
+
+[GREP] 1694
+   ...  <!-- 1,2차 안전반영을 위해서 아이디 걸어 놓음 --> <div class="box_wrap1"> <div class="search_pop"> <input type="text" title="검색어를 입력해주세요." name="keyword" id="keyword" size="50" value="부산광역시 북구 낙동대로1694번길 4" style="ime-mode:active;"/> <a id="btnZipSearch" href="javascript:void(0);" title="검색"><label for="">검색</label></a> </div> <ul class="ul_list w_250 f_l"> <li>정확한 주소를 모르시는 경우 <ul class="v2"> <li class="w_230">시/군/구 + 도로명, 동명 또는 건물명<br/> <font class="f_s_12">예) 동해시 중앙로, 여수 중앙동, 대전 현대아파트</font></li> </ul> </li> <!-- 
+   ...  </tr> </thead> <tbody> <!-- 제목영역 --> <tr class="title2"> <th scope="row">46502</th> <td class="t_a_l l_h_18"> 부산광역시 북구 낙동대로1694번길 4 (구포동)<br /> 부산광역시 북구 구포동 1060-394 </td> <td><a class="btn_s gray" href="#" onclick= "javascript:viewDetail('46502','부산광역시 북구 낙동대로1694번길 4 (구포동)','4, Nakdong-daero 1694beon-gil, Buk-gu, Busan, 46502, Rep. of KOREA','부산광역시 북구 구포동 1060-394', '0');" title="보기">더보기</a></td> </tr> <!-- //제목영역 --> <!-- 해당 내용 --> <tr class="vie
+   ... "> 부산광역시 북구 낙동대로1694번길 4 (구포동)<br /> 부산광역시 북구 구포동 1060-394 </td> <td><a class="btn_s gray" href="#" onclick= "javascript:viewDetail('46502','부산광역시 북구 낙동대로1694번길 4 (구포동)','4, Nakdong-daero 1694beon-gil, Buk-gu, Busan, 46502, Rep. of KOREA','부산광역시 북구 구포동 1060-394', '0');" title="보기">더보기</a></td> </tr> <!-- //제목영역 --> <!-- 해당 내용 --> <tr class="view"> <td class="p_l_86px" colspan="3"> 4, Nakdong-daero 1694beon-gil, Buk-gu, Busan, 46502, Rep. of KOREA <br /><span id="spanJibbea01_0">
+   ...  4 (구포동)<br /> 부산광역시 북구 구포동 1060-394 </td> <td><a class="btn_s gray" href="#" onclick= "javascript:viewDetail('46502','부산광역시 북구 낙동대로1694번길 4 (구포동)','4, Nakdong-daero 1694beon-gil, Buk-gu, Busan, 46502, Rep. of KOREA','부산광역시 북구 구포동 1060-394', '0');" title="보기">더보기</a></td> </tr> <!-- //제목영역 --> <!-- 해당 내용 --> <tr class="view"> <td class="p_l_86px" colspan="3"> 4, Nakdong-daero 1694beon-gil, Buk-gu, Busan, 46502, Rep. of KOREA <br /><span id="spanJibbea01_0"></span> <br /><span id
+   ... '0');" title="보기">더보기</a></td> </tr> <!-- //제목영역 --> <!-- 해당 내용 --> <tr class="view"> <td class="p_l_86px" colspan="3"> 4, Nakdong-daero 1694beon-gil, Buk-gu, Busan, 46502, Rep. of KOREA <br /><span id="spanJibbea01_0"></span> <br /><span id="spanJibbea02_0"></span> </td> </tr> <!-- //해당 내용 --> </tbody> </table> </div> </div> </div> </div> <p class="t_a_c"> <a class="btn_m basic icon w_210" href="#" onclick="return iconDown();">
+   ... llZipCd" name="callZipCd" method="post" target=""> <input type="hidden" name="addr" value=""/> <input type="hidden" name="zip" value=""/> <input type="hidden" name="oriAddr" value="부산광역시 북구 낙동대로1694번길 4"/> </form> <form name="sform" id="sform" method="post" action="https://www.epost.go.kr/popup/zipcodeLinkNotice.jsp"> <input type="hidden" name="where" value="epost" /> </form> <iframe id="downcount" name="downcount" title="내려받기" width="0" height="0"></iframe> <form name="idown" id="idown" method="post" action="/search.RegisterDownLoadInfo.comm"> <input type="hidden" name="gubun"
+   [SCRIPT src] ['/np2assets/js/jquery-1.11.0.min.js', '/np2assets/js/tab_menu.js', '/np2assets/js/common.js', '/jscripts/comm/n_common.js', '/jscripts/netfunnel.js?a=2023', '/jscripts/NetFunnell_skin.js?a=2023']
+[DATES] sample: []
+
+[RETRY without noise filter]
+
+[TABLE] div.bbs_list > div.bbs_list_box.listTJQ > table.table_list  rows=3
+   row: tr -> th:우편번호 | th:주소 | th.bg_image_no:English/집배코드
+   row: tr.title2 -> th:46502 | td.t_a_l.l_h_18:부산광역시 북구 낙동대로1694번길 4 (구포동 | td:더보기
+      th :: own='46502' all='46502'
+      td.t_a_l.l_h_18 :: own='부산광역시 북구 낙동대로1694번길 4 (구포동)\n\t\t\t\t\t\t\t\t\t\t\t부' all='부산광역시 북구 낙동대로1694번길 4 (구포동) 부산광역시 북구 구포동 1060-394'
+      td :: own='' all='더보기'
+      a.btn_s.gray href=# onclick=javascript:viewDetail('46502','부산광역시 북구 낙동대로1694번길 4 (구포동)', :: own='더보기' all='더보기'
+[DATES] sample: []
