@@ -151,7 +151,9 @@ sources:
       # 국가기관·지자체·교육청·공공기관이 나라일터에 올린 공고. 사이트(gojobs.go.kr)는 해외 접속이 자주 막히지만
       # API 는 막히지 않는다. 키워드(Kwrd)·정렬(Sort_order) 조건은 무시되고 오래된 글부터 오므로(2026-10-12 probe),
       # 등록일 범위(Begin_de~End_de)로 받고 지역코드(areacode, 시군구 코드·쉼표 구분)로 경남만 남긴다.
-      # 하루 전국 70건 안팎이라 14일이면 10쪽 정도. 응답 항목: idx·title·insttname·regdate·enddate·areacode
+      # 하루 전국 70건 안팎이라 14일이면 11쪽(2026-10-13 러너 1068건). 응답 항목: idx·title·insttname·regdate·enddate·areacode
+      # 오래된 글부터 오므로 쪽 수가 모자라면 새 글이 잘린다. --backfill-days 60(약 45쪽)까지 다 읽도록 max_pages 를
+      # 넉넉히 둔다. 평소에는 마지막 쪽(100건 미만)에서 멈추므로 요청이 늘지 않는다
       endpoint: https://apis.data.go.kr/1760000/PblJobService/getList
       format: xml
       params:
@@ -161,7 +163,7 @@ sources:
         Sort_order: desc
         Begin_de: "{since_dash}"
         End_de: "{today_dash}"
-      paging: { page_param: pageNo, size_param: numOfRows, size: 100, max_pages: 20 }
+      paging: { page_param: pageNo, size_param: numOfRows, size: 100, max_pages: 60 }
       items_path: response.body.items.item
       field_map:
         title: title
