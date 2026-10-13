@@ -1,0 +1,7 @@
+::group::probe work24
+INFO gia.http: [http] 나가는 경로: 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.work24.go.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.work24.go.kr/cm/openApi/call/wk/callOpenApiSvcInfo210L01.do?authKey=***&callTp=L&returnType=XML&region=48000&keyword=%EA%B0%95%EC%82%AC&startPage=1&display=100 "HTTP/1.1 200 "
+INFO gia.collectors.api_json: work24: 첫 페이지에 'wantedRoot.wanted' 항목 없음 — 응답 키 {'GO24': {'error': 'str'}} · 앞부분 <?xml version='1.0' encoding='UTF-8'?> <GO24> <error>개인회원은 사용할 수 없는 OPEN-API입니다.</error> </GO24>
+[probe] 고용24 / 워크넷 (고용노동부): 목록 0건
+::endgroup::
