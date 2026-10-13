@@ -1,25 +1,156 @@
 ====================================================================================================
-URL: https://www.gojobs.go.kr/
-status=200 final=https://www.gojobs.go.kr/ encoding=utf-8 bytes=283
-title: 나라일터
-body (short): <!DOCTYPE html> <html lang="ko"> <head> <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title>나라일터</title> <script> document.location.href="/mainIndex.do" </script> </head> <body></body> </html>
-====================================================================================================
-URL: https://www.gojobs.go.kr/robots.txt
-status=200 final=https://www.gojobs.go.kr/robots.txt encoding=UTF-8 bytes=69
-title: 
-body (short): User-agent : Googlebot Disallow: /../../search/search.do 
-====================================================================================================
-URL: https://www.gojobs.go.kr/apmList.do
-status=200 final=https://www.gojobs.go.kr/apmList.do encoding=utf-8 bytes=134875
+URL: https://www.gojobs.go.kr/apmList.do?menuNo=401&searchJobsecode=020&searchSelectninsttnm=%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84&pageIndex=1
+status=200 final=https://www.gojobs.go.kr/apmList.do?menuNo=401&searchJobsecode=020&searchSelectninsttnm=%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84&pageIndex=1 encoding=utf-8 bytes=189889
 title: 나라일터
 
-[TABLE] div.bg_fff.clear_after.mrtp > fieldset > table#searchTbl.bdtable1  rows=6
+[RAW HTML] table#apmTbl > tbody > tr
+<tr>
+<td align="center" scope="row">1</td>
+<td class="ta_l elip">
+<div><img alt="지자체" src="/images/icon/rec_img2.png"/></div>
+<a href="javascript:fn_apmView('020', '305512')" style="text-overflow: inherit;overflow: auto;word-break: break-word;white-space: inherit;">
+                                                    진주시 보건소장(개방형직위) 채용 변경공고
+                                        </a>
+</td>
+<td align="center">
+                                                경상남도 진주시
+                                    </td>
+<td align="center">
+                                                2026-10-12
+                                    </td>
+<td align="center">
+	                                                    2026-10-28
+                                        </td>
+<td align="center">
+                                                57
+                                    </td>
+</tr>
+
+[RAW HTML] table#apmTbl > tbody > tr
+<tr>
+<td align="center" scope="row">2</td>
+<td class="ta_l elip">
+<div><img alt="지자체" src="/images/icon/rec_img2.png"/></div>
+<a href="javascript:fn_apmView('020', '305496')" style="text-overflow: inherit;overflow: auto;word-break: break-word;white-space: inherit;">
+                                                    2026년 제5회 진주시 임기제공무원 임용시험 계획 공고
+                                        </a>
+</td>
+<td align="center">
+                                                경상남도 진주시
+                                    </td>
+<td align="center">
+                                                2026-10-12
+                                    </td>
+<td align="center">
+	                                                    2026-10-28
+                                        </td>
+<td align="center">
+                                                537
+                                    </td>
+</tr>
+
+[TABLE] div.bg_fff.clear_after.mrtp > fieldset > table#searchTbl.bdtable1  rows=10
    row: tr -> th:기  관  명 | td:
    row: tr -> th:공  고  명 | td:
       th :: own='' all='공\xa0\xa0고\xa0\xa0명'
       label :: own='공\xa0\xa0고\xa0\xa0명' all='공\xa0\xa0고\xa0\xa0명'
-[DATES] sample: []
+
+[TABLE] form#listForm > div.bdtable2.mrtp10.bg_fff > table#apmTbl  rows=11
+   row: tr -> th:번호 | th:공고명 | th:기관명 | th:공고게시일 | th:접수마감일 | th:조회
+   row: tr -> td:1 | td.ta_l.elip:진주시 보건소장(개방형직위) 채용 변경공고 | td:경상남도 진주시 | td:2026-10-12 | td:2026-10-28 | td:57
+      td :: own='1' all='1'
+      td.ta_l.elip :: own='' all='진주시 보건소장(개방형직위) 채용 변경공고'
+      a href=javascript:fn_apmView('020', '305512') onclick= attrs={'style': 'text-overflow: inherit;overflow: auto;word-break: break-word;white-space: inherit;'} :: own='진주시 보건소장(개방형직위) 채용 변경공고' all='진주시 보건소장(개방형직위) 채용 변경공고'
+      td :: own='경상남도 진주시' all='경상남도 진주시'
+      td :: own='2026-10-12' all='2026-10-12'
+      td :: own='2026-10-28' all='2026-10-28'
+      td :: own='57' all='57'
+[DATES] sample: ['2026-10-12', '2026-10-28', '2026-10-12', '2026-10-28', '2026-10-08']
 
 [ANCHORS] most common link paths
+   x10 tbody > tr > td.ta_l.elip > a  href=javascript:fn_apmView('020', '305512') {'style': 'text-overflow: inherit;overflow: auto;wo'} text='진주시 보건소장(개방형직위) 채용 변경공고'
+      row? tr :: '1 진주시 보건소장(개방형직위) 채용 변경공고 경상남도 진주시 2026-10-12 2026-10-28 57'
    x1 div#sub_content.sub_content > div#infoImg.inner > div#mrtpBtn.mrtp.center > a#infoLink.btn_blue  href=javascript:void(0); {'id': 'infoLink'} text='기존 모집공고 바로가기'
       row? div#mrtpBtn.mrtp.center :: '기존 모집공고 바로가기'
+
+[LINKS] board candidates (2)
+   '자주찾는질문' -> https://www.gojobs.go.kr/bbdList.do?searchJobsecode=070&searchBbssecode=30&menuNo=174&isFooter=Y
+   '홈페이지개선의견' -> https://www.gojobs.go.kr/bbdWrite.do?searchJobsecode=091&searchBbssecode=10&menuNo=179&isFooter=Y
+====================================================================================================
+URL: https://www.gojobs.go.kr/apmList.do?menuNo=401&searchJobsecode=020&searchSelectninsttnm=%EA%B2%BD%EB%82%A8&pageIndex=1
+status=200 final=https://www.gojobs.go.kr/apmList.do?menuNo=401&searchJobsecode=020&searchSelectninsttnm=%EA%B2%BD%EB%82%A8&pageIndex=1 encoding=utf-8 bytes=189582
+title: 나라일터
+
+[RAW HTML] table#apmTbl > tbody > tr
+<tr>
+<td align="center" scope="row">1</td>
+<td class="ta_l elip">
+<div><img alt="공공" src="/images/icon/rec_img3.png"/></div>
+<a href="javascript:fn_apmView('020', '305407')" style="text-overflow: inherit;overflow: auto;word-break: break-word;white-space: inherit;">
+                                                    경남연구원 직원 채용 공고(경상남도 인구전략연구센터)
+                                        </a>
+</td>
+<td align="center">
+                                                경남연구원
+                                    </td>
+<td align="center">
+                                                2026-10-12
+                                    </td>
+<td align="center">
+	                                                    2026-10-22
+                                        </td>
+<td align="center">
+                                                322
+                                    </td>
+</tr>
+
+[RAW HTML] table#apmTbl > tbody > tr
+<tr>
+<td align="center" scope="row">2</td>
+<td class="ta_l elip">
+<div><img alt="공공" src="/images/icon/rec_img3.png"/></div>
+<a href="javascript:fn_apmView('020', '304157')" style="text-overflow: inherit;overflow: auto;word-break: break-word;white-space: inherit;">
+                                                    [지리산경남] 지리산국립공원경남사무소 가을성수기 한시인력(수익시설) 채용 공고
+                                        </a>
+</td>
+<td align="center">
+                                                국립공원공단 지리산국립공원경남사무소
+                                    </td>
+<td align="center">
+                                                2026-09-22
+                                    </td>
+<td align="center" style="color: #909090;">
+                                                    2026-09-28
+                                        </td>
+<td align="center">
+                                                138
+                                    </td>
+</tr>
+
+[TABLE] div.bg_fff.clear_after.mrtp > fieldset > table#searchTbl.bdtable1  rows=10
+   row: tr -> th:기  관  명 | td:
+   row: tr -> th:공  고  명 | td:
+      th :: own='' all='공\xa0\xa0고\xa0\xa0명'
+      label :: own='공\xa0\xa0고\xa0\xa0명' all='공\xa0\xa0고\xa0\xa0명'
+
+[TABLE] form#listForm > div.bdtable2.mrtp10.bg_fff > table#apmTbl  rows=11
+   row: tr -> th:번호 | th:공고명 | th:기관명 | th:공고게시일 | th:접수마감일 | th:조회
+   row: tr -> td:1 | td.ta_l.elip:경남연구원 직원 채용 공고(경상남도 인구전략연구 | td:경남연구원 | td:2026-10-12 | td:2026-10-22 | td:322
+      td :: own='1' all='1'
+      td.ta_l.elip :: own='' all='경남연구원 직원 채용 공고(경상남도 인구전략연구센터)'
+      a href=javascript:fn_apmView('020', '305407') onclick= attrs={'style': 'text-overflow: inherit;overflow: auto;word-break: break-word;white-space: inherit;'} :: own='경남연구원 직원 채용 공고(경상남도 인구전략연구센터)' all='경남연구원 직원 채용 공고(경상남도 인구전략연구센터)'
+      td :: own='경남연구원' all='경남연구원'
+      td :: own='2026-10-12' all='2026-10-12'
+      td :: own='2026-10-22' all='2026-10-22'
+      td :: own='322' all='322'
+[DATES] sample: ['2026-10-12', '2026-10-22', '2026-09-22', '2026-09-28', '2026-09-22']
+
+[ANCHORS] most common link paths
+   x10 tbody > tr > td.ta_l.elip > a  href=javascript:fn_apmView('020', '305407') {'style': 'text-overflow: inherit;overflow: auto;wo'} text='경남연구원 직원 채용 공고(경상남도 인구전략연구센터)'
+      row? tr :: '1 경남연구원 직원 채용 공고(경상남도 인구전략연구센터) 경남연구원 2026-10-12 2026-10-22 322'
+   x1 div#sub_content.sub_content > div#infoImg.inner > div#mrtpBtn.mrtp.center > a#infoLink.btn_blue  href=javascript:void(0); {'id': 'infoLink'} text='기존 모집공고 바로가기'
+      row? div#mrtpBtn.mrtp.center :: '기존 모집공고 바로가기'
+
+[LINKS] board candidates (2)
+   '자주찾는질문' -> https://www.gojobs.go.kr/bbdList.do?searchJobsecode=070&searchBbssecode=30&menuNo=174&isFooter=Y
+   '홈페이지개선의견' -> https://www.gojobs.go.kr/bbdWrite.do?searchJobsecode=091&searchBbssecode=10&menuNo=179&isFooter=Y
