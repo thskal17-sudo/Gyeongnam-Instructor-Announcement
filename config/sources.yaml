@@ -138,6 +138,51 @@ sources:
       경남 출자출연기관·지방공기업 채용 통합 API. 2026-10-12 probe: 경남 모집중 16건 중 강사 4건
       (창원시설공단 도급강사 3, 김해시도시개발공사 배드민턴 위탁강사 1). 김해시도시개발공사처럼 해외 IP 를 막는 기관 공고도 여기로 들어온다.
 
+  - id: narailteo
+    name: 나라일터 공공취업정보 (인사혁신처)
+    org_type: portal
+    tier: 1
+    schedule: daily_light
+    homepage: https://www.gojobs.go.kr
+    verified: true
+    adapter:
+      type: api_json
+      # 공공데이터포털 15156780 '인사혁신처_공공취업정보 조회 서비스' (개인 인증키 그대로, 2026-10-12 승인 확인).
+      # 국가기관·지자체·교육청·공공기관이 나라일터에 올린 공고. 사이트(gojobs.go.kr)는 해외 접속이 자주 막히지만
+      # API 는 막히지 않는다. 키워드(Kwrd)·정렬(Sort_order) 조건은 무시되고 오래된 글부터 오므로(2026-10-12 probe),
+      # 등록일 범위(Begin_de~End_de)로 받고 지역코드(areacode, 시군구 코드·쉼표 구분)로 경남만 남긴다.
+      # 하루 전국 70건 안팎이라 14일이면 11쪽(2026-10-13 러너 1068건). 응답 항목: idx·title·insttname·regdate·enddate·areacode
+      # 오래된 글부터 오므로 쪽 수가 모자라면 새 글이 잘린다. --backfill-days 60(약 45쪽)까지 다 읽도록 max_pages 를
+      # 넉넉히 둔다. 평소에는 마지막 쪽(100건 미만)에서 멈추므로 요청이 늘지 않는다
+      endpoint: https://apis.data.go.kr/1760000/PblJobService/getList
+      format: xml
+      params:
+        serviceKey: "${DATA_GO_KR_KEY}"
+        Pblanc_ty: ""
+        Instt_se: ""
+        Sort_order: desc
+        Begin_de: "{since_dash}"
+        End_de: "{today_dash}"
+      paging: { page_param: pageNo, size_param: numOfRows, size: 100, max_pages: 60 }
+      items_path: response.body.items.item
+      field_map:
+        title: title
+        org_name: insttname
+        posted_at: regdate
+        deadline: enddate
+        region: areacode
+        # idx 는 나라일터 상세 주소의 empmnsn 과 같다
+        url_template: "https://www.gojobs.go.kr/apmView.do?empmnsn={idx}&searchJobsecode=020&menuNo=401&selMenuNo=400"
+      date_formats: ["%Y%m%d"]
+      keywords: [강사, 교강사, 시간강사, 외래, 훈련교사, 지도자, 지도사, 튜터, 코치, 멘토]
+      # 경남 시군구 코드 (2026-10-13 실제 응답에서 확인: 48000 도, 4812x 창원 5개 구 …). 코드는 다섯 자리라
+      # 부분 문자열 비교로도 다른 지역 코드와 섞이지 않는다. 00000(미지정)은 걸러진다
+      region_filter: ["48000", "48120", "48121", "48123", "48125", "48127", "48129", "48170", "48220", "48240", "48250", "48270", "48310", "48330", "48720", "48730", "48740", "48820", "48840", "48850", "48860", "48870", "48880", "48890"]
+      detail: { fetch: false }
+    notes: >-
+      2026-10-12 probe: 8/15~10/13 전국 4,378건 중 경남 코드 공고 약 200건 (경상국립대·진주시·창원시·
+      경남교육청 학교 등). 환경변수 DATA_GO_KR_KEY 필요 (15156780 활용 승인).
+
   - id: work24
     name: 고용24 / 워크넷 (고용노동부)
     org_type: portal

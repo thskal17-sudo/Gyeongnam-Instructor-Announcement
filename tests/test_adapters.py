@@ -313,3 +313,33 @@ def test_header_filename_decodes_euc_kr():
     for enc in ("cp949", "utf-8"):
         cd = 'attachment; filename="' + name.encode(enc).decode("latin-1") + '"'
         assert filename_from_headers({"content-disposition": cd}) == name
+
+
+def test_narailteo_config_filters_gyeongnam_by_area_code(settings, monkeypatch):
+    """config/sources.yaml 의 나라일터(인사혁신처 공공취업정보) 설정 그대로: 지역코드 48… 만, 강사 키워드만."""
+    from gia.config import load_sources
+
+    monkeypatch.setenv("DATA_GO_KR_KEY", "k")
+    cfg = next(s for s in load_sources(Path("config/sources.yaml")) if s.id == "narailteo")
+    seen: list[httpx.Request] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen.append(request)
+        return httpx.Response(200, content=(FIXTURES / "narailteo_list.xml").read_bytes(),
+                              headers={"content-type": "application/xml"})
+
+    http = HttpClient(settings.collector, transport=httpx.MockTransport(handler))
+    listings = ApiJsonAdapter(cfg, http, settings.collector, since=date(2026, 9, 29)).fetch_list()
+    q = seen[0].url.params
+    assert seen[0].url.path == "/1760000/PblJobService/getList"
+    assert q["Begin_de"] == "2026-09-29" and q["Pblanc_ty"] == "" and q["serviceKey"] == "k"
+    # 경상국립대(48170)·창원문성고(48123)·수산과학원(26200,48850 — 경남 포함) 통과.
+    # 파주(41480: '48' 이 가운데 있어도 다섯 자리 코드 비교라 안 걸림), 강사 아닌 진주시 공고, 00000 은 걸러짐
+    assert [l.title for l in listings] == [
+        "경상국립대학교 평생교육원 시간강사 채용 공고",
+        "2026학년도 창원문성고등학교 시간강사(정보) 채용 공고",
+        "국립수산과학원 교육 강사(위촉) 모집",
+    ]
+    l = listings[0]
+    assert l.url == "https://www.gojobs.go.kr/apmView.do?empmnsn=305140&searchJobsecode=020&menuNo=401&selMenuNo=400"
+    assert l.org_name == "경상국립대학교" and l.posted_at == date(2026, 10, 6) and l.deadline_text == "20261015"
