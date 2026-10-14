@@ -1,0 +1,567 @@
+{
+ "finished_at": "2026-10-15T04:02:25.320900+09:00",
+ "llm_cache_read_tokens": 0,
+ "llm_calls": 0,
+ "llm_errors": 0,
+ "llm_excluded": 0,
+ "llm_input_tokens": 0,
+ "llm_output_tokens": 0,
+ "llm_refusals": 0,
+ "notes": [
+  "피드백 적용 2건"
+ ],
+ "run_id": "2026-10-15T03-53",
+ "sources": [
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gojobs",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "cleaneye",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "narailteo_gyeongnam",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "narailteo_gn",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1552,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "work24",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gyeongnam_go",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 15,
+   "duration_ms": 31545,
+   "errors": [],
+   "listed": 110,
+   "llm_excluded": 0,
+   "new": 11,
+   "source_id": "gne",
+   "status": "ok",
+   "updated": 2
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "changwon",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "jinju",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "tongyeong",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 2708,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "sacheon",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 6,
+   "duration_ms": 21030,
+   "errors": [],
+   "listed": 20,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gimhae",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "miryang",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "geoje",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 3237,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "yangsan",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "uiryeong",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "haman",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "changnyeong",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "goseong",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "namhae",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "hadong",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "sancheong",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "hamyang",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: HTTP 403 https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&cpage=1 — Forbidden"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "geochang",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "hapcheon",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 2259,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_hrd",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1158,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_hrd_programs",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_caf",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1517,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_ssw",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 2081,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_ri",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1736,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_tour",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 2822,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_youth",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 3184,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_youth_notice",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 1,
+   "duration_ms": 3179,
+   "errors": [],
+   "listed": 5,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "cw_fmc",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 2492,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "cw_culture",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1440,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "jj_fmc",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 2475,
+   "errors": [],
+   "listed": 2,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "ys_fmc",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "cw_lll",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1798,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gh_lll",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 5134,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "kopo_changwon",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 5763,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "kopo_jinju",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "kosha_gn",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 2088,
+   "errors": [],
+   "listed": 1,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "timf",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 5602,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "ha_cc",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_cultural_centers",
+   "status": "unconfigured",
+   "updated": 0
+  }
+ ],
+ "started_at": "2026-10-15T03:53:13.439060+09:00",
+ "totals": {
+  "closing_soon": 24,
+  "expired": 117,
+  "merged": 3,
+  "new": 11,
+  "updated": 2
+ }
+}
