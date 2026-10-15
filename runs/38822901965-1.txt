@@ -1,0 +1,41 @@
+::group::probe work24
+INFO gia.http: [http] 나가는 경로: 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.work24.go.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.work24.go.kr/cm/openApi/call/wk/callOpenApiSvcInfo210L01.do?authKey=***&callTp=L&returnType=XML&region=48000&keyword=%EA%B0%95%EC%82%AC&startPage=1&display=100 "HTTP/1.1 200 "
+INFO gia.collectors.api_json: work24: 응답 48건 → 통과 32건 (걸러짐: 기간 16)
+[probe] 고용24 / 워크넷 (고용노동부): 목록 32건
+  - 2026-10-15 | 통영동백수산 | 수산물·건어물 전문몰 웹디자이너 채용 공고 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=KEC0702610150003&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-15 | 스피드입시학원 | 스피드입시학원 수학강사 모집 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=KEC0702610150002&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-14 | 공간인테리어기술학원 | 타일강사 모집 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131312610140074&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-12 | 나우직업전문학교 | 전기 훈련교사 채용 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131112610120060&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-12 | 스카이비젼영어학원(SkyVisionEnglish) | 초등부 영어학원강사 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=KJSD002610120001&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-07 | 아성직업전문학교 | 용접학과 훈련교사 채용 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131312610070039&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-07 | 트리메탈 | 사무용 가구 3D렌더링 직원채용 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131162610070008&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-07 | (사)미주교육문화진흥회 | 교육 운영 담당자 경력직 공개채용 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131332610070014&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-07 | 나우직업전문학교 | 디자인분야 강사 채용(육아대체 인력) | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131112610070007&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-07 | 리드앤톡영어독서중곡어학원 | ...과 함께 성장할 실력 있는 영어 강사님을 모십니다 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131522610070002&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-07 | (주)정오자동차운전전문학원 | 기능강사(경찰청에서 발급된 자격증 소지자) 구인 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131412610070002&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-06 | 양산성가족상담소 | 2026 양산성가족상담소 상담원 채용 공고 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131332610060037&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-02 | 워릭프랭클린어학원 | ...영어 교육을 이끌어갈 열정적인 강사를 모집합니다. | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131412610020053&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-02 | 재단법인이찬 | 전기내선공사,전기공사산업기사  정규직 훈련교사 모... | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131112610020018&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-02 | 재단법인이찬 | ...기훈련(과정평가형) 공조냉동 교육 훈련교강사 모집 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131112610020017&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-01 | 현대평생교육원 | ...훈련학원 건축시공(도배, 타일, 도장) 강사 모집 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131312610010044&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-01 | 봄날노인주간보호센터 | 따뜻한 마음으로 어르신들을 곁에서 든든하게 지지하... | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131162610010006&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-09-30 | 신부산전기기술학원 | 전기기능사 필기실기 강사 채용 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131522609300004&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-09-30 | 동창원중장비운전학원 | 지게차 굴착기 기능/이론 강사모집 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131132609300049&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-09-30 | 마스터요리제과제빵학원 | [마스터요리제과제빵학원] 요리학원 보조강사급구 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131332609300011&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-09-28 | 탄탄유아체육&이벤트 | 유아체육강사 모집 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131312609280075&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-09-28 | (사)합천문화예술촌 | ...천문화예술촌 라인댄스 강사 모집  (자격기준확인) | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131472609280004&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-09-28 | 오케이（OK）일본어학원 | 함께하실 일본어 선생님을 모십니다 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131132609280001&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-09-23 | 원선나라요리제과제빵학원 | 조주기능사, 바리스타강사모집 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131312609230013&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-09-23 | 김해원선요리제빵바리스타학원 | 조주기능사 및 바리스타강사 모집 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131312609230012&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-09-22 | 알리어학원 | 중등부 영어 강사 모집 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=KJSE002609220004&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-09-22 | 뉴베리어학원 | 영어학원 초중등(1명) 중고등부(1명) 강사 충원 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131412609220029&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-09-21 | 주식회사 장유 | ...능 강사 (기간제)(경남 김해 장유자동차운전학원) | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131312609210053&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-09-21 | 서강SLP김해삼계어학원 | [삼계SLP]영어강사 모집 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=KJSE002609210002&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-09-21 | 주식회사 영진직업전문학교 | 공조냉동기계 산업기사 훈련강사를 모집합니다. | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131312609210014&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-09-17 | 영농조합법인가가호호미곡처리장 | 사무 경리직 구인 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131162609170001&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-09-16 | 마산대학교산학협력단 | 마산대학교 신체건강증진서비스 운동서비스 제공인력 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=KF10802609160004&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+[detail] 본문 0자 · 마감 None (unknown, 'None') · 점수 5 ['-30 핵심어 없음', '+20 채용어(채용)', '+15 경남 지역'] · 분야 other
+[posting] 제외: 
+::endgroup::
