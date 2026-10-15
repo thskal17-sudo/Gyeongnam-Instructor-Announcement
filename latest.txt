@@ -1,3 +1,4 @@
+24:  default_days: 30
 ::group::probe work24
 INFO gia.http: [http] 나가는 경로: 러너 IP 직접
 INFO httpx: HTTP Request: GET https://www.work24.go.kr/robots.txt "HTTP/1.1 200 OK"
