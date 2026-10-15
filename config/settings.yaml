@@ -21,7 +21,7 @@ classifier:
 
 collector:
   default_pages: 2
-  default_days: 14
+  default_days: 30
   backfill_days: 60
   per_domain_delay_sec: 1.5
   request_timeout_sec: 20

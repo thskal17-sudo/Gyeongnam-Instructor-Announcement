@@ -86,7 +86,7 @@ jobs:
           fi
           for s in $SOURCES; do
             echo "::group::probe $s"
-            python -m gia probe "$s" --detail || true
+            python -m gia probe "$s" --detail --limit 60 || true
             echo "::endgroup::"
           done
           } 2>&1 | tee -a "$PROBE_OUT"
