@@ -1,0 +1,15 @@
+24:  default_days: 30
+::group::probe work24
+INFO gia.http: [http] 나가는 경로: 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.work24.go.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.work24.go.kr/cm/openApi/call/wk/callOpenApiSvcInfo210L01.do?authKey=***&callTp=L&returnType=XML&region=48000&keyword=%EA%B0%95%EC%82%AC&startPage=1&display=100 "HTTP/1.1 200 "
+INFO gia.collectors.api_json: work24: 응답 48건 → 통과 10건 (걸러짐: 기관 30, 기간 8)
+[probe] 고용24 / 워크넷 (고용노동부): 목록 10건
+  - 2026-10-12 | 나우직업전문학교 | 전기 훈련교사 채용 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131112610120060&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-07 | 아성직업전문학교 | 용접학과 훈련교사 채용 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131312610070039&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-07 | (사)미주교육문화진흥회 | 교육 운영 담당자 경력직 공개채용 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131332610070014&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-07 | 나우직업전문학교 | 디자인분야 강사 채용(육아대체 인력) | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131112610070007&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-02 | 재단법인이찬 | 전기내선공사,전기공사산업기사  정규직 훈련교사 모... | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131112610020018&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+[detail] 본문 0자 · 마감 None (unknown, 'None') · 점수 85 ['+50 제목 핵심어(훈련교사)', '+20 채용어(채용)', '+15 경남 지역'] · 분야 vocational
+[posting] 포함: 전기 훈련교사 채용
+::endgroup::
