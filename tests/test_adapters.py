@@ -313,3 +313,25 @@ def test_header_filename_decodes_euc_kr():
     for enc in ("cp949", "utf-8"):
         cd = 'attachment; filename="' + name.encode(enc).decode("latin-1") + '"'
         assert filename_from_headers({"content-disposition": cd}) == name
+
+
+def test_api_org_filter_keeps_public_and_training(settings, monkeypatch):
+    """고용24 '강사' 검색은 대부분 학원이다. 공공·비영리와 직업훈련기관만 남긴다 (2026-10-16)."""
+    from gia.models import RawListing
+
+    cfg = make_source("work24", "portal", type="api_json", endpoint="https://api.example.org/wanted", items_path="x",
+                      field_map={"title": "title"}, org_include=r"대학|재단|\(사\)|직업전문학교|평생교육원",
+                      org_exclude="학원|교습소", org_keep="직업전문학교|평생교육원|훈련교사|훈련강사")
+    ad = ApiJsonAdapter(cfg, _client(settings, {}), settings.collector)
+    since = date(2026, 9, 1)
+
+    def verdict(org, title):
+        return ad._reject(RawListing(source_id="work24", title=title, url="u", org_name=org), cfg.adapter, since)
+
+    assert verdict("스피드입시학원", "수학강사 모집") == "기관"
+    assert verdict("탄탄유아체육&이벤트", "유아체육강사 모집") == "기관"
+    assert verdict("(주)정오자동차운전전문학원", "기능강사 구인") == "기관"
+    assert verdict("(사)합천문화예술촌", "라인댄스 강사 모집") == ""
+    assert verdict("마산대학교산학협력단", "운동 강사") == ""
+    assert verdict("주식회사 영진직업전문학교", "훈련강사 모집") == ""
+    assert verdict("현대평생교육원", "건축시공 강사 모집") == ""

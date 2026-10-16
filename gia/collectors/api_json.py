@@ -160,6 +160,14 @@ class ApiJsonAdapter(SourceAdapter):
             rf = REGION_ALIASES.get(rf, [rf])
         if rf and l.region_text and not any(w in l.region_text for w in rf):
             return "지역"
+        # 기관명 거르기 (고용24처럼 민간 학원 공고가 대부분인 곳). org_include 에 맞는 기관만 남기고,
+        # 그중 org_exclude(학원 등)에 걸리면 org_keep(직업훈련 등, 기관명+제목)에 맞을 때만 남긴다
+        org = l.org_name or ""
+        inc, exc, keep = a.get("org_include"), a.get("org_exclude"), a.get("org_keep")
+        if inc and not re.search(inc, org):
+            return "기관"
+        if exc and re.search(exc, org) and not (keep and re.search(keep, f"{org} {l.title}")):
+            return "기관"
         if l.posted_at and l.posted_at < since:
             return "기간"
         return ""
