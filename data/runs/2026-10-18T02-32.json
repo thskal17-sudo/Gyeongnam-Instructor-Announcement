@@ -1,0 +1,535 @@
+{
+ "finished_at": "2026-10-18T02:35:42.012664+09:00",
+ "llm_cache_read_tokens": 0,
+ "llm_calls": 0,
+ "llm_errors": 0,
+ "llm_excluded": 0,
+ "llm_input_tokens": 0,
+ "llm_output_tokens": 0,
+ "llm_refusals": 0,
+ "notes": [],
+ "run_id": "2026-10-18T02-32",
+ "sources": [
+  {
+   "detail_fetched": 0,
+   "duration_ms": 2800,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gojobs",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 4275,
+   "errors": [],
+   "listed": 5,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "cleaneye",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 8340,
+   "errors": [],
+   "listed": 2,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "narailteo_gyeongnam",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 3412,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "narailteo_gn",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 3,
+   "duration_ms": 1350,
+   "errors": [],
+   "listed": 4,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "work24",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gyeongnam_go",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 9651,
+   "errors": [],
+   "listed": 103,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gne",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 2668,
+   "errors": [],
+   "listed": 15,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "changwon",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "jinju",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1290,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "tongyeong",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 3068,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "sacheon",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 2851,
+   "errors": [],
+   "listed": 20,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gimhae",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 26144,
+   "errors": [],
+   "listed": 6,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "miryang",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "geoje",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 3683,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "yangsan",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 3087,
+   "errors": [],
+   "listed": 10,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "uiryeong",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 72429,
+   "errors": [],
+   "listed": 10,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "haman",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 1,
+   "duration_ms": 7395,
+   "errors": [],
+   "listed": 19,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "changnyeong",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 143271,
+   "errors": [],
+   "listed": 18,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "goseong",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 6376,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "namhae",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 73173,
+   "errors": [],
+   "listed": 12,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "hadong",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "sancheong",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "hamyang",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "geochang",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 27251,
+   "errors": [],
+   "listed": 10,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "hapcheon",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1628,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_hrd",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 744,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_hrd_programs",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "목록 실패: FetchError: 재시도 실패: timed out"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_caf",
+   "status": "fail",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1318,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_ssw",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1534,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_ri",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1470,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_tour",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 3577,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_youth",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 3704,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_youth_notice",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 1,
+   "duration_ms": 2557,
+   "errors": [],
+   "listed": 5,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "cw_fmc",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 2886,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "cw_culture",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1236,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "jj_fmc",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1990,
+   "errors": [],
+   "listed": 1,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "ys_fmc",
+   "status": "ok",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1915,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "cw_lll",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 1578,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gh_lll",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 5810,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "kopo_changwon",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 5896,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "kopo_jinju",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "kosha_gn",
+   "status": "unconfigured",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 2163,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "timf",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 5972,
+   "errors": [],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "ha_cc",
+   "status": "empty",
+   "updated": 0
+  },
+  {
+   "detail_fetched": 0,
+   "duration_ms": 0,
+   "errors": [
+    "미설정 값: adapter.list_url"
+   ],
+   "listed": 0,
+   "llm_excluded": 0,
+   "new": 0,
+   "source_id": "gn_cultural_centers",
+   "status": "unconfigured",
+   "updated": 0
+  }
+ ],
+ "started_at": "2026-10-18T02:32:36.534162+09:00",
+ "totals": {
+  "closing_soon": 24,
+  "expired": 142,
+  "merged": 0,
+  "new": 0,
+  "updated": 0
+ }
+}
