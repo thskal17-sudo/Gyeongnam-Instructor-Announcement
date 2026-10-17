@@ -121,7 +121,7 @@ def test_build_fills_template_and_holds_incomplete_rows(tmp_path):
     expired = make_posting("지난 공고", deadline=NOW - timedelta(days=1), body_excerpt=MUJIGAE, status=Status.expired)
 
     blob, ready, held = build_gangsaitda(_store(tmp_path, full, no_body, doubtful, expired), NOW)
-    assert (ready, held) == (1, 2)
+    assert (ready, held) == (2, 1)  # 수업 일정을 못 찾은 줄도 '원문 공고 참고'로 올린다
 
     wb = load_workbook(BytesIO(blob))
     assert wb.sheetnames == ["공고", "예시", "안내"]  # 예시·안내 시트는 그대로
@@ -130,7 +130,8 @@ def test_build_fills_template_and_holds_incomplete_rows(tmp_path):
     assert [c.value for c in ws[1]][:13] == COLS
     assert ws["N1"].value == "처리" and ws["O1"].value == "메모"
 
-    row = {h: ws.cell(2, i + 1).value for i, h in enumerate(COLS + ["처리", "메모"])}
+    mujigae = next(r for r in range(2, ws.max_row + 1) if ws.cell(r, 1).value.startswith("무지개초"))
+    row = {h: ws.cell(mujigae, i + 1).value for i, h in enumerate(COLS + ["처리", "메모"])}
     assert row["제목"] == "무지개초 돌봄교실 외부강사 모집"  # 연도 머리 뺌
     assert row["기관명"] == "무지개초등학교"
     assert row["지역"] == "경남 진주시"
@@ -141,11 +142,12 @@ def test_build_fills_template_and_holds_incomplete_rows(tmp_path):
     assert row["지원 이메일"] is None  # 가리지 않은 메일을 공개 저장소에 쌓지 않으려고 비워 둔다
     assert row["원문 링크"].startswith("https://")
     assert row["처리"] is None
-    assert ws.cell(2, 6).alignment.wrap_text  # 칸 안 줄바꿈이 보이게
+    assert ws.cell(mujigae, 6).alignment.wrap_text  # 칸 안 줄바꿈이 보이게
 
-    held_rows = {ws.cell(r, 1).value: (ws.cell(r, 14).value, ws.cell(r, 15).value) for r in (3, 4)}
-    assert held_rows["대진초 집중돌봄교실 외부 강사 모집"][0] == "보류"
-    assert "수업 일정" in held_rows["대진초 집중돌봄교실 외부 강사 모집"][1]
+    held_rows = {ws.cell(r, 1).value: (ws.cell(r, 14).value, ws.cell(r, 15).value) for r in (2, 3, 4)}
+    assert held_rows["대진초 집중돌봄교실 외부 강사 모집"][0] is None
+    daejin = next(r for r in (2, 3, 4) if ws.cell(r, 1).value.startswith("대진초"))
+    assert ws.cell(daejin, 5).value == "원문 공고 참고"
     assert held_rows["청소년방과후아카데미 기간제근로자 채용"][0] == "보류"
     assert "판별 유보" in held_rows["청소년방과후아카데미 기간제근로자 채용"][1]
     assert ws.max_row == 4  # 마감 지난 공고는 싣지 않는다
@@ -391,3 +393,16 @@ def test_reported_on_uses_kst_date(tmp_path):
     s.state["last_report_at"] = "2026-09-28T16:30:00+00:00"  # 09-29 01:30 KST
     assert s.reported_on(date(2026, 9, 29))
     assert not s.reported_on(date(2026, 9, 28))
+
+
+def test_missing_schedule_and_detail_fall_back_but_deadline_holds(tmp_path):
+    """수업 일정·상세 내용은 원문 안내로 채우고, 마감일이 없으면 보류로 남긴다 (2026-10-17)."""
+    from gia.report.gangsaitda import hold_reason, to_row
+
+    p = make_posting("2026 시민강좌 강사 모집", org="창원시", deadline=None, region=["창원"], body_excerpt="",
+                     status=Status.active)
+    row = to_row(p)
+    assert row["수업 일정"] == "원문 공고 참고"
+    assert row["상세 내용"].startswith("시민강좌 강사 모집") and "원문 공고:" in row["상세 내용"]
+    why = hold_reason(p, row)
+    assert "마감일" in why and "수업 일정" not in why and "상세 내용" not in why
