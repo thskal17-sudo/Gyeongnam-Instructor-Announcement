@@ -4,9 +4,12 @@
 적고 '예시'·'안내' 시트는 건드리지 않는다. 칸 이름이 바뀌었으면 채우지 않고 멈춘다 —
 엉뚱한 칸에 들어간 파일이 사이트에 올라가는 쪽이 더 나쁘다.
 
-필수 칸(제목·기관명·지역·마감일·수업 일정·상세 내용)을 다 못 채운 줄도 지우지 않고,
-양식 안내가 허용하는 '처리=보류'로 남긴다. 사이트는 보류 줄을 올리지 않으므로 원문을 보고
-빈칸을 채운 뒤 '보류'만 지우면 된다. 빈칸을 그럴듯한 말로 메우지 않는다.
+필수 칸(제목·기관명·지역·마감일·수업 일정·상세 내용)을 공고에서 찾지 못하면
+    수업 일정   '원문 공고 참고'
+    상세 내용   원문 제목·접수 마감·원문 링크로 쓴 안내
+    마감일      비우고 '처리=보류' (사이트는 보류 줄을 올리지 않는다. 원문을 보고 채운 뒤 '보류'만 지우면 된다)
+경북·부산판과 같다(2026-10-17). 마감일은 사이트가 마감된 공고를 내리는 기준이라 지어 넣지 않는다.
+강사 공고인지 판별을 유보한 줄도 보류로 남긴다.
 """
 from __future__ import annotations
 
@@ -43,10 +46,32 @@ def region_label(regions: list[str]) -> str:
     return "경남"
 
 
+SCHEDULE_FALLBACK = "원문 공고 참고"
+
+
+def detail_fallback(p: Posting, title: str) -> str:
+    """상세 내용을 본문에서 뽑지 못했을 때: 원문 제목·접수 마감·원문 링크로 쓴 안내."""
+    lines = [title]
+    if p.deadline:
+        lines.append(f"접수 마감: {p.deadline.astimezone(KST).date().isoformat()}")
+    lines.append("자세한 내용과 지원 방법은 원문 공고를 확인해 주세요.")
+    lines.append(f"원문 공고: {p.primary_url}")
+    return "\n".join(lines)
+
+
 def to_row(p: Posting) -> dict[str, object]:
     body = p.body_excerpt or ""
     title = clean_title(p.title)
     url = p.primary_url if p.primary_url.startswith("https://") else ""  # 양식: https:// 로 시작
+    row = _to_row(p, body, title, url)
+    if not row["수업 일정"]:
+        row["수업 일정"] = SCHEDULE_FALLBACK
+    if not row["상세 내용"]:
+        row["상세 내용"] = detail_fallback(p, title)
+    return row
+
+
+def _to_row(p: Posting, body: str, title: str, url: str) -> dict[str, object]:
     return {
         "제목": title,
         "기관명": expand_school_name(p.org_name) if p.org_type == OrgType.edu_office else p.org_name,
