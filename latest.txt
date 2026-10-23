@@ -1,15 +1,16 @@
-24:  default_days: 30
-::group::probe work24
-INFO gia.http: [http] 나가는 경로: 러너 IP 직접
-INFO httpx: HTTP Request: GET https://www.work24.go.kr/robots.txt "HTTP/1.1 200 OK"
-INFO httpx: HTTP Request: GET https://www.work24.go.kr/cm/openApi/call/wk/callOpenApiSvcInfo210L01.do?authKey=***&callTp=L&returnType=XML&region=48000&keyword=%EA%B0%95%EC%82%AC&startPage=1&display=100 "HTTP/1.1 200 "
-INFO gia.collectors.api_json: work24: 응답 48건 → 통과 32건 (걸러짐: 기간 16)
-[probe] 고용24 / 워크넷 (고용노동부): 목록 32건
-  - 2026-10-15 | 통영동백수산 | 수산물·건어물 전문몰 웹디자이너 채용 공고 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=KEC0702610150003&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
-  - 2026-10-15 | 스피드입시학원 | 스피드입시학원 수학강사 모집 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=KEC0702610150002&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
-  - 2026-10-14 | 공간인테리어기술학원 | 타일강사 모집 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131312610140074&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
-  - 2026-10-12 | 나우직업전문학교 | 전기 훈련교사 채용 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131112610120060&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
-  - 2026-10-12 | 스카이비젼영어학원(SkyVisionEnglish) | 초등부 영어학원강사 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=KJSD002610120001&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
-[detail] 본문 0자 · 마감 None (unknown, 'None') · 점수 5 ['-30 핵심어 없음', '+20 채용어(채용)', '+15 경남 지역'] · 분야 other
-[posting] 제외: 
-::endgroup::
+====================================================================================================
+URL: https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&cpage=1
+  (connect failed, retrying once: HTTPSConnectionPool(host='www.geochang.go.kr', port=443): Max retries exceeded w)
+  FETCH ERROR: HTTPSConnectionPool(host='www.geochang.go.kr', port=443): Max retries exceeded with url: /00604/00609/02192.web?gcode=1030&cpage=1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.geochang.go
+====================================================================================================
+URL: https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&page=1
+  (connect failed, retrying once: HTTPSConnectionPool(host='www.gcaf.or.kr', port=443): Max retries exceeded with )
+  FETCH ERROR: HTTPSConnectionPool(host='www.gcaf.or.kr', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=sub3_8&page=1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.gcaf.or.kr', port=4
+====================================================================================================
+URL: https://www.geochang.go.kr/
+  (connect failed, retrying once: HTTPSConnectionPool(host='www.geochang.go.kr', port=443): Max retries exceeded w)
+  FETCH ERROR: HTTPSConnectionPool(host='www.geochang.go.kr', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.geochang.go.kr', port=443) at 0x7fcc2bbdd520>, 'Con
+====================================================================================================
+URL: https://www.gcaf.or.kr/
+  (connect failed, retrying once: HTTPSConnectionPool(host='www.gcaf.or.kr', port=443): Max retries exceeded with )
+  FETCH ERROR: HTTPSConnectionPool(host='www.gcaf.or.kr', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.gcaf.or.kr', port=443) at 0x7fcc2bbde090>, 'Connection 
