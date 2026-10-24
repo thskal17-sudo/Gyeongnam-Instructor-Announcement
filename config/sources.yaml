@@ -559,6 +559,9 @@ sources:
     tier: 2
     homepage: https://www.geochang.go.kr
     verified: true
+    # 2026-10-10 부터 러너에서 403 이 섞이더니 10-14 부터는 매번 403·연결 시간초과(10-24 probe 도 같음).
+    # 해외 IP 차단으로 보고 한국 PC(korea.yml) 몫으로 옮긴다. 실행기를 깔기 전에는 '한국 PC 대기'로 건너뛴다
+    korea_only: true
     adapter:
       type: html_list
       list_url: https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&cpage={page}
@@ -666,6 +669,9 @@ sources:
     tier: 3
     homepage: https://www.gcaf.or.kr
     verified: true
+    # 2026-10-14 부터 러너에서 매번 연결 시간초과. 10-24 probe 로 https·http·www 유무 모두 막힌 것을 확인했다.
+    # 해외 IP 차단으로 보고 한국 PC(korea.yml) 몫으로 옮긴다. 출자출연기관이라 클린아이에 올라오는 공고는 그쪽으로도 받는다
+    korea_only: true
     adapter:
       type: html_list
       list_url: https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&page={page}
