@@ -406,3 +406,17 @@ def test_missing_schedule_and_detail_fall_back_but_deadline_holds(tmp_path):
     assert row["상세 내용"].startswith("시민강좌 강사 모집") and "원문 공고:" in row["상세 내용"]
     why = hold_reason(p, row)
     assert "마감일" in why and "수업 일정" not in why and "상세 내용" not in why
+
+
+def test_held_deadline_cell_says_check_notice(tmp_path):
+    """마감일을 못 찾은 보류 줄: 마감일 칸에 노란 '공고문 확인', 메모에 할 일 (2026-10-24)."""
+    p = make_posting("2026 통영시민오케스트라 교육강사(플루트) 모집 공고", org="통영국제음악재단", deadline=None,
+                     region=["통영"], body_excerpt="통영시민오케스트라 교육강사를 모집합니다. 1. 모집분야: 플루트",
+                     flags=["첨부추출실패"], status=Status.active)
+    blob, ready, held = build_gangsaitda(_store(tmp_path, p), NOW)
+    assert (ready, held) == (0, 1)
+    ws = load_workbook(BytesIO(blob))["공고"]
+    cell = ws.cell(2, COLS.index("마감일") + 1)
+    assert cell.value == "공고문 확인" and cell.fill.fgColor.rgb.endswith("FFF2CC")
+    assert ws.cell(2, 14).value == "보류"
+    assert "첨부(공고문)를 자동으로 읽지 못했어요" in ws.cell(2, 15).value

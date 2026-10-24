@@ -19,7 +19,7 @@ from io import BytesIO
 from pathlib import Path
 
 from openpyxl import load_workbook
-from openpyxl.styles import Alignment
+from openpyxl.styles import Alignment, PatternFill
 
 from ..extract.deadline import KST
 from ..extract.detail import (
@@ -92,17 +92,28 @@ def _to_row(p: Posting, body: str, title: str, url: str) -> dict[str, object]:
     }
 
 
+# 마감일을 못 찾은 보류 줄의 마감일 칸. 사이트는 날짜만 받으므로 바로 올리는 줄에는 쓰지 않는다.
+# 보류 줄은 올라가지 않으니, 손으로 채울 칸이 어디인지 보이게 노란 칸에 적어 둔다
+DEADLINE_TODO = "공고문 확인"
+TODO_FILL = PatternFill("solid", fgColor="FFF2CC")
+
+
 def hold_reason(p: Posting, row: dict[str, object]) -> str:
     """보류로 둘 이유. 없으면 빈 문자열(바로 올릴 수 있는 줄)."""
     why: list[str] = []
     missing = [c for c in REQUIRED if not row.get(c)]
-    if missing:
+    if missing == ["마감일"]:
+        if "첨부추출실패" in p.flags:
+            why.append("마감일: 첨부(공고문)를 자동으로 읽지 못했어요. 원문 링크의 공고문에서 확인해 적어 주세요")
+        else:
+            why.append("마감일: 공고에서 찾지 못했어요. 원문 링크의 공고문에서 확인해 적어 주세요")
+    elif missing:
         why.append("빈 필수 칸: " + ", ".join(missing))
     if "판별유보" in p.flags:
         why.append(f"강사 공고인지 판별 유보(점수 {p.relevance_score})")
     if not why:
         return ""
-    return " · ".join(why) + " — 원문을 확인해 채운 뒤 '보류'를 지우세요"
+    return " · ".join(why) + " — 채운 뒤 '보류'를 지우면 올라가요"
 
 
 def select_postings(store: Store, now: datetime) -> list[Posting]:
@@ -150,9 +161,14 @@ def build_gangsaitda(store: Store, now: datetime, template: Path = TEMPLATE) -> 
     r = 2
     for p, row, *rest in [*ready, *held]:
         values = [row[c] for c in COLS] + (["보류", rest[0]] if rest else ["", ""])
+        todo = bool(rest) and not row.get("마감일")
+        if todo:
+            values[COLS.index("마감일")] = DEADLINE_TODO
         for i, v in enumerate(values, start=1):
             cell = ws.cell(r, i, v if v not in (None, "") else None)
             cell.alignment = wrap
+            if todo and i == COLS.index("마감일") + 1:
+                cell.fill = TODO_FILL
         r += 1
 
     buf = BytesIO()
