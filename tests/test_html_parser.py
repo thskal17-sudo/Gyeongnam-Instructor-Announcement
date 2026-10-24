@@ -74,3 +74,26 @@ def test_body_inside_textarea_is_read_as_text():
     assert "<p>" not in body
     assert "□ 모집 분야: 수영" in body and "접수: 10. 6.(화) 17:00" in body
     assert extract_body_html(html, "div.boardView_Wrap").startswith("수영 위촉강사 모집 공고")
+
+
+def test_deadline_from_list_period():
+    """목록 칸의 접수기간 '시작 ~ 끝' 에서 끝을 마감일로 쓴다 (경남교육청 구인포털, 2026-10-24)."""
+    from datetime import date
+
+    from gia.collectors.html_list import parse_list_html
+    from tests.conftest import make_source
+
+    html = """<table class="frmbd-list-tbl"><tbody><tr>
+      <td class="tl"><span class="tit"><a onclick="openDetail('1815159');">거창중앙고 시간강사 채용</a></span></td>
+      <td><span class="cate">모집기관</span><span>거창중앙고</span></td>
+      <td><span class="cate">접수기간</span><span>2026.10.24 ~ 2026.10.27</span></td>
+    </tr></tbody></table>"""
+    cfg = make_source("gne", "edu_office", type="html_list", list_url="https://www.gne.go.kr/l")
+    a = {"row_selector": "table.frmbd-list-tbl tr", "title_selector": "td.tl span.tit", "link_selector": "td.tl a",
+         "link_attr": "onclick", "link_regex": r"openDetail\('(\d+)'\)",
+         "link_url_template": "https://www.gne.go.kr/d?regSn={1}",
+         "date_selector": "td:nth-child(3) span:nth-of-type(2)",
+         "deadline_selector": "td:nth-child(3) span:nth-of-type(2)"}
+    rows, _ = parse_list_html(html, "https://www.gne.go.kr/l", a, cfg, date(2026, 10, 1))
+    assert rows[0].posted_at == date(2026, 10, 24)
+    assert rows[0].deadline_text == "2026.10.27"

@@ -88,11 +88,19 @@ def parse_list_html(html: str, page_url: str, a: dict, cfg, since: date) -> tupl
             org = on.text(strip=True) if on is not None else None
         if org is None and cfg.org_type.value != "portal":
             org = a.get("org_name") or cfg.name  # adapter.org_name: 게시판 이름 대신 쓸 기관명
+        deadline_text = None
+        if a.get("deadline_selector"):
+            # 목록에 접수기간이 있는 게시판(경남교육청 구인포털 '2026.10.24 ~ 2026.10.27'): 물결 뒤가 마감일.
+            # 첨부(javascript 다운로드)를 못 읽는 곳은 본문에 마감일이 없어 강사잇다 양식에서 보류로 남았다
+            dl = row.css_first(a["deadline_selector"])
+            text = dl.text(strip=True) if dl is not None else ""
+            deadline_text = re.split(r"[~∼〜]", text)[-1].strip() or None
         if not matches_keywords(title, a.get("keywords")):
             continue
         if posted and posted < since:
             continue
-        out.append(RawListing(source_id=cfg.id, title=title, url=target, org_name=org, posted_at=posted))
+        out.append(RawListing(source_id=cfg.id, title=title, url=target, org_name=org, posted_at=posted,
+                              deadline_text=deadline_text))
     return out, oldest_on_page
 
 
