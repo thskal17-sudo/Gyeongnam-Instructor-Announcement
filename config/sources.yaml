@@ -539,10 +539,17 @@ sources:
     homepage: https://www.sancheong.go.kr
     adapter:
       type: html_list
-      list_url: TODO
+      <<: *eminwon
+      list_url: http://eminwon.sancheong.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectListOfrNotAncmt&methodnm=selectListOfrNotAncmtHomepage&homepage_pbs_yn=Y&subCheck=Y&ofr_pageSize=50&not_ancmt_se_code=01,02,03,04,05&initValue=Y&countYn=Y&list_gubun=A&epcCheck=Y&Key=B_Subject&pageIndex={page}
+      link_url_template: http://eminwon.sancheong.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_mgt_no={1}
       candidate_list_url: https://www.sancheong.go.kr/www/selectBbsNttList.do?key=161&bbsNo=3&pageIndex={page}
     notes: >-
-      채용/시험 게시판 후보. 러너 연결 시간초과(2026-09-21). 2026-09-22 브라우저형 헤더·Referer·재시도 적용 후 3개 러너(westus3×2, centralus)에서 재시도 → 동일 실패. GitHub 호스티드 러너 IP 대역을 일관되게 차단하는 것으로 판단, 국내 IP(자체 호스팅 러너·프록시) 또는 로컬 `python -m gia probe` 필요
+      새올(eminwon) 고시공고 목록. 홈페이지 채용/시험 게시판은 GitHub 러너 IP 를 막지만(2026-09-21·22 러너 3대에서
+      브라우저형 헤더·Referer 까지 붙여도 연결 시간초과) 새올 서버는 열린다 — 2026-10-24 러너 probe 에서 200,
+      table.basic 50건. 의령·함안과 같은 구조라 공통 설정(<<: *eminwon)을 그대로 쓴다.
+      고시공고 전체에서 제목 키워드로 채용·모집 공고만 남긴다. 같은 probe 에서 '동절기 산청 치유의 숲
+      산림치유지도사 기간제근로자', '농어촌기본소득 기간제근로자 채용', '아이사랑어린이집 위탁운영체 모집',
+      '제안서 평가위원 모집' 같은 글이 실제로 올라오는 것을 확인했다
   - id: hamyang
     name: 함양군
     org_type: local_gov
@@ -581,7 +588,7 @@ sources:
     name: 거창군(새올)
     org_type: local_gov
     tier: 2
-    enabled: false
+    enabled: true
     homepage: https://www.geochang.go.kr
     adapter:
       type: html_list
@@ -589,8 +596,13 @@ sources:
       list_url: http://eminwon.geochang.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectListOfrNotAncmt&methodnm=selectListOfrNotAncmtHomepage&homepage_pbs_yn=Y&subCheck=Y&ofr_pageSize=50&not_ancmt_se_code=01,02,03,04,05&initValue=Y&countYn=Y&list_gubun=A&epcCheck=Y&Key=B_Subject&pageIndex={page}
       link_url_template: http://eminwon.geochang.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_mgt_no={1}
     notes: >-
-      `geochang` 홈페이지 게시판이 막히는 날을 대비한 예비 경로. 2026-10-04 probe 로 확인:
-      서버는 열리고(HTTP 200, 고시공고 51행) 기존 eminwon 앵커로 셀렉터 수정 없이 목록 11건을 읽었다.
+      `geochang` 홈페이지 게시판을 대신하는 경로. 홈페이지는 2026-10-14 부터 TCP 연결 자체가 안 되는데
+      (10-23 러너 probe: 게시판·대문 모두 ConnectTimeout) 새올 서버는 열린다 — 2026-10-04·10-24 probe 모두
+      HTTP 200, 고시공고 51행, 기존 eminwon 앵커로 셀렉터 수정 없이 읽힌다. 그래서 켰다.
+      10-24 probe 의 50건(약 나흘치)에 강사 공고는 없었고 '공중화장실 관리 기간제근로자 추가채용',
+      '귀농인의 집 입주자 모집', '회계감사인 선임 제안서 모집' 같은 글이 있었다 — 고시공고판이라
+      강사 공고 밀도는 낮지만 의령·함안·고성과 같은 성격이고 그쪽에서는 공고가 들어온다.
+      제목 키워드와 분류기 점수로 거른다.
       그런데 켜지 않는다 — 고시공고 게시판이라 강사 공고가 없다(통과한 11건이 태양광 참여가구·불법주정차
       기간제근로자·착한가격업소 등, 상세를 받은 1건은 5점으로 제외). 거창은 홈페이지 게시판으로도
       9~10월 저장 0건이라 막혀도 잃는 것이 없다.
