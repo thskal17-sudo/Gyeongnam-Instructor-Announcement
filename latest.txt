@@ -1,16 +1,28 @@
 ====================================================================================================
-URL: https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&cpage=1
-  (connect failed, retrying once: HTTPSConnectionPool(host='www.geochang.go.kr', port=443): Max retries exceeded w)
-  FETCH ERROR: HTTPSConnectionPool(host='www.geochang.go.kr', port=443): Max retries exceeded with url: /00604/00609/02192.web?gcode=1030&cpage=1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.geochang.go
-====================================================================================================
 URL: https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&page=1
   (connect failed, retrying once: HTTPSConnectionPool(host='www.gcaf.or.kr', port=443): Max retries exceeded with )
   FETCH ERROR: HTTPSConnectionPool(host='www.gcaf.or.kr', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=sub3_8&page=1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.gcaf.or.kr', port=4
 ====================================================================================================
+URL: https://gcaf.or.kr/bbs/board.php?bo_table=sub3_8&page=1
+  (connect failed, retrying once: HTTPSConnectionPool(host='gcaf.or.kr', port=443): Max retries exceeded with url:)
+  FETCH ERROR: HTTPSConnectionPool(host='gcaf.or.kr', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=sub3_8&page=1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='gcaf.or.kr', port=443) at 0
+====================================================================================================
+URL: http://www.gcaf.or.kr/
+  (connect failed, retrying once: HTTPConnectionPool(host='www.gcaf.or.kr', port=80): Max retries exceeded with ur)
+  FETCH ERROR: HTTPConnectionPool(host='www.gcaf.or.kr', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPConnection(host='www.gcaf.or.kr', port=80) at 0x7f731d1151f0>, 'Connection to w
+====================================================================================================
+URL: https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&cpage=1
+  (connect failed, retrying once: HTTPSConnectionPool(host='www.geochang.go.kr', port=443): Max retries exceeded w)
+  FETCH ERROR: HTTPSConnectionPool(host='www.geochang.go.kr', port=443): Max retries exceeded with url: /00604/00609/02192.web?gcode=1030&cpage=1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.geochang.go
+====================================================================================================
 URL: https://www.geochang.go.kr/
   (connect failed, retrying once: HTTPSConnectionPool(host='www.geochang.go.kr', port=443): Max retries exceeded w)
-  FETCH ERROR: HTTPSConnectionPool(host='www.geochang.go.kr', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.geochang.go.kr', port=443) at 0x7fcc2bbdd520>, 'Con
-====================================================================================================
-URL: https://www.gcaf.or.kr/
-  (connect failed, retrying once: HTTPSConnectionPool(host='www.gcaf.or.kr', port=443): Max retries exceeded with )
-  FETCH ERROR: HTTPSConnectionPool(host='www.gcaf.or.kr', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.gcaf.or.kr', port=443) at 0x7fcc2bbde090>, 'Connection 
+  FETCH ERROR: HTTPSConnectionPool(host='www.geochang.go.kr', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.geochang.go.kr', port=443) at 0x7f731d893b90>, 'Con
+::group::probe geochang
+INFO gia.http: [http] 나가는 경로: 러너 IP 직접
+[probe] 거창군: 목록 실패 — 재시도 실패: timed out
+::endgroup::
+::group::probe gn_caf
+INFO gia.http: [http] 나가는 경로: 러너 IP 직접
+[probe] 경남문화예술진흥원 채용공고: 목록 실패 — 재시도 실패: timed out
+::endgroup::
