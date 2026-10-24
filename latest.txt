@@ -1,28 +1,85 @@
 ====================================================================================================
-URL: https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&page=1
-  (connect failed, retrying once: HTTPSConnectionPool(host='www.gcaf.or.kr', port=443): Max retries exceeded with )
-  FETCH ERROR: HTTPSConnectionPool(host='www.gcaf.or.kr', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=sub3_8&page=1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.gcaf.or.kr', port=4
-====================================================================================================
-URL: https://gcaf.or.kr/bbs/board.php?bo_table=sub3_8&page=1
-  (connect failed, retrying once: HTTPSConnectionPool(host='gcaf.or.kr', port=443): Max retries exceeded with url:)
-  FETCH ERROR: HTTPSConnectionPool(host='gcaf.or.kr', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=sub3_8&page=1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='gcaf.or.kr', port=443) at 0
-====================================================================================================
-URL: http://www.gcaf.or.kr/
-  (connect failed, retrying once: HTTPConnectionPool(host='www.gcaf.or.kr', port=80): Max retries exceeded with ur)
-  FETCH ERROR: HTTPConnectionPool(host='www.gcaf.or.kr', port=80): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPConnection(host='www.gcaf.or.kr', port=80) at 0x7f731d1151f0>, 'Connection to w
-====================================================================================================
-URL: https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&cpage=1
-  (connect failed, retrying once: HTTPSConnectionPool(host='www.geochang.go.kr', port=443): Max retries exceeded w)
-  FETCH ERROR: HTTPSConnectionPool(host='www.geochang.go.kr', port=443): Max retries exceeded with url: /00604/00609/02192.web?gcode=1030&cpage=1 (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.geochang.go
-====================================================================================================
-URL: https://www.geochang.go.kr/
-  (connect failed, retrying once: HTTPSConnectionPool(host='www.geochang.go.kr', port=443): Max retries exceeded w)
-  FETCH ERROR: HTTPSConnectionPool(host='www.geochang.go.kr', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.geochang.go.kr', port=443) at 0x7f731d893b90>, 'Con
-::group::probe geochang
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=10&q_currPage=1
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=10&q_currPage=1 encoding=UTF-8 bytes=98766
+title: 구인·구직포털 : HOME > 모집공고
+
+[RAW HTML] table.frmbd-list-tbl > thead.hidden > tr
+<tr>
+<th scope="col">채용 정보</th>
+<th scope="col">모집기관</th>
+<th scope="col">접수기간</th>
+<th scope="col">접수상태</th>
+</tr>
+
+[RAW HTML] table.frmbd-list-tbl > tbody > tr
+<tr>
+<td class="data-btn tl">
+<span class="cate">
+                    거창  ｜ 기간제교원(강사 제외) 중등기간제교사
+                  </span>
+<span class="tit"><a href="#self;" onclick="openDetail('1815159');" title="거창중앙고등학교 계약제교원(공통과학(1))채용">거창중앙고등학교 계약제교원(공통과학(1))채용</a></span>
+</td>
+<td class="data-btn">
+<span class="cate">모집기관</span>
+<span>거창중앙고</span>
+</td>
+<td class="data-btn">
+<span class="cate">접수기간</span>
+<span>2026.10.24 ~ 2026.10.27</span>
+</td>
+<td class="data-btn">
+<span class="cate dn">접수상태</span>
+<div class="df">
+<span class="st2">접수중</span>
+<span class="st4">
+<button onclick="openDetail('1815159')" type="button">상세보기</button>
+</span>
+</div>
+</td>
+</tr>
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=11
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:거창  ｜ 기간제교원(강사 제외) 중등기간제교사 | td.data-btn:모집기관 거창중앙고 | td.data-btn:접수기간 2026.10.24 ~ 2026.10. | td.data-btn:접수상태 접수중 상세보기
+      td.data-btn.tl :: own='' all='거창  ｜ 기간제교원(강사 제외) 중등기간제교사 거창중앙고등학교 계약제교원(공통과학(1))'
+      span.cate :: own='거창  ｜ 기간제교원(강사 제외) 중등기간제교사' all='거창  ｜ 기간제교원(강사 제외) 중등기간제교사'
+      span.tit :: own='' all='거창중앙고등학교 계약제교원(공통과학(1))채용'
+      a href=#self; onclick=openDetail('1815159'); :: own='거창중앙고등학교 계약제교원(공통과학(1))채용' all='거창중앙고등학교 계약제교원(공통과학(1))채용'
+      td.data-btn :: own='' all='모집기관 거창중앙고'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='거창중앙고' all='거창중앙고'
+      td.data-btn :: own='' all='접수기간 2026.10.24 ~ 2026.10.27'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.10.24 ~ 2026.10.27' all='2026.10.24 ~ 2026.10.27'
+      td.data-btn :: own='' all='접수상태 접수중 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='접수중 상세보기'
+      span.st2 :: own='접수중' all='접수중'
+[DATES] sample: ['2026.10.24', '2026.10.27', '2026.10.26', '2026.10.28', '2026.10.23']
+
+[ANCHORS] most common link paths
+   x10 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1815159');", 'title': '거창중앙고등학교 계약제교원(공통과학(1))채용'} text='거창중앙고등학교 계약제교원(공통과학(1))채용'
+      row? tr :: '거창  ｜ 기간제교원(강사 제외) 중등기간제교사 거창중앙고등학교 계약제교원(공통과학(1))채용 모집기관 거창중앙고 접수기간 2026.10.24 ~ 2026.10.27 접수상태 접수중 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(11131); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
+::group::probe work24
 INFO gia.http: [http] 나가는 경로: 러너 IP 직접
-[probe] 거창군: 목록 실패 — 재시도 실패: timed out
-::endgroup::
-::group::probe gn_caf
-INFO gia.http: [http] 나가는 경로: 러너 IP 직접
-[probe] 경남문화예술진흥원 채용공고: 목록 실패 — 재시도 실패: timed out
+INFO httpx: HTTP Request: GET https://www.work24.go.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.work24.go.kr/cm/openApi/call/wk/callOpenApiSvcInfo210L01.do?authKey=***&callTp=L&returnType=XML&region=48000&keyword=%EA%B0%95%EC%82%AC&startPage=1&display=100 "HTTP/1.1 200 "
+INFO gia.collectors.api_json: work24: 응답 48건 → 통과 2건 (걸러짐: 기관 30, 기간 16)
+[probe] 고용24 / 워크넷 (고용노동부): 목록 2건
+  - 2026-10-23 | (주)김해직업전문학교 | 패션,봉제.여성복.패션캐드,일러스트 강사모집 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131312610230033&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+  - 2026-10-12 | 나우직업전문학교 | 전기 훈련교사 채용 | https://www.work24.go.kr/wk/a/b/1500/empDetailAuthView.do?wantedAuthNo=K131112610120060&infoTypeCd=VALIDATION&infoTypeGroup=tb_workinfoworknet
+[detail] 본문 0자 · 마감 None (unknown, 'None') · 점수 85 ['+50 제목 핵심어(강사)', '+20 채용어(모집)', '+15 경남 지역'] · 분야 other
+[posting] 포함: 패션,봉제.여성복.패션캐드,일러스트 강사모집
 ::endgroup::
