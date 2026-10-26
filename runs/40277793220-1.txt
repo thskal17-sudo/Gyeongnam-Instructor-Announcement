@@ -1,0 +1,24 @@
+====================================================================================================
+URL: https://www.gojobs.go.kr/jsp/cmmn/js/common.js
+status=200 final=https://www.gojobs.go.kr/jsp/cmmn/js/common.js encoding=utf-8 bytes=45982
+title: 
+
+[GREP] gfn_fileDown|fileDown
+   ...  cn = cn.replace(/&#39;/g ,"\'"); cn = cn.replace(/&amp;/g ,"&"); $(target).html(cn); } else { $(target).text(cn); } } /****** 첨부파일 다운로드 ******/ function gfn_fileDown(filenm, uuid, saveGbn) { document.fileFrm.filenm.value = filenm; document.fileFrm.uuid.value = uuid; document.fileFrm.saveGbn.value = saveGbn; document.fileFrm.action ="/downFile.do"; //실서버주소 //document.fileFrm.action = "http://localhost:9721/downFile.do" /* // 모바일 화면 if( navigator.userAgent.match(/Android/i) || navigator.us
+   [SCRIPT src] []
+[DATES] sample: ['2017.07.03', '2017.07.03']
+
+[RETRY without noise filter]
+[DATES] sample: ['2017.07.03', '2017.07.03']
+====================================================================================================
+URL: https://www.gojobs.go.kr/jsp/apm/apmView.js
+status=200 final=https://www.gojobs.go.kr/jsp/apm/apmView.js encoding=utf-8 bytes=7017
+title: 
+
+[GREP] gfn_fileDown|fileDown
+   (없음)
+   [SCRIPT src] []
+[DATES] sample: ['2017.08.11', '2017.08.11']
+
+[RETRY without noise filter]
+[DATES] sample: ['2017.08.11', '2017.08.11']
