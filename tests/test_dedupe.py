@@ -23,6 +23,18 @@ def test_not_duplicate_different_org_or_far_date():
     assert find_duplicate(c, [a]) is None
 
 
+def test_duplicate_across_edu_portal_and_narailteo():
+    """같은 학교 공고: 교육청 포털 '거제중앙고' · 나라일터 '경상남도교육청 거제중앙고등학교' (2026-10-26)."""
+    a = make_posting("거제중앙고등학교 2026학년도 2학기 (체육) 시간강사 채용 공고", org="거제중앙고",
+                     posted_at=date(2026, 10, 15))
+    b = make_posting("거제중앙고등학교 2026학년도 2학기 (체육) 시간강사 채용 공고",
+                     org="경상남도교육청 거제중앙고등학교", posted_at=date(2026, 10, 15))
+    assert find_duplicate(b, [a]) is a
+    other = make_posting("거제중앙고등학교 2026학년도 2학기 (체육) 시간강사 채용 공고",
+                         org="경상남도교육청 거제고등학교", posted_at=date(2026, 10, 15))
+    assert find_duplicate(other, [a]) is None
+
+
 def test_merge_extends_deadline_and_adds_source():
     a = make_posting("강사 모집", deadline=NOW + timedelta(days=5))
     b = make_posting("강사 모집", deadline=NOW + timedelta(days=12), sources=[SourceRef(source_id="other", url="https://x.org/1", fetched_at=NOW)], flags=["연장"])
