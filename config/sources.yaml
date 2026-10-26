@@ -165,6 +165,11 @@ sources:
       detail:
         fetch: true
         body_selector: table#apmViewTbl
+        # 첨부: <p class="download"><a href="javascript:gfn_fileDown('공고문.hwp','uuid','employ/기관')">.
+        # gfn_fileDown 은 /downFile.do 에 filenm·uuid·saveGbn 을 보내는 폼이다(common.js). GET 으로도 받는다(2026-10-26 probe)
+        attachment_selector: "p.download a"
+        attachment_regex: "gfn_fileDown\\('([^']*)',\\s*'([^']*)',\\s*'([^']*)'\\)"
+        attachment_url_template: "https://www.gojobs.go.kr/downFile.do?filenm={1}&uuid={2}&saveGbn={3}"
     notes: >-
       '경상남도 진주시'·'경상남도 거제시'·'경상남도교육청' 처럼 도·시군·교육청 공고가 나온다.
       진주·거제·산청·함양처럼 해외 IP 를 막는 시군의 채용 공고도 여기로 받는다.
