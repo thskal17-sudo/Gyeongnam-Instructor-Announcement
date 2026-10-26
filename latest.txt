@@ -1,31 +1,19 @@
-====================================================================================================
-URL: https://www.gojobs.go.kr/downFile.do?filenm=2026%EB%85%84%EB%8F%84+%EC%A7%81%EC%9B%90+%EC%B1%84%EC%9A%A9+%EA%B3%B5%EA%B3%A0%EB%AC%B8%28%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84+%EC%9D%B8%EA%B5%AC%EC%A0%84%EB%9E%B5%EC%97%B0%EA%B5%AC%EC%84%BC%ED%84%B0%29.hwp&uuid=3443216080062577&saveGbn=employ%2F%EA%B2%BD%EB%82%A8%EC%97%B0%EA%B5%AC%EC%9B%90
-status=200 final=https://www.gojobs.go.kr/downFile.do?filenm=2026%EB%85%84%EB%8F%84+%EC%A7%81%EC%9B%90+%EC%B1%84%EC%9A%A9+%EA%B3%B5%EA%B3%A0%EB%AC%B8%28%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84+%EC%9D%B8%EA%B5%AC%EC%A0%84%EB%9E%B5%EC%97%B0%EA%B5%AC%EC%84%BC%ED%84%B0%29.hwp&uuid=3443216080062577&saveGbn=employ%2F%EA%B2%BD%EB%82%A8%EC%97%B0%EA%B5%AC%EC%9B%90 encoding=None bytes=464896
-title: 
-[DATES] sample: ['2023-08-04', '2023-08-04', '2023-08-04', '2023-03-08', '2023-08-04']
-
-[RETRY without noise filter]
-[DATES] sample: ['2023-08-04', '2023-08-04', '2023-08-04', '2023-03-08', '2023-08-04']
-====================================================================================================
-URL: https://www.gojobs.go.kr/apmView.do?empmnsn=305407&searchJobsecode=020&menuNo=401&selMenuNo=400
-status=200 final=https://www.gojobs.go.kr/apmView.do?empmnsn=305407&searchJobsecode=020&menuNo=401&selMenuNo=400 encoding=utf-8 bytes=144185
-title: 나라일터
-
-[RAW HTML] div#sub_content.sub_content > div.inner > form#fileFrm
-<form id="fileFrm" method="post" name="fileFrm">
-<input id="filenm" name="filenm" type="hidden"/>
-<input id="uuid" name="uuid" type="hidden"/>
-<input id="saveGbn" name="saveGbn" type="hidden"/>
-<input id="empmnsn" name="empmnsn" type="hidden" value="305407"/>
-</form>
-
-[BODY candidates]
-   div#contents > div#sub_content.sub_content > div.inner  textlen=970 :: '모집공고 >\xa0\xa0일반채용\n                            \xa0\xa0>\xa0\xa0\n                            \n\t   '
-   div.inner > form#viewForm > div.sub_table_detail.br-table.sub_table_detail1.mt10  textlen=808 :: '일반채용 모집공고\n                    \t\n                    \t내용 읽기 - 공고명, 기관명, 조회, 등록일, '
-   div#wrap  textlen=1533 :: '일반채용 모집공고 상시모집공고 나의 관심채용정보 모집공고 >\xa0\xa0일반채용\n                            \xa0\xa0>\xa0\xa0\n      '
-   table#apmViewTbl > tr > td  textlen=483 :: '안녕하세요.\n경남연구원 경영기획팀입니다.\n2025년도 경남연구원 직원 채용(경상남도 인구전략연구센터)을 아래와 같이 공고하오니, 많은 관심과 참'
-   div#sub_content.sub_content > div.inner > div.sub_title.clear_after  textlen=150 :: '모집공고 >\xa0\xa0일반채용\n                            \xa0\xa0>\xa0\xa0\n                            \n\t   '
-
-[ATTACH candidates]
-   td > p.download > a href=javascript:gfn_fileDown('2026년도 직원 채용 공고문(경상남도 인구전략연구센터).hwp','3443216080062577','employ/경남연구원') onclick= text='2026년도 직원 채용 공고문(경상남도 인구전략연구센터).hwp'
-[DATES] sample: ['2026-10-12', '2026-10-22', '2026-10-22', '2026.10.12', '2026.10.22']
+24:  default_days: 45
+::group::probe narailteo_gyeongnam
+INFO gia.http: [http] 나가는 경로: 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.gojobs.go.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gojobs.go.kr/apmList.do?menuNo=401&searchJobsecode=020&searchSelectninsttnm=%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84&pageIndex=1 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gojobs.go.kr/apmList.do?menuNo=401&searchJobsecode=020&searchSelectninsttnm=%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84&pageIndex=2 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gojobs.go.kr/apmList.do?menuNo=401&searchJobsecode=020&searchSelectninsttnm=%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84&pageIndex=3 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gojobs.go.kr/apmList.do?menuNo=401&searchJobsecode=020&searchSelectninsttnm=%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84&pageIndex=4 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gojobs.go.kr/apmView.do?empmnsn=306131&searchJobsecode=020&menuNo=401&selMenuNo=400 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gojobs.go.kr/downFile.do?filenm=2026%ED%95%99%EB%85%84%EB%8F%84%20%EA%B1%B0%EC%A0%9C%EC%A4%91%EC%95%99%EA%B3%A0%EB%93%B1%ED%95%99%EA%B5%90%202%ED%95%99%EA%B8%B0%20%28%EC%B2%B4%EC%9C%A1-2%EC%B0%A8%20%EA%B3%B5%EA%B3%A0%29%EA%B3%84%EC%95%BD%EC%A7%81%EA%B5%90%EC%9B%90%20%EC%B1%84%EC%9A%A9%20%EA%B3%B5%EA%B3%A0.hwp&uuid=8445346080043629&saveGbn=employ/%EA%B1%B0%EC%A0%9C%EC%A4%91%EC%95%99%EA%B3%A0%EB%93%B1%ED%95%99%EA%B5%90 "HTTP/1.1 200 OK"
+[probe] 나라일터 모집공고 (기관명에 '경상남도' 포함): 목록 5건
+  - 2026-10-20 | 경상남도교육청 거제중앙고등학교 | 거제중앙고등학교 2026학년도 2학기 (체육) 시간강사 채용 공고 | https://www.gojobs.go.kr/apmView.do?empmnsn=306131&searchJobsecode=020&menuNo=401&selMenuNo=400
+  - 2026-10-15 | 경상남도교육청 거제중앙고등학교 | 거제중앙고등학교 2026학년도 2학기 (체육) 시간강사 채용 공고 | https://www.gojobs.go.kr/apmView.do?empmnsn=305802&searchJobsecode=020&menuNo=401&selMenuNo=400
+  - 2026-10-13 | 경상남도교육청 한일여자고등학교 | 2026학년도 한일여고 전일제시간강사(기계) 채용  2차 재공고 | https://www.gojobs.go.kr/apmView.do?empmnsn=305600&searchJobsecode=020&menuNo=401&selMenuNo=400
+  - 2026-09-30 | 경상남도교육청 한일여자고등학교 | 2026학년도 한일여고 전일제시간강사(기계) 채용 재공고 | https://www.gojobs.go.kr/apmView.do?empmnsn=304663&searchJobsecode=020&menuNo=401&selMenuNo=400
+  - 2026-09-14 | 경상남도교육청 한일여자고등학교 | 2026학년도 한일여고 전일제시간강사(기계) 채용 공고 | https://www.gojobs.go.kr/apmView.do?empmnsn=303503&searchJobsecode=020&menuNo=401&selMenuNo=400
+[detail] 본문 5778자 · 마감 2026-10-26 10:00:00+09:00 (fixed, '2026. 10. 26.(월) 오전10시') · 점수 95 ['+50 제목 핵심어(시간강사)', '+20 채용어(채용)', '+10 강의어(수업)', '+15 경남 지역'] · 분야 school
+[posting] 포함: 거제중앙고등학교 2026학년도 2학기 (체육) 시간강사 채용 공고
+::endgroup::
