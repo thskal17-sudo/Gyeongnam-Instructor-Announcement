@@ -55,3 +55,11 @@ def test_extract_text_strips_lone_surrogates():
     assert res.ok
     assert "강사 모집" in res.text
     res.text.encode("utf-8")  # 예외가 없어야 한다
+
+
+def test_filename_from_narailteo_download_url():
+    """나라일터 첨부 주소 downFile.do?filenm=… 에서 파일 이름을 찾는다 (2026-10-26)."""
+    from gia.extract.attachments import filename_from_url
+
+    url = "https://www.gojobs.go.kr/downFile.do?filenm=%EA%B3%B5%EA%B3%A0%EB%AC%B8.hwp&uuid=1&saveGbn=employ/x"
+    assert filename_from_url(url) == "공고문.hwp"

@@ -38,7 +38,9 @@ def file_extension(name: str) -> str:
 
 
 # user_file_nm: 새올(eminwon) FileDown.jsp?user_file_nm=공고문.hwpx&sys_file_nm=…
-_QUERY_NAME_KEYS = ("file", "filename", "file_name", "fileName", "fn", "attachfile", "orgfilename", "user_file_nm")
+# filenm: 나라일터 downFile.do?filenm=공고문.hwp&uuid=…&saveGbn=…
+_QUERY_NAME_KEYS = ("file", "filename", "file_name", "fileName", "fn", "attachfile", "orgfilename", "user_file_nm",
+                    "filenm")
 
 
 def filename_from_url(url: str) -> str:
