@@ -2,11 +2,13 @@
 from __future__ import annotations
 
 import hashlib
+import re
 from datetime import datetime
 from typing import Iterable
 
 from rapidfuzz import fuzz
 
+from .extract.detail import expand_school_name
 from .models import Posting, Status
 from .normalize import nfkc, norm_key
 
@@ -18,12 +20,23 @@ def canonical_key(org_name: str, title: str) -> str:
     return hashlib.sha1(f"{norm_key(org_name)}|{norm_key(title)}".encode()).hexdigest()
 
 
+# 나라일터는 학교 공고의 기관명을 '경상남도교육청 거제중앙고등학교'로, 경남교육청 구인포털은 '거제중앙고'로 준다.
+# 같은 공고가 두 곳에 올라와도 기관명이 달라 따로 실렸다(2026-10-26 메일). 견줄 때만 둘을 같은 꼴로 편다
+_EDU_OFFICE_PREFIX = re.compile(r"^(?:경상남도|경남)\s*교육청\s+")
+
+
+def org_identity(org_name: str) -> str:
+    """중복을 찾을 때 쓰는 기관 열쇠. 교육청 머리를 떼고 학교 약칭을 편다 (저장하는 기관명은 바꾸지 않는다)."""
+    name = _EDU_OFFICE_PREFIX.sub("", nfkc(org_name or "").strip())
+    return norm_key(expand_school_name(name))
+
+
 def title_similarity(a: str, b: str) -> float:
     return fuzz.token_set_ratio(nfkc(a).lower(), nfkc(b).lower())
 
 
 def find_duplicate(cand: Posting, pool: Iterable[Posting]) -> Posting | None:
-    org_key = norm_key(cand.org_name)
+    org_key = org_identity(cand.org_name)
     best: Posting | None = None
     best_sim = 0.0
     for p in pool:
@@ -31,7 +44,7 @@ def find_duplicate(cand: Posting, pool: Iterable[Posting]) -> Posting | None:
             continue
         if p.canonical_key == cand.canonical_key:
             return p
-        if norm_key(p.org_name) != org_key:
+        if org_identity(p.org_name) != org_key:
             continue
         if cand.posted_at and p.posted_at and abs((cand.posted_at - p.posted_at).days) > POSTED_WINDOW_DAYS:
             continue
