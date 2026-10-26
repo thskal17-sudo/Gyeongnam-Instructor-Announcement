@@ -1,24 +1,31 @@
 ====================================================================================================
-URL: https://www.gojobs.go.kr/jsp/cmmn/js/common.js
-status=200 final=https://www.gojobs.go.kr/jsp/cmmn/js/common.js encoding=utf-8 bytes=45982
+URL: https://www.gojobs.go.kr/downFile.do?filenm=2026%EB%85%84%EB%8F%84+%EC%A7%81%EC%9B%90+%EC%B1%84%EC%9A%A9+%EA%B3%B5%EA%B3%A0%EB%AC%B8%28%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84+%EC%9D%B8%EA%B5%AC%EC%A0%84%EB%9E%B5%EC%97%B0%EA%B5%AC%EC%84%BC%ED%84%B0%29.hwp&uuid=3443216080062577&saveGbn=employ%2F%EA%B2%BD%EB%82%A8%EC%97%B0%EA%B5%AC%EC%9B%90
+status=200 final=https://www.gojobs.go.kr/downFile.do?filenm=2026%EB%85%84%EB%8F%84+%EC%A7%81%EC%9B%90+%EC%B1%84%EC%9A%A9+%EA%B3%B5%EA%B3%A0%EB%AC%B8%28%EA%B2%BD%EC%83%81%EB%82%A8%EB%8F%84+%EC%9D%B8%EA%B5%AC%EC%A0%84%EB%9E%B5%EC%97%B0%EA%B5%AC%EC%84%BC%ED%84%B0%29.hwp&uuid=3443216080062577&saveGbn=employ%2F%EA%B2%BD%EB%82%A8%EC%97%B0%EA%B5%AC%EC%9B%90 encoding=None bytes=464896
 title: 
-
-[GREP] gfn_fileDown|fileDown
-   ...  cn = cn.replace(/&#39;/g ,"\'"); cn = cn.replace(/&amp;/g ,"&"); $(target).html(cn); } else { $(target).text(cn); } } /****** 첨부파일 다운로드 ******/ function gfn_fileDown(filenm, uuid, saveGbn) { document.fileFrm.filenm.value = filenm; document.fileFrm.uuid.value = uuid; document.fileFrm.saveGbn.value = saveGbn; document.fileFrm.action ="/downFile.do"; //실서버주소 //document.fileFrm.action = "http://localhost:9721/downFile.do" /* // 모바일 화면 if( navigator.userAgent.match(/Android/i) || navigator.us
-   [SCRIPT src] []
-[DATES] sample: ['2017.07.03', '2017.07.03']
+[DATES] sample: ['2023-08-04', '2023-08-04', '2023-08-04', '2023-03-08', '2023-08-04']
 
 [RETRY without noise filter]
-[DATES] sample: ['2017.07.03', '2017.07.03']
+[DATES] sample: ['2023-08-04', '2023-08-04', '2023-08-04', '2023-03-08', '2023-08-04']
 ====================================================================================================
-URL: https://www.gojobs.go.kr/jsp/apm/apmView.js
-status=200 final=https://www.gojobs.go.kr/jsp/apm/apmView.js encoding=utf-8 bytes=7017
-title: 
+URL: https://www.gojobs.go.kr/apmView.do?empmnsn=305407&searchJobsecode=020&menuNo=401&selMenuNo=400
+status=200 final=https://www.gojobs.go.kr/apmView.do?empmnsn=305407&searchJobsecode=020&menuNo=401&selMenuNo=400 encoding=utf-8 bytes=144185
+title: 나라일터
 
-[GREP] gfn_fileDown|fileDown
-   (없음)
-   [SCRIPT src] []
-[DATES] sample: ['2017.08.11', '2017.08.11']
+[RAW HTML] div#sub_content.sub_content > div.inner > form#fileFrm
+<form id="fileFrm" method="post" name="fileFrm">
+<input id="filenm" name="filenm" type="hidden"/>
+<input id="uuid" name="uuid" type="hidden"/>
+<input id="saveGbn" name="saveGbn" type="hidden"/>
+<input id="empmnsn" name="empmnsn" type="hidden" value="305407"/>
+</form>
 
-[RETRY without noise filter]
-[DATES] sample: ['2017.08.11', '2017.08.11']
+[BODY candidates]
+   div#contents > div#sub_content.sub_content > div.inner  textlen=970 :: '모집공고 >\xa0\xa0일반채용\n                            \xa0\xa0>\xa0\xa0\n                            \n\t   '
+   div.inner > form#viewForm > div.sub_table_detail.br-table.sub_table_detail1.mt10  textlen=808 :: '일반채용 모집공고\n                    \t\n                    \t내용 읽기 - 공고명, 기관명, 조회, 등록일, '
+   div#wrap  textlen=1533 :: '일반채용 모집공고 상시모집공고 나의 관심채용정보 모집공고 >\xa0\xa0일반채용\n                            \xa0\xa0>\xa0\xa0\n      '
+   table#apmViewTbl > tr > td  textlen=483 :: '안녕하세요.\n경남연구원 경영기획팀입니다.\n2025년도 경남연구원 직원 채용(경상남도 인구전략연구센터)을 아래와 같이 공고하오니, 많은 관심과 참'
+   div#sub_content.sub_content > div.inner > div.sub_title.clear_after  textlen=150 :: '모집공고 >\xa0\xa0일반채용\n                            \xa0\xa0>\xa0\xa0\n                            \n\t   '
+
+[ATTACH candidates]
+   td > p.download > a href=javascript:gfn_fileDown('2026년도 직원 채용 공고문(경상남도 인구전략연구센터).hwp','3443216080062577','employ/경남연구원') onclick= text='2026년도 직원 채용 공고문(경상남도 인구전략연구센터).hwp'
+[DATES] sample: ['2026-10-12', '2026-10-22', '2026-10-22', '2026.10.12', '2026.10.22']
