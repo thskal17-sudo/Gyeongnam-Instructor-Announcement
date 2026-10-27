@@ -14,7 +14,7 @@
 from __future__ import annotations
 
 from copy import copy
-from datetime import datetime
+from datetime import datetime, timedelta
 from io import BytesIO
 from pathlib import Path
 
@@ -116,15 +116,28 @@ def hold_reason(p: Posting, row: dict[str, object]) -> str:
     return " · ".join(why) + " — 채운 뒤 '보류'를 지우면 올라가요"
 
 
+# 마감일을 끝내 못 찾은 공고는 저장소에서 '마감'으로 바뀌지 않아 보류 줄로 계속 남는다.
+# 학교 강사 공고는 접수가 1~2주라, 게시 뒤 이만큼 지난 것은 이미 끝났다고 보고 양식에서 뺀다
+# (2026-10-27: 보류 25줄 중 18줄이 9/22~10/13 경남교육청 공고였다)
+UNDATED_MAX_AGE = timedelta(days=14)
+
+
 def select_postings(store: Store, now: datetime) -> list[Posting]:
     """올릴 후보: 진행 중이고 마감이 지나지 않은 공고 전부.
 
     매일 신규만이 아니라 전체를 보낸다. 사이트가 같은 제목은 건너뛰므로(양식 안내 5번)
-    어제 못 올린 줄도 다시 실린다.
+    어제 못 올린 줄도 다시 실린다. 마감일 없는 공고는 게시 뒤 2주까지만 싣는다.
     """
+    def stale_undated(p: Posting) -> bool:
+        if p.deadline:
+            return False
+        since = p.posted_at or p.first_seen_at.astimezone(KST).date()
+        return now.astimezone(KST).date() - since > UNDATED_MAX_AGE
+
     return [p for p in store.values()
             if p.status != Status.expired
             and not (p.deadline and p.deadline < now)
+            and not stale_undated(p)
             and "피드백제외" not in p.flags]
 
 
