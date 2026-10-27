@@ -1,0 +1,35 @@
+{
+ "finished_at": "2026-10-27T21:57:37.006562+09:00",
+ "llm_cache_read_tokens": 0,
+ "llm_calls": 0,
+ "llm_errors": 0,
+ "llm_excluded": 0,
+ "llm_input_tokens": 0,
+ "llm_output_tokens": 0,
+ "llm_refusals": 0,
+ "notes": [
+  "재수집: 이미 알던 URL도 상세를 다시 파싱"
+ ],
+ "run_id": "2026-10-27T21-55",
+ "sources": [
+  {
+   "detail_fetched": 83,
+   "duration_ms": 135660,
+   "errors": [],
+   "listed": 95,
+   "llm_excluded": 0,
+   "new": 7,
+   "source_id": "gne",
+   "status": "ok",
+   "updated": 58
+  }
+ ],
+ "started_at": "2026-10-27T21:55:21.290527+09:00",
+ "totals": {
+  "closing_soon": 10,
+  "expired": 215,
+  "merged": 76,
+  "new": 7,
+  "updated": 58
+ }
+}
