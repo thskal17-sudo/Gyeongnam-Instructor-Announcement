@@ -420,3 +420,18 @@ def test_held_deadline_cell_says_check_notice(tmp_path):
     assert cell.value == "공고문 확인" and cell.fill.fgColor.rgb.endswith("FFF2CC")
     assert ws.cell(2, 14).value == "보류"
     assert "첨부(공고문)를 자동으로 읽지 못했어요" in ws.cell(2, 15).value
+
+
+def test_undated_rows_drop_after_two_weeks(tmp_path):
+    """마감일 없는 공고는 게시 뒤 2주가 지나면 양식에서 뺀다 (2026-10-27)."""
+    from datetime import date
+
+    fresh = make_posting("A초 방과후 강사 모집", org="A초", deadline=None, posted_at=NOW.date() - timedelta(days=5),
+                         body_excerpt="강사 모집", status=Status.active)
+    old = make_posting("B초 방과후 강사 모집", org="B초", deadline=None, posted_at=NOW.date() - timedelta(days=20),
+                       body_excerpt="강사 모집", status=Status.active)
+    dated = make_posting("C초 방과후 강사 모집", org="C초", deadline=NOW + timedelta(days=3),
+                         posted_at=NOW.date() - timedelta(days=30), body_excerpt="강사 모집", status=Status.active)
+    from gia.report.gangsaitda import select_postings
+    titles = {p.title for p in select_postings(_store(tmp_path, fresh, old, dated), NOW)}
+    assert titles == {"A초 방과후 강사 모집", "C초 방과후 강사 모집"}
