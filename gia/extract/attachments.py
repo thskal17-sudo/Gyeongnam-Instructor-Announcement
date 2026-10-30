@@ -56,6 +56,14 @@ def filename_from_url(url: str) -> str:
     if file_extension(last):
         return last
     q = parse_qs(parts.query)
+    for vals in q.values():
+        # 진주시처럼 내려받기 중계 주소에 원래 주소를 통째로 싣는 곳:
+        # /DownloadEx.do?url=http://eminwon.jinju.go.kr/…/FileDown.jsp?user_file_nm=공고.hwp
+        for v in vals:
+            if v.startswith(("http://", "https://")):
+                inner = filename_from_url(v)
+                if file_extension(inner):
+                    return inner
     for key, vals in q.items():
         if key.lower().replace("-", "_") not in {k.lower() for k in _QUERY_NAME_KEYS}:
             continue

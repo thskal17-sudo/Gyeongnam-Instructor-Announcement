@@ -337,25 +337,29 @@ sources:
         attachment_selector: a.filename[href*="cmsfile/download.do"]
     notes: 시험/채용정보 게시판(2026-09-21 검증). 접수기간은 목록 5열과 본문에 있음
   - id: jinju
-    name: 진주시
+    name: 진주시 채용공고
     org_type: local_gov
     tier: 2
     homepage: https://www.jinju.go.kr
     adapter:
       type: html_list
       list_url: https://www.jinju.go.kr/00130/02730/06660.web?cpage={page}
+      # 거창·창원과 같은 누리집 틀. 항목: 제목(strong.t1) / 고시번호 / 등록일 / 공고기간('2026-10-26~2026-11-02') / 연락처 / 담당부서
       row_selector: ul.lst1 > li.li1
       title_selector: strong.t1
       link_selector: a.a1
-      # span.t3 는 고시번호·등록일·공고기간·담당자·담당부서 순이다. 두 번째가 등록일
-      date_selector: span.t3:nth-of-type(2)
-      detail: { fetch: true, body_selector: div.bbs1view1 div.substance }
+      date_selector: "span.t3:nth-of-type(2)"
+      deadline_selector: "span.t3:nth-of-type(3)"
+      keywords: [강사, 교강사, 지도사, 지도자, 코치, 강습, 튜터, 인력풀, 트레이너]
+      paging: { max_pages: 3 }
+      detail:
+        fetch: true
+        body_selector: div.bbs1view1
+        # 본문은 제목·고시번호뿐이고 내용은 첨부(HWP)에 있다. 첨부는 /DownloadEx.do?url=<새올 FileDown.jsp 주소>
+        attachment_selector: a.filename
     notes: >-
-      채용공고 게시판. 9월에는 모든 GitHub 러너에서 연결 시간초과였고(2026-09-21·22, 러너 3대에서
-      브라우저형 헤더·Referer 까지 붙여도 동일) 그래서 주소를 비워 두었다. 2026-10-30 국내 중계
-      (KR_PROXY_URL)가 들어온 뒤 러너 probe 에서 HTTP 200·218KB 로 열렸고, 거창군과 같은 'web' CMS
-      구조라 같은 셀렉터를 쓴다(ul.lst1 > li.li1, 제목 strong.t1, 링크 a.a1).
-      목록에 기간제근로자·조사원 채용이 많아 분류기 점수로 거른다.
+      채용공고(새올 고시공고 중 채용 분류를 누리집에서 보여 주는 게시판). 러너 IP 로는 연결 시간초과(2026-09-21~22),
+      국내 중계(KR_PROXY_URL)로 읽힌다(2026-10-30). robots.txt 는 이 경로를 막지 않는다
   - id: tongyeong
     name: 통영시 취업공지사항
     org_type: local_gov
@@ -440,18 +444,12 @@ sources:
     homepage: https://www.geoje.go.kr
     adapter:
       type: html_list
-      list_url: https://www.geoje.go.kr/board/list.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&startPage={page}
-      row_selector: div.board-list table.list01 tbody tr
-      title_selector: td.title a
-      date_selector: td.date
-      date_formats: ["%y.%m.%d"]
-      detail: { fetch: true, body_selector: div.board-view }
+      <<: *eminwon
+      list_url: http://eminwon.geoje.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectListOfrNotAncmt&methodnm=selectListOfrNotAncmtHomepage&homepage_pbs_yn=Y&subCheck=Y&ofr_pageSize=50&not_ancmt_se_code=01,02,03,04,05&initValue=Y&countYn=Y&list_gubun=A&epcCheck=Y&Key=B_Subject&pageIndex={page}
+      link_url_template: http://eminwon.geoje.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_mgt_no={1}
     notes: >-
-      구인정보 게시판(BBS_0000062). 9월에는 러너 3대 모두 연결 시간초과였다가 2026-10-30 국내 중계
-      (KR_PROXY_URL) 뒤 HTTP 200·218KB 로 열렸다. 처음 후보로 적어 둔 '구인/구직'(BBS_0000455)은
-      빈 게시판이라('등록된 게시물이 없습니다') 글이 실제로 올라오는 이 게시판을 쓴다.
-      민간 구인글(요양보호사 등)이 대부분이라 분류기 점수로 거른다. 날짜는 'YY.MM.DD' 두 자리 연도다.
-      상세 본문 셀렉터는 추정이라 첫 probe 에서 확인할 것.
+      새올(eminwon) 고시공고. 누리집 '거제시일자리'(BBS_0000455)는 국내 중계로 열리지만 글이 없다(2026-10-30).
+      새올 서버는 러너에서도 열린다(2026-10-24). 다른 새올 시군과 같이 제목 키워드로 채용·모집 공고만 남긴다
   - id: yangsan
     name: 양산시
     org_type: local_gov
