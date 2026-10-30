@@ -1,6 +1,10 @@
-24:  default_days: 30
-::group::probe gyeongnam_go
-INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
-INFO httpx: HTTP Request: GET https://www.gyeongnam.go.kr/robots.txt "HTTP/1.1 200 OK"
-[probe] 경상남도청 경남채용정보: 목록 실패 — robots.txt 차단: https://www.gyeongnam.go.kr/board/list.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&startPage=1
-::endgroup::
+====================================================================================================
+URL: https://www.gyeongnam.go.kr/robots.txt
+status=200 final=https://www.gyeongnam.go.kr/robots.txt encoding=ascii bytes=1971
+title: 
+body (short): User-agent: * Disallow: / Allow: /$ Allow: /index.gyeong Allow: /apc/index.gyeong Allow: /gamsa/index.gyeong Allow: /index.gyeong?contentsSid=4449 Allow: /gnreturn Allow: /issue Allow: /housing Allow: /culture Allow: /corona.html Allow: /index.html Allow: /gnisland/index.gyeong Allow: /120/index.gyeong Allow: /gpbc/index.gyeong Allow: /giup/index.gyeong Allow: /seit/index.gyeong Allow: /forestrecreation/index.gyeong Allow: /manifesto/index.gyeong Allow: /bangjae/index.gyeong Allow: /seoul/index.gyeong Allow: /gnvri/index.gyeong Allow: /gsndfi/index.gyeong Allow: /greencamp/index.gyeong Allow: 
+====================================================================================================
+URL: https://gyeongnam.saramin.co.kr/robots.txt
+status=200 final=https://gyeongnam.saramin.co.kr/robots.txt encoding=ascii bytes=511
+title: 
+body (short): # robots.txt for https://*.saramin.co.kr/ User-agent: * Disallow: /super_admin/ User-agent: BecomeBot Disallow: /super_admin/ User-agent: Exabot Disallow: /super_admin/ User-agent: twiceler Disallow: /super_admin/ User-agent: dotbot Disallow: /super_admin/ User-agent: MSIECrawler Disallow: /super_admin/ User-agent: gigabot Disallow: /super_admin/ User-agent: MJ12bot Disallow: /super_admin/ User-agent: Baiduspider Disallow: /super_admin/ User-agent: GPTBot Disallow: / 
