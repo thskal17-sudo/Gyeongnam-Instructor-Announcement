@@ -1,0 +1,22 @@
+::group::probe geochang
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.geochang.go.kr/robots.txt "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&cpage=1 "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&idx=15036019&amode=view&cpage=1 "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://www.geochang.go.kr/board/download.do?idx=15036019&fnum=1&gcode=1030 "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://www.geochang.go.kr/board/download.do?idx=15036019&fnum=2&gcode=1030 "HTTP/1.1 200 200"
+[probe] 거창군: 목록 9건
+  - 2026-10-30 | 거창군 | 월평빌라 직원(생활재활교사) 채용 공고새 글 | https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&idx=15036019&amode=view&cpage=1
+  - 2026-10-26 | 거창군 | 거창인애노인통합지원센터 채용 공고 | https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&idx=15035622&amode=view&cpage=1
+  - 2026-10-22 | 거창군 | 2026. 12. 23. 거창군체육회장선거 - 공정선거지원단 모집 안내 | https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&idx=15033521&amode=view&cpage=1
+  - 2026-10-21 | 거창군 | 2026년 제4회 거창군 임기제공무원(치매안심센터) 임용시험 최종합격자 공고 | https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&idx=15033240&amode=view&cpage=1
+  - 2026-10-20 | 거창군 | [거창노인통합지원센터] 장기요양서비스사업 방문목욕차량 운전원 채용 공고 | https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&idx=15032977&amode=view&cpage=1
+[detail] 본문 6210자 · 마감 2026-11-18 11:00:00+09:00 (fixed, '11. 18.(수) 11시') · 점수 5 ['-30 핵심어 없음', '+20 채용어(채용)', '+15 경남 지역'] · 분야 counsel_welfare
+[posting] 제외: 
+::endgroup::
+::group::probe gn_caf
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.gcaf.or.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&page=1 "HTTP/1.1 200 OK"
+[probe] 경남문화예술진흥원 채용공고: 목록 0건
+::endgroup::
