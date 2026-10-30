@@ -1,60 +1,144 @@
 ====================================================================================================
-URL: https://www.gyeongnam.go.kr/board/list.gyeong?boardId=BBS_0000377&menuCd=DOM_000000108002002000&startPage=1
-status=200 final=https://www.gyeongnam.go.kr/board/list.gyeong?boardId=BBS_0000377&menuCd=DOM_000000108002002000&startPage=1 encoding=UTF-8 bytes=1387
-title: 페이지를 표시할 수 없습니다.
-body (short):  <!DOCTYPE html> <html lang="ko"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>페이지를 표시할 수 없습니다.</title> <style> body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: linear-gradient(135deg, #eef2f3 0%, #8e9eab 100%); display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; } .error-card { text-align: center; background: #ffffff; padding: 50px 40px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); border-top: 5px solid
-====================================================================================================
-URL: https://www.hygn.go.kr/00429/00543/00553.web?cpage=1
-status=200 final=https://www.hygn.go.kr/00429/00543/00553.web?cpage=1 encoding=UTF-8 bytes=71722
-title: 채용정보 | 함양군 대표누리집
+URL: https://www.jinju.go.kr/
+status=200 final=https://www.jinju.go.kr/main.web encoding=UTF-8 bytes=281077
+title: 진주시청
 
-[LIST] div#snb1.snb1 > div.d2 > ul  items=4
-   li: li.m1.on -> 함양소식 군정소식 행사소식 고시/공고 채용정보 군정뉴스 해명자료 반상회보 국정홍보만화 타기관홍보 공보 공시송달 함양군 스마트 마을방송
-      a href=/00429/00543.web onclick= :: own='' all='함양소식'
-      span :: own='함양소식' all='함양소식'
-      div.d3 :: own='' all='군정소식 행사소식 고시/공고 채용정보 군정뉴스 해명자료 반상회보 국정홍보만화 타기관홍보 공'
-      ul :: own='' all='군정소식 행사소식 고시/공고 채용정보 군정뉴스 해명자료 반상회보 국정홍보만화 타기관홍보 공'
-      li.m1 :: own='' all='군정소식'
-      a href=/00429/00543/00547.web onclick= :: own='군정소식' all='군정소식'
-      li.m2 :: own='' all='행사소식'
-      a href=/00429/00543/00548.web onclick= :: own='행사소식' all='행사소식'
-      li.m3 :: own='' all='고시/공고'
-      a href=/00429/00543/00549.web onclick= :: own='고시/공고' all='고시/공고'
-      li.m4.on :: own='' all='채용정보'
-      a href=/00429/00543/00553.web onclick= :: own='채용정보' all='채용정보'
-      li.m5 :: own='' all='군정뉴스'
-      a href=/01997/02007.web onclick= :: own='군정뉴스' all='군정뉴스'
-[DATES] sample: ['2024.08.25']
+[LIST] div#bbs1c1.cont > div.w1 > ul.lst1  items=6
+   li: li -> 2026년 하반기 정부 우수공무원 추천대상자 공개검증 추가 실시 안내 new 2026.10.29
+      a href=/00136.web?amode=view&idx=39622429&gcode=2144 onclick= :: own='' all='2026년 하반기 정부 우수공무원 추천대상자 공개검증 추가 실시 안내 new 2026.10'
+      span.t1 :: own='2026년 하반기 정부 우수공무원 추천대상자 공개검증 추가 실시 안내' all='2026년 하반기 정부 우수공무원 추천대상자 공개검증 추가 실시 안내'
+      i.new :: own='new' all='new'
+      span.time :: own='2026.10.29' all='2026.10.29'
+
+[LIST] div#bbs1c2.cont > div.w1 > ul.lst1  items=5
+   li: li -> 문화가 있는 날 하모하모 페스타 운영 용역 제안서평가위원(후보자) 모집 공고 2026.10.30
+      a href=/00137.web?amode=view&not_ancmt_mgt_no=65898 onclick= :: own='' all='문화가 있는 날 하모하모 페스타 운영 용역 제안서평가위원(후보자) 모집 공고 2026.10'
+      span.t1 :: own='문화가 있는 날 하모하모 페스타 운영 용역 제안서평가위원(후보자) 모집 ' all='문화가 있는 날 하모하모 페스타 운영 용역 제안서평가위원(후보자) 모집 공고'
+      span.time :: own='2026.10.30' all='2026.10.30'
+
+[LIST] div#bbs1c3.cont > div.w1 > ul.lst1  items=4
+   li: li -> 2027년 진주시립도서관 독서・문화프로그램 강사 모집 공고 2026.10.20
+      a href=/00137.web?amode=view&not_ancmt_mgt_no=65757 onclick= :: own='' all='2027년 진주시립도서관 독서・문화프로그램 강사 모집 공고 2026.10.20'
+      span.t1 :: own='2027년 진주시립도서관 독서・문화프로그램 강사 모집 공고' all='2027년 진주시립도서관 독서・문화프로그램 강사 모집 공고'
+      span.time :: own='2026.10.20' all='2026.10.20'
+
+[LIST] div#bbs1c4.cont > div.w1 > ul.lst1  items=6
+   li: li -> 조규일 진주시장, 국회 이광재 예결위원장 만나 2027년 국비 요청 new 2026.10.29
+      a href=/00138.web?amode=view&idx=39622441&gcode=1004 onclick= :: own='' all='조규일 진주시장, 국회 이광재 예결위원장 만나 2027년 국비 요청 new 2026.10.'
+      span.t1 :: own='조규일 진주시장, 국회 이광재 예결위원장 만나 2027년 국비 요청' all='조규일 진주시장, 국회 이광재 예결위원장 만나 2027년 국비 요청'
+      i.new :: own='new' all='new'
+      span.time :: own='2026.10.29' all='2026.10.29'
+
+[LIST] div.wrap1 > div.mView > ul.mCont  items=8
+   li: li.mContC -> 사적 진주성 석성(둘레 1,760m)으로 축조된 진주성은 진주의 역사와 문화가 집약되어 있는 진주의 성지이다. 본래 토성이던 것을 고려 우왕5년 (1379)에 석성으로 수축하였다.
+      div.w1 :: own='' all='사적 진주성 석성(둘레 1,760m)으로 축조된 진주성은 진주의 역사와 문화가 집약되어 있'
+      a.a1 href=/tour/move_detail.do?type=tourinfo&idx=605 onclick= attrs={'target': '_blank', 'rel': "['noopener']"} :: own='' all='사적 진주성 석성(둘레 1,760m)으로 축조된 진주성은 진주의 역사와 문화가 집약되어 있'
+      b.g1.s1 :: own='' all='사적'
+      span.g1t1 :: own='사적' all='사적'
+      div.tg1 :: own='' all='진주성 석성(둘레 1,760m)으로 축조된 진주성은 진주의 역사와 문화가 집약되어 있는 진'
+      span.t1 :: own='진주성' all='진주성'
+      span.t2 :: own='석성(둘레 1,760m)으로 축조된 진주성은 진주의 역사와 문화가 집약되' all='석성(둘레 1,760m)으로 축조된 진주성은 진주의 역사와 문화가 집약되어 있는 진주의 성'
+[DATES] sample: ['2026/10/30', '2026.10.30', '2026.10.29', '2026.10.28', '2026.10.28']
 
 [ANCHORS] most common link paths
-   x1 div.d3 > ul > li.m12 > a  href=/00429/00543/06043.web  text='함양군 스마트 마을방송'
-      row? li.m12 :: '함양군 스마트 마을방송'
-   x1 div.d3 > ul > li.m5 > a  href=/00429/00544/00569.web  text='삽니다/팝니다/임대'
-      row? li.m5 :: '삽니다/팝니다/임대'
-   x1 div.d3 > ul > li.m8 > a  href=/00429/00544/05031.web  text='청소년 꿈드림 바우처 가맹점 신청접수'
-      row? li.m8 :: '청소년 꿈드림 바우처 가맹점 신청접수'
-   x1 div.d3 > ul > li.m1 > a  href=/00429/00546/00581.web  text='고향사랑기부제 소개'
-      row? li.m1 :: '고향사랑기부제 소개'
+   x21 div.w1 > ul.lst1 > li > a  href=/00136.web?amode=view&idx=39622429&gcode=2144  text='2026년 하반기 정부 우수공무원 추천대상자 공개검증 추가 실시 안내 n'
+      row? li :: '2026년 하반기 정부 우수공무원 추천대상자 공개검증 추가 실시 안내 new 2026.10.29'
+   x11 ul.mCont > li.mContC > div.w1 > a.a1  href=/tour/move_detail.do?type=tourinfo&idx=605 {'target': '_blank', 'rel': "['noopener']", 'title': '새 창'} text='사적 진주성 석성(둘레 1,760m)으로 축조된 진주성은 진주의 역사와 '
+      row? div.w1 :: '사적 진주성 석성(둘레 1,760m)으로 축조된 진주성은 진주의 역사와 문화가 집약되어 있는 진주의 성지이다. 본래 토성이던 것을 고려 우왕5년 (1379)에 석성으로 수축하였다. 성안에는 촉석루, 의기사, 영남포정'
+   x2 div.w1 > ul.hot > li > a  href=/00137.web?amode=view&not_ancmt_mgt_no=65900  text='수의계약(소액) 견적제출 안내공고 - 상대육교 철거공사 진주시 공고 제2'
+      row? li :: '수의계약(소액) 견적제출 안내공고 - 상대육교 철거공사 진주시 공고 제2026-2572호 2026-10-30~2026-11-05'
+   x1 div#container > div#wrap > a.b1.sajeon.noprint  href=https://www.jinju.go.kr/00131/00169/05110.web {'target': '_blank', 'title': '새창열림'} text='사전심사 청구제 안내 자세히보기'
 
-[LINKS] board candidates (10)
-   '함양소식' -> https://www.hygn.go.kr/00429/00543.web
-   '군정소식' -> https://www.hygn.go.kr/00429/00543/00547.web
-   '행사소식' -> https://www.hygn.go.kr/00429/00543/00548.web
-   '고시/공고' -> https://www.hygn.go.kr/00429/00543/00549.web
-   '채용정보' -> https://www.hygn.go.kr/00429/00543/00553.web
-   '모집신청접수' -> https://www.hygn.go.kr/00429/00545.web
-   '입찰공고' -> https://www.hygn.go.kr/00430/00587/00696.web
-   '개인정보 목적 외 이용 및 제공 공고' -> https://www.hygn.go.kr/00430/00593/00735.web
-   '채용정보 바로가기' -> https://eminwon.hygn.go.kr/emwp/jsp/ofr/OfrNotAncmtLSub.jsp?not_ancmt_se_code=05
-   '알림서비스 신청' -> https://www.hygn.go.kr/05342.web
+[LINKS] board candidates (63)
+   '시정소식' -> https://www.jinju.go.kr/00130.web
+   '알림마당' -> https://www.jinju.go.kr/00130/02730.web
+   '새소식' -> https://www.jinju.go.kr/00130/02730/00136.web
+   '알림창' -> https://www.jinju.go.kr/00130/02730/06464.web
+   '고시/공고' -> https://www.jinju.go.kr/00130/02730/05586.web
+   '채용공고' -> https://www.jinju.go.kr/00130/02730/06660.web
+   '타기관소식' -> https://www.jinju.go.kr/00130/02730/00147.web
+   '캘린더로 보는 소식' -> https://www.jinju.go.kr/00130/02730/06993.web
+   '시정소식지(촉석루)' -> https://www.jinju.go.kr/00130/00148/00157.web
+   '시정소식지(촉석루)' -> https://www.jinju.go.kr/00130/00148/00158.web
+   '시정소식지(촉석루) 구독신청' -> https://www.jinju.go.kr/00130/00148/00159.web
+   '나의 관심분야 & 알림톡 설정' -> https://www.jinju.go.kr/06996.web?amode=update_favorite
+   '제안모집 안내' -> https://www.jinju.go.kr/00132/00381/00438.web
+   '공지사항' -> https://www.jinju.go.kr/00132/05089/05092.web
+   '분과회원(8기) 모집 신청' -> https://www.jinju.go.kr/00132/05089/06783.web
+   '자유게시판' -> https://www.jinju.go.kr/00132/02751/00383.web
+   '사진게시판' -> https://www.jinju.go.kr/00132/02751/00384.web
+   '알림/소식' -> https://www.jinju.go.kr/00132/05626/05632.web
+   '행정처분(불이익처분) 기준 설정 공고' -> https://www.jinju.go.kr/00133/00442/00483.web
+   '입찰공고' -> https://www.jinju.go.kr/04964.web
+   '입찰공고' -> https://www.jinju.go.kr/00133/04958/04964.web
+   '알림마당' -> https://www.jinju.go.kr/04987.web
+   '공지사항' -> https://www.jinju.go.kr/00133/04958/04987.web
+   '구인/구직' -> https://www.jinju.go.kr/00134/00610/00620.web
+   '구인신청절차' -> https://gyeongnam.work.go.kr/jinju/regionBoard/boardData/retrieveBoardContList.do?lwknetBoardNo=1814
+   '구인' -> https://gyeongnam.work.go.kr/jinju/regionBoard/boardData/retrieveBoardContList.do?lwknetBoardNo=1632
+   '잡코리아(경남)' -> http://055.jobkorea.co.kr/
+   '인크루트(경남)' -> http://job.incruit.com/jobdb_list/searchjob.asp?ct=3&ty=3&cd=2522
+   '분묘개장 공고' -> https://www.jinju.go.kr/00134/00614/00754.web
+   '새소식' -> https://www.jinju.go.kr/00134/00614/06453.web
+   '공지사항' -> https://www.jinju.go.kr/00134/00614/07171.web
+   '공지사항' -> https://www.jinju.go.kr/00134/00611/05414.web
+   '주정차 단속 알림서비스(휘슬)' -> https://www.jinju.go.kr/00134/00612/07135.web
+   '알림마당' -> https://www.jinju.go.kr/00134/00618/01026.web
+   '개별주택가격 열람' -> https://www.realtyprice.kr/notice/hpindividual/search.htm;jsessionid=367293672688FF8CDF011D65620ED0BB#menu02
+   '강사프로필' -> https://www.jinju.go.kr/00134/00616/00917.web
+   '공지사항' -> https://www.jinju.go.kr/00134/04991/05059.web
+   '벽보게시판' -> https://www.jinju.go.kr/00134/05705/06600.web
+   '공지사항' -> https://www.jinju.go.kr/00135/01112/07191.web
+   '공지사항' -> https://www.jinju.go.kr/00135/01112/01546.web
 ====================================================================================================
-URL: https://www.hygn.go.kr/
-status=200 final=https://www.hygn.go.kr/ encoding=utf-8 bytes=9762
-title: 함양군 대표누리집
+URL: https://www.geoje.go.kr/
+status=200 final=https://www.geoje.go.kr/index.geoje encoding=UTF-8 bytes=30144
+title: 거제시청 - 함께여는 동남권중심 거제
+
+[PAGING] https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000008&menuCd=DOM_000008902001001000&contentsSid=13478&paging=ok&startPage=1&dataSid=3
+[DATES] sample: []
+
+[RETRY without noise filter]
+
+[PAGING] https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000008&menuCd=DOM_000008902001001000&contentsSid=13478&paging=ok&startPage=1&dataSid=3
+[DATES] sample: []
+
+[ANCHORS] most common link paths
+   x1 div.link_box > div.left_wrap > div.left_box > a  href=/index.geoje?contentsSid=13478  text='거제시 대표 누리집 바로가기'
+      row? div.left_box :: '거제시 대표 누리집 바로가기'
+   x1 div.link_box > div.left_wrap > div.tour_box > a  href=https://tour.geoje.go.kr/index.geoje {'target': '_blank', 'title': '관광문화 새창열림'} text='거제 애(愛) 빠지다 거제 관광문화 바로가기'
+      row? div.tour_box :: '거제 애(愛) 빠지다 거제 관광문화 바로가기'
+====================================================================================================
+URL: https://www.gyeongnam.go.kr/
+status=200 final=https://www.gyeongnam.go.kr/ encoding=UTF-8 bytes=21062
+title: 경상남도
 [DATES] sample: []
 
 [RETRY without noise filter]
 [DATES] sample: []
 
 [ANCHORS] most common link paths
-   x1 div#wrap.init > div.container > div.intro > a  href=https://hytour.kr/ {'target': '_blank', 'title': '새창'} text='웰·컴 함양 반값여행'
+   x1 div#intro > div.tit-area > div.btn > a.tit  href=https://www.gyeongnam.go.kr/index.gyeong  text='경상남도 대표누리집'
+      row? div.btn :: '경상남도 대표누리집'
+::group::probe geochang
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.geochang.go.kr/robots.txt "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&cpage=1 "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&idx=15036019&amode=view&cpage=1 "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://www.geochang.go.kr/board/download.do?idx=15036019&fnum=1&gcode=1030 "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://www.geochang.go.kr/board/download.do?idx=15036019&fnum=2&gcode=1030 "HTTP/1.1 200 200"
+[probe] 거창군: 목록 9건
+  - 2026-10-30 | 거창군 | 월평빌라 직원(생활재활교사) 채용 공고새 글 | https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&idx=15036019&amode=view&cpage=1
+  - 2026-10-26 | 거창군 | 거창인애노인통합지원센터 채용 공고 | https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&idx=15035622&amode=view&cpage=1
+  - 2026-10-22 | 거창군 | 2026. 12. 23. 거창군체육회장선거 - 공정선거지원단 모집 안내 | https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&idx=15033521&amode=view&cpage=1
+  - 2026-10-21 | 거창군 | 2026년 제4회 거창군 임기제공무원(치매안심센터) 임용시험 최종합격자 공고 | https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&idx=15033240&amode=view&cpage=1
+  - 2026-10-20 | 거창군 | [거창노인통합지원센터] 장기요양서비스사업 방문목욕차량 운전원 채용 공고 | https://www.geochang.go.kr/00604/00609/02192.web?gcode=1030&idx=15032977&amode=view&cpage=1
+[detail] 본문 6210자 · 마감 2026-11-18 11:00:00+09:00 (fixed, '11. 18.(수) 11시') · 점수 5 ['-30 핵심어 없음', '+20 채용어(채용)', '+15 경남 지역'] · 분야 counsel_welfare
+[posting] 제외: 
+::endgroup::
+::group::probe gn_caf
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.gcaf.or.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&page=1 "HTTP/1.1 200 OK"
+[probe] 경남문화예술진흥원 채용공고: 목록 0건
+::endgroup::
