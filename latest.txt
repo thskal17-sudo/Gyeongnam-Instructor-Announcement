@@ -1,139 +1,31 @@
 ====================================================================================================
-URL: https://www.jinju.go.kr/00130/02730/06660.web?cpage=1
-status=200 final=https://www.jinju.go.kr/00130/02730/06660.web?cpage=1 encoding=UTF-8 bytes=218300
-title: 채용공고 |
-진주시청
-
-[LIST] div#body_content.body_content > div.list1f1t3i1 > ul.lst1  items=5
-   li: li.li1 -> 2026년 미천면 농지전수조사 조사원 기간제근로자 채용 공고(추가모집) 고시번호 : 진주시 미천면 공고 제2026-11호 등록일 : 2026-10-26 공고기간 : 2026-10-
-      div.wrap1 :: own='' all='2026년 미천면 농지전수조사 조사원 기간제근로자 채용 공고(추가모집) 고시번호 : 진주시'
-      a.a1 href=?amode=view&not_ancmt_mgt_no=65854&cpage=1 onclick= :: own='' all='2026년 미천면 농지전수조사 조사원 기간제근로자 채용 공고(추가모집) 고시번호 : 진주시'
-      span.wrap1texts :: own='' all='2026년 미천면 농지전수조사 조사원 기간제근로자 채용 공고(추가모집) 고시번호 : 진주시'
-      strong.t1 :: own='2026년 미천면 농지전수조사 조사원 기간제근로자 채용 공고(추가모집)' all='2026년 미천면 농지전수조사 조사원 기간제근로자 채용 공고(추가모집)'
-      i.wrap1t3 :: own='' all='고시번호 : 진주시 미천면 공고 제2026-11호 등록일 : 2026-10-26 공고기간 '
-      span.t3 :: own='고시번호 : 진주시 미천면 공고 제2026-11호' all='고시번호 : 진주시 미천면 공고 제2026-11호'
-      span.t3 :: own='등록일 : 2026-10-26' all='등록일 : 2026-10-26'
-      span.t3 :: own='공고기간 : 2026-10-26~2026-11-02' all='공고기간 : 2026-10-26~2026-11-02'
-      span.t3 :: own='담당자 연락처 :' all='담당자 연락처 : 055-749-3863'
-      em.em1 :: own='055-749-3863' all='055-749-3863'
-      span.t3 :: own='담당부서 : 미천면' all='담당부서 : 미천면'
-
-[PAGING] ?amode=view&not_ancmt_mgt_no=65854&cpage=1
-[DATES] sample: ['2026/10/30', '2026-10-26', '2026-10-26', '2026-11-02', '2026-10-20']
-
-[ANCHORS] most common link paths
-   x5 ul.lst1 > li.li1 > div.wrap1 > a.a1  href=?amode=view&not_ancmt_mgt_no=65854&cpage=1  text='2026년 미천면 농지전수조사 조사원 기간제근로자 채용 공고(추가모집) '
-      row? div.wrap1 :: '2026년 미천면 농지전수조사 조사원 기간제근로자 채용 공고(추가모집) 고시번호 : 진주시 미천면 공고 제2026-11호 등록일 : 2026-10-26 공고기간 : 2026-10-26~2026-11-02 담당자 연락'
-   x1 div#container > div#wrap > a.b1.sajeon.noprint  href=https://www.jinju.go.kr/00131/00169/05110.web {'target': '_blank', 'title': '새창열림'} text='사전심사 청구제 안내 자세히보기'
-   x1 div#container > div#wrap > a.b1.talktalk1.noprint  href=https://www.jinju.go.kr/ennabot/index.html {'target': '_blank', 'title': '새창열림'} text='물어보세요!진주톡포유'
-   x1 div#container > div#wrap > div#quick1.init > a.b1.toggle.switch  href=#quick1c  text='참진주 Today 닫기 보기'
-
-[LINKS] board candidates (53)
-   '시정소식' -> https://www.jinju.go.kr/00130.web
-   '알림마당' -> https://www.jinju.go.kr/00130/02730.web
-   '새소식' -> https://www.jinju.go.kr/00130/02730/00136.web
-   '알림창' -> https://www.jinju.go.kr/00130/02730/06464.web
-   '고시/공고' -> https://www.jinju.go.kr/00130/02730/05586.web
-   '채용공고' -> https://www.jinju.go.kr/00130/02730/06660.web
-   '타기관소식' -> https://www.jinju.go.kr/00130/02730/00147.web
-   '캘린더로 보는 소식' -> https://www.jinju.go.kr/00130/02730/06993.web
-   '시정소식지(촉석루)' -> https://www.jinju.go.kr/00130/00148/00157.web
-   '시정소식지(촉석루)' -> https://www.jinju.go.kr/00130/00148/00158.web
-   '시정소식지(촉석루) 구독신청' -> https://www.jinju.go.kr/00130/00148/00159.web
-   '나의 관심분야 & 알림톡 설정' -> https://www.jinju.go.kr/06996.web?amode=update_favorite
-   '제안모집 안내' -> https://www.jinju.go.kr/00132/00381/00438.web
-   '공지사항' -> https://www.jinju.go.kr/00132/05089/05092.web
-   '분과회원(8기) 모집 신청' -> https://www.jinju.go.kr/00132/05089/06783.web
-   '자유게시판' -> https://www.jinju.go.kr/00132/02751/00383.web
-   '사진게시판' -> https://www.jinju.go.kr/00132/02751/00384.web
-   '알림/소식' -> https://www.jinju.go.kr/00132/05626/05632.web
-   '행정처분(불이익처분) 기준 설정 공고' -> https://www.jinju.go.kr/00133/00442/00483.web
-   '입찰공고' -> https://www.jinju.go.kr/04964.web
-   '입찰공고' -> https://www.jinju.go.kr/00133/04958/04964.web
-   '알림마당' -> https://www.jinju.go.kr/04987.web
-   '공지사항' -> https://www.jinju.go.kr/00133/04958/04987.web
-   '구인/구직' -> https://www.jinju.go.kr/00134/00610/00620.web
-   '구인신청절차' -> https://gyeongnam.work.go.kr/jinju/regionBoard/boardData/retrieveBoardContList.do?lwknetBoardNo=1814
-   '구인' -> https://gyeongnam.work.go.kr/jinju/regionBoard/boardData/retrieveBoardContList.do?lwknetBoardNo=1632
-   '잡코리아(경남)' -> http://055.jobkorea.co.kr/
-   '인크루트(경남)' -> http://job.incruit.com/jobdb_list/searchjob.asp?ct=3&ty=3&cd=2522
-   '분묘개장 공고' -> https://www.jinju.go.kr/00134/00614/00754.web
-   '새소식' -> https://www.jinju.go.kr/00134/00614/06453.web
-   '공지사항' -> https://www.jinju.go.kr/00134/00614/07171.web
-   '공지사항' -> https://www.jinju.go.kr/00134/00611/05414.web
-   '주정차 단속 알림서비스(휘슬)' -> https://www.jinju.go.kr/00134/00612/07135.web
-   '알림마당' -> https://www.jinju.go.kr/00134/00618/01026.web
-   '개별주택가격 열람' -> https://www.realtyprice.kr/notice/hpindividual/search.htm;jsessionid=367293672688FF8CDF011D65620ED0BB#menu02
-   '강사프로필' -> https://www.jinju.go.kr/00134/00616/00917.web
-   '공지사항' -> https://www.jinju.go.kr/00134/04991/05059.web
-   '벽보게시판' -> https://www.jinju.go.kr/00134/05705/06600.web
-   '공지사항' -> https://www.jinju.go.kr/00135/01112/07191.web
-   '공지사항' -> https://www.jinju.go.kr/00135/01112/01546.web
-====================================================================================================
-URL: https://www.hygn.go.kr/00429/00543/00553.web?cpage=1
-status=200 final=https://www.hygn.go.kr/00429/00543/00553.web?cpage=1 encoding=UTF-8 bytes=71722
-title: 채용정보 | 함양군 대표누리집
-
-[LIST] div#snb1.snb1 > div.d2 > ul  items=4
-   li: li.m1.on -> 함양소식 군정소식 행사소식 고시/공고 채용정보 군정뉴스 해명자료 반상회보 국정홍보만화 타기관홍보 공보 공시송달 함양군 스마트 마을방송
-      a href=/00429/00543.web onclick= :: own='' all='함양소식'
-      span :: own='함양소식' all='함양소식'
-      div.d3 :: own='' all='군정소식 행사소식 고시/공고 채용정보 군정뉴스 해명자료 반상회보 국정홍보만화 타기관홍보 공'
-      ul :: own='' all='군정소식 행사소식 고시/공고 채용정보 군정뉴스 해명자료 반상회보 국정홍보만화 타기관홍보 공'
-      li.m1 :: own='' all='군정소식'
-      a href=/00429/00543/00547.web onclick= :: own='군정소식' all='군정소식'
-      li.m2 :: own='' all='행사소식'
-      a href=/00429/00543/00548.web onclick= :: own='행사소식' all='행사소식'
-      li.m3 :: own='' all='고시/공고'
-      a href=/00429/00543/00549.web onclick= :: own='고시/공고' all='고시/공고'
-      li.m4.on :: own='' all='채용정보'
-      a href=/00429/00543/00553.web onclick= :: own='채용정보' all='채용정보'
-      li.m5 :: own='' all='군정뉴스'
-      a href=/01997/02007.web onclick= :: own='군정뉴스' all='군정뉴스'
-[DATES] sample: ['2024.08.25']
-
-[ANCHORS] most common link paths
-   x1 div.d3 > ul > li.m12 > a  href=/00429/00543/06043.web  text='함양군 스마트 마을방송'
-      row? li.m12 :: '함양군 스마트 마을방송'
-   x1 div.d3 > ul > li.m5 > a  href=/00429/00544/00569.web  text='삽니다/팝니다/임대'
-      row? li.m5 :: '삽니다/팝니다/임대'
-   x1 div.d3 > ul > li.m8 > a  href=/00429/00544/05031.web  text='청소년 꿈드림 바우처 가맹점 신청접수'
-      row? li.m8 :: '청소년 꿈드림 바우처 가맹점 신청접수'
-   x1 div.d3 > ul > li.m1 > a  href=/00429/00546/00581.web  text='고향사랑기부제 소개'
-      row? li.m1 :: '고향사랑기부제 소개'
-
-[LINKS] board candidates (10)
-   '함양소식' -> https://www.hygn.go.kr/00429/00543.web
-   '군정소식' -> https://www.hygn.go.kr/00429/00543/00547.web
-   '행사소식' -> https://www.hygn.go.kr/00429/00543/00548.web
-   '고시/공고' -> https://www.hygn.go.kr/00429/00543/00549.web
-   '채용정보' -> https://www.hygn.go.kr/00429/00543/00553.web
-   '모집신청접수' -> https://www.hygn.go.kr/00429/00545.web
-   '입찰공고' -> https://www.hygn.go.kr/00430/00587/00696.web
-   '개인정보 목적 외 이용 및 제공 공고' -> https://www.hygn.go.kr/00430/00593/00735.web
-   '채용정보 바로가기' -> https://eminwon.hygn.go.kr/emwp/jsp/ofr/OfrNotAncmtLSub.jsp?not_ancmt_se_code=05
-   '알림서비스 신청' -> https://www.hygn.go.kr/05342.web
-====================================================================================================
-URL: https://www.geoje.go.kr/board/list.geoje?boardId=BBS_0000455&menuCd=DOM_000008901001001001&startPage=1
-status=200 final=https://www.geoje.go.kr/board/list.geoje?boardId=BBS_0000455&menuCd=DOM_000008901001001001&startPage=1 encoding=UTF-8 bytes=204998
-title: 일자리/경제 > 채용정보 > 구인/구직 > 거제시일자리
+URL: https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008901001001003
+status=200 final=https://www.geoje.go.kr/board/list.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&contentsSid=9360&cpath= encoding=UTF-8 bytes=218129
+title: 일자리/경제 > 채용정보 > 구인/구직 > 구인정보
 
 
 | 거제시청
 
-[TABLE] div#contentsBox.contents > div#con-wrap.con-wrap > table.board_list1  rows=2
-   row: tr -> th.th01:번호 | th.th02:제목 | th.th03:작성자 | th.th04:작성일 | th.th05:첨부 | th.th06:조회수
-   row: tr -> td.tac:등록된 게시물이 없습니다.
-      td.tac :: own='등록된 게시물이 없습니다.' all='등록된 게시물이 없습니다.'
+[TABLE] div.cont-wrap > div.board-list > table.list01  rows=11
+   row: tr -> th:번호 | th:구분 | th:제목 | th:작성자 | th:작성일 | th:첨부 | th:조회수
+   row: tr -> td.mnone:4385 | td.tac: | td.title:노인요양원 솔향 요양보호사 채용 공고 | td.name:김은진 | td.date:26.10.29 | td.file: | td.hit:21
+      td.mnone :: own='4385' all='4385'
+      td.title :: own='' all='노인요양원 솔향 요양보호사 채용 공고'
+      a href=/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1& onclick= :: own='노인요양원 솔향 요양보호사 채용 공고' all='노인요양원 솔향 요양보호사 채용 공고'
+      td.name :: own='김은진' all='김은진'
+      td.date :: own='26.10.29' all='26.10.29'
+      td.hit :: own='21' all='21'
 
-[PAGING] /board/list.geoje?boardId=BBS_0000455&menuCd=DOM_000008901001001001&paging=ok&startPage=1
-[DATES] sample: ['2022-01-20', '2026.04.17', '2027.04.16']
+[PAGING] /board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid=306510259
+[DATES] sample: ['2019-11-22', '2026.04.17', '2027.04.16']
 
 [ANCHORS] most common link paths
+   x10 tbody > tr > td.title > a  href=/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&  text='노인요양원 솔향 요양보호사 채용 공고'
+      row? tr :: '4385 노인요양원 솔향 요양보호사 채용 공고 김은진 26.10.29 21'
    x2 div.sns_bottom > ul > li.ins > a  href=https://www.instagram.com/bigheart_geoje {'target': '_blank', 'title': '새창열림'} text='관광소식 인스타그램'
       row? li.ins :: '관광소식 인스타그램'
 
-[LINKS] board candidates (22)
+[LINKS] board candidates (29)
    '채용정보' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008901001000000
    '구인/구직' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008901001001001
    '새소식' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001001000
@@ -152,65 +44,241 @@ title: 일자리/경제 > 채용정보 > 구인/구직 > 거제시일자리
    '시정소식 한눈에 보기' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008908015000000
    '대외소식 한눈에 보기' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008908022000000
    '구인/구직' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008901001001000
-   '알림판' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008901001001002
    '구인정보' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008901001001003
+   '알림판' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008901001001002
+   '노인요양원 솔향 요양보호사 채용 공고' -> https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid
+   '노인요양원 솔향 조리원 채용 공고' -> https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid
+   '[재택근무]여유시간으로 틈틈히 돈 벌어보실분 모집합니다' -> https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid
+   '현대자동차 블루핸즈 연초점 엔지니어 모집' -> https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid
+   '장평지역아동센터 생활복지사를 모집합니다.' -> https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid
+   '사)경남지체장애인협회 거제시지회 사무직원 채용공고' -> https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid
+   '성지원 계약직 조리원 공고' -> https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid
    '관광소식 인스타그램' -> https://www.instagram.com/bigheart_geoje
    '시정소식 인스타그램' -> https://www.instagram.com/geojecity
 ====================================================================================================
-URL: https://www.geoje.go.kr/board/list.geoje?boardId=BBS_0000062&startPage=1
-status=500 final=https://www.geoje.go.kr/board/list.geoje?boardId=BBS_0000062&startPage=1 encoding=UTF-8 bytes=2038
-title: 거제시청
-[DATES] sample: []
+URL: https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001002001
+status=200 final=https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001002001 encoding=UTF-8 bytes=221508
+title: 소통참여 > 시정뉴스 > 고시/공고 > 고시공고
 
-[RETRY without noise filter]
-[DATES] sample: []
-====================================================================================================
-URL: https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&page=1
-status=200 final=https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&page=1 encoding=utf-8 bytes=66558
-title: 채용공고 | 경남문화예술진흥원
 
-[TABLE] form#fboardlist > div.tbl_head01.tbl_wrap > table  rows=16
-   row: tr -> th:번호 | th:제목 | th:시작일 | th:종료일 | th:상태 | th:조회 | th:날짜
-   row: tr.bo_notice -> td.td_num2:공지 | td.td_subject:◆채용공고·합격자결과·시험일정 공고를 위한 게시 | td.td_num: | td.td_num: | td.td_num: | td.td_num:9966 | td.td_datetime:2019-03-14
-      td.td_num2 :: own='' all='공지'
-      strong.notice_icon :: own='' all='공지'
-      span.sound_only :: own='공지' all='공지'
-      td.td_subject :: own='' all='◆채용공고·합격자결과·시험일정 공고를 위한 게시판입니다◆'
-      div.bo_tit :: own='' all='◆채용공고·합격자결과·시험일정 공고를 위한 게시판입니다◆'
-      a href=https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&wr_id=93&page=1 onclick= :: own='◆채용공고·합격자결과·시험일정 공고를 위한 게시판입니다◆' all='◆채용공고·합격자결과·시험일정 공고를 위한 게시판입니다◆'
-      td.td_num :: own='9966' all='9966'
-      td.td_datetime :: own='2019-03-14' all='2019-03-14'
+| 거제시청
 
-[PAGING] /bbs/board.php?bo_table=sub3_8&sop=and&sst=wr_hit&sod=desc&sfl=&stx=&sca=&page=1
-[DATES] sample: ['2019-03-14', '2026-10-28', '2026-11-06', '2026-10-28', '2026-10-28']
+[TABLE] div#con-wrap.con-wrap > div.board-list > table.list01  rows=11
+   row: tr -> th.th01:번호 | th.th02:제목 | th.th03:담당부서 | th.th04:담당자명 | th.th05:등록일
+   row: tr -> td.tac:42877 | td.tal.title:수양천 재해복구사업 기본 및 실시설계용역 사업수 | td.tac:건설지원과 | td.tac:임창섭 | td.tac:2026.10.30
+      td.tac :: own='42877' all='42877'
+      td.tal.title :: own='' all='수양천 재해복구사업 기본 및 실시설계용역 사업수행능력 평가자료(업무중복도) 의견수렴 공고'
+      a href=/index.geoje?menuCd=DOM_000008902001002001&m=D&idx=70937&startPage=1&searchType=&keyword=& onclick= :: own='수양천 재해복구사업 기본 및 실시설계용역 사업수행능력 평가자료(업무중복도' all='수양천 재해복구사업 기본 및 실시설계용역 사업수행능력 평가자료(업무중복도) 의견수렴 공고'
+      td.tac :: own='건설지원과' all='건설지원과'
+      td.tac :: own='임창섭' all='임창섭'
+      td.tac :: own='2026.10.30' all='2026.10.30'
+
+[PAGING] /index.geoje?menuCd=DOM_000008902001002001&m=D&idx=70937&startPage=1&searchType=&keyword=&DEP_NM=&NOT_ANCMT_SJ=&NOT_ANCMT_CN=
+[DATES] sample: ['2026.10.30', '2026.10.30', '2026.10.30', '2026.10.30', '2026.10.30']
 
 [ANCHORS] most common link paths
-   x14 tr > td.td_subject > div.bo_tit > a  href=https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&wr_id=284&page=1  text='[2026-295호] (재)경남문화예술진흥원 비상근임원 공개모집 최종 결'
-      row? div.bo_tit :: '[2026-295호] (재)경남문화예술진흥원 비상근임원 공개모집 최종 결과 공고'
-   x1 tr.bo_notice > td.td_subject > div.bo_tit > a  href=https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&wr_id=93&page=1  text='◆채용공고·합격자결과·시험일정 공고를 위한 게시판입니다◆'
-      row? div.bo_tit :: '◆채용공고·합격자결과·시험일정 공고를 위한 게시판입니다◆'
+   x10 tbody > tr > td.tal.title > a  href=/index.geoje?menuCd=DOM_000008902001002001&m=D&idx=70937&startPage=1&searchType=&keyword=&  text='수양천 재해복구사업 기본 및 실시설계용역 사업수행능력 평가자료(업무중복도'
+      row? tr :: '42877 수양천 재해복구사업 기본 및 실시설계용역 사업수행능력 평가자료(업무중복도) 의견수렴 공고 건설지원과 임창섭 2026.10.30'
+   x2 div.sns_bottom > ul > li.ins > a  href=https://www.instagram.com/bigheart_geoje {'target': '_blank', 'title': '새창열림'} text='관광소식 인스타그램'
+      row? li.ins :: '관광소식 인스타그램'
+   x1 div#con-wrap.con-wrap > ul.taps-dt4.item03 > li > a  href=/index.geoje?menuCd=DOM_000008902001002002  text='2011년 이전자료보기'
+      row? li :: '2011년 이전자료보기'
 
-[LINKS] board candidates (23)
-   '알림마당' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_1
-   '사업공고·입찰' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_7
-   '채용공고' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8
-   '자유게시판' -> https://www.gcaf.or.kr/bbs/group.php?gr_id=sub10_4
-   '공고' -> https://www.gcaf.or.kr/bbs/search.php?sfl=wr_subject&sop=and&stx=%EA%B3%B5%EA%B3%A0
-   '새소식' -> https://www.gcaf.or.kr/bbs/group.php?gr_id=sub10_1
-   '공고중' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&sstate=%EA%B3%B5%EA%B3%A0%EC%A4%91
-   '공고마감' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&sstate=%EA%B3%B5%EA%B3%A0%EB%A7%88%EA%B0%90
-   '◆채용공고·합격자결과·시험일정 공고를 위한 게시판입니다' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&wr_id=93&page=1
-   '[2026-295호] (재)경남문화예술진흥원 비상근임원' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&wr_id=284&page=1
-   '[2026-294호] (재)경남문화예술진흥원 원장 공개' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&wr_id=283&page=1
-   '[2026-280호] 2026년 제5차 직원 채용 필기' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&wr_id=282&page=1
-   '[2026-270호] (재)경남문화예술진흥원 비상근임원' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&wr_id=281&page=1
-   '[2026-269호] (재)경남문화예술진흥원 원장 공개' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&wr_id=280&page=1
-   '[2026-251호]2026년 제5차 직원(정규직) 채' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&wr_id=279&page=1
-   '[2026-232호] 2026년도 제3차 직원 채용 최' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&wr_id=278&page=1
-   '[2026-204호] 2026년도 제4차, 제4차 재공' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&wr_id=277&page=1
-   '[2026-177호]2026년도 제4차 직원 채용 재공' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&wr_id=276&page=1
-   '[2026-176호]2026년도 제4차 직원 채용 면접' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&wr_id=275&page=1
-   '[2026-175호]2026년도 제3차 직원 채용 면접' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&wr_id=274&page=1
-   '[2026-169호]2026년도 제4차 직원 채용 재공' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&wr_id=273&page=1
-   '[2026-162호]2026년도 제4차 직원 채용 서류' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&wr_id=272&page=1
-   '[2026-161호]2026년도 제3차 직원 채용 서류' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&wr_id=271&page=1
+[LINKS] board candidates (30)
+   '채용정보' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008901001000000
+   '구인/구직' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008901001001001
+   '새소식' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001001000
+   '고시/공고' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001002001
+   '타기관 고시공고' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001005000
+   '유관기관소식' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001006000
+   '전자책 거제소식지' -> https://www.geoje.go.kr/ebook/index.geoje?menuCd=DOM_000010702000000000
+   '소식지 무료구독신청' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902003003000
+   '자유게시판' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902005005000
+   '채용비리/공익신고' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902009006000
+   '참여게시판' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008905011005000
+   '향인 소식' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008905012003000
+   '주정차문자알림서비스' -> https://www.geoje.go.kr/parkingsms
+   '문자알림서비스' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008906004008000
+   '공지사항' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008906018001000
+   '시정소식 한눈에 보기' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008908015000000
+   '대외소식 한눈에 보기' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008908022000000
+   '고시/공고' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001002000
+   '새소식' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001002003
+   '수양천 재해복구사업 기본 및 실시설계용역 사업수행능력 ' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001002001&m=D&idx=70937&startPage=1&searchType=&keyword=&DEP_NM=
+   '송곡천 재해복구사업 기본 및 실시설계용역 사업수행능력 ' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001002001&m=D&idx=70936&startPage=1&searchType=&keyword=&DEP_NM=
+   '옥산천 재해복구사업 기본 및 실시설계 용역 사업수행능력' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001002001&m=D&idx=70935&startPage=1&searchType=&keyword=&DEP_NM=
+   '둔덕지구 재해복구사업 기본 및 실시설계용역 사업수행능력' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001002001&m=D&idx=70934&startPage=1&searchType=&keyword=&DEP_NM=
+   '2026년 가을철, 2027년 봄철 연초면 산불일반감시' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001002001&m=D&idx=70928&startPage=1&searchType=&keyword=&DEP_NM=
+   '상문동 2026년 가을철, 2027년 봄철 산불일반감시' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001002001&m=D&idx=70927&startPage=1&searchType=&keyword=&DEP_NM=
+   '2026년 가을철, 2027년 봄철 아주동 산불일반감시' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001002001&m=D&idx=70923&startPage=1&searchType=&keyword=&DEP_NM=
+   '무단방치 자동차 강제처리(폐차) 및 이해관계인 권리행사' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001002001&m=D&idx=70901&startPage=1&searchType=&keyword=&DEP_NM=
+   '장목면 2026년 가을철, 2027년 봄철 산불일반감시' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001002001&m=D&idx=70884&startPage=1&searchType=&keyword=&DEP_NM=
+   '관광소식 인스타그램' -> https://www.instagram.com/bigheart_geoje
+   '시정소식 인스타그램' -> https://www.instagram.com/geojecity
+====================================================================================================
+URL: https://gnwff.or.kr/sub04/sub03_01.php
+status=200 final=https://gnwff.or.kr/sub04/sub03_01.php encoding=utf8 bytes=29358
+title: 경상남도여성가족재단
+
+[LIST] div.boardType01 > form#bbs_form > ul.board_ul  items=16
+   li: li.title_li -> 제목 작성자 날짜 조회수
+      div.board_h5 :: own='' all='제목'
+      span.title :: own='제목' all='제목'
+      div.boardInfo :: own='' all='작성자 날짜 조회수'
+      span.name :: own='작성자' all='작성자'
+      span.date :: own='날짜' all='날짜'
+      span.hit :: own='조회수' all='조회수'
+
+[PAGING] /sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTQx||&search=&searchstring=&gubunx=&mode=view&m2=
+[DATES] sample: ['2026-10-27', '2026-10-27', '2026-09-17', '2026-09-17', '2026-08-27']
+
+[ANCHORS] most common link paths
+   x15 ul.board_ul > li > h5 > a  href=/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTQx||&search=&searchstring=&gubunx=&mo  text='공지 (재)경상남도 여성가족재단 선임직 이사 및 감사 공개모집 최종 합격'
+      row? li :: '공지 (재)경상남도 여성가족재단 선임직 이사 및 감사 공개모집 최종 합격자 공고 관리자 2026-10-27 126'
+   x1 div.bbs_cate.mb > ul.tabs.covid_cate > li > a  href=# {'onclick': 'check_s_gubun(this)', 'data-val': '경상남도여성가족재단'} text='경상남도여성가족재단'
+      row? li :: '경상남도여성가족재단'
+
+[LINKS] board candidates (20)
+   '공지사항' -> https://gnwff.or.kr/sub04/sub01_01.php
+   '채용공고' -> https://gnwff.or.kr/sub04/sub03_01.php
+   '재단소식' -> https://gnwff.or.kr/sub04/sub04_01.php?gubunx=보도자료
+   '최근 정책소식' -> https://gnwff.or.kr/sub04/sub05_01.php
+   '타 기관 소식' -> https://gnwff.or.kr/sub04/sub06_01.php
+   '공지 (재)경상남도 여성가족재단 선임직 이사 및 감사 ' -> https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTQx||&search=&searchstring=&gubunx=&mode=view&m2=
+   '공지 (재)경상남도 여성가족재단 대표이사 공개모집 최종' -> https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTQw||&search=&searchstring=&gubunx=&mode=view&m2=
+   '공지 (재)경상남도 여성가족재단 대표이사 공개모집 서류' -> https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTM5||&search=&searchstring=&gubunx=&mode=view&m2=
+   '공지 (재)경상남도 여성가족재단 선임직 감사 공개모집 ' -> https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTM4||&search=&searchstring=&gubunx=&mode=view&m2=
+   '공지 (재)경상남도 여성가족재단 선임직 이사 및 감사 ' -> https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTM3||&search=&searchstring=&gubunx=&mode=view&m2=
+   '공지 (재)경상남도 여성가족재단 대표이사 공개모집 공고' -> https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTM2||&search=&searchstring=&gubunx=&mode=view&m2=
+   '[수탁기관] [경남새일공고 제2026-67호] 경남여성' -> https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTM1||&search=&searchstring=&gubunx=&mode=view&m2=
+   '[수탁기관] [경남새일공고 제2026-67호] 경남여성' -> https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTM0||&search=&searchstring=&gubunx=&mode=view&m2=
+   '[수탁기관] [경남새일공고 제2026-63호] 경남여성' -> https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTMz||&search=&searchstring=&gubunx=&mode=view&m2=
+   '[수탁기관] [경남새일공고 제2026-54호] 경남여성' -> https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTMy||&search=&searchstring=&gubunx=&mode=view&m2=
+   '[경상남도여성가족재단] (재)경상남도여성가족재단 202' -> https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTMx||&search=&searchstring=&gubunx=&mode=view&m2=
+   '[수탁기관] [경남새일공고 제2026-41호] 경남여성' -> https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTMw||&search=&searchstring=&gubunx=&mode=view&m2=
+   '[경상남도여성가족재단] [2026년 상반기 경상남도 공' -> https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTI3||&search=&searchstring=&gubunx=&mode=view&m2=
+   '[경상남도여성가족재단] (재)경상남도여성가족재단 202' -> https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTI2||&search=&searchstring=&gubunx=&mode=view&m2=
+   '[경상남도여성가족재단] (재)경상남도여성가족재단 202' -> https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTI1||&search=&searchstring=&gubunx=&mode=view&m2=
+====================================================================================================
+URL: https://www.ghct.or.kr/board/board02
+status=200 final=https://www.ghct.or.kr/board/board02 encoding=UTF-8 bytes=104457
+title: 김해문화관광재단 > 채용공고 리스트
+
+[TABLE] form#searchFrm > div.board_content.fix-layout > table.basic_table.center  rows=21
+   row: tr -> th.board_number.text-center:번호 | th.text-center:제목 | th.text-center.txt-left.pc_Y.ta_N.mo_N:분류 | th.board_name.text-center:작성자 | th.date.text-center:등록일자 | th.board_file.text-center:첨부 | th.board_count.text-center:조회수
+   row: tr -> th.board_number.text-center:1,697 | td.left.title.clearfix:일반 (재)김해문화관광재단 김해문화의전당 기간제 | td.txt-left.pc_Y.ta_N.mo_N.fieldCategory:김해문화의전당 | td.board_name:김해문화의전당관리자 | td.date.text-center:2026-10-29 10:21:52 | td.board_file.text-center:첨부파일 아이콘 - 첨부파일 있음 | td.board_count.text-center:48
+      th.board_number.text-center :: own='1,697' all='1,697'
+      td.left.title.clearfix :: own='' all='일반 (재)김해문화관광재단 김해문화의전당 기간제 노동자(공연장 안내요원) 최종합격자 발표 '
+      span.label.label-default.mr10.sr-only :: own='일반' all='일반'
+      p :: own='' all='(재)김해문화관광재단 김해문화의전당 기간제 노동자(공연장 안내요원) 최종합격자 발표 공고'
+      button.board_title_btn :: own='(재)김해문화관광재단 김해문화의전당 기간제 노동자(공연장 안내요원) 최종' all='(재)김해문화관광재단 김해문화의전당 기간제 노동자(공연장 안내요원) 최종합격자 발표 공고'
+      td.txt-left.pc_Y.ta_N.mo_N.fieldCategory :: own='김해문화의전당' all='김해문화의전당'
+      td.board_name :: own='김해문화의전당관리자' all='김해문화의전당관리자'
+      td.date.text-center :: own='2026-10-29 10:21:52' all='2026-10-29 10:21:52'
+      td.board_file.text-center :: own='' all='첨부파일 아이콘 - 첨부파일 있음'
+      span.sr-only :: own='첨부파일 아이콘 - 첨부파일 있음' all='첨부파일 아이콘 - 첨부파일 있음'
+      td.board_count.text-center :: own='48' all='48'
+
+[LIST] div.fix-layout.flexwrap > div.agSwiper > ul.ag-list.swiper-wrapper  items=12
+   li: li.swiper-slide -> 김해문화의전당 (새 창 열림)
+      a href=https://gasc.ghct.or.kr/ onclick= attrs={'target': '_blank', 'aria-label': '김해문화의전당 (새 창 열림)', 'tabindex': '0'} :: own='김해문화의전당' all='김해문화의전당 (새 창 열림)'
+      span.sr-only :: own='(새 창 열림)' all='(새 창 열림)'
+[DATES] sample: ['2026-10-29', '2026-10-28', '2026-10-23', '2026-10-21', '2026-10-21']
+
+[ANCHORS] most common link paths
+   x1 fieldset > div.pagenation_wrap > p.pagenation > a.first.angle-left-thin  href=# {'data-role': 'goPage', 'data-page': '1', 'title': '제일 첫 페이지로 이동'} text='제일 첫 페이지로 이동'
+   x1 fieldset > div.pagenation_wrap > p.pagenation > a.arrow-left  href=# {'data-role': 'goPage', 'data-page': '1', 'title': '이전 페이지로 이동'} text='이전 페이지로 이동'
+   x1 fieldset > div.pagenation_wrap > p.pagenation > a.arrow-right  href=# {'data-role': 'goPage', 'data-page': '2', 'title': '다음 페이지로 이동'} text='다음 페이지로 이동'
+   x1 fieldset > div.pagenation_wrap > p.pagenation > a.last.angle-right-thin  href=# {'data-role': 'goPage', 'data-page': '11', 'title': '제일 끝 페이지로 이동'} text='제일 끝 페이지로 이동'
+
+[LINKS] board candidates (6)
+   '재단소식' -> https://www.ghct.or.kr/menu/news
+   '타기관소식' -> https://www.ghct.or.kr/board/news05
+   '공지사항' -> https://www.ghct.or.kr/board/board01
+   '채용공고' -> https://www.ghct.or.kr/board/board02
+   '입찰공고' -> https://www.ghct.or.kr/content/disclosure04_02
+   '평가위원회 결과공고' -> https://www.ghct.or.kr/board/disclosure04_03
+====================================================================================================
+URL: https://www.sccf.or.kr/bbs/board.php?bo_table=recruit
+status=200 final=https://www.sccf.or.kr/bbs/board.php?bo_table=recruit encoding=utf-8 bytes=58816
+title: 사천문화재단
+
+[LIST] div.d_select > div.con2 > ul  items=15
+   li: li -> 문화체육관광부
+      a href=https://www.mcst.go.kr/kor/main.jsp onclick= attrs={'target': '_blank'} :: own='문화체육관광부' all='문화체육관광부'
+
+[PAGING] https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page=2
+[DATES] sample: ['2026.09.18', '2026.09.02', '2026.08.26', '2026.08.19', '2026.08.07']
+
+[ANCHORS] most common link paths
+   x15 form#fboardlist > div.board.list_body > div.column > a  href=https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=632  text='공지 2026년 하반기 사천문화재단 직원 공개채용 최종합격자 및 임용등록'
+      row? div.column :: '공지 2026년 하반기 사천문화재단 직원 공개채용 최종합격자 및 임용등록 공고 작성자 : 사천문화재단 작성일 : 2026.09.18 조회수 : 217'
+   x5 div.con2 > ul > li > a  href=https://www.kocaca.or.kr/main {'target': '_blank', 'title': '새창열림'} text='한국문화예술회관연합회'
+      row? li :: '한국문화예술회관연합회'
+
+[LINKS] board candidates (24)
+   '공지사항' -> https://www.sccf.or.kr/bbs/board.php?bo_table=notice
+   '채용공고' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit
+   '열린게시판' -> https://www.sccf.or.kr/bbs/board.php?bo_table=board_open
+   '공지 2026년 하반기 사천문화재단 직원 공개채용 최종' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=632
+   '공지 2026년 하반기 사천문화재단 직원 공개채용 필기' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=631
+   '공지 2026년 하반기 사천문화재단 직원 공개채용 서류' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=630
+   '공지 사천문화재단 대표이사 최종 임명 예정자 공고 작성' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=629
+   '공지 사천문화재단 대표이사 공개모집 서류심사 합격자 및' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=628
+   '공지 2026년 하반기 사천문화재단 직원 채용 공고 작' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=627
+   '사천문화재단 대표이사 공개모집 공고 작성자 : 사천문화' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=626
+   '2026년 상반기 사천문화재단 직원 채용 최종합격자 및' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=625
+   '2026년 상반기 사천문화재단 직원 공개채용 필기전형 ' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=624
+   '2026년 상반기 사천문화재단 직원 공개채용 서류전형 ' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=623
+   '『2026 꿈의 무용단 사천 참여인력 모집』 최종합격자' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=622
+   '2026년 상반기 사천문화재단 직원 채용 공고 작성자 ' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=621
+   '2026년도 제2차 사천문화재단 기간제근로자 채용 최종' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=620
+   '2026 꿈의 무용단 사천 참여인력 모집』 서류전형 합' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=619
+   '2026년도 제2차 사천문화재단 기간제근로자 서류전형 ' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=618
+   '2' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page=2
+   '3' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page=3
+   '4' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page=4
+   '5' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page=5
+   '다음 페이지' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page=6
+   '마지막' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page=13
+====================================================================================================
+URL: https://jjcc.or.kr/
+status=200 final=https://jjcc.or.kr/ encoding=UTF-8 bytes=14743
+title: 진주문화원
+[DATES] sample: ['2026-10-29', '2026-10-23', '2026-09-15', '2026-09-03', '2026-08-12']
+
+[RETRY without noise filter]
+
+[LIST] div#hd_content_wrap > div#gnb > ul  items=4
+   li: li.dp1 -> 기관소개 문화원장 인사말 문화원 비전 문화원 조직도 문화원 연혁 찾아오시는길
+      p.dp1_tit :: own='' all='기관소개'
+      a href=/intro/view onclick= :: own='기관소개' all='기관소개'
+      div.dp2 :: own='' all='문화원장 인사말 문화원 비전 문화원 조직도 문화원 연혁 찾아오시는길'
+      ul :: own='' all='문화원장 인사말 문화원 비전 문화원 조직도 문화원 연혁 찾아오시는길'
+      li :: own='' all='문화원장 인사말'
+      a.site_item href=/intro/view/pkid/7 onclick= :: own='문화원장 인사말' all='문화원장 인사말'
+      li :: own='' all='문화원 비전'
+      a.site_item href=/intro/view/pkid/100 onclick= :: own='문화원 비전' all='문화원 비전'
+      li :: own='' all='문화원 조직도'
+      a.site_item href=/intro/view/pkid/13 onclick= :: own='문화원 조직도' all='문화원 조직도'
+      li :: own='' all='문화원 연혁'
+      a.site_item href=/intro/view/pkid/11 onclick= :: own='문화원 연혁' all='문화원 연혁'
+      li :: own='' all='찾아오시는길'
+      a.site_item href=/intro/view/pkid/5 onclick= :: own='찾아오시는길' all='찾아오시는길'
+
+[LIST] div.contents_left > div.clbottom > ul  items=5
+   li: li -> ★[모집]2026년 어린이.청소년 프로그램 운영지원 "청소년 만화웹툰 공모전" 개최 안내 2026-10-29
+      a href=/board/boardcontents/type/1/id/639 onclick= attrs={'청소년': '', '만화웹툰': '', '공모전"': '', '개최': '', '안내"': ''} :: own='' all='★[모집]2026년 어린이.청소년 프로그램 운영지원 "청소년 만화웹툰 공모전" 개최 안내 '
+      div.notice_title :: own='★[모집]2026년 어린이.청소년 프로그램 운영지원 "청소년 만화웹툰 공' all='★[모집]2026년 어린이.청소년 프로그램 운영지원 "청소년 만화웹툰 공모전" 개최 안내'
+      div.date :: own='2026-10-29' all='2026-10-29'
+[DATES] sample: ['2026-10-29', '2026-10-23', '2026-09-15', '2026-09-03', '2026-08-12']
+
+[LINKS] board candidates (3)
+   '공지사항' -> https://jjcc.or.kr/board/lists/type/1
+   '★[모집]2026년 어린이.청소년 프로그램 운영지원 "' -> https://jjcc.or.kr/board/boardcontents/type/1/id/639
+   '[모집] 2026년 제51호 진주문화 원고 투고 안내 ' -> https://jjcc.or.kr/board/boardcontents/type/1/id/629
+====================================================================================================
+URL: http://tongyeong.kccf.or.kr/
+status=200 final=http://tongyeong.kccf.or.kr/ encoding=euc_kr bytes=479
+title: [통영문화원홈페이지의 방문을 환영합니다.]
+body (short): <meta name="naver-site-verification" content="f2d3127d2116ea9f2cc1ae2351ee296aebc8750a"/><meta http-equiv="X-UA-Compatible" content="IE=11" /><title>[통영문화원홈페이지의 방문을 환영합니다.]</title><frameset rows="0,*" border=0 frameSpacing=0 frameBorder=NO> <frame src="/blank.php" scrolling="NO" noresize marginWidth=0 marginHeight=0 name="hidden"> <frame src="/home/main/main.php?conf_kccf_addr=tongyeong" marginWidth=0 marginHeight=0 scrolling="auto" name="MAIN"></frameset>
