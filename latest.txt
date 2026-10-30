@@ -1,50 +1,153 @@
-24:  default_days: 60
-::group::probe jinju
-INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
-INFO httpx: HTTP Request: GET https://www.jinju.go.kr/robots.txt "HTTP/1.1 200 OK"
-INFO httpx: HTTP Request: GET https://www.jinju.go.kr/00130/02730/06660.web?cpage=1 "HTTP/1.1 200 OK"
-INFO httpx: HTTP Request: GET https://www.jinju.go.kr/00130/02730/06660.web?amode=view&not_ancmt_mgt_no=65854&cpage=1 "HTTP/1.1 200 OK"
-[probe] 진주시: 목록 4건
-  - 2026-10-26 | 진주시 | 2026년 미천면 농지전수조사 조사원 기간제근로자 채용 공고(추가모집) | https://www.jinju.go.kr/00130/02730/06660.web?amode=view&not_ancmt_mgt_no=65854&cpage=1
-  - 2026-10-20 | 진주시 | 2027년 진주시립도서관 독서・문화프로그램 강사 모집 공고 | https://www.jinju.go.kr/00130/02730/06660.web?amode=view&not_ancmt_mgt_no=65757&cpage=1
-  - 2026-10-16 | 진주시 | 2027년도 진주시 공무직 근로자 채용 서류전형 합격자 및 필기시험 계획 공고 | https://www.jinju.go.kr/00130/02730/06660.web?amode=view&not_ancmt_mgt_no=65746&cpage=1
-  - 2026-10-16 | 진주시 | 2026년 제4회 진주시 임기제공무원 임용시험 서류전형 합격자 면접시험 시행계획 공고 | https://www.jinju.go.kr/00130/02730/06660.web?amode=view&not_ancmt_mgt_no=65734&cpage=1
-[detail] 본문 51자 · 마감 None (unknown, 'None') · 점수 0 ['-30 핵심어 없음', '+20 채용어(모집)', '+15 경남 지역', '-40 비강사 직종(기간제근로자)'] · 분야 school
-[posting] 제외: 
-::endgroup::
-::group::probe geoje
-INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
-INFO httpx: HTTP Request: GET https://www.geoje.go.kr/robots.txt "HTTP/1.1 200 OK"
-INFO httpx: HTTP Request: GET https://www.geoje.go.kr/board/list.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&startPage=1 "HTTP/1.1 200 OK"
-INFO httpx: HTTP Request: GET https://www.geoje.go.kr/board/list.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&startPage=2 "HTTP/1.1 200 OK"
-INFO httpx: HTTP Request: GET https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid=306510259 "HTTP/1.1 200 OK"
-[probe] 거제시: 목록 20건
-  - 2026-10-29 | 거제시 | 노인요양원 솔향 요양보호사 채용 공고 | https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid=306510259
-  - 2026-10-29 | 거제시 | 노인요양원 솔향 조리원 채용 공고 | https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid=306510258
-  - 2026-10-29 | 거제시 | [재택근무]여유시간으로 틈틈히 돈 벌어보실분 모집합니다 | https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid=306510213
-  - 2026-10-29 | 거제시 | 초보가능 건설현장 중장년 남녀 일자리 레미콘유도원 신호수 숙식가능 | https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid=306510207
-  - 2026-10-29 | 거제시 | 초보환영,조선소 단순노무 초보15만원,월 400만원 이상 1인1실 (원룸가능) 한화오션 | https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid=306510191
-[detail] 본문 371자 · 마감 2026-11-13 23:59:00+09:00 (fixed, '2026년 11월 13일') · 점수 5 ['-30 핵심어 없음', '+20 채용어(채용)', '+15 경남 지역'] · 분야 counsel_welfare
-[posting] 제외: 
-::endgroup::
-::group::probe gn_wf
-INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
-INFO httpx: HTTP Request: GET https://gnwff.or.kr/robots.txt "HTTP/1.1 200 OK"
-INFO httpx: HTTP Request: GET https://gnwff.or.kr/sub04/sub03_01.php?page=1 "HTTP/1.1 200 OK"
-INFO httpx: HTTP Request: GET https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTQx||&search=&searchstring=&gubunx=&mode=view&m2= "HTTP/1.1 200 OK"
-[probe] 경남여성가족재단: 목록 4건
-  - 2026-10-27 | 경남여성가족재단 | 공지(재)경상남도 여성가족재단 선임직 이사 및 감사 공개모집 최종 합격자 공고 | https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTQx||&search=&searchstring=&gubunx=&mode=view&m2=
-  - 2026-10-27 | 경남여성가족재단 | 공지(재)경상남도 여성가족재단 대표이사 공개모집 최종 합격자 공고 | https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTQw||&search=&searchstring=&gubunx=&mode=view&m2=
-  - 2026-09-17 | 경남여성가족재단 | 공지(재)경상남도 여성가족재단 대표이사 공개모집 서류심사 합격자 공고 | https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTM5||&search=&searchstring=&gubunx=&mode=view&m2=
-  - 2026-09-17 | 경남여성가족재단 | 공지(재)경상남도 여성가족재단 선임직 감사 공개모집 재공고 | https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTM4||&search=&searchstring=&gubunx=&mode=view&m2=
-[detail] 본문 1294자 · 마감 None (unknown, 'None') · 점수 0 ['-30 핵심어 없음', '+20 채용어(모집)', '+15 경남 지역', '-60 제외어(합격자)'] · 분야 counsel_welfare
-  [date?] 작성일 : 2026-10-27 16:56:08
-  [date?] 2026-34
-  [date?] 2026-26
-  [date?] 26.8.27.)
-  [date?] 2026-28
-  [date?] 26.9.17.)
-  [date?] (제2026-34호)_(재)경상남도_여성가족재단_선임직_이사_및_감사_공개모집_최종_합격자_공고문.pdf
-  [date?] 055-713-7076
-[posting] 제외: 
-::endgroup::
+====================================================================================================
+URL: https://www.jinju.go.kr/00130/02730/06660.web?cpage=1
+status=200 final=https://www.jinju.go.kr/00130/02730/06660.web?cpage=1 encoding=UTF-8 bytes=218300
+title: 채용공고 |
+진주시청
+
+[GREP] Disallow
+   (없음)
+   [SCRIPT src] ['/_res/portal/share/js/hammer.min.js', '/_res/portal/share/js/iscroll-min.js', '/_res/portal/share/js/jquery-1.12.4.min.js', '/_res/portal/share/js/jquery.easing.1.3.js', '/_res/portal/share/js/script_base.js', '/_res/portal/share/js/script_gesture1.js', '/_res/portal/share/js/script_scroll1section1.js', '/_res/portal/share/js/script.js', '/_res/portal/share/js/es6-promise/es6-promise.min.js', '/_res/portal/share/js/es6-promise/es6-promise.auto.min.js', '//developers.kakao.com/sdk/js/kakao.min.js', '/scms-static/includejs/sns_share_trackback_jinju.js']
+
+[RAW HTML] div.list1f1t3i1 > ul.lst1 > li.li1
+<li class="li1"><div class="wrap1">
+<a class="a1" href="?amode=view&amp;not_ancmt_mgt_no=65854&amp;cpage=1">
+<span class="wrap1texts">
+<strong class="t1">2026년 미천면 농지전수조사 조사원 기간제근로자 채용 공고(추가모집)</strong>
+<i class="wrap1t3">
+<span class="t3">고시번호 : 진주시 미천면 공고 제2026-11호</span>
+<span class="t3">등록일 : 2026-10-26</span>
+<span class="t3">공고기간 : 2026-10-26~2026-11-02</span>
+<span class="t3">담당자 연락처 : <em class="em1">055-749-3863</em></span>
+<span class="t3">담당부서 : 미천면</span>
+</i>
+</span>
+</a>
+</div></li>
+
+[LIST] div#body_content.body_content > div.list1f1t3i1 > ul.lst1  items=5
+   li: li.li1 -> 2026년 미천면 농지전수조사 조사원 기간제근로자 채용 공고(추가모집) 고시번호 : 진주시 미천면 공고 제2026-11호 등록일 : 2026-10-26 공고기간 : 2026-10-
+      div.wrap1 :: own='' all='2026년 미천면 농지전수조사 조사원 기간제근로자 채용 공고(추가모집) 고시번호 : 진주시'
+      a.a1 href=?amode=view&not_ancmt_mgt_no=65854&cpage=1 onclick= :: own='' all='2026년 미천면 농지전수조사 조사원 기간제근로자 채용 공고(추가모집) 고시번호 : 진주시'
+      span.wrap1texts :: own='' all='2026년 미천면 농지전수조사 조사원 기간제근로자 채용 공고(추가모집) 고시번호 : 진주시'
+      strong.t1 :: own='2026년 미천면 농지전수조사 조사원 기간제근로자 채용 공고(추가모집)' all='2026년 미천면 농지전수조사 조사원 기간제근로자 채용 공고(추가모집)'
+      i.wrap1t3 :: own='' all='고시번호 : 진주시 미천면 공고 제2026-11호 등록일 : 2026-10-26 공고기간 '
+      span.t3 :: own='고시번호 : 진주시 미천면 공고 제2026-11호' all='고시번호 : 진주시 미천면 공고 제2026-11호'
+      span.t3 :: own='등록일 : 2026-10-26' all='등록일 : 2026-10-26'
+      span.t3 :: own='공고기간 : 2026-10-26~2026-11-02' all='공고기간 : 2026-10-26~2026-11-02'
+      span.t3 :: own='담당자 연락처 :' all='담당자 연락처 : 055-749-3863'
+      em.em1 :: own='055-749-3863' all='055-749-3863'
+      span.t3 :: own='담당부서 : 미천면' all='담당부서 : 미천면'
+
+[PAGING] ?amode=view&not_ancmt_mgt_no=65854&cpage=1
+[DATES] sample: ['2026/10/30', '2026-10-26', '2026-10-26', '2026-11-02', '2026-10-20']
+
+[ANCHORS] most common link paths
+   x5 ul.lst1 > li.li1 > div.wrap1 > a.a1  href=?amode=view&not_ancmt_mgt_no=65854&cpage=1  text='2026년 미천면 농지전수조사 조사원 기간제근로자 채용 공고(추가모집) '
+      row? div.wrap1 :: '2026년 미천면 농지전수조사 조사원 기간제근로자 채용 공고(추가모집) 고시번호 : 진주시 미천면 공고 제2026-11호 등록일 : 2026-10-26 공고기간 : 2026-10-26~2026-11-02 담당자 연락'
+   x1 div#container > div#wrap > a.b1.sajeon.noprint  href=https://www.jinju.go.kr/00131/00169/05110.web {'target': '_blank', 'title': '새창열림'} text='사전심사 청구제 안내 자세히보기'
+   x1 div#container > div#wrap > a.b1.talktalk1.noprint  href=https://www.jinju.go.kr/ennabot/index.html {'target': '_blank', 'title': '새창열림'} text='물어보세요!진주톡포유'
+   x1 div#container > div#wrap > div#quick1.init > a.b1.toggle.switch  href=#quick1c  text='참진주 Today 닫기 보기'
+
+[LINKS] board candidates (53)
+   '시정소식' -> https://www.jinju.go.kr/00130.web
+   '알림마당' -> https://www.jinju.go.kr/00130/02730.web
+   '새소식' -> https://www.jinju.go.kr/00130/02730/00136.web
+   '알림창' -> https://www.jinju.go.kr/00130/02730/06464.web
+   '고시/공고' -> https://www.jinju.go.kr/00130/02730/05586.web
+   '채용공고' -> https://www.jinju.go.kr/00130/02730/06660.web
+   '타기관소식' -> https://www.jinju.go.kr/00130/02730/00147.web
+   '캘린더로 보는 소식' -> https://www.jinju.go.kr/00130/02730/06993.web
+   '시정소식지(촉석루)' -> https://www.jinju.go.kr/00130/00148/00157.web
+   '시정소식지(촉석루)' -> https://www.jinju.go.kr/00130/00148/00158.web
+   '시정소식지(촉석루) 구독신청' -> https://www.jinju.go.kr/00130/00148/00159.web
+   '나의 관심분야 & 알림톡 설정' -> https://www.jinju.go.kr/06996.web?amode=update_favorite
+   '제안모집 안내' -> https://www.jinju.go.kr/00132/00381/00438.web
+   '공지사항' -> https://www.jinju.go.kr/00132/05089/05092.web
+   '분과회원(8기) 모집 신청' -> https://www.jinju.go.kr/00132/05089/06783.web
+   '자유게시판' -> https://www.jinju.go.kr/00132/02751/00383.web
+   '사진게시판' -> https://www.jinju.go.kr/00132/02751/00384.web
+   '알림/소식' -> https://www.jinju.go.kr/00132/05626/05632.web
+   '행정처분(불이익처분) 기준 설정 공고' -> https://www.jinju.go.kr/00133/00442/00483.web
+   '입찰공고' -> https://www.jinju.go.kr/04964.web
+   '입찰공고' -> https://www.jinju.go.kr/00133/04958/04964.web
+   '알림마당' -> https://www.jinju.go.kr/04987.web
+   '공지사항' -> https://www.jinju.go.kr/00133/04958/04987.web
+   '구인/구직' -> https://www.jinju.go.kr/00134/00610/00620.web
+   '구인신청절차' -> https://gyeongnam.work.go.kr/jinju/regionBoard/boardData/retrieveBoardContList.do?lwknetBoardNo=1814
+   '구인' -> https://gyeongnam.work.go.kr/jinju/regionBoard/boardData/retrieveBoardContList.do?lwknetBoardNo=1632
+   '잡코리아(경남)' -> http://055.jobkorea.co.kr/
+   '인크루트(경남)' -> http://job.incruit.com/jobdb_list/searchjob.asp?ct=3&ty=3&cd=2522
+   '분묘개장 공고' -> https://www.jinju.go.kr/00134/00614/00754.web
+   '새소식' -> https://www.jinju.go.kr/00134/00614/06453.web
+   '공지사항' -> https://www.jinju.go.kr/00134/00614/07171.web
+   '공지사항' -> https://www.jinju.go.kr/00134/00611/05414.web
+   '주정차 단속 알림서비스(휘슬)' -> https://www.jinju.go.kr/00134/00612/07135.web
+   '알림마당' -> https://www.jinju.go.kr/00134/00618/01026.web
+   '개별주택가격 열람' -> https://www.realtyprice.kr/notice/hpindividual/search.htm;jsessionid=367293672688FF8CDF011D65620ED0BB#menu02
+   '강사프로필' -> https://www.jinju.go.kr/00134/00616/00917.web
+   '공지사항' -> https://www.jinju.go.kr/00134/04991/05059.web
+   '벽보게시판' -> https://www.jinju.go.kr/00134/05705/06600.web
+   '공지사항' -> https://www.jinju.go.kr/00135/01112/07191.web
+   '공지사항' -> https://www.jinju.go.kr/00135/01112/01546.web
+====================================================================================================
+URL: https://www.geoje.go.kr/board/list.geoje?boardId=BBS_0000455&menuCd=DOM_000008901001001001&startPage=1
+status=200 final=https://www.geoje.go.kr/board/list.geoje?boardId=BBS_0000455&menuCd=DOM_000008901001001001&startPage=1 encoding=UTF-8 bytes=204998
+title: 일자리/경제 > 채용정보 > 구인/구직 > 거제시일자리
+
+
+| 거제시청
+
+[GREP] Disallow
+   (없음)
+   [SCRIPT src] ['/rfc3/user/domain/www.geoje.go.kr.80/0/9387.js', '/rfc3/user/domain/www.geoje.go.kr.80/0/9388.js', '/rfc3/user/domain/www.geoje.go.kr.80/0/9394.js', '/rfc3/user/domain/www.geoje.go.kr.80/0/9395.js', '/rfc3/user/domain/www.geoje.go.kr.80/0/9396.js', '/rfc3/user/domain/www.geoje.go.kr.80/0/9389.js', '/rfc3/user/domain/www.geoje.go.kr.80/0/9406.js', '/rfc3/user/domain/www.geoje.go.kr.80/0/9397.js', '/rfc3/user/domain/www.geoje.go.kr.80/0/9398.js', '/rfc3/user/domain/www.geoje.go.kr.80/0/9400.js', '/rfc3/user/domain/www.geoje.go.kr.80/0/9639.js', '/rfc3/user/domain/www.geoje.go.kr.80/0/5579.js']
+
+[RAW HTML] table.board_list1 > tbody > tr
+<tr>
+<td class="tac" colspan="6">등록된 게시물이 없습니다.</td>
+</tr>
+
+[TABLE] div#contentsBox.contents > div#con-wrap.con-wrap > table.board_list1  rows=2
+   row: tr -> th.th01:번호 | th.th02:제목 | th.th03:작성자 | th.th04:작성일 | th.th05:첨부 | th.th06:조회수
+   row: tr -> td.tac:등록된 게시물이 없습니다.
+      td.tac :: own='등록된 게시물이 없습니다.' all='등록된 게시물이 없습니다.'
+
+[PAGING] /board/list.geoje?boardId=BBS_0000455&menuCd=DOM_000008901001001001&paging=ok&startPage=1
+[DATES] sample: ['2022-01-20', '2026.04.17', '2027.04.16']
+
+[ANCHORS] most common link paths
+   x2 div.sns_bottom > ul > li.ins > a  href=https://www.instagram.com/bigheart_geoje {'target': '_blank', 'title': '새창열림'} text='관광소식 인스타그램'
+      row? li.ins :: '관광소식 인스타그램'
+
+[LINKS] board candidates (22)
+   '채용정보' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008901001000000
+   '구인/구직' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008901001001001
+   '새소식' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001001000
+   '고시/공고' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001002001
+   '타기관 고시공고' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001005000
+   '유관기관소식' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902001006000
+   '전자책 거제소식지' -> https://www.geoje.go.kr/ebook/index.geoje?menuCd=DOM_000010702000000000
+   '소식지 무료구독신청' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902003003000
+   '자유게시판' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902005005000
+   '채용비리/공익신고' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008902009006000
+   '참여게시판' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008905011005000
+   '향인 소식' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008905012003000
+   '주정차문자알림서비스' -> https://www.geoje.go.kr/parkingsms
+   '문자알림서비스' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008906004008000
+   '공지사항' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008906018001000
+   '시정소식 한눈에 보기' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008908015000000
+   '대외소식 한눈에 보기' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008908022000000
+   '구인/구직' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008901001001000
+   '알림판' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008901001001002
+   '구인정보' -> https://www.geoje.go.kr/index.geoje?menuCd=DOM_000008901001001003
+   '관광소식 인스타그램' -> https://www.instagram.com/bigheart_geoje
+   '시정소식 인스타그램' -> https://www.instagram.com/geojecity
+====================================================================================================
+URL: https://www.jinju.go.kr/robots.txt
+status=200 final=https://www.jinju.go.kr/robots.txt encoding=UTF-8 bytes=345
+title: 
+body (short): User-agent: * Allow: / Disallow: /_res/ Disallow: /00028/00031.web Disallow: /00134/00611/00629.web Disallow: /00132/02751/00380.web Disallow: /00132/02751/00384.web Disallow: /00132/00379/00393.web Disallow: /00028/07086.web Disallow: /00028/07370.web Disallow: /00028/07236.web Disallow: /search/ Sitemap: https://www.jinju.go.kr/sitemap.xml
+====================================================================================================
+URL: https://www.geoje.go.kr/robots.txt
+status=200 final=https://www.geoje.go.kr/robots.txt encoding=UTF-8 bytes=41
+title: 
+body (short): User-agent: * Disallow: /search Allow: / 
