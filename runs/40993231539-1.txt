@@ -1,0 +1,319 @@
+====================================================================================================
+URL: https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135003001000
+status=200 final=https://www.gyeongnam.go.kr/board/list.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&contentsSid=7166&cpath= encoding=utf-8 bytes=531360
+title: 경제·창업 > 채용정보 > 경남채용정보 (목록) - 경상남도 대표 홈페이지
+
+[RAW HTML] table.basicList > tbody > tr
+<tr>
+<td class="num">4384</td>
+<!-- 장애인채용정보여부  -->
+<td class="num"></td>
+<td class="title">
+<a href="/board/view.gyeong?boardId=BBS_0000377&amp;menuCd=DOM_000000142003001000&amp;searchStartDt=2026-10-30&amp;searchEndDt=2026-11-30&amp;searchType=&amp;keyword=&amp;dataSid=42423079">
+						경남인재평생교육진흥원 2026년 제8회 직원 채용 공고
+					</a>
+</td>
+<td class="state">
+							2026-11-04부터<br/>
+							2026-11-11까지
+				</td>
+<td>
+<a href="/board/download.gyeong?boardId=BBS_0000377&amp;&amp;dataSid=42423079&amp;fileSid=5468729"><img alt="경남인재평생교육진흥원 2026년 제8회 직원 채용 공고 첨부파일" src="/images/egovframework/rfc3/board/images/skin/common/icon_file.gif"/></a>
+</td>
+<td>교육인재과</td>
+<td class="date">
+						055-239-6122
+				</td>
+<td class="hit">373</td>
+</tr>
+
+[RAW HTML] table.basicList > tbody > tr
+<tr>
+<td class="num">4383</td>
+<!-- 장애인채용정보여부  -->
+<td class="num"></td>
+<td class="title">
+<a href="/board/view.gyeong?boardId=BBS_0000377&amp;menuCd=DOM_000000142003001000&amp;searchStartDt=2026-10-30&amp;searchEndDt=2026-11-30&amp;searchType=&amp;keyword=&amp;dataSid=42423038">
+						(재)경남문화예술진흥원 비상근임원 공개모집 최종 결과 공고
+					</a>
+</td>
+<td class="state">
+							2026-10-28부터<br/>
+							2026-11-06까지
+				</td>
+<td>
+<a href="/board/download.gyeong?boardId=BBS_0000377&amp;&amp;dataSid=42423038&amp;fileSid=5468684"><img alt="(재)경남문화예술진흥원 비상근임원 공개모집 최종 결과 공고 첨부파일" src="/images/egovframework/rfc3/board/images/skin/common/icon_file.gif"/></a>
+</td>
+<td>(재)경남문화예술진흥원</td>
+<td class="date">
+				</td>
+<td class="hit">73</td>
+</tr>
+
+[TABLE] div.subCnt > div.board > table.basicList  rows=11
+   row: tr -> th:글번호 | th: | th:제목 | th:접수기간 | th:첨부파일 | th:담당부서 | th:전화번호 | th:조회수
+   row: tr -> td.num:4384 | td.num: | td.title:경남인재평생교육진흥원 2026년 제8회 직원 채 | td.state:2026-11-04부터 2026-11-11까지 | td: | td:교육인재과 | td.date:055-239-6122 | td.hit:373
+      td.num :: own='4384' all='4384'
+      td.title :: own='' all='경남인재평생교육진흥원 2026년 제8회 직원 채용 공고'
+      a href=/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10 onclick= :: own='경남인재평생교육진흥원 2026년 제8회 직원 채용 공고' all='경남인재평생교육진흥원 2026년 제8회 직원 채용 공고'
+      td.state :: own='2026-11-04부터\n\t\t\t\t\t\t\t2026-11-11까지' all='2026-11-04부터 2026-11-11까지'
+      td :: own='교육인재과' all='교육인재과'
+      td.date :: own='055-239-6122' all='055-239-6122'
+      td.hit :: own='373' all='373'
+
+[PAGING] /board/list.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10-30&searchEndDt=2026-11-30&searchType=&keyword=&pa
+[DATES] sample: ['2026-11-04', '2026-11-11', '2026-10-28', '2026-11-06', '2026-10-28']
+
+[ANCHORS] most common link paths
+   x10 tbody > tr > td.title > a  href=/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10  text='경남인재평생교육진흥원 2026년 제8회 직원 채용 공고'
+      row? tr :: '4384 경남인재평생교육진흥원 2026년 제8회 직원 채용 공고 2026-11-04부터 2026-11-11까지 교육인재과 055-239-6122 373'
+
+[LINKS] board candidates (41)
+   '공지사항' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135001001000
+   '타기관 소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135001006000
+   '알림창' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135001007000
+   '채용공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135003001000
+   '입찰공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135003003000
+   '고시공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135003009000
+   '분묘개장공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135003007000
+   '자유게시판' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000136003016000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000153001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142001000000
+   '채용정보' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142003000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000143001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000144001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000145001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000146011000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000147001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000148001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000141001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000149001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135001000000
+   '공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135003000000
+   '경남공감(도정소식지)' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135014000000
+   '경남채용정보' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142003001000
+   '전국채용정보' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142003002000
+   '공무원채용정보' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142003003000
+   '공지사항' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142017006000
+   '공지사항' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142018005000
+   '공지사항' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000143010008000
+   '분묘개장·무연고 사망자 공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000144013005000
+   '알림마당' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000149032002000
+   '도민참여게시판' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000149032005000
+   '입찰공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000149005002000
+   '경남인재평생교육진흥원 2026년 제8회 직원 채용 공고' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10-30
+   '(재)경남문화예술진흥원 비상근임원 공개모집 최종 결과 ' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10-30
+   '(재)경남문화예술진흥원 원장 공개모집 최종 결과 공고' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10-30
+   '2026년 창원레포츠파크 비상임이사 공개모집 공고' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10-30
+   '경상남도광역치매센터 직원 채용공고' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10-30
+   '2026년 제1회 경상남도의회 청원경찰 임용시험 계획 ' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10-30
+   '2027년 경남문화예술회관 청소 기간제노동자 채용 공고' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10-30
+   '2026년 수산자원연구소 민물고기연구센터 대체 기간제노' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10-30
+====================================================================================================
+URL: https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142003001000
+status=200 final=https://www.gyeongnam.go.kr/board/list.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&contentsSid=7166&cpath= encoding=utf-8 bytes=531360
+title: 경제·창업 > 채용정보 > 경남채용정보 (목록) - 경상남도 대표 홈페이지
+
+[RAW HTML] table.basicList > tbody > tr
+<tr>
+<td class="num">4384</td>
+<!-- 장애인채용정보여부  -->
+<td class="num"></td>
+<td class="title">
+<a href="/board/view.gyeong?boardId=BBS_0000377&amp;menuCd=DOM_000000142003001000&amp;searchStartDt=2026-10-30&amp;searchEndDt=2026-11-30&amp;searchType=&amp;keyword=&amp;dataSid=42423079">
+						경남인재평생교육진흥원 2026년 제8회 직원 채용 공고
+					</a>
+</td>
+<td class="state">
+							2026-11-04부터<br/>
+							2026-11-11까지
+				</td>
+<td>
+<a href="/board/download.gyeong?boardId=BBS_0000377&amp;&amp;dataSid=42423079&amp;fileSid=5468729"><img alt="경남인재평생교육진흥원 2026년 제8회 직원 채용 공고 첨부파일" src="/images/egovframework/rfc3/board/images/skin/common/icon_file.gif"/></a>
+</td>
+<td>교육인재과</td>
+<td class="date">
+						055-239-6122
+				</td>
+<td class="hit">373</td>
+</tr>
+
+[RAW HTML] table.basicList > tbody > tr
+<tr>
+<td class="num">4383</td>
+<!-- 장애인채용정보여부  -->
+<td class="num"></td>
+<td class="title">
+<a href="/board/view.gyeong?boardId=BBS_0000377&amp;menuCd=DOM_000000142003001000&amp;searchStartDt=2026-10-30&amp;searchEndDt=2026-11-30&amp;searchType=&amp;keyword=&amp;dataSid=42423038">
+						(재)경남문화예술진흥원 비상근임원 공개모집 최종 결과 공고
+					</a>
+</td>
+<td class="state">
+							2026-10-28부터<br/>
+							2026-11-06까지
+				</td>
+<td>
+<a href="/board/download.gyeong?boardId=BBS_0000377&amp;&amp;dataSid=42423038&amp;fileSid=5468684"><img alt="(재)경남문화예술진흥원 비상근임원 공개모집 최종 결과 공고 첨부파일" src="/images/egovframework/rfc3/board/images/skin/common/icon_file.gif"/></a>
+</td>
+<td>(재)경남문화예술진흥원</td>
+<td class="date">
+				</td>
+<td class="hit">73</td>
+</tr>
+
+[TABLE] div.subCnt > div.board > table.basicList  rows=11
+   row: tr -> th:글번호 | th: | th:제목 | th:접수기간 | th:첨부파일 | th:담당부서 | th:전화번호 | th:조회수
+   row: tr -> td.num:4384 | td.num: | td.title:경남인재평생교육진흥원 2026년 제8회 직원 채 | td.state:2026-11-04부터 2026-11-11까지 | td: | td:교육인재과 | td.date:055-239-6122 | td.hit:373
+      td.num :: own='4384' all='4384'
+      td.title :: own='' all='경남인재평생교육진흥원 2026년 제8회 직원 채용 공고'
+      a href=/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10 onclick= :: own='경남인재평생교육진흥원 2026년 제8회 직원 채용 공고' all='경남인재평생교육진흥원 2026년 제8회 직원 채용 공고'
+      td.state :: own='2026-11-04부터\n\t\t\t\t\t\t\t2026-11-11까지' all='2026-11-04부터 2026-11-11까지'
+      td :: own='교육인재과' all='교육인재과'
+      td.date :: own='055-239-6122' all='055-239-6122'
+      td.hit :: own='373' all='373'
+
+[PAGING] /board/list.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10-30&searchEndDt=2026-11-30&searchType=&keyword=&pa
+[DATES] sample: ['2026-11-04', '2026-11-11', '2026-10-28', '2026-11-06', '2026-10-28']
+
+[ANCHORS] most common link paths
+   x10 tbody > tr > td.title > a  href=/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10  text='경남인재평생교육진흥원 2026년 제8회 직원 채용 공고'
+      row? tr :: '4384 경남인재평생교육진흥원 2026년 제8회 직원 채용 공고 2026-11-04부터 2026-11-11까지 교육인재과 055-239-6122 373'
+
+[LINKS] board candidates (41)
+   '공지사항' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135001001000
+   '타기관 소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135001006000
+   '알림창' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135001007000
+   '채용공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135003001000
+   '입찰공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135003003000
+   '고시공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135003009000
+   '분묘개장공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135003007000
+   '자유게시판' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000136003016000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000153001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142001000000
+   '채용정보' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142003000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000143001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000144001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000145001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000146011000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000147001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000148001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000141001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000149001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135001000000
+   '공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135003000000
+   '경남공감(도정소식지)' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135014000000
+   '경남채용정보' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142003001000
+   '전국채용정보' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142003002000
+   '공무원채용정보' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142003003000
+   '공지사항' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142017006000
+   '공지사항' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142018005000
+   '공지사항' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000143010008000
+   '분묘개장·무연고 사망자 공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000144013005000
+   '알림마당' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000149032002000
+   '도민참여게시판' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000149032005000
+   '입찰공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000149005002000
+   '경남인재평생교육진흥원 2026년 제8회 직원 채용 공고' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10-30
+   '(재)경남문화예술진흥원 비상근임원 공개모집 최종 결과 ' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10-30
+   '(재)경남문화예술진흥원 원장 공개모집 최종 결과 공고' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10-30
+   '2026년 창원레포츠파크 비상임이사 공개모집 공고' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10-30
+   '경상남도광역치매센터 직원 채용공고' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10-30
+   '2026년 제1회 경상남도의회 청원경찰 임용시험 계획 ' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10-30
+   '2027년 경남문화예술회관 청소 기간제노동자 채용 공고' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10-30
+   '2026년 수산자원연구소 민물고기연구센터 대체 기간제노' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&searchStartDt=2026-10-30
+====================================================================================================
+URL: https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135001006000
+status=200 final=https://www.gyeongnam.go.kr/board/list.gyeong?boardId=BBS_0000061&menuCd=DOM_000000135001006000&contentsSid=6956&cpath= encoding=utf-8 bytes=514938
+title: 경남소식 > 새소식 > 타기관 소식 (목록) - 경상남도 대표 홈페이지
+
+[RAW HTML] table.basicList > tbody > tr
+<tr>
+<td class="num">
+												2002	
+										</td>
+<td class="title">
+<a href="/board/view.gyeong?boardId=BBS_0000061&amp;menuCd=DOM_000000135001006000&amp;paging=ok&amp;startPage=1&amp;dataSid=42422972" title="2026-10차 해군보급창 한시임기제군무원 채용 계획">2026-10차 해군보급창 한시임기제군무원 채용 계획</a>
+</td>
+<td class="file"><a href="/board/download.gyeong?boardId=BBS_0000061&amp;menuCd=DOM_000000135001006000&amp;paging=ok&amp;startPage=1&amp;dataSid=42422972&amp;command=update&amp;fileSid=5468609" title="'26-10차 보급창 한시임기제 채용공고문(인터넷홈페이지용)(최종).hwpx 다운받기"><img alt="첨부파일 있음" src="/01_potal/images/board/ico_file.gif"/></a>
+</td>
+<td class="name">
+										해군보급창
+										</td>
+<td class="date">26.10.28</td>
+<td class="hit">6</td>
+</tr>
+
+[RAW HTML] table.basicList > tbody > tr
+<tr>
+<td class="num">
+												2001	
+										</td>
+<td class="title">
+<a href="/board/view.gyeong?boardId=BBS_0000061&amp;menuCd=DOM_000000135001006000&amp;paging=ok&amp;startPage=1&amp;dataSid=42421284" title="2026-9차 해군보급창 한시임기제군무원 채용 계획">2026-9차 해군보급창 한시임기제군무원 채용 계획</a>
+</td>
+<td class="file"><a href="/board/download.gyeong?boardId=BBS_0000061&amp;menuCd=DOM_000000135001006000&amp;paging=ok&amp;startPage=1&amp;dataSid=42421284&amp;command=update&amp;fileSid=5467410" title="26-9차 보급창 한시임기제 채용공고문(인터넷홈페이지용) (최종).hwpx 다운받기"><img alt="첨부파일 있음" src="/01_potal/images/board/ico_file.gif"/></a>
+</td>
+<td class="name">
+										해군보급창
+										</td>
+<td class="date">26.10.19</td>
+<td class="hit">20</td>
+</tr>
+
+[TABLE] div#subCnt.subCnt > div.board > table.basicList  rows=11
+   row: tr -> th:번호 | th:제목 | th:파일 | th:기관명 | th:작성일 | th:조회수
+   row: tr -> td.num:2002 | td.title:2026-10차 해군보급창 한시임기제군무원 채용 | td.file: | td.name:해군보급창 | td.date:26.10.28 | td.hit:6
+      td.num :: own='2002' all='2002'
+      td.title :: own='' all='2026-10차 해군보급창 한시임기제군무원 채용 계획'
+      a href=/board/view.gyeong?boardId=BBS_0000061&menuCd=DOM_000000135001006000&paging=ok&startPage=1 onclick= :: own='2026-10차 해군보급창 한시임기제군무원 채용 계획' all='2026-10차 해군보급창 한시임기제군무원 채용 계획'
+      td.name :: own='해군보급창' all='해군보급창'
+      td.date :: own='26.10.28' all='26.10.28'
+      td.hit :: own='6' all='6'
+
+[PAGING] /board/view.gyeong?boardId=BBS_0000061&menuCd=DOM_000000135001006000&paging=ok&startPage=1&dataSid=42422972
+[DATES] sample: []
+
+[ANCHORS] most common link paths
+   x10 tbody > tr > td.title > a  href=/board/view.gyeong?boardId=BBS_0000061&menuCd=DOM_000000135001006000&paging=ok&startPage=1 {'title': '2026-10차 해군보급창 한시임기제군무원 채용 계획'} text='2026-10차 해군보급창 한시임기제군무원 채용 계획'
+      row? tr :: '2002 2026-10차 해군보급창 한시임기제군무원 채용 계획 해군보급창 26.10.28 6'
+
+[LINKS] board candidates (41)
+   '공지사항' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135001001000
+   '타기관 소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135001006000
+   '알림창' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135001007000
+   '채용공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135003001000
+   '입찰공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135003003000
+   '고시공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135003009000
+   '분묘개장공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135003007000
+   '자유게시판' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000136003016000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000153001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142001000000
+   '채용정보' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142003000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000143001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000144001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000145001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000146011000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000147001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000148001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000141001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000149001000000
+   '새소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135001000000
+   '공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135003000000
+   '경남공감(도정소식지)' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135014000000
+   '경남채용정보' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142003001000
+   '전국채용정보' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142003002000
+   '공무원채용정보' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142003003000
+   '공지사항' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142017006000
+   '공지사항' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000142018005000
+   '공지사항' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000143010008000
+   '분묘개장·무연고 사망자 공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000144013005000
+   '알림마당' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000149032002000
+   '도민참여게시판' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000149032005000
+   '입찰공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000149005002000
+   '알림창' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135001007005
+   '고시공고' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135003009001
+   '경남소식' -> https://www.gyeongnam.go.kr/index.gyeong?menuCd=DOM_000000135000000000
+   '2026-10차 해군보급창 한시임기제군무원 채용 계획' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000061&menuCd=DOM_000000135001006000&paging=ok&startPage=1&da
+   '2026-9차 해군보급창 한시임기제군무원 채용 계획' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000061&menuCd=DOM_000000135001006000&paging=ok&startPage=1&da
+   '소규모 위험시설 정비사업 실시계획 변경(2차) 공고 게' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000061&menuCd=DOM_000000135001006000&paging=ok&startPage=1&da
+   '2026년 경상남도체육회장선거 공정선거지원단 모집' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000061&menuCd=DOM_000000135001006000&paging=ok&startPage=1&da
+   '2026년도 거제해양관광개발공사 일반직 직원 채용 공고' -> https://www.gyeongnam.go.kr/board/view.gyeong?boardId=BBS_0000061&menuCd=DOM_000000135001006000&paging=ok&startPage=1&da
