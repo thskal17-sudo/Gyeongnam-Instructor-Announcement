@@ -562,10 +562,13 @@ sources:
     homepage: https://www.hygn.go.kr
     adapter:
       type: html_list
-      list_url: TODO
-      candidate_list_url: https://www.hygn.go.kr/00429/00543/00553.web?cpage={page}
+      <<: *eminwon
+      list_url: https://eminwon.hygn.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectListOfrNotAncmt&methodnm=selectListOfrNotAncmtHomepage&homepage_pbs_yn=Y&subCheck=Y&ofr_pageSize=50&not_ancmt_se_code=01,02,03,04,05&initValue=Y&countYn=Y&list_gubun=A&epcCheck=Y&Key=B_Subject&pageIndex={page}
+      link_url_template: https://eminwon.hygn.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?jndinm=OfrNotAncmtEJB&context=NTIS&method=selectOfrNotAncmt&methodnm=selectOfrNotAncmtRegst&homepage_pbs_yn=Y&subCheck=Y&not_ancmt_mgt_no={1}
     notes: >-
-      채용공고 게시판 후보(고시공고 대안: eminwon.hygn.go.kr/emwp/jsp/ofr/OfrNotAncmtLSub.jsp?not_ancmt_se_code=05). 러너에서 403 또는 DNS 실패(2026-09-21); 2026-09-22에도 hygn.go.kr·www.hygn.go.kr 모두 이름 해석 실패(러너 DNS에서 응답 없음). 2026-09-22 브라우저형 헤더·Referer·재시도 적용 후 3개 러너(westus3×2, centralus)에서 재시도 → 동일 실패. GitHub 호스티드 러너 IP 대역을 일관되게 차단하는 것으로 판단, 국내 IP(자체 호스팅 러너·프록시) 또는 로컬 `python -m gia probe` 필요
+      홈페이지 '채용정보'(00429/00543/00553)는 글 대신 새올 '채용정보 바로가기'(eminwon.hygn.go.kr, 분류 05)로 넘긴다
+      (2026-10-30 국내 중계로 확인). 다른 새올 시군과 같이 고시공고 전체에서 제목 키워드로 채용·모집 공고만 남긴다.
+      러너 IP 로는 403·DNS 실패였다(2026-09-21~22). KR_PROXY_URL 이 있으면 중계로 읽는다
   - id: geochang
     name: 거창군
     org_type: local_gov
