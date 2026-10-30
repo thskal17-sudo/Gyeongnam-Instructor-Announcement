@@ -62,6 +62,8 @@ jobs:
       - name: collect
         env:
           GIA_KOREA_RELAY: ${{ runner.temp }}/korea-relay.json
+          # 국내 중계 서버(울산판과 같은 tinyproxy). 있으면 한국 사이트(.kr)는 이 중계로 읽는다. 없으면 바로 접속
+          KR_PROXY_URL: ${{ secrets.KR_PROXY_URL }}
           DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
           WORKNET_API_KEY: ${{ secrets.WORKNET_API_KEY }}
           # 국내 프록시(선택). 비어 있으면 러너 IP 로 그냥 나간다 — 지금까지와 같다.

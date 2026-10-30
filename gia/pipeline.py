@@ -337,9 +337,11 @@ def collect(bundle: ConfigBundle, store: Store, http: HttpClient, only: list[str
     # korea_only 소스는 사이트 대신 그 기록을 읽는다. 없으면(국내 PC 에서 손으로 돌릴 때) 사이트를 직접 읽는다
     relay_path = os.environ.get(RELAY_ENV, "").strip()
     relay = load_relay(relay_path) if relay_path else None
+    # 국내 중계(KR_PROXY_URL)가 있는데 한국 PC 기록이 없으면, 건너뛰지 말고 중계로 사이트를 바로 읽는다
+    use_relay = bool(relay_path) and (relay is not None or not (os.environ.get("KR_PROXY_URL") or "").strip())
     with ThreadPoolExecutor(max_workers=max(1, cs.concurrency)) as ex:
         outcomes = list(ex.map(lambda c: run_source(c, bundle, store, http, now, since, refetch=refetch,
-                                                    relay=relay, use_relay=bool(relay_path)), selected))
+                                                    relay=relay, use_relay=use_relay), selected))
 
     llm = llm if llm is not None else LlmClassifier.from_settings(bundle.settings.classifier)
     if llm is not None:

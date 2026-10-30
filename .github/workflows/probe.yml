@@ -60,9 +60,10 @@ jobs:
           BODY_SELECTOR: ${{ github.event.inputs.body_selector }}
           GREP: ${{ github.event.inputs.grep }}
           RAW_SELECTOR: ${{ github.event.inputs.raw_selector }}
-          # dump 도 같은 경로로 나가야 gia probe 결과와 비교가 된다 (requests 도 환경변수를 본다)
-          HTTPS_PROXY: ${{ secrets.HTTPS_PROXY }}
-          HTTP_PROXY: ${{ secrets.HTTPS_PROXY }}
+          # dump 도 같은 경로로 나가야 gia probe 결과와 비교가 된다 (requests 도 환경변수를 본다).
+          # 국내 중계(KR_PROXY_URL)만 있으면 그것을 쓴다 — dump 는 진단할 사이트 주소만 읽는다
+          HTTPS_PROXY: ${{ secrets.HTTPS_PROXY || secrets.KR_PROXY_URL }}
+          HTTP_PROXY: ${{ secrets.HTTPS_PROXY || secrets.KR_PROXY_URL }}
           NO_PROXY: github.com,api.github.com,codeload.github.com,objects.githubusercontent.com
         run: python scripts/dump_structure.py 2>&1 | tee -a "$PROBE_OUT"
       - name: gia probe
@@ -70,6 +71,7 @@ jobs:
         env:
           DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
           WORKNET_API_KEY: ${{ secrets.WORKNET_API_KEY }}
+          KR_PROXY_URL: ${{ secrets.KR_PROXY_URL }}  # 국내 중계. 있으면 .kr 사이트는 중계로 읽는다
           # 국내 프록시(선택). 비어 있으면 러너 IP 로 그냥 나간다 — 지금까지와 같다.
           # 지자체·대학 상당수가 러너 IP 대역을 막는다(docs/SOURCE_VERIFICATION.md)
           HTTPS_PROXY: ${{ secrets.HTTPS_PROXY }}
@@ -94,7 +96,12 @@ jobs:
         if: ${{ always() }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
+          # 출력은 공개 브랜치에 올라간다. 인증키·중계 주소가 섞였으면 가린다(gia/logsafe.py)
+          DATA_GO_KR_KEY: ${{ secrets.DATA_GO_KR_KEY }}
+          WORKNET_API_KEY: ${{ secrets.WORKNET_API_KEY }}
+          KR_PROXY_URL: ${{ secrets.KR_PROXY_URL }}
         run: |
+          [ -s "$PROBE_OUT" ] && python -c "import sys; from gia.logsafe import redact; p = sys.argv[1]; t = open(p, encoding='utf-8', errors='replace').read(); open(p, 'w', encoding='utf-8').write(redact(t))" "$PROBE_OUT" || true
           # 러너 로그는 뒤에서 잘려 정작 필요한 표 구조가 사라진다. 전문을 브랜치에 올린다
           [ -s "$PROBE_OUT" ] || echo "(probe 출력 없음 — urls·sources 입력이 비었거나 단계가 건너뛰어졌다)" > "$PROBE_OUT"
           dest="runs/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.txt"
