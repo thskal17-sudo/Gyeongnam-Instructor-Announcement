@@ -94,7 +94,9 @@ def parse_list_html(html: str, page_url: str, a: dict, cfg, since: date) -> tupl
             # 첨부(javascript 다운로드)를 못 읽는 곳은 본문에 마감일이 없어 강사잇다 양식에서 보류로 남았다
             dl = row.css_first(a["deadline_selector"])
             text = dl.text(strip=True) if dl is not None else ""
-            deadline_text = re.split(r"[~∼〜]", text)[-1].strip() or None
+            # 경남도청 경남채용정보는 '2026-11-04부터 2026-11-11까지' 꼴
+            tail = re.split(r"[~∼〜]|부터", text)[-1].strip()
+            deadline_text = re.sub(r"\s*까지$", "", tail) or None
         if not matches_keywords(title, a.get("keywords")):
             continue
         if posted and posted < since:

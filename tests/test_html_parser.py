@@ -97,3 +97,19 @@ def test_deadline_from_list_period():
     rows, _ = parse_list_html(html, "https://www.gne.go.kr/l", a, cfg, date(2026, 10, 1))
     assert rows[0].posted_at == date(2026, 10, 24)
     assert rows[0].deadline_text == "2026.10.27"
+
+
+def test_deadline_from_list_period_korean_words():
+    """'2026-11-04부터 2026-11-11까지' 꼴 접수기간 (경남도청 경남채용정보, 2026-10-30)."""
+    from datetime import date
+
+    from gia.collectors.html_list import parse_list_html
+    from tests.conftest import make_source
+
+    html = """<table class="basicList"><tbody><tr><td class="title"><a href="/board/view.gyeong?dataSid=1">강사 모집</a></td>
+      <td class="state">2026-11-04부터<br/>2026-11-11까지</td></tr></tbody></table>"""
+    cfg = make_source("gyeongnam_go", "local_gov", type="html_list", list_url="https://www.gyeongnam.go.kr/l")
+    a = {"row_selector": "table.basicList tbody tr", "title_selector": "td.title a", "link_selector": "td.title a",
+         "date_selector": "td.state", "deadline_selector": "td.state"}
+    rows, _ = parse_list_html(html, "https://www.gyeongnam.go.kr/l", a, cfg, date(2026, 10, 1))
+    assert rows[0].posted_at == date(2026, 11, 4) and rows[0].deadline_text == "2026-11-11"
