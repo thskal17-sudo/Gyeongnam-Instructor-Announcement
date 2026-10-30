@@ -1,0 +1,12 @@
+24:  default_days: 45
+::group::probe jinju
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.jinju.go.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.jinju.go.kr/00130/02730/06660.web?cpage=1 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.jinju.go.kr/00130/02730/06660.web?amode=view&not_ancmt_mgt_no=65757&cpage=1 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.jinju.go.kr/DownloadEx.do?url=http%3A%2F%2Feminwon.jinju.go.kr%2Femwp%2Fjsp%2Fofr%2FFileDown.jsp%3Fuser_file_nm%3D2027%EB%85%84+%EB%8F%85%EC%84%9C%EB%AC%B8%ED%99%94%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8+%EA%B0%95%EC%82%AC%EB%AA%A8%EC%A7%91+%EA%B3%B5%EA%B3%A0%28%EC%95%88%29.hwpx%26sys_file_nm%3D2027%EB%85%84+%EB%8F%85%EC%84%9C%EB%AC%B8%ED%99%94%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8+%EA%B0%95%EC%82%AC%EB%AA%A8%EC%A7%91+%EA%B3%B5%EA%B3%A0%28%EC%95%88%29_ofr_ofr_qqUzzbHIQ784JQCc_20261016170607653_1.hwpx%26file_path%3D%2Fntishome%2Ffile%2Fupload%2Fofr%2Fofr%2F20261016&name=2027%EB%85%84+%EB%8F%85%EC%84%9C%EB%AC%B8%ED%99%94%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8+%EA%B0%95%EC%82%AC%EB%AA%A8%EC%A7%91+%EA%B3%B5%EA%B3%A0%28%EC%95%88%29.hwpx "HTTP/1.1 200 OK"
+[probe] 진주시 채용공고: 목록 1건
+  - 2026-10-20 | 진주시 채용공고 | 2027년 진주시립도서관 독서・문화프로그램 강사 모집 공고 | https://www.jinju.go.kr/00130/02730/06660.web?amode=view&not_ancmt_mgt_no=65757&cpage=1
+[detail] 본문 8265자 · 마감 2026-11-04 23:59:00+09:00 (fixed, '26. 11. 4.(수)') · 점수 95 ['+50 제목 핵심어(강사)', '+20 채용어(모집)', '+10 강의어(강의)', '+15 경남 지역'] · 분야 lifelong
+[posting] 포함: 2027년 진주시립도서관 독서・문화프로그램 강사 모집 공고
+::endgroup::
