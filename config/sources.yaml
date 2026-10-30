@@ -355,7 +355,8 @@ sources:
       detail:
         fetch: true
         body_selector: div.bbs1view1
-        attachment_selector: "a[href*='download']"
+        # 본문은 제목·고시번호뿐이고 내용은 첨부(HWP)에 있다. 첨부는 /DownloadEx.do?url=<새올 FileDown.jsp 주소>
+        attachment_selector: a.filename
     notes: >-
       채용공고(새올 고시공고 중 채용 분류를 누리집에서 보여 주는 게시판). 러너 IP 로는 연결 시간초과(2026-09-21~22),
       국내 중계(KR_PROXY_URL)로 읽힌다(2026-10-30). robots.txt 는 이 경로를 막지 않는다

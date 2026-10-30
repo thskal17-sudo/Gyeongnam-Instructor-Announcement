@@ -63,3 +63,14 @@ def test_filename_from_narailteo_download_url():
 
     url = "https://www.gojobs.go.kr/downFile.do?filenm=%EA%B3%B5%EA%B3%A0%EB%AC%B8.hwp&uuid=1&saveGbn=employ/x"
     assert filename_from_url(url) == "공고문.hwp"
+
+
+def test_filename_from_nested_download_url():
+    """진주시 /DownloadEx.do?url=<새올 FileDown.jsp 주소> 에서 원래 파일 이름을 찾는다 (2026-10-30)."""
+    from urllib.parse import quote
+
+    from gia.extract.attachments import filename_from_url
+
+    inner = "http://eminwon.jinju.go.kr/emwp/jsp/ofr/FileDown.jsp?user_file_nm=" + quote("채용공고.hwp") + "&sys_file_nm=x"
+    url = "https://www.jinju.go.kr/DownloadEx.do?url=" + quote(inner, safe="")
+    assert filename_from_url(url) == "채용공고.hwp"
