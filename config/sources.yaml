@@ -259,16 +259,31 @@ sources:
 # Tier 2. 경남도·시군·교육청  — Phase 2
 # ---------------------------------------------------------------------------
   - id: gyeongnam_go
-    name: 경상남도청
+    name: 경상남도청 경남채용정보
     org_type: local_gov
     tier: 2
     homepage: https://www.gyeongnam.go.kr
     adapter:
       type: html_list
-      list_url: TODO
-      candidate_list_url: https://www.gyeongnam.go.kr/board/list.gyeong?boardId=BBS_0000377&menuCd=DOM_000000108002002000&startPage={page}
+      # 경제·창업 > 채용정보 > 경남채용정보. 게시판 번호(BBS_0000377)는 그대로인데 메뉴 코드가 바뀌어
+      # 예전 주소(menuCd=DOM_000000108002002000)는 '페이지를 표시할 수 없습니다'(1.4KB)를 돌려준다(2026-10-30)
+      list_url: https://www.gyeongnam.go.kr/board/list.gyeong?boardId=BBS_0000377&menuCd=DOM_000000142003001000&startPage={page}
+      # 행: 글번호 / 장애인채용 / 제목 / 접수기간('2026-11-04부터 2026-11-11까지') / 첨부 / 담당부서 / 전화번호 / 조회수
+      row_selector: table.basicList tbody tr
+      title_selector: td.title a
+      link_selector: td.title a
+      date_selector: td.state
+      deadline_selector: td.state
+      keywords: [강사, 교강사, 지도사, 지도자, 코치, 강습, 튜터, 인력풀, 트레이너]
+      paging: { max_pages: 3 }
+      detail:
+        fetch: true
+        body_selector: div.board
+        attachment_selector: "a[href*='/board/download.gyeong']"
     notes: >-
-      경남채용정보 게시판 후보. GitHub 러너에서 '페이지를 표시할 수 없습니다'(1.4KB 차단 페이지) 또는 연결 시간초과(2026-09-21). 2026-09-22 브라우저형 헤더·Referer·재시도 적용 후 3개 러너(westus3×2, centralus)에서 재시도 → 동일 실패. GitHub 호스티드 러너 IP 대역을 일관되게 차단하는 것으로 판단, 국내 IP(자체 호스팅 러너·프록시) 또는 로컬 `python -m gia probe` 필요. 도 본청 공무직 채용은 saramin 위탁(gyeongnam.saramin.co.kr)
+      도청·출자출연기관·도내 공공기관 채용 공고가 모이는 게시판이라 제목 키워드로 강사 공고만 남긴다.
+      러너 IP 로는 막히고(2026-09-21~22) 국내 중계(KR_PROXY_URL)로 읽힌다(2026-10-30).
+      도 본청 공무직 채용은 saramin 위탁(gyeongnam.saramin.co.kr)
 
   - id: gne
     name: 경상남도교육청 구인구직포털
