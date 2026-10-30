@@ -1,202 +1,60 @@
 ====================================================================================================
-URL: https://www.geochang.go.kr/
-status=200 final=https://www.geochang.go.kr/_res/intro/intro.jsp encoding=utf-8 bytes=4344
-title: 거창군청
+URL: https://www.gyeongnam.go.kr/board/list.gyeong?boardId=BBS_0000377&menuCd=DOM_000000108002002000&startPage=1
+status=200 final=https://www.gyeongnam.go.kr/board/list.gyeong?boardId=BBS_0000377&menuCd=DOM_000000108002002000&startPage=1 encoding=UTF-8 bytes=1387
+title: 페이지를 표시할 수 없습니다.
+body (short):  <!DOCTYPE html> <html lang="ko"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>페이지를 표시할 수 없습니다.</title> <style> body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: linear-gradient(135deg, #eef2f3 0%, #8e9eab 100%); display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; } .error-card { text-align: center; background: #ffffff; padding: 50px 40px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); border-top: 5px solid
+====================================================================================================
+URL: https://www.hygn.go.kr/00429/00543/00553.web?cpage=1
+status=200 final=https://www.hygn.go.kr/00429/00543/00553.web?cpage=1 encoding=UTF-8 bytes=71722
+title: 채용정보 | 함양군 대표누리집
 
-[LIST] div#intro.init > ul.lst  items=5
-   li: li.n1 -> 대표 누리집 군민과 함께하는 새로운 거창
-      a href=/main.web onclick= :: own='' all='대표 누리집 군민과 함께하는 새로운 거창'
-      strong.h1 :: own='대표' all='대표 누리집'
-      em :: own='누리집' all='누리집'
-      span.t1 :: own='군민과 함께하는 새로운 거창' all='군민과 함께하는 새로운 거창'
+[LIST] div#snb1.snb1 > div.d2 > ul  items=4
+   li: li.m1.on -> 함양소식 군정소식 행사소식 고시/공고 채용정보 군정뉴스 해명자료 반상회보 국정홍보만화 타기관홍보 공보 공시송달 함양군 스마트 마을방송
+      a href=/00429/00543.web onclick= :: own='' all='함양소식'
+      span :: own='함양소식' all='함양소식'
+      div.d3 :: own='' all='군정소식 행사소식 고시/공고 채용정보 군정뉴스 해명자료 반상회보 국정홍보만화 타기관홍보 공'
+      ul :: own='' all='군정소식 행사소식 고시/공고 채용정보 군정뉴스 해명자료 반상회보 국정홍보만화 타기관홍보 공'
+      li.m1 :: own='' all='군정소식'
+      a href=/00429/00543/00547.web onclick= :: own='군정소식' all='군정소식'
+      li.m2 :: own='' all='행사소식'
+      a href=/00429/00543/00548.web onclick= :: own='행사소식' all='행사소식'
+      li.m3 :: own='' all='고시/공고'
+      a href=/00429/00543/00549.web onclick= :: own='고시/공고' all='고시/공고'
+      li.m4.on :: own='' all='채용정보'
+      a href=/00429/00543/00553.web onclick= :: own='채용정보' all='채용정보'
+      li.m5 :: own='' all='군정뉴스'
+      a href=/01997/02007.web onclick= :: own='군정뉴스' all='군정뉴스'
+[DATES] sample: ['2024.08.25']
+
+[ANCHORS] most common link paths
+   x1 div.d3 > ul > li.m12 > a  href=/00429/00543/06043.web  text='함양군 스마트 마을방송'
+      row? li.m12 :: '함양군 스마트 마을방송'
+   x1 div.d3 > ul > li.m5 > a  href=/00429/00544/00569.web  text='삽니다/팝니다/임대'
+      row? li.m5 :: '삽니다/팝니다/임대'
+   x1 div.d3 > ul > li.m8 > a  href=/00429/00544/05031.web  text='청소년 꿈드림 바우처 가맹점 신청접수'
+      row? li.m8 :: '청소년 꿈드림 바우처 가맹점 신청접수'
+   x1 div.d3 > ul > li.m1 > a  href=/00429/00546/00581.web  text='고향사랑기부제 소개'
+      row? li.m1 :: '고향사랑기부제 소개'
+
+[LINKS] board candidates (10)
+   '함양소식' -> https://www.hygn.go.kr/00429/00543.web
+   '군정소식' -> https://www.hygn.go.kr/00429/00543/00547.web
+   '행사소식' -> https://www.hygn.go.kr/00429/00543/00548.web
+   '고시/공고' -> https://www.hygn.go.kr/00429/00543/00549.web
+   '채용정보' -> https://www.hygn.go.kr/00429/00543/00553.web
+   '모집신청접수' -> https://www.hygn.go.kr/00429/00545.web
+   '입찰공고' -> https://www.hygn.go.kr/00430/00587/00696.web
+   '개인정보 목적 외 이용 및 제공 공고' -> https://www.hygn.go.kr/00430/00593/00735.web
+   '채용정보 바로가기' -> https://eminwon.hygn.go.kr/emwp/jsp/ofr/OfrNotAncmtLSub.jsp?not_ancmt_se_code=05
+   '알림서비스 신청' -> https://www.hygn.go.kr/05342.web
+====================================================================================================
+URL: https://www.hygn.go.kr/
+status=200 final=https://www.hygn.go.kr/ encoding=utf-8 bytes=9762
+title: 함양군 대표누리집
+[DATES] sample: []
+
+[RETRY without noise filter]
 [DATES] sample: []
 
 [ANCHORS] most common link paths
-   x1 div#intro.init > ul.lst > li.n1 > a  href=/main.web  text='대표 누리집 군민과 함께하는 새로운 거창'
-      row? li.n1 :: '대표 누리집 군민과 함께하는 새로운 거창'
-   x1 div#intro.init > ul.lst > li.n2 > a  href=/tour.web  text='거창 문화관광 아름다운 청정자연 거창'
-      row? li.n2 :: '거창 문화관광 아름다운 청정자연 거창'
-   x1 div#intro.init > ul.lst > li.n5 > a  href=https://geochangtour.kr/  text='거창한거창 반값치유여행 지역사랑 휴가지원 사업'
-      row? li.n5 :: '거창한거창 반값치유여행 지역사랑 휴가지원 사업'
-   x1 div#intro.init > ul.lst > li.n3 > a  href=/00049/02712.web  text='거창군 예약정보 거창군의 모든 예약을 한 곳에서'
-      row? li.n3 :: '거창군 예약정보 거창군의 모든 예약을 한 곳에서'
-====================================================================================================
-URL: https://www.gcaf.or.kr/
-status=200 final=https://www.gcaf.or.kr/ encoding=utf-8 bytes=139058
-title: 경남문화예술진흥원
-[DATES] sample: ['2026-10-29', '2026-10-29', '2026-10-28', '2026-10-28', '2026-10-27']
-
-[RETRY without noise filter]
-
-[LIST] div.tabcontent > div#menu1-tab > ul.stmap_t  items=8
-   li: li.st_1dli -> 지역문화 문화우물사업 시·도 문화예술기획지원사업 경남 문화예술 전문기획자 양성 통합문화이용권사업 문화가 있는 날
-      a.st_1da href=https://www.gcaf.or.kr/bbs/business.php?co_id=1010 onclick= :: own='지역문화' all='지역문화'
-      ul.stmap_2 :: own='' all='문화우물사업 시·도 문화예술기획지원사업 경남 문화예술 전문기획자 양성 통합문화이용권사업 문'
-      li.st_2dli :: own='' all='문화우물사업'
-      a.st_2da href=https://www.gcaf.or.kr/bbs/business.php?co_id=1010 onclick= :: own='문화우물사업' all='문화우물사업'
-      li.st_2dli :: own='' all='시·도 문화예술기획지원사업'
-      a.st_2da href=https://www.gcaf.or.kr/bbs/business.php?co_id=1070 onclick= :: own='시·도 문화예술기획지원사업' all='시·도 문화예술기획지원사업'
-      li.st_2dli :: own='' all='경남 문화예술 전문기획자 양성'
-      a.st_2da href=https://www.gcaf.or.kr/bbs/business.php?co_id=1030 onclick= :: own='경남 문화예술 전문기획자 양성' all='경남 문화예술 전문기획자 양성'
-      li.st_2dli :: own='' all='통합문화이용권사업'
-      a.st_2da href=https://www.gcaf.or.kr/bbs/business.php?co_id=1040 onclick= :: own='통합문화이용권사업' all='통합문화이용권사업'
-      li.st_2dli :: own='' all='문화가 있는 날'
-      a.st_2da href=https://www.gcaf.or.kr/bbs/business.php?co_id=1050 onclick= :: own='문화가 있는 날' all='문화가 있는 날'
-
-[LIST] ul.stmap_t > li.st_1dli > ul.stmap_2  items=6
-   li: li.st_2dli -> 지역문화예술육성 지원사업
-      a.st_2da href=https://www.gcaf.or.kr/bbs/business.php?co_id=2010 onclick= :: own='지역문화예술육성 지원사업' all='지역문화예술육성 지원사업'
-
-[LIST] ul.stmap_t > li.st_1dli > ul.stmap_2  items=9
-   li: li.st_2dli -> 꿈다락 토요문화학교
-      a.st_2da href=https://www.gcaf.or.kr/bbs/business.php?co_id=4020 onclick= :: own='꿈다락 토요문화학교' all='꿈다락 토요문화학교'
-
-[LIST] ul.stmap_t > li.st_1dli > ul.stmap_2  items=6
-   li: li.st_2dli -> 경남 콘텐츠기업지원센터 운영
-      a.st_2da href=https://www.gcaf.or.kr/bbs/business.php?co_id=5010 onclick= :: own='경남 콘텐츠기업지원센터 운영' all='경남 콘텐츠기업지원센터 운영'
-
-[LIST] ul.stmap_t > li.st_1dli > ul.stmap_2  items=6
-   li: li.st_2dli -> 경남음악창작소 운영
-      a.st_2da href=https://www.gcaf.or.kr/bbs/business.php?co_id=6010 onclick= :: own='경남음악창작소 운영' all='경남음악창작소 운영'
-
-[LIST] div.spot > div.spot_slide_wr > ul.spot_slide  items=8
-   li: li.spot_slide_item -> 지역문화 지역 문화 활성화를 위한 유기적 연결 및 교류 활성화 지역문화 지역 문화 활성화를 위한 유기적 연결 및 교류 활성화
-      a.spot_link.spot_bg1 href=https://www.gcaf.or.kr/bbs/business.php?co_id=1010 onclick= :: own='' all='지역문화 지역 문화 활성화를 위한 유기적 연결 및 교류 활성화 지역문화'
-      p.title :: own='지역문화' all='지역문화'
-      p.text :: own='지역 문화 활성화를 위한유기적 연결 및 교류 활성화' all='지역 문화 활성화를 위한 유기적 연결 및 교류 활성화'
-      p.hidden_title :: own='지역문화' all='지역문화'
-      p.hidden_text :: own='지역 문화 활성화를 위한유기적 연결 및 교류 활성화' all='지역 문화 활성화를 위한 유기적 연결 및 교류 활성화'
-
-[LIST] div.footer_bottom > div.left > ul  items=4
-   li: li -> 관련기관 경상남도 문화체육관광부 한국문화예술위원회 한국문화예술교육진흥원 지역문화진흥원 한국예술인복지재단 한국문화관광연구원
-      div.site :: own='' all='관련기관 경상남도 문화체육관광부 한국문화예술위원회 한국문화예술교육진흥원 지역문화진흥원 한국'
-      button.site_btn :: own='' all='관련기관'
-      p :: own='관련기관' all='관련기관'
-      div.site_link :: own='' all='경상남도 문화체육관광부 한국문화예술위원회 한국문화예술교육진흥원 지역문화진흥원 한국예술인복지'
-      ul :: own='<li><a href="http://www.kocca.kr/" targe' all='경상남도 문화체육관광부 한국문화예술위원회 한국문화예술교육진흥원 지역문화진흥원 한국예술인복지'
-      li :: own='' all='경상남도'
-      a href=https://www.gyeongnam.go.kr onclick= attrs={'target': '_blank'} :: own='경상남도' all='경상남도'
-      li :: own='' all='문화체육관광부'
-      a href=https://www.mcst.go.kr/ onclick= attrs={'target': '_blank'} :: own='문화체육관광부' all='문화체육관광부'
-      li :: own='' all='한국문화예술위원회'
-      a href=https://www.arko.or.kr/ onclick= attrs={'target': '_blank'} :: own='한국문화예술위원회' all='한국문화예술위원회'
-      li :: own='' all='한국문화예술교육진흥원'
-      a href=https://www.arte.or.kr/ onclick= attrs={'target': '_blank'} :: own='한국문화예술교육진흥원' all='한국문화예술교육진흥원'
-      li :: own='' all='지역문화진흥원'
-
-[LIST] div.site > div.site_link > ul  items=27
-   li: li -> 서울문화재단
-      a href=https://www.sfac.or.kr/ onclick= attrs={'target': '_blank'} :: own='서울문화재단' all='서울문화재단'
-
-[LIST] div.site > div.site_link > ul  items=17
-   li: li -> 강원정보문화진흥원
-      a href=http://www.gimc.or.kr/ onclick= attrs={'target': '_blank'} :: own='강원정보문화진흥원' all='강원정보문화진흥원'
-[DATES] sample: ['2026-10-29', '2026-10-29', '2026-10-28', '2026-10-28', '2026-10-27']
-
-[ANCHORS] most common link paths
-   x2 div.right_con > div.btm_box > div.box_con > a  href=https://www.gcaf.or.kr/bbs/content.php?co_id=sub6_8  text='진흥원 시설대관 신청안내'
-      row? div.box_con :: '진흥원 시설대관 신청안내'
-
-[LINKS] board candidates (5)
-   '알림마당' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_1
-   '사업공고·입찰' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_7
-   '채용공고' -> https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8
-   '자유게시판' -> https://www.gcaf.or.kr/bbs/group.php?gr_id=sub10_4
-   '공고' -> https://www.gcaf.or.kr/bbs/search.php?sfl=wr_subject&sop=and&stx=%EA%B3%B5%EA%B3%A0
-====================================================================================================
-URL: https://www.jinju.go.kr/
-status=200 final=https://www.jinju.go.kr/main.web encoding=UTF-8 bytes=281992
-title: 진주시청
-
-[LIST] div#bbs1c1.cont > div.w1 > ul.lst1  items=6
-   li: li -> 2026년 하반기 정부 우수공무원 추천대상자 공개검증 추가 실시 안내 new 2026.10.29
-      a href=/00136.web?amode=view&idx=39622429&gcode=2144 onclick= :: own='' all='2026년 하반기 정부 우수공무원 추천대상자 공개검증 추가 실시 안내 new 2026.10'
-      span.t1 :: own='2026년 하반기 정부 우수공무원 추천대상자 공개검증 추가 실시 안내' all='2026년 하반기 정부 우수공무원 추천대상자 공개검증 추가 실시 안내'
-      i.new :: own='new' all='new'
-      span.time :: own='2026.10.29' all='2026.10.29'
-
-[LIST] div#bbs1c2.cont > div.w1 > ul.lst1  items=5
-   li: li -> 문화가 있는 날 하모하모 페스타 운영 용역 제안서평가위원(후보자) 모집 공고 2026.10.30
-      a href=/00137.web?amode=view&not_ancmt_mgt_no=65898 onclick= :: own='' all='문화가 있는 날 하모하모 페스타 운영 용역 제안서평가위원(후보자) 모집 공고 2026.10'
-      span.t1 :: own='문화가 있는 날 하모하모 페스타 운영 용역 제안서평가위원(후보자) 모집 ' all='문화가 있는 날 하모하모 페스타 운영 용역 제안서평가위원(후보자) 모집 공고'
-      span.time :: own='2026.10.30' all='2026.10.30'
-
-[LIST] div#bbs1c3.cont > div.w1 > ul.lst1  items=4
-   li: li -> 2027년 진주시립도서관 독서・문화프로그램 강사 모집 공고 2026.10.20
-      a href=/00137.web?amode=view&not_ancmt_mgt_no=65757 onclick= :: own='' all='2027년 진주시립도서관 독서・문화프로그램 강사 모집 공고 2026.10.20'
-      span.t1 :: own='2027년 진주시립도서관 독서・문화프로그램 강사 모집 공고' all='2027년 진주시립도서관 독서・문화프로그램 강사 모집 공고'
-      span.time :: own='2026.10.20' all='2026.10.20'
-
-[LIST] div#bbs1c4.cont > div.w1 > ul.lst1  items=6
-   li: li -> 조규일 진주시장, 국회 이광재 예결위원장 만나 2027년 국비 요청 new 2026.10.29
-      a href=/00138.web?amode=view&idx=39622441&gcode=1004 onclick= :: own='' all='조규일 진주시장, 국회 이광재 예결위원장 만나 2027년 국비 요청 new 2026.10.'
-      span.t1 :: own='조규일 진주시장, 국회 이광재 예결위원장 만나 2027년 국비 요청' all='조규일 진주시장, 국회 이광재 예결위원장 만나 2027년 국비 요청'
-      i.new :: own='new' all='new'
-      span.time :: own='2026.10.29' all='2026.10.29'
-
-[LIST] div.wrap1 > div.mView > ul.mCont  items=8
-   li: li.mContC -> 마을농촌체험 우리아리교육농장
-      div.w1 :: own='' all='마을농촌체험 우리아리교육농장'
-      a.a1 href=/tour/move_detail.do?type=tourinfo&idx=1190 onclick= attrs={'target': '_blank', 'rel': "['noopener']"} :: own='' all='마을농촌체험 우리아리교육농장'
-      b.g1.s1 :: own='' all='마을농촌체험'
-      span.g1t1 :: own='마을농촌체험' all='마을농촌체험'
-      div.tg1 :: own='' all='우리아리교육농장'
-      span.t1 :: own='우리아리교육농장' all='우리아리교육농장'
-[DATES] sample: ['2026/10/30', '2026.10.30', '2026.10.29', '2026.10.28', '2026.10.28']
-
-[ANCHORS] most common link paths
-   x21 div.w1 > ul.lst1 > li > a  href=/00136.web?amode=view&idx=39622429&gcode=2144  text='2026년 하반기 정부 우수공무원 추천대상자 공개검증 추가 실시 안내 n'
-      row? li :: '2026년 하반기 정부 우수공무원 추천대상자 공개검증 추가 실시 안내 new 2026.10.29'
-   x11 ul.mCont > li.mContC > div.w1 > a.a1  href=/tour/move_detail.do?type=tourinfo&idx=1190 {'target': '_blank', 'rel': "['noopener']", 'title': '새 창'} text='마을농촌체험 우리아리교육농장'
-      row? div.w1 :: '마을농촌체험 우리아리교육농장'
-   x2 div.w1 > ul.hot > li > a  href=/00137.web?amode=view&not_ancmt_mgt_no=65900  text='수의계약(소액) 견적제출 안내공고 - 상대육교 철거공사 진주시 공고 제2'
-      row? li :: '수의계약(소액) 견적제출 안내공고 - 상대육교 철거공사 진주시 공고 제2026-2572호 2026-10-30~2026-11-05'
-   x1 div#container > div#wrap > a.b1.sajeon.noprint  href=https://www.jinju.go.kr/00131/00169/05110.web {'target': '_blank', 'title': '새창열림'} text='사전심사 청구제 안내 자세히보기'
-
-[LINKS] board candidates (63)
-   '시정소식' -> https://www.jinju.go.kr/00130.web
-   '알림마당' -> https://www.jinju.go.kr/00130/02730.web
-   '새소식' -> https://www.jinju.go.kr/00130/02730/00136.web
-   '알림창' -> https://www.jinju.go.kr/00130/02730/06464.web
-   '고시/공고' -> https://www.jinju.go.kr/00130/02730/05586.web
-   '채용공고' -> https://www.jinju.go.kr/00130/02730/06660.web
-   '타기관소식' -> https://www.jinju.go.kr/00130/02730/00147.web
-   '캘린더로 보는 소식' -> https://www.jinju.go.kr/00130/02730/06993.web
-   '시정소식지(촉석루)' -> https://www.jinju.go.kr/00130/00148/00157.web
-   '시정소식지(촉석루)' -> https://www.jinju.go.kr/00130/00148/00158.web
-   '시정소식지(촉석루) 구독신청' -> https://www.jinju.go.kr/00130/00148/00159.web
-   '나의 관심분야 & 알림톡 설정' -> https://www.jinju.go.kr/06996.web?amode=update_favorite
-   '제안모집 안내' -> https://www.jinju.go.kr/00132/00381/00438.web
-   '공지사항' -> https://www.jinju.go.kr/00132/05089/05092.web
-   '분과회원(8기) 모집 신청' -> https://www.jinju.go.kr/00132/05089/06783.web
-   '자유게시판' -> https://www.jinju.go.kr/00132/02751/00383.web
-   '사진게시판' -> https://www.jinju.go.kr/00132/02751/00384.web
-   '알림/소식' -> https://www.jinju.go.kr/00132/05626/05632.web
-   '행정처분(불이익처분) 기준 설정 공고' -> https://www.jinju.go.kr/00133/00442/00483.web
-   '입찰공고' -> https://www.jinju.go.kr/04964.web
-   '입찰공고' -> https://www.jinju.go.kr/00133/04958/04964.web
-   '알림마당' -> https://www.jinju.go.kr/04987.web
-   '공지사항' -> https://www.jinju.go.kr/00133/04958/04987.web
-   '구인/구직' -> https://www.jinju.go.kr/00134/00610/00620.web
-   '구인신청절차' -> https://gyeongnam.work.go.kr/jinju/regionBoard/boardData/retrieveBoardContList.do?lwknetBoardNo=1814
-   '구인' -> https://gyeongnam.work.go.kr/jinju/regionBoard/boardData/retrieveBoardContList.do?lwknetBoardNo=1632
-   '잡코리아(경남)' -> http://055.jobkorea.co.kr/
-   '인크루트(경남)' -> http://job.incruit.com/jobdb_list/searchjob.asp?ct=3&ty=3&cd=2522
-   '분묘개장 공고' -> https://www.jinju.go.kr/00134/00614/00754.web
-   '새소식' -> https://www.jinju.go.kr/00134/00614/06453.web
-   '공지사항' -> https://www.jinju.go.kr/00134/00614/07171.web
-   '공지사항' -> https://www.jinju.go.kr/00134/00611/05414.web
-   '주정차 단속 알림서비스(휘슬)' -> https://www.jinju.go.kr/00134/00612/07135.web
-   '알림마당' -> https://www.jinju.go.kr/00134/00618/01026.web
-   '개별주택가격 열람' -> https://www.realtyprice.kr/notice/hpindividual/search.htm;jsessionid=367293672688FF8CDF011D65620ED0BB#menu02
-   '강사프로필' -> https://www.jinju.go.kr/00134/00616/00917.web
-   '공지사항' -> https://www.jinju.go.kr/00134/04991/05059.web
-   '벽보게시판' -> https://www.jinju.go.kr/00134/05705/06600.web
-   '공지사항' -> https://www.jinju.go.kr/00135/01112/07191.web
-   '공지사항' -> https://www.jinju.go.kr/00135/01112/01546.web
-::group::probe gn_caf
-INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
-INFO httpx: HTTP Request: GET https://www.gcaf.or.kr/robots.txt "HTTP/1.1 200 OK"
-INFO httpx: HTTP Request: GET https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8&page=1 "HTTP/1.1 200 OK"
-[probe] 경남문화예술진흥원 채용공고: 목록 0건
-::endgroup::
+   x1 div#wrap.init > div.container > div.intro > a  href=https://hytour.kr/ {'target': '_blank', 'title': '새창'} text='웰·컴 함양 반값여행'

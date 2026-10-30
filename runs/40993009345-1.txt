@@ -1,0 +1,60 @@
+====================================================================================================
+URL: https://www.gyeongnam.go.kr/board/list.gyeong?boardId=BBS_0000377&menuCd=DOM_000000108002002000&startPage=1
+status=200 final=https://www.gyeongnam.go.kr/board/list.gyeong?boardId=BBS_0000377&menuCd=DOM_000000108002002000&startPage=1 encoding=UTF-8 bytes=1387
+title: 페이지를 표시할 수 없습니다.
+body (short):  <!DOCTYPE html> <html lang="ko"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>페이지를 표시할 수 없습니다.</title> <style> body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: linear-gradient(135deg, #eef2f3 0%, #8e9eab 100%); display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; } .error-card { text-align: center; background: #ffffff; padding: 50px 40px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); border-top: 5px solid
+====================================================================================================
+URL: https://www.hygn.go.kr/00429/00543/00553.web?cpage=1
+status=200 final=https://www.hygn.go.kr/00429/00543/00553.web?cpage=1 encoding=UTF-8 bytes=71722
+title: 채용정보 | 함양군 대표누리집
+
+[LIST] div#snb1.snb1 > div.d2 > ul  items=4
+   li: li.m1.on -> 함양소식 군정소식 행사소식 고시/공고 채용정보 군정뉴스 해명자료 반상회보 국정홍보만화 타기관홍보 공보 공시송달 함양군 스마트 마을방송
+      a href=/00429/00543.web onclick= :: own='' all='함양소식'
+      span :: own='함양소식' all='함양소식'
+      div.d3 :: own='' all='군정소식 행사소식 고시/공고 채용정보 군정뉴스 해명자료 반상회보 국정홍보만화 타기관홍보 공'
+      ul :: own='' all='군정소식 행사소식 고시/공고 채용정보 군정뉴스 해명자료 반상회보 국정홍보만화 타기관홍보 공'
+      li.m1 :: own='' all='군정소식'
+      a href=/00429/00543/00547.web onclick= :: own='군정소식' all='군정소식'
+      li.m2 :: own='' all='행사소식'
+      a href=/00429/00543/00548.web onclick= :: own='행사소식' all='행사소식'
+      li.m3 :: own='' all='고시/공고'
+      a href=/00429/00543/00549.web onclick= :: own='고시/공고' all='고시/공고'
+      li.m4.on :: own='' all='채용정보'
+      a href=/00429/00543/00553.web onclick= :: own='채용정보' all='채용정보'
+      li.m5 :: own='' all='군정뉴스'
+      a href=/01997/02007.web onclick= :: own='군정뉴스' all='군정뉴스'
+[DATES] sample: ['2024.08.25']
+
+[ANCHORS] most common link paths
+   x1 div.d3 > ul > li.m12 > a  href=/00429/00543/06043.web  text='함양군 스마트 마을방송'
+      row? li.m12 :: '함양군 스마트 마을방송'
+   x1 div.d3 > ul > li.m5 > a  href=/00429/00544/00569.web  text='삽니다/팝니다/임대'
+      row? li.m5 :: '삽니다/팝니다/임대'
+   x1 div.d3 > ul > li.m8 > a  href=/00429/00544/05031.web  text='청소년 꿈드림 바우처 가맹점 신청접수'
+      row? li.m8 :: '청소년 꿈드림 바우처 가맹점 신청접수'
+   x1 div.d3 > ul > li.m1 > a  href=/00429/00546/00581.web  text='고향사랑기부제 소개'
+      row? li.m1 :: '고향사랑기부제 소개'
+
+[LINKS] board candidates (10)
+   '함양소식' -> https://www.hygn.go.kr/00429/00543.web
+   '군정소식' -> https://www.hygn.go.kr/00429/00543/00547.web
+   '행사소식' -> https://www.hygn.go.kr/00429/00543/00548.web
+   '고시/공고' -> https://www.hygn.go.kr/00429/00543/00549.web
+   '채용정보' -> https://www.hygn.go.kr/00429/00543/00553.web
+   '모집신청접수' -> https://www.hygn.go.kr/00429/00545.web
+   '입찰공고' -> https://www.hygn.go.kr/00430/00587/00696.web
+   '개인정보 목적 외 이용 및 제공 공고' -> https://www.hygn.go.kr/00430/00593/00735.web
+   '채용정보 바로가기' -> https://eminwon.hygn.go.kr/emwp/jsp/ofr/OfrNotAncmtLSub.jsp?not_ancmt_se_code=05
+   '알림서비스 신청' -> https://www.hygn.go.kr/05342.web
+====================================================================================================
+URL: https://www.hygn.go.kr/
+status=200 final=https://www.hygn.go.kr/ encoding=utf-8 bytes=9762
+title: 함양군 대표누리집
+[DATES] sample: []
+
+[RETRY without noise filter]
+[DATES] sample: []
+
+[ANCHORS] most common link paths
+   x1 div#wrap.init > div.container > div.intro > a  href=https://hytour.kr/ {'target': '_blank', 'title': '새창'} text='웰·컴 함양 반값여행'
