@@ -338,10 +338,19 @@ sources:
     homepage: https://www.jinju.go.kr
     adapter:
       type: html_list
-      list_url: TODO
-      candidate_list_url: https://www.jinju.go.kr/00130/02730/06660.web?cpage={page}
+      list_url: https://www.jinju.go.kr/00130/02730/06660.web?cpage={page}
+      row_selector: ul.lst1 > li.li1
+      title_selector: strong.t1
+      link_selector: a.a1
+      # span.t3 는 고시번호·등록일·공고기간·담당자·담당부서 순이다. 두 번째가 등록일
+      date_selector: span.t3:nth-of-type(2)
+      detail: { fetch: true, body_selector: div.bbs1view1 div.substance }
     notes: >-
-      채용공고 게시판 후보. 모든 GitHub 러너에서 연결 시간초과(2026-09-21, 3회). 2026-09-22 브라우저형 헤더·Referer·재시도 적용 후 3개 러너(westus3×2, centralus)에서 재시도 → 동일 실패. GitHub 호스티드 러너 IP 대역을 일관되게 차단하는 것으로 판단, 국내 IP(자체 호스팅 러너·프록시) 또는 로컬 `python -m gia probe` 필요
+      채용공고 게시판. 9월에는 모든 GitHub 러너에서 연결 시간초과였고(2026-09-21·22, 러너 3대에서
+      브라우저형 헤더·Referer 까지 붙여도 동일) 그래서 주소를 비워 두었다. 2026-10-30 국내 중계
+      (KR_PROXY_URL)가 들어온 뒤 러너 probe 에서 HTTP 200·218KB 로 열렸고, 거창군과 같은 'web' CMS
+      구조라 같은 셀렉터를 쓴다(ul.lst1 > li.li1, 제목 strong.t1, 링크 a.a1).
+      목록에 기간제근로자·조사원 채용이 많아 분류기 점수로 거른다.
   - id: tongyeong
     name: 통영시 취업공지사항
     org_type: local_gov
