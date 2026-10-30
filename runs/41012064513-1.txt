@@ -1,0 +1,50 @@
+24:  default_days: 60
+::group::probe jinju
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.jinju.go.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.jinju.go.kr/00130/02730/06660.web?cpage=1 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.jinju.go.kr/00130/02730/06660.web?amode=view&not_ancmt_mgt_no=65854&cpage=1 "HTTP/1.1 200 OK"
+[probe] 진주시: 목록 4건
+  - 2026-10-26 | 진주시 | 2026년 미천면 농지전수조사 조사원 기간제근로자 채용 공고(추가모집) | https://www.jinju.go.kr/00130/02730/06660.web?amode=view&not_ancmt_mgt_no=65854&cpage=1
+  - 2026-10-20 | 진주시 | 2027년 진주시립도서관 독서・문화프로그램 강사 모집 공고 | https://www.jinju.go.kr/00130/02730/06660.web?amode=view&not_ancmt_mgt_no=65757&cpage=1
+  - 2026-10-16 | 진주시 | 2027년도 진주시 공무직 근로자 채용 서류전형 합격자 및 필기시험 계획 공고 | https://www.jinju.go.kr/00130/02730/06660.web?amode=view&not_ancmt_mgt_no=65746&cpage=1
+  - 2026-10-16 | 진주시 | 2026년 제4회 진주시 임기제공무원 임용시험 서류전형 합격자 면접시험 시행계획 공고 | https://www.jinju.go.kr/00130/02730/06660.web?amode=view&not_ancmt_mgt_no=65734&cpage=1
+[detail] 본문 51자 · 마감 None (unknown, 'None') · 점수 0 ['-30 핵심어 없음', '+20 채용어(모집)', '+15 경남 지역', '-40 비강사 직종(기간제근로자)'] · 분야 school
+[posting] 제외: 
+::endgroup::
+::group::probe geoje
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.geoje.go.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.geoje.go.kr/board/list.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&startPage=1 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.geoje.go.kr/board/list.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&startPage=2 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid=306510259 "HTTP/1.1 200 OK"
+[probe] 거제시: 목록 20건
+  - 2026-10-29 | 거제시 | 노인요양원 솔향 요양보호사 채용 공고 | https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid=306510259
+  - 2026-10-29 | 거제시 | 노인요양원 솔향 조리원 채용 공고 | https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid=306510258
+  - 2026-10-29 | 거제시 | [재택근무]여유시간으로 틈틈히 돈 벌어보실분 모집합니다 | https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid=306510213
+  - 2026-10-29 | 거제시 | 초보가능 건설현장 중장년 남녀 일자리 레미콘유도원 신호수 숙식가능 | https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid=306510207
+  - 2026-10-29 | 거제시 | 초보환영,조선소 단순노무 초보15만원,월 400만원 이상 1인1실 (원룸가능) 한화오션 | https://www.geoje.go.kr/board/view.geoje?boardId=BBS_0000062&menuCd=DOM_000008901001001003&paging=ok&startPage=1&dataSid=306510191
+[detail] 본문 371자 · 마감 2026-11-13 23:59:00+09:00 (fixed, '2026년 11월 13일') · 점수 5 ['-30 핵심어 없음', '+20 채용어(채용)', '+15 경남 지역'] · 분야 counsel_welfare
+[posting] 제외: 
+::endgroup::
+::group::probe gn_wf
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://gnwff.or.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://gnwff.or.kr/sub04/sub03_01.php?page=1 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTQx||&search=&searchstring=&gubunx=&mode=view&m2= "HTTP/1.1 200 OK"
+[probe] 경남여성가족재단: 목록 4건
+  - 2026-10-27 | 경남여성가족재단 | 공지(재)경상남도 여성가족재단 선임직 이사 및 감사 공개모집 최종 합격자 공고 | https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTQx||&search=&searchstring=&gubunx=&mode=view&m2=
+  - 2026-10-27 | 경남여성가족재단 | 공지(재)경상남도 여성가족재단 대표이사 공개모집 최종 합격자 공고 | https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTQw||&search=&searchstring=&gubunx=&mode=view&m2=
+  - 2026-09-17 | 경남여성가족재단 | 공지(재)경상남도 여성가족재단 대표이사 공개모집 서류심사 합격자 공고 | https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTM5||&search=&searchstring=&gubunx=&mode=view&m2=
+  - 2026-09-17 | 경남여성가족재단 | 공지(재)경상남도 여성가족재단 선임직 감사 공개모집 재공고 | https://gnwff.or.kr/sub04/sub03_01.php?code=040301&page=1&bbsData=bm89MTM4||&search=&searchstring=&gubunx=&mode=view&m2=
+[detail] 본문 1294자 · 마감 None (unknown, 'None') · 점수 0 ['-30 핵심어 없음', '+20 채용어(모집)', '+15 경남 지역', '-60 제외어(합격자)'] · 분야 counsel_welfare
+  [date?] 작성일 : 2026-10-27 16:56:08
+  [date?] 2026-34
+  [date?] 2026-26
+  [date?] 26.8.27.)
+  [date?] 2026-28
+  [date?] 26.9.17.)
+  [date?] (제2026-34호)_(재)경상남도_여성가족재단_선임직_이사_및_감사_공개모집_최종_합격자_공고문.pdf
+  [date?] 055-713-7076
+[posting] 제외: 
+::endgroup::
