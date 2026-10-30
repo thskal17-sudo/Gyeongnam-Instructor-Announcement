@@ -44,3 +44,13 @@ PC 에 하나 더 깔아도 된다.
 1. **사이트 진단(probe)** 을 `runner: korea` 로 돌려 게시판 구조를 본다 (`urls`, `raw_selector` 등은 평소와 같다).
 2. `sources.yaml` 에 셀렉터를 채우고 `korea_only: true` 를 붙인다.
 3. probe 를 `runner: korea`, `sources: <id>` 로 돌려 목록·마감일이 잡히는지 확인한다.
+
+## 다른 길: 국내 중계 서버 (KR_PROXY_URL)
+
+울산판처럼 국내 중계 서버(네이버 클라우드 tinyproxy 등)가 있으면, 한국 PC 없이도 GitHub 수집이 한국 IP 로 읽을 수 있다.
+저장소 Secrets 에 `KR_PROXY_URL`(`http://아이디:비밀번호@IP:포트`)을 넣으면 된다.
+
+- 한국 사이트(`.kr`)만 중계를 거친다. 중계가 그 사이트를 거절하면 그 사이트만 바로 접속하고,
+  인증 실패(407)나 서로 다른 사이트 3곳이 중계로 닿지 않으면 그 실행 동안 중계를 끈다 (`gia/collectors/base.py`).
+- 한국 PC 기록(relay.json)이 없으면 `korea_only` 소스도 건너뛰지 않고 중계로 직접 읽는다.
+- 중계 주소는 로그·probe 출력에서 가린다(`gia/logsafe.py`).

@@ -17,7 +17,7 @@ PROXY_ENVS = ("HTTPS_PROXY", "https_proxy", "HTTP_PROXY", "http_proxy")
 
 @pytest.fixture(autouse=True)
 def _clear_proxy_env(monkeypatch):
-    for name in (*PROXY_ENVS, "NO_PROXY", "no_proxy"):
+    for name in (*PROXY_ENVS, "NO_PROXY", "no_proxy", "KR_PROXY_URL"):
         monkeypatch.delenv(name, raising=False)
 
 

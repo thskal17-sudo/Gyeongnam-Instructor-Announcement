@@ -45,13 +45,27 @@ def _reason(r: httpx.Response) -> str:
     return f" — {' | '.join(parts)}" if parts else ""
 
 
-class HttpClient:
-    """도메인별 요청 간격, 재시도, robots.txt 확인을 담당한다."""
+# 국내 중계를 거쳐 닿지 않은 서로 다른 사이트가 이만큼 쌓이면 중계 서버가 죽은 것으로 보고 끈다
+PROXY_MAX_HOST_FAILURES = 3
 
-    def __init__(self, settings: CollectorSettings, transport: httpx.BaseTransport | None = None):
+
+class HttpClient:
+    """도메인별 요청 간격, 재시도, robots.txt 확인을 담당한다.
+
+    국내 중계 서버: 환경변수 KR_PROXY_URL(http://아이디:비밀번호@IP:포트, 울산판과 같은 tinyproxy)이 있으면
+    한국 사이트(.kr)는 그 중계를 거쳐 읽는다. 해외(GitHub Actions) IP 를 막는 시군청·재단을 한국 IP 로 읽기 위함.
+    - 중계가 그 사이트를 거절하면(CONNECT 403 등) 이번 실행에서는 그 사이트만 바로 접속한다.
+    - 중계 인증이 실패하거나(407) 서로 다른 사이트 3곳이 중계로 닿지 않으면 이번 실행 동안 중계를 끈다.
+    """
+
+    def __init__(self, settings: CollectorSettings, transport: httpx.BaseTransport | None = None,
+                 kr_proxy: str | None = None):
         self.settings = settings
         self._transport = transport
         self._client = self._make_client(verify=True)
+        self.kr_proxy = (kr_proxy if kr_proxy is not None else os.environ.get("KR_PROXY_URL", "")).strip() or None
+        self._proxy_clients: dict[str, httpx.Client] = {}
+        self._direct_hosts: set[str] = set()  # 중계로 닿지 않아 바로 접속하는 사이트
         # 호스트별 TLS 모드: "insecure"(tls_verify: false) / "legacy"(tls_legacy: true). 모드별 클라이언트는 지연 생성
         self._host_mode: dict[str, str] = {}
         self._mode_clients: dict[str, httpx.Client] = {}
@@ -73,6 +87,9 @@ class HttpClient:
         국내 프록시를 HTTPS_PROXY 로 넣으면 httpx 가 trust_env 로 알아서 쓰지만, 그러면
         실패 원인을 볼 때 어느 IP 로 나간 수집인지 구분이 안 된다. 그래서 한 줄 남긴다.
         """
+        if (os.environ.get("KR_PROXY_URL") or "").strip():
+            # 중계 주소(IP·아이디)는 로그에 남기지 않는다
+            return "한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접"
         for name in ("HTTPS_PROXY", "https_proxy", "HTTP_PROXY", "http_proxy"):
             raw = (os.environ.get(name) or "").strip()
             if raw:
@@ -80,13 +97,15 @@ class HttpClient:
                 return f"프록시 {parts.scheme}://{parts.hostname}" + (f":{parts.port}" if parts.port else "")
         return "러너 IP 직접"
 
-    def _make_client(self, verify: "bool | ssl.SSLContext") -> httpx.Client:
+    def _make_client(self, verify: "bool | ssl.SSLContext", proxy: str | None = None) -> httpx.Client:
+        kw: dict = {"proxy": proxy, "trust_env": False} if proxy else {}
         return httpx.Client(
             headers={"User-Agent": self.settings.user_agent, "Accept-Language": "ko,en;q=0.8"},
             timeout=self.settings.request_timeout_sec,
             follow_redirects=True,
             transport=self._transport,
             verify=verify,
+            **kw,
         )
 
     @staticmethod
@@ -132,13 +151,46 @@ class HttpClient:
         """adapter.tls_verify: false — 중간 인증서 누락 등 서버 쪽 설정 문제용."""
         self.set_tls_mode(host, "insecure")
 
-    def _client_for(self, url: str) -> httpx.Client:
+    def _client_for(self, url: str, proxied: bool = False) -> httpx.Client:
         mode = self._host_mode.get(urlsplit(url).netloc.lower()) if self._host_mode else None
+        if proxied:
+            key = mode or "verify"
+            if key not in self._proxy_clients:
+                verify = True if not mode else (False if mode == "insecure" else self.legacy_tls_context())
+                self._proxy_clients[key] = self._make_client(verify=verify, proxy=self.kr_proxy)
+            return self._proxy_clients[key]
         return self._mode_clients[mode] if mode else self._client
+
+    def _use_proxy(self, url: str) -> bool:
+        host = (urlsplit(url).hostname or "").lower()
+        return bool(self.kr_proxy) and host.endswith(".kr") and host not in self._direct_hosts
+
+    def _call(self, url: str, fn):
+        """fn(client) 를 부른다. 한국 사이트는 국내 중계로 먼저 보내고, 중계로 안 되면 바로 보낸다."""
+        if not self._use_proxy(url):
+            return fn(self._client_for(url))
+        host = (urlsplit(url).hostname or "").lower()
+        try:
+            return fn(self._client_for(url, proxied=True))
+        except httpx.ProxyError as e:
+            # 오류 문구에 중계 주소가 섞일 수 있어 종류만 남긴다
+            if "407" in str(e):
+                log.warning("[http] 국내 중계 인증 실패 — 이번 실행은 중계 없이 접속")
+                self.kr_proxy = None
+            else:
+                log.warning("[http] 중계로 %s 에 닿지 않아 바로 접속", host)
+                self._direct_hosts.add(host)
+        except (httpx.ConnectError, httpx.ConnectTimeout):
+            log.warning("[http] 중계 연결 실패(%s) — 이 사이트는 바로 접속", host)
+            self._direct_hosts.add(host)
+            if len(self._direct_hosts) >= PROXY_MAX_HOST_FAILURES:
+                log.warning("[http] 중계로 닿지 않는 사이트가 %d곳 — 이번 실행은 중계 없이 접속", len(self._direct_hosts))
+                self.kr_proxy = None
+        return fn(self._client_for(url))
 
     def close(self) -> None:
         self._client.close()
-        for c in self._mode_clients.values():
+        for c in [*self._mode_clients.values(), *self._proxy_clients.values()]:
             c.close()
 
     def get(self, url: str, params: dict | None = None, headers: dict | None = None) -> httpx.Response:
@@ -155,7 +207,7 @@ class HttpClient:
                 if attempt:
                     time.sleep(self._retry_wait(key, attempt - 1))
                 try:
-                    r = self._client_for(url).get(url, params=params, headers=headers, **extra)
+                    r = self._call(url, lambda c: c.get(url, params=params, headers=headers, **extra))
                 except (httpx.TimeoutException, httpx.TransportError) as e:
                     last_err = e
                     continue
@@ -176,15 +228,18 @@ class HttpClient:
             self._wait(host)
             try:
                 extra = {"timeout": self._host_timeout[host.lower()]} if host.lower() in self._host_timeout else {}
-                with self._client_for(url).stream("GET", url, **extra) as r:
-                    if r.status_code >= 400:
-                        raise FetchError(f"HTTP {r.status_code} {url}")
-                    buf = bytearray()
-                    for chunk in r.iter_bytes():
-                        buf += chunk
-                        if len(buf) > max_bytes:
-                            raise FetchError(f"첨부 크기 초과(>{max_bytes // 1024 // 1024}MB): {url}")
-                    return bytes(buf), filename_from_headers(r.headers)
+                def fetch(client: httpx.Client) -> tuple[bytes, str | None]:
+                    with client.stream("GET", url, **extra) as r:
+                        if r.status_code >= 400:
+                            raise FetchError(f"HTTP {r.status_code} {url}")
+                        buf = bytearray()
+                        for chunk in r.iter_bytes():
+                            buf += chunk
+                            if len(buf) > max_bytes:
+                                raise FetchError(f"첨부 크기 초과(>{max_bytes // 1024 // 1024}MB): {url}")
+                        return bytes(buf), filename_from_headers(r.headers)
+
+                return self._call(url, fetch)
             except (httpx.TimeoutException, httpx.TransportError) as e:
                 raise FetchError(f"첨부 다운로드 실패: {e}") from e
 
@@ -231,7 +286,7 @@ class HttpClient:
         if cached == "miss":
             rp: RobotFileParser | None = RobotFileParser()
             try:
-                r = self._client_for(base).get(base + "/robots.txt")
+                r = self._call(base, lambda c: c.get(base + "/robots.txt"))
                 if r.status_code == 200:
                     rp.parse(r.text.splitlines())
                 else:

@@ -113,3 +113,12 @@ def test_export_reuses_previous_details(settings):
         inner.close()
     assert "/board/view" not in calls  # 목록만 다시 읽고, 이미 읽은 글의 상세는 다시 열지 않는다
     assert len(second["sources"]["jinju_board"]["items"]) == 3
+
+
+def test_kr_proxy_reads_korea_only_site_when_no_relay(settings, tmp_path, monkeypatch):
+    """국내 중계(KR_PROXY_URL)가 있고 한국 PC 기록이 없으면 건너뛰지 말고 사이트를 읽는다."""
+    monkeypatch.setenv(RELAY_ENV, str(tmp_path / "none.json"))
+    monkeypatch.setenv("KR_PROXY_URL", "http://u:p@1.2.3.4:8888")
+    bundle = _bundle(settings, [_korea_board()])
+    run = collect(bundle, Store(tmp_path / "data"), _http(settings), now=NOW)
+    assert run.sources[0].status == "ok" and run.sources[0].new == 2
