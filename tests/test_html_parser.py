@@ -25,7 +25,7 @@ def configured_selectors() -> set[str]:
     for s in data.get("sources") or []:
         a = s.get("adapter") or {}
         for k, v in a.items():
-            if k.endswith("_selector") and v:
+            if k.endswith("_selector") and v and v != ":row":  # ':row' 는 '행 자체'를 뜻하는 표시다 (html_list.py)
                 out.add(v)
         for k, v in (a.get("detail") or {}).items():
             if k.endswith("_selector") and v:
