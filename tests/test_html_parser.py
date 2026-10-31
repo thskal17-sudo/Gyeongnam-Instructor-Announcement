@@ -113,3 +113,22 @@ def test_deadline_from_list_period_korean_words():
          "date_selector": "td.state", "deadline_selector": "td.state"}
     rows, _ = parse_list_html(html, "https://www.gyeongnam.go.kr/l", a, cfg, date(2026, 10, 1))
     assert rows[0].posted_at == date(2026, 11, 4) and rows[0].deadline_text == "2026-11-11"
+
+
+def test_link_from_row_attribute():
+    """글 링크가 행 속성(data-idx)에만 있는 게시판 — link_selector ':row' (김해문화관광재단, 2026-10-31)."""
+    from datetime import date
+
+    from gia.collectors.html_list import parse_list_html
+    from tests.conftest import make_source
+
+    html = """<table class="basic_table"><tbody><tr data-idx="1737"><td class="title">
+      <button class="board_title_btn">시민스포츠센터 수익배분제 강사 모집 공고</button></td>
+      <td class="date">2026-10-28 13:46:21</td></tr></tbody></table>"""
+    cfg = make_source("gh_ct", "local_public", type="html_list", list_url="https://www.ghct.or.kr/board/board02")
+    a = {"row_selector": "table.basic_table tbody tr[data-idx]", "title_selector": "button.board_title_btn",
+         "link_selector": ":row", "link_attr": "data-idx", "link_regex": r"(\d+)",
+         "link_url_template": "https://www.ghct.or.kr/board/detail/board02/{1}", "date_selector": "td.date"}
+    rows, _ = parse_list_html(html, "https://www.ghct.or.kr/board/board02", a, cfg, date(2026, 10, 1))
+    assert rows[0].url == "https://www.ghct.or.kr/board/detail/board02/1737"
+    assert rows[0].posted_at == date(2026, 10, 28)

@@ -72,7 +72,8 @@ def parse_list_html(html: str, page_url: str, a: dict, cfg, since: date) -> tupl
         if t is None:
             continue
         title = (t.attributes.get(a["title_attr"]) if a.get("title_attr") else None) or t.text(strip=True)
-        link = row.css_first(a.get("link_selector") or a.get("title_selector") or "a")
+        # link_selector: ":row" — 행 자체의 속성에 글 번호가 있는 게시판(김해문화관광재단 <tr data-idx="1737">)
+        link = row if a.get("link_selector") == ":row" else row.css_first(a.get("link_selector") or a.get("title_selector") or "a")
         target = resolve_link(link, page_url, a)
         if not title or not target:
             continue
