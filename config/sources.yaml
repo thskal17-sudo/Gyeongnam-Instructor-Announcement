@@ -1317,6 +1317,34 @@ sources:
       list_url: https://www.ycf.or.kr/bbs/MNQIB002000M/list
     notes: >-
       채용공고 목록이 JS 렌더링이라 서버 HTML 에는 개인정보 처리방침 표만 있음(2026-09-22) → playwright 어댑터(#16)로 재검증.
+  - id: jj_cc
+    name: 진주문화원 공지사항
+    org_type: private
+    tier: 3
+    enabled: true
+    verified: true
+    homepage: https://jjcc.or.kr
+    region_hint: [경남, 진주]
+    schedule: daily_light
+    adapter:
+      type: html_list
+      org_name: 진주문화원
+      # 게시판(/board/lists/type/1)은 제목 칸에 <a> 가 없어 행 클릭으로 열린다(2026-10-31 러너 probe:
+      # table.board_list, 제목 td.link, 날짜 td.reg_data). 대문의 '공지사항' 묶음은 같은 글 5건을
+      # 제대로 된 링크(/board/boardcontents/type/1/id/N)로 보여 주므로 그쪽을 읽는다
+      list_url: https://jjcc.or.kr/
+      row_selector: div.clbottom > ul > li
+      title_selector: div.notice_title
+      link_selector: a
+      date_selector: div.date
+      keywords: [강사, 지도사, 지도자, 강좌, 교육]
+      paging: { max_pages: 1 }
+      detail: { fetch: true }
+    notes: >-
+      2026-09~10 러너에서 연결 시간초과였고 2026-10-30 국내 중계(KR_PROXY_URL) 뒤 HTTP 200 으로
+      열렸다(러너 probe). 대문 '공지사항' 묶음 5건만 읽어 글이 뜸한 문화원에 맞춘다 — 게시판
+      본체는 행 클릭 방식이라 링크를 못 만든다. 모집·공모 안내가 대부분이라 키워드로 거른다.
+      상세 본문 셀렉터는 미확인이라 본문 없이 제목·날짜만 쓴다.
   - id: ha_cc
     name: 함안문화원 공지사항
     org_type: private
