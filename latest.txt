@@ -1,26 +1,8 @@
-====================================================================================================
-URL: https://lib.yangsan.go.kr/YS/madang/detail.do?bbsId=BBSMSTR_000000000004&nttId=4961
-status=200 final=https://lib.yangsan.go.kr/YS/madang/detail.do?bbsId=BBSMSTR_000000000004&nttId=4961 encoding=UTF-8 bytes=337354
-title: 양산통합도서관 |
-
-[GREP] fn_egov_downFile|download|Disallow
-   ... value; document.submitParam.action = "/YS/madang/detail.do"; document.submitParam.submit(); } function noticeList() { location.href = "/YS/madang/BBSMSTR_000000000004/notice.do"; } function fn_egov_downFile(fileId, bbsId, fileName){ window.open("/cmm/fms/FileDownBefore.do?fileId="+fileId+"&bbsId="+bbsId+"&fileName="+fileName+""); } $(document).ready(function() { var mobileWidth = 768; var $targetImages = $('.deltaEditor img, .deltaNtTd .deltaNtImg'); if ($(window).width() <= mobileWidth) { $targetImages.css('cursor', 'pointer'); } $targetImages.on('cl
-   ...  <th>첨부파일</th> <td colspan="5"> <!-- link href="/css/egovframework/com/com.css" rel="stylesheet" type="text/css"--> <script type="text/javascript"> function fn_egov_downFile(atchFileId, fileSn){ window.open("/cmm/fms/FileDown.do?atchFileId="+atchFileId+"&fileSn="+fileSn+""); } function fn_egov_deleteFile(orignlFileNm, atchFileId, fileSn, delTrName) { if(!confirm("확인을 누를 시 바로 삭제처리됩니다. 삭제하시겠습니까?\n삭제 할 이미지 : "+orignlFileNm)){ }else{ var forms; var form; forms = document.getElementsByTagName("form"); for (var i = 0; i < forms.length; i++) {
-   ... tle>파일목록</title> --> <table id="egov_file_view_table" style="border:0px solid #666;"> <tr id="egov_file_view_table_tr_1"> <td class="view_file_style"> <a href="javascript:fn_egov_downFile('FILE_000000000023166','0')"> 최종.png&nbsp;[46400&nbsp;byte] </a> </td> </tr> </table> </td> </tr> <tr> <th>미리보기</th> <td colspan="5" class="deltaNtTd"> <img src="/cmm/fms/getImage.do?fileSn=0&atchFileId=FILE_000000000023166" alt="2026년 양산시립 중앙도서관 기간제근로자(초단시간) 최종 합격자 안내 이미
-   [SCRIPT src] ['/js/csrf-token.js', '/plugin/share/jquery-1.10.2.min.js', '/js/d_lnb.js', '/js/modernizr.js', '/js/jquery.vticker-min.js', '/js/tytabs.jquery.min.js', '/js/jquery.counterup.min.js', '/js/jquery.easing.min.js', '/js/slick.js', '/plugin/pgCalendar/js/pignose.calendar.full.min.js', '/js/common.js', '/js/jquery-barcode.js']
-
-[BODY candidates]
-   div#sub.tap1 > div.inner.sub_wrap > div.view_box.view_box2.view_table.lay  textlen=241 :: '뷰페이지 도서관 중앙도서관 제목 2026년 양산시립 중앙도서관 기간제근로자(초단시간) 최종 합격자 안내 작성자 관리자 작성일 2026-09-18'
-   div#mainDiv.wrap.lib00 > div#mobile_card > div#ask.ask  textlen=150 :: '주의사항 1. 모바일 회원증은 도서관을 방문하시어 회원증(대출자번호) 발급 후 이용할 수 있습니다. 2. 본증은 타인에게 양도하거나 대여할 수 '
-   div#mainDiv.wrap.lib00 > div#mobile_card  textlen=176 :: '양산시 통합 모바일 회원증 성명 회원번호 주의사항 1. 모바일 회원증은 도서관을 방문하시어 회원증(대출자번호) 발급 후 이용할 수 있습니다. 2'
-   div#mainDiv.wrap.lib00 > div#sub.tap1  textlen=241 :: '뷰페이지 도서관 중앙도서관 제목 2026년 양산시립 중앙도서관 기간제근로자(초단시간) 최종 합격자 안내 작성자 관리자 작성일 2026-09-18'
-   div#mainDiv.wrap.lib00 > div#sub.tap1 > div.inner.sub_wrap  textlen=241 :: '뷰페이지 도서관 중앙도서관 제목 2026년 양산시립 중앙도서관 기간제근로자(초단시간) 최종 합격자 안내 작성자 관리자 작성일 2026-09-18'
-
-[ATTACH candidates]
-   tr#egov_file_view_table_tr_1 > td.view_file_style > a href=javascript:fn_egov_downFile('FILE_000000000023166','0') onclick= text='최종.png\xa0[46400\xa0byte]'
-[DATES] sample: ['2026-09-18']
-====================================================================================================
-URL: https://lib.yangsan.go.kr/robots.txt
-status=200 final=https://lib.yangsan.go.kr/robots.txt encoding=ascii bytes=47
-title: 
-body (short): User-agent : Googlebot Disallow: / Allow: /$
+24:  default_days: 400
+::group::probe ys_lib
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://lib.yangsan.go.kr/robots.txt "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000004/hire.do?idx=104010400&pageIndex=1 "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000004/hire.do?idx=104010400&pageIndex=2 "HTTP/1.1 200 200"
+[probe] 양산시 도서관 채용공고: 목록 0건
+::endgroup::
