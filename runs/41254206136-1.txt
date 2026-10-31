@@ -1,0 +1,15 @@
+24:  default_days: 60
+::group::probe ys_lib
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://lib.yangsan.go.kr/robots.txt "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000004/hire.do?idx=104010400&pageIndex=1 "HTTP/1.1 200 200"
+[probe] 양산시 도서관 채용공고: 목록 0건
+::endgroup::
+::group::probe ys_lib_notice
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://lib.yangsan.go.kr/robots.txt "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000001/notice.do?idx=104010100&pageIndex=1 "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000001/notice.do?idx=104010100&pageIndex=2 "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000001/notice.do?idx=104010100&pageIndex=3 "HTTP/1.1 200 200"
+[probe] 양산시 도서관 공지사항: 목록 0건
+::endgroup::
