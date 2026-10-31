@@ -1,0 +1,37 @@
+====================================================================================================
+URL: https://jjcc.or.kr/board/lists/type/1
+status=200 final=https://jjcc.or.kr/board/lists/type/1 encoding=UTF-8 bytes=20244
+title: 진주문화원
+[DATES] sample: ['2026-10-29', '2026-10-23', '2026-08-12', '2019-07-12', '2026-10-29']
+
+[RETRY without noise filter]
+
+[TABLE] div.hd > div > table.board_list  rows=15
+   row: tr -> th:번호 | th:제목 | th:작성자 | th.reg_data:작성일 | th.hits:조회
+   row: tr -> td:공지 | td.link:★[모집]2026년 어린이.청소년 프로그램 운영 | td: | td.reg_data:2026-10-29 | td.hits:22
+      td :: own='공지' all='공지'
+      td.link :: own='' all='★[모집]2026년 어린이.청소년 프로그램 운영지원 "청소년 만화웹툰 공모전" 개최 안내'
+      span.bold :: own='★[모집]2026년 어린이.청소년 프로그램 운영지원 "청소년 만화웹툰 공' all='★[모집]2026년 어린이.청소년 프로그램 운영지원 "청소년 만화웹툰 공모전" 개최 안내'
+      td.reg_data :: own='2026-10-29' all='2026-10-29'
+      td.hits :: own='22' all='22'
+
+[LIST] div#hd_content_wrap > div#gnb > ul  items=4
+   li: li.dp1 -> 기관소개 문화원장 인사말 문화원 비전 문화원 조직도 문화원 연혁 찾아오시는길
+      p.dp1_tit :: own='' all='기관소개'
+      a href=/intro/view onclick= :: own='기관소개' all='기관소개'
+      div.dp2 :: own='' all='문화원장 인사말 문화원 비전 문화원 조직도 문화원 연혁 찾아오시는길'
+      ul :: own='' all='문화원장 인사말 문화원 비전 문화원 조직도 문화원 연혁 찾아오시는길'
+      li :: own='' all='문화원장 인사말'
+      a.site_item href=/intro/view/pkid/7 onclick= :: own='문화원장 인사말' all='문화원장 인사말'
+      li :: own='' all='문화원 비전'
+      a.site_item href=/intro/view/pkid/100 onclick= :: own='문화원 비전' all='문화원 비전'
+      li :: own='' all='문화원 조직도'
+      a.site_item href=/intro/view/pkid/13 onclick= :: own='문화원 조직도' all='문화원 조직도'
+      li :: own='' all='문화원 연혁'
+      a.site_item href=/intro/view/pkid/11 onclick= :: own='문화원 연혁' all='문화원 연혁'
+      li :: own='' all='찾아오시는길'
+      a.site_item href=/intro/view/pkid/5 onclick= :: own='찾아오시는길' all='찾아오시는길'
+[DATES] sample: ['2026-10-29', '2026-10-23', '2026-08-12', '2019-07-12', '2026-10-29']
+
+[LINKS] board candidates (1)
+   '공지사항' -> https://jjcc.or.kr/board/lists/type/1
