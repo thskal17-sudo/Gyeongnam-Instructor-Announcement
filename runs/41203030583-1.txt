@@ -1,0 +1,16 @@
+24:  default_days: 120
+::group::probe jj_cc
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://jjcc.or.kr/robots.txt "HTTP/1.1 404 Not Found"
+INFO httpx: HTTP Request: GET https://jjcc.or.kr/board/lists/type/1 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://jjcc.or.kr/board/boardcontents/type/1/id/639 "HTTP/1.1 200 OK"
+[probe] 진주문화원 공지사항: 목록 6건
+  - 2026-10-29 | 진주문화원 | ★[모집]2026년 어린이.청소년 프로그램 운영지원 "청소년 만화웹툰 공모전" 개최 안내 | https://jjcc.or.kr/board/boardcontents/type/1/id/639
+  - 2026-10-23 | 진주문화원 | [2026 청소년 남명정신 숏폼 콘텐츠 공모전] 개최 안내 | https://jjcc.or.kr/board/boardcontents/type/1/id/633
+  - 2026-08-12 | 진주문화원 | [모집] 2026년 제51호 진주문화 원고 투고 안내 | https://jjcc.or.kr/board/boardcontents/type/1/id/629
+  - 2026-10-29 | 진주문화원 | ★[모집]2026년 어린이.청소년 프로그램 운영지원 "청소년 만화웹툰 공모전" 개최 안내 | https://jjcc.or.kr/board/boardcontents/type/1/id/639
+  - 2026-10-23 | 진주문화원 | [2026 청소년 남명정신 숏폼 콘텐츠 공모전] 개최 안내 | https://jjcc.or.kr/board/boardcontents/type/1/id/633
+[detail] 본문 200자 · 마감 None (unknown, 'None') · 점수 0 ['-30 핵심어 없음', '+20 채용어(모집)', '+10 강의어(프로그램 운영)'] · 분야 counsel_welfare
+  [date?] 작성일 :2026-10-29 11:57
+[posting] 제외: 
+::endgroup::
