@@ -954,8 +954,7 @@ sources:
     notes: >-
       시설관리공단은 2014년 도시개발공사에 통합. 체육관·스포츠센터 배분제 위탁강사 공고가 올라온다
       ('율하체육관 배분제 위탁강사(배드민턴)', 2026-10). 러너 IP 로는 연결 시간초과(2026-09-22), 국내 중계로 읽힌다(2026-10-31).
-      robots.txt 허용. 김해문화관광재단(ghct.or.kr/board/board02)은 글 링크가 행의 data-idx 와 스크립트라 아직 못 읽는다
-      — 출자출연기관이라 클린아이 API 로 들어온다
+      robots.txt 허용. 김해문화관광재단 채용공고는 별도 소스 gh_ct
   - id: jj_fmc
     name: 진주시시설관리공단 채용정보
     org_type: local_public
@@ -1257,6 +1256,32 @@ sources:
       detail: { fetch: true, body_selector: div.content-area, attachment_selector: 'a[href*="/site/download.asp"]' }
     notes: >-
       공지사항(2026-09-22 러너에서 gia probe 검증: 목록 5건, '2026 통영시민오케스트라 교육강사(플루트) 모집 공고' 포함 판정). 합창지도자 채용도 올라옴. 본문이 짧고 공고문은 pdf 첨부라 마감이 게시일로 잡힐 수 있음(#19).
+  - id: gh_ct
+    name: 김해문화관광재단 채용공고
+    org_type: local_public
+    tier: 3
+    homepage: https://www.ghct.or.kr
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://www.ghct.or.kr/board/board02
+      # 행: <tr data-board-id="BOARD_000000090" data-idx="1737"> 번호 / 제목(button) / 분류(시설) / 작성자 / 등록일 / 첨부 / 조회수.
+      # 글 링크가 없고 행을 누르면 스크립트가 /board/detail/board02/{data-idx} 로 보낸다(2026-10-31 probe)
+      row_selector: "table.basic_table tbody tr[data-idx]"
+      title_selector: button.board_title_btn
+      link_selector: ":row"
+      link_attr: data-idx
+      link_regex: "(\\d+)"
+      link_url_template: "https://www.ghct.or.kr/board/detail/board02/{1}"
+      date_selector: td.date
+      keywords: [강사, 교강사, 지도사, 지도자, 코치, 강습, 튜터, 인력풀, 트레이너]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: "div.board_content" }
+    notes: >-
+      김해문화의전당·시민스포츠센터·가야테마파크 등 재단 시설의 채용(수익배분제 강사 등)이 함께 올라온다.
+      러너 IP 로는 연결 시간초과(2026-09-22), 국내 중계로 읽힌다(2026-10-31). robots.txt 허용.
+      쪽 넘김은 폼 전송(goPage)이라 첫 쪽(20건)만 본다
+
   - id: sc_culture
     name: 사천문화재단 채용공고
     org_type: local_public
