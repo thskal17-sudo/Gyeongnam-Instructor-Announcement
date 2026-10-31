@@ -1262,6 +1262,7 @@ sources:
     org_type: local_public
     tier: 3
     homepage: https://www.sccf.or.kr
+    region_hint: [경남, 사천]
     verified: true
     adapter:
       type: html_list
@@ -1273,7 +1274,8 @@ sources:
       date_selector: span.date
       keywords: [강사, 예술강사, 교강사, 지도사, 지도자, 강사진, 예술교육, 인력풀]
       paging: { max_pages: 1 }
-      detail: { fetch: true, body_selector: "article#bo_v", attachment_selector: a.view_file_download }
+      # 본문만 집는다. article#bo_v 전체를 주면 머리글·버튼 글자가 본문에 섞인다(함안문화원과 같은 그누보드)
+      detail: { fetch: true, body_selector: "article#bo_v", content_selector: "div#bo_v_con", attachment_selector: a.view_file_download }
     notes: >-
       채용공고(그누보드). 2026-09-22 에는 JS 봇 차단 페이지(1.6KB)였는데 2026-10-31 국내 중계로는 목록이 그대로 열린다.
       직원 채용이 대부분이라 keywords 로 강사·예술교육 인력 공고만 남긴다. robots.txt 없음(HTML 응답)
@@ -1347,10 +1349,13 @@ sources:
     org_type: private
     tier: 3
     homepage: https://jjcc.or.kr
+    region_hint: [경남, 진주]
     verified: true
     schedule: daily_light
     adapter:
       type: html_list
+      # 기관명을 따로 주지 않으면 소스 이름('진주문화원 공지사항')이 기관명으로 들어간다
+      org_name: 진주문화원
       list_url: https://jjcc.or.kr/board/lists/type/1
       # 행: 번호 / 제목(td.link onclick="location.href='/board/boardcontents/type/1/id/639'") / 작성자 / 작성일 / 조회
       row_selector: table.board_list tbody tr
@@ -1359,7 +1364,7 @@ sources:
       link_attr: onclick
       link_regex: "location.href='([^']+)'"
       date_selector: td.reg_data
-      keywords: [강사, 지도사, 지도자, 강사진]
+      keywords: [강사, 지도사, 지도자, 강사진, 강좌]
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: "div.hd" }
     notes: >-
