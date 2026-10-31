@@ -1472,6 +1472,33 @@ sources:
       양산통합도서관 채용공고(BBSMSTR_000000000004). 러너 IP 로는 연결 시간초과(2026-09-22), 국내 중계로 읽힌다(2026-10-31 probe).
       robots.txt 는 Googlebot 만 막는다. 기간제근로자 공고가 대부분이라 강사 모집만 제목 키워드로 남긴다.
       '강사등록신청'(instructor.do)은 강사가 올리는 신청 게시판이라 넣지 않는다
+  - id: ys_lib_notice
+    name: 양산시 도서관 공지사항
+    org_type: local_gov
+    tier: 3
+    homepage: https://lib.yangsan.go.kr
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000001/notice.do?idx=104010100&pageIndex={page}
+      row_selector: table.book_table1 tr
+      title_selector: td.tlt a
+      link_attr: onclick
+      link_regex: "fncNoticedetail\\('(BBSMSTR_\\d+)',\\s*'(\\d+)'\\)"
+      link_url_template: "https://lib.yangsan.go.kr/YS/madang/detail.do?bbsId={1}&nttId={2}"
+      date_selector: td.date
+      keywords: [강사 모집, 강사모집, 강사 공개모집, 강사 채용, 강사진, 인력풀, 튜터 모집]
+      paging: { max_pages: 3 }
+      detail:
+        fetch: true
+        body_selector: div.view_box
+        attachment_selector: "a[href*=fn_egov_downFile]"
+        attachment_regex: "fn_egov_downFile\\('([^']+)',\\s*'(\\d+)'\\)"
+        attachment_url_template: "https://lib.yangsan.go.kr/cmm/fms/FileDown.do?atchFileId={1}&fileSn={2}"
+    notes: >-
+      양산통합도서관 공지사항(BBSMSTR_000000000001, 채용공고 게시판 ys_lib 과 같은 틀). 강좌·행사 안내가 하루 몇 건씩 올라와
+      '강사 모집' 같은 말이 제목에 있을 때만 남긴다. 채용공고 게시판은 지난 1년 자료실 보조 기간제뿐이라(2026-10-31 확인)
+      도서관 문화강좌 강사 모집은 이쪽에 올라올 수 있다
   - id: gj_lib
     name: 거제시 시립도서관
     org_type: local_gov
