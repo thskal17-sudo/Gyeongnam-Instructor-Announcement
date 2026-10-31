@@ -1,153 +1,26 @@
 ====================================================================================================
-URL: https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000004/hire.do?idx=104010400
-status=200 final=https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000004/hire.do?idx=104010400 encoding=UTF-8 bytes=343743
-title: 양산통합도서관 | 열린마당 | 알림마당 | 채용공고
+URL: https://lib.yangsan.go.kr/YS/madang/detail.do?bbsId=BBSMSTR_000000000004&nttId=4961
+status=200 final=https://lib.yangsan.go.kr/YS/madang/detail.do?bbsId=BBSMSTR_000000000004&nttId=4961 encoding=UTF-8 bytes=337354
+title: 양산통합도서관 |
 
-[GREP] function fncNoticedetail|function goPage|fn_link_page
-   ... madang/BBSMSTR_000000000004/notice.do"; document.noticeFrm.submit(); }); }); // function formSubmit(code){ // document.noticeFrm.groupId.value = code; // document.noticeFrm.submit(); // } function fncNoticedetail(bbsId, nttId) { // alert("d"); document.submitParam.bbsId.value = bbsId; document.submitParam.nttId.value = nttId; // document.submitParam.groupId.value = document.noticeFrm.groupId.value; document.submitParam.searchCnd.value = document.noticeFrm.searchCnd.value; document.submitParam.searchWrd.value = document.noticeFrm.searchWrd.value; document.submitParam.action = "/YS/madang/detail.do
+[GREP] fn_egov_downFile|download|Disallow
+   ... value; document.submitParam.action = "/YS/madang/detail.do"; document.submitParam.submit(); } function noticeList() { location.href = "/YS/madang/BBSMSTR_000000000004/notice.do"; } function fn_egov_downFile(fileId, bbsId, fileName){ window.open("/cmm/fms/FileDownBefore.do?fileId="+fileId+"&bbsId="+bbsId+"&fileName="+fileName+""); } $(document).ready(function() { var mobileWidth = 768; var $targetImages = $('.deltaEditor img, .deltaNtTd .deltaNtImg'); if ($(window).width() <= mobileWidth) { $targetImages.css('cursor', 'pointer'); } $targetImages.on('cl
+   ...  <th>첨부파일</th> <td colspan="5"> <!-- link href="/css/egovframework/com/com.css" rel="stylesheet" type="text/css"--> <script type="text/javascript"> function fn_egov_downFile(atchFileId, fileSn){ window.open("/cmm/fms/FileDown.do?atchFileId="+atchFileId+"&fileSn="+fileSn+""); } function fn_egov_deleteFile(orignlFileNm, atchFileId, fileSn, delTrName) { if(!confirm("확인을 누를 시 바로 삭제처리됩니다. 삭제하시겠습니까?\n삭제 할 이미지 : "+orignlFileNm)){ }else{ var forms; var form; forms = document.getElementsByTagName("form"); for (var i = 0; i < forms.length; i++) {
+   ... tle>파일목록</title> --> <table id="egov_file_view_table" style="border:0px solid #666;"> <tr id="egov_file_view_table_tr_1"> <td class="view_file_style"> <a href="javascript:fn_egov_downFile('FILE_000000000023166','0')"> 최종.png&nbsp;[46400&nbsp;byte] </a> </td> </tr> </table> </td> </tr> <tr> <th>미리보기</th> <td colspan="5" class="deltaNtTd"> <img src="/cmm/fms/getImage.do?fileSn=0&atchFileId=FILE_000000000023166" alt="2026년 양산시립 중앙도서관 기간제근로자(초단시간) 최종 합격자 안내 이미
    [SCRIPT src] ['/js/csrf-token.js', '/plugin/share/jquery-1.10.2.min.js', '/js/d_lnb.js', '/js/modernizr.js', '/js/jquery.vticker-min.js', '/js/tytabs.jquery.min.js', '/js/jquery.counterup.min.js', '/js/jquery.easing.min.js', '/js/slick.js', '/plugin/pgCalendar/js/pignose.calendar.full.min.js', '/js/common.js', '/js/jquery-barcode.js']
 
-[RAW HTML] div.d_container > div.search_box > form#mainTotalSearchForm
-<form id="mainTotalSearchForm" method="post" name="mainTotalSearchForm" onsubmit="return false">
-<!--  || lib.manageCode eq "ML" -->
-<input name="search_manage_code" type="hidden" value="MA"/>
-<!--  || lib.manageCode eq "ML" -->
-<input name="search_manage_code" type="hidden" value="MB"/>
-<!--  || lib.manageCode eq "ML" -->
-<input name="search_manage_code" type="hidden" value="ME"/>
-<!--  || lib.manageCode eq "ML" -->
-<input name="search_manage_code" type="hidden" value="MC"/>
-<!--  || lib.manageCode eq "ML" -->
-<input name="search_manage_code" type="hidden" value="MD"/>
-<!--  || lib.manageCode eq "ML" -->
-<input name="search_manage_code" type="hidden" value="MH"/>
-<!--  || lib.manageCode eq "ML" -->
-<input name="search_manage_code" type="hidden" value="MJ"/>
-<!--  || lib.manageCode eq "ML" -->
-<input name="search_manage_code" type="hidden" value="MK"/>
-<fieldset>
-<legend>검색</legend>
-<input class="input_keyword" id="MainSearchTxt" name="search_txt" onkeyup="enterkey1();" placeholder="찾으시는 도서의 정보를 입력하세요." title="검색어입력"/>
-<a href="javascript:void(0);" onclick="javascript:fn_main_total_search_txt();">
-<img alt="검색" src="/img/ico_search.png" title="검색"/>
-</a>
-</fieldset>
-</form>
+[BODY candidates]
+   div#sub.tap1 > div.inner.sub_wrap > div.view_box.view_box2.view_table.lay  textlen=241 :: '뷰페이지 도서관 중앙도서관 제목 2026년 양산시립 중앙도서관 기간제근로자(초단시간) 최종 합격자 안내 작성자 관리자 작성일 2026-09-18'
+   div#mainDiv.wrap.lib00 > div#mobile_card > div#ask.ask  textlen=150 :: '주의사항 1. 모바일 회원증은 도서관을 방문하시어 회원증(대출자번호) 발급 후 이용할 수 있습니다. 2. 본증은 타인에게 양도하거나 대여할 수 '
+   div#mainDiv.wrap.lib00 > div#mobile_card  textlen=176 :: '양산시 통합 모바일 회원증 성명 회원번호 주의사항 1. 모바일 회원증은 도서관을 방문하시어 회원증(대출자번호) 발급 후 이용할 수 있습니다. 2'
+   div#mainDiv.wrap.lib00 > div#sub.tap1  textlen=241 :: '뷰페이지 도서관 중앙도서관 제목 2026년 양산시립 중앙도서관 기간제근로자(초단시간) 최종 합격자 안내 작성자 관리자 작성일 2026-09-18'
+   div#mainDiv.wrap.lib00 > div#sub.tap1 > div.inner.sub_wrap  textlen=241 :: '뷰페이지 도서관 중앙도서관 제목 2026년 양산시립 중앙도서관 기간제근로자(초단시간) 최종 합격자 안내 작성자 관리자 작성일 2026-09-18'
 
-[RAW HTML] div#sub.tap4 > div.inner.sub_wrap > form
-<form method="post" name="submitParam">
-<input name="bbsId" type="hidden"/>
-<input name="nttId" type="hidden"/>
-<input name="groupId" type="hidden"/>
-<input name="searchCnd" type="hidden"/>
-<input name="searchWrd" type="hidden"/>
-</form>
-
-[TABLE] div#sub.tap4 > div.inner.sub_wrap > table.book_table1.book_table2.book_table3.mobile_lay  rows=11
-   row: tr -> th.h2:번호 | th:구분 | th.h5:제목 | th.h4:작성자 | th.h4:작성일 | th.h4:조회수
-   row: tr -> td.h2:218 | td:중앙도서관 | td.h5.tlt:2026년 양산시립 중앙도서관 기간제근로자(초단 | td.h4.name:관리자 | td.h4.date:2026-09-18 | td.h4:677
-      td.h2 :: own='218' all='218'
-      td :: own='중앙도서관' all='중앙도서관'
-      td.h5.tlt :: own='' all='2026년 양산시립 중앙도서관 기간제근로자(초단시간) 최종 합격자 안내'
-      a href=javascript:void(0); onclick=fncNoticedetail('BBSMSTR_000000000004', '4961'); :: own='2026년 양산시립 중앙도서관 기간제근로자(초단시간) 최종 합격자 안내' all='2026년 양산시립 중앙도서관 기간제근로자(초단시간) 최종 합격자 안내'
-      td.h4.name :: own='관리자' all='관리자'
-      td.h4.date :: own='2026-09-18' all='2026-09-18'
-      td.h4 :: own='677' all='677'
-
-[PAGING] ?pageIndex=1
-[DATES] sample: ['2026-09-18', '2026-09-15', '2026-09-03', '2026-08-25', '2026-08-18']
-
-[ANCHORS] most common link paths
-   x10 table.book_table1.book_table2.book_table3.mobile_lay > tr > td.h5.tlt > a  href=javascript:void(0); {'onclick': "fncNoticedetail('BBSMSTR_000000000004', "} text='2026년 양산시립 중앙도서관 기간제근로자(초단시간) 최종 합격자 안내'
-      row? tr :: '218 중앙도서관 2026년 양산시립 중앙도서관 기간제근로자(초단시간) 최종 합격자 안내 관리자 2026-09-18 677'
-
-[LINKS] board candidates (11)
-   '이용안내' -> https://lib.yangsan.go.kr/YS/job/info.do?idx=108010100
-   '새로들어온자료' -> https://lib.yangsan.go.kr/YS/job/newdata.do?idx=108010200
-   '자격증 정보서비스 잡학다식' -> https://lib.yangsan.go.kr/YS/job/more.do?idx=108010400
-   '관련사이트' -> https://lib.yangsan.go.kr/YS/job/site.do?idx=108010300
-   '공지사항' -> https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000001/notice.do?idx=104010100
-   '도서관소식지' -> https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000002/news.do?idx=104010200
-   '채용공고' -> https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000004/hire.do?idx=104010400
-   '강사등록신청' -> https://lib.yangsan.go.kr/YS/madang/instructor.do?idx=104020400
-   '직원 및 담당업무' -> https://lib.yangsan.go.kr/YS/intro/libJob.do?idx=106010200
-   '정보마당' -> https://lib.yangsan.go.kr/small/smallNotice.do
-   '정보마당' -> https://lib.yangsan.go.kr/YS/small/smallNotice.do?idx=301010400
+[ATTACH candidates]
+   tr#egov_file_view_table_tr_1 > td.view_file_style > a href=javascript:fn_egov_downFile('FILE_000000000023166','0') onclick= text='최종.png\xa0[46400\xa0byte]'
+[DATES] sample: ['2026-09-18']
 ====================================================================================================
-URL: https://lib.yangsan.go.kr/YS/madang/instructor.do?idx=104020400
-status=200 final=https://lib.yangsan.go.kr/YS/madang/instructor.do?idx=104020400 encoding=UTF-8 bytes=340744
-title: 양산통합도서관 | 열린마당 | 소통마당 | 강사등록신청
-
-[GREP] function fncNoticedetail|function goPage|fn_link_page
-   (없음)
-   [SCRIPT src] ['/js/csrf-token.js', '/plugin/share/jquery-1.10.2.min.js', '/js/d_lnb.js', '/js/modernizr.js', '/js/jquery.vticker-min.js', '/js/tytabs.jquery.min.js', '/js/jquery.counterup.min.js', '/js/jquery.easing.min.js', '/js/slick.js', '/plugin/pgCalendar/js/pignose.calendar.full.min.js', '/js/common.js', '/js/jquery-barcode.js']
-
-[RAW HTML] div.d_container > div.search_box > form#mainTotalSearchForm
-<form id="mainTotalSearchForm" method="post" name="mainTotalSearchForm" onsubmit="return false">
-<fieldset>
-<legend>검색</legend>
-<input class="input_keyword" id="MainSearchTxt" name="search_txt" onkeyup="enterkey1();" placeholder="찾으시는 도서의 정보를 입력하세요." title="검색어입력"/>
-<a href="javascript:void(0);" onclick="javascript:fn_main_total_search_txt();">
-<img alt="검색" src="/img/ico_search.png" title="검색"/>
-</a>
-</fieldset>
-</form>
-
-[RAW HTML] div.inner.sub_wrap > div.search_wrap > form
-<form action="/YS/madang/instructor.do?idx=104020400" method="post" name="searchFrm">
-<input name="instructorId" type="hidden"/>
-<input name="pageIndex" type="hidden" value="1"/>
-<div class="lib_chk">
-<div class="filter filter2">
-<select class="select_search" name="searchCnd" title="검색조건 선택">
-<option value="0">
-					제목
-				</option>
-<option value="1">
-					내용
-				</option>
-<option value="2">
-					작성자
-				</option>
-</select>
-<fieldset>
-<legend>검색</legend>
-<input class="input_search" maxlength="155" name="searchWrd" size="35" title="검색어 입력" type="text" value=""/>
-<button class="btn_type7" onclick="javascript:fn_search();" title="조회 버튼" type="button" value="조회">
-					검색
-				</button>
-</fieldset>
-</div>
-</div>
-</form>
-
-[TABLE] div#sub.tap4 > div.inner.sub_wrap > table.book_table1.book_table2.book_table3.mobile_lay  rows=11
-   row: tr -> th.h2:번호 | th.h3:제목 | th.h4:작성자 | th.h4:작성일
-   row: tr.deltaDetail -> td.h2:137 | td.h5.tlt:노래와 놀이로 배우는 신나는 영어 그림동화책 | td.h4.name:변*나 | td.h4.date:2026-10-29
-      td.h2 :: own='137' all='137'
-      td.h5.tlt :: own='' all='노래와 놀이로 배우는 신나는 영어 그림동화책'
-      a href=javascript:void(0); onclick=fn_detail('158'); :: own='노래와 놀이로 배우는 신나는 영어 그림동화책' all='노래와 놀이로 배우는 신나는 영어 그림동화책'
-      td.h4.name :: own='변*나' all='변*나'
-      td.h4.date :: own='2026-10-29' all='2026-10-29'
-
-[PAGING] ?pageIndex=1
-[DATES] sample: ['2026-10-29', '2026-10-13', '2026-10-02', '2026-09-29', '2026-08-31']
-
-[ANCHORS] most common link paths
-   x9 table.book_table1.book_table2.book_table3.mobile_lay > tr.deltaDetail > td.h5.tlt > a  href=javascript:void(0); {'onclick': "fn_detail('158');"} text='노래와 놀이로 배우는 신나는 영어 그림동화책'
-      row? tr.deltaDetail :: '137 노래와 놀이로 배우는 신나는 영어 그림동화책 변*나 2026-10-29'
-   x1 div.inner.sub_wrap > div.search_wrap > div.sub_info.lay > a.btn_type_t2  href=/resource/강의계획서서식.hwp  text='강의계획서 서식(다운로드)'
-      row? div.sub_info.lay :: '강사등록신청 안내 우리 도서관에서는 보다 내실있는 프로그램 운영을 위하여 능력있는 강사님을 모시고자 합니다. 등록하신 자료는 우리 도서관 문화강좌 프로그램의 강사 위촉를 위한 기초자료로만 활용합니다. 이력서와 아래 '
-
-[LINKS] board candidates (11)
-   '이용안내' -> https://lib.yangsan.go.kr/YS/job/info.do?idx=108010100
-   '새로들어온자료' -> https://lib.yangsan.go.kr/YS/job/newdata.do?idx=108010200
-   '자격증 정보서비스 잡학다식' -> https://lib.yangsan.go.kr/YS/job/more.do?idx=108010400
-   '관련사이트' -> https://lib.yangsan.go.kr/YS/job/site.do?idx=108010300
-   '공지사항' -> https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000001/notice.do?idx=104010100
-   '도서관소식지' -> https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000002/news.do?idx=104010200
-   '채용공고' -> https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000004/hire.do?idx=104010400
-   '강사등록신청' -> https://lib.yangsan.go.kr/YS/madang/instructor.do?idx=104020400
-   '직원 및 담당업무' -> https://lib.yangsan.go.kr/YS/intro/libJob.do?idx=106010200
-   '정보마당' -> https://lib.yangsan.go.kr/small/smallNotice.do
-   '정보마당' -> https://lib.yangsan.go.kr/YS/small/smallNotice.do?idx=301010400
+URL: https://lib.yangsan.go.kr/robots.txt
+status=200 final=https://lib.yangsan.go.kr/robots.txt encoding=ascii bytes=47
+title: 
+body (short): User-agent : Googlebot Disallow: / Allow: /$
