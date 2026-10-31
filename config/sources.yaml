@@ -1340,7 +1340,7 @@ sources:
       link_attr: onclick
       link_regex: "location.href='([^']+)'"
       date_selector: td.reg_data
-      keywords: [강사, 지도사, 지도자, 강사진, 강좌]
+      keywords: [모집, 안내, 공고, 강사]
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: div.hd }
     notes: >-
