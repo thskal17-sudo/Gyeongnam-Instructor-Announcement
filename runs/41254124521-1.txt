@@ -1,0 +1,386 @@
+====================================================================================================
+URL: https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000004/hire.do?idx=104010400&pageIndex=1
+status=200 final=https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000004/hire.do?idx=104010400&pageIndex=1 encoding=UTF-8 bytes=343743
+title: 양산통합도서관 | 열린마당 | 알림마당 | 채용공고
+
+[BODY TEXT] div#sub.tap4 > div.inner.sub_wrap > table.book_table1.book_table2.book_table3.mobile_lay
+게시판 목록
+번호
+구분
+제목
+작성자
+작성일
+조회수
+218
+중앙도서관
+2026년 양산시립 중앙도서관 기간제근로자(초단시간) 최종 합격자 안내
+관리자
+2026-09-18
+678
+217
+중앙도서관
+2026년 양산시립 중앙도서관 기간제근로자(초단시간) 1차 서류전형 합격
+관리자
+2026-09-15
+326
+216
+중앙도서관
+2026년 양산시립 중앙도서관 자료실운영보조 기간제근로자(초단시간 평일1
+관리자
+2026-09-03
+563
+215
+상북도서관
+상북도서관 2026년 기간제근로자(초단시간) 최종 합격자 공고
+관리자
+2026-08-25
+232
+214
+상북도서관
+2026년 양산시립 상북도서관 기간제근로자(초단시간) 1차 서류전형 합격
+관리자
+2026-08-18
+328
+213
+윤현진도서관
+2026년 윤현진도서관 개관시간 연장사업 기간제 근로자 최종합격자 안내
+관리자
+2026-07-29
+579
+212
+상북도서관
+2026년 양산시립 상북도서관 자료실 운영보조 기간제근로자(초단시간) 모
+관리자
+2026-07-28
+409
+211
+윤현진도서관
+2026년 양산시립 윤현진도서관 개관시간 연장사업 기간제 근로자 1차 서
+관리자
+2026-07-24
+391
+210
+윤현진도서관
+2026년 양산시립 윤현진도서관 개관시간 연장사업 기간제근로자 채용 공고
+관리자
+2026-07-15
+774
+209
+삼산도서관
+2026년 양산시립 삼산도서관 자료실 운영보조 단기 기간제근로자 모집 공
+관리자
+2026-06-11
+772
+
+[TABLE] div#sub.tap4 > div.inner.sub_wrap > table.book_table1.book_table2.book_table3.mobile_lay  rows=11
+   row: tr -> th.h2:번호 | th:구분 | th.h5:제목 | th.h4:작성자 | th.h4:작성일 | th.h4:조회수
+   row: tr -> td.h2:218 | td:중앙도서관 | td.h5.tlt:2026년 양산시립 중앙도서관 기간제근로자(초단 | td.h4.name:관리자 | td.h4.date:2026-09-18 | td.h4:678
+      td.h2 :: own='218' all='218'
+      td :: own='중앙도서관' all='중앙도서관'
+      td.h5.tlt :: own='' all='2026년 양산시립 중앙도서관 기간제근로자(초단시간) 최종 합격자 안내'
+      a href=javascript:void(0); onclick=fncNoticedetail('BBSMSTR_000000000004', '4961'); :: own='2026년 양산시립 중앙도서관 기간제근로자(초단시간) 최종 합격자 안내' all='2026년 양산시립 중앙도서관 기간제근로자(초단시간) 최종 합격자 안내'
+      td.h4.name :: own='관리자' all='관리자'
+      td.h4.date :: own='2026-09-18' all='2026-09-18'
+      td.h4 :: own='678' all='678'
+
+[PAGING] ?pageIndex=1
+[DATES] sample: ['2026-09-18', '2026-09-15', '2026-09-03', '2026-08-25', '2026-08-18']
+
+[ANCHORS] most common link paths
+   x10 table.book_table1.book_table2.book_table3.mobile_lay > tr > td.h5.tlt > a  href=javascript:void(0); {'onclick': "fncNoticedetail('BBSMSTR_000000000004', "} text='2026년 양산시립 중앙도서관 기간제근로자(초단시간) 최종 합격자 안내'
+      row? tr :: '218 중앙도서관 2026년 양산시립 중앙도서관 기간제근로자(초단시간) 최종 합격자 안내 관리자 2026-09-18 678'
+
+[LINKS] board candidates (11)
+   '이용안내' -> https://lib.yangsan.go.kr/YS/job/info.do?idx=108010100
+   '새로들어온자료' -> https://lib.yangsan.go.kr/YS/job/newdata.do?idx=108010200
+   '자격증 정보서비스 잡학다식' -> https://lib.yangsan.go.kr/YS/job/more.do?idx=108010400
+   '관련사이트' -> https://lib.yangsan.go.kr/YS/job/site.do?idx=108010300
+   '공지사항' -> https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000001/notice.do?idx=104010100
+   '도서관소식지' -> https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000002/news.do?idx=104010200
+   '채용공고' -> https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000004/hire.do?idx=104010400
+   '강사등록신청' -> https://lib.yangsan.go.kr/YS/madang/instructor.do?idx=104020400
+   '직원 및 담당업무' -> https://lib.yangsan.go.kr/YS/intro/libJob.do?idx=106010200
+   '정보마당' -> https://lib.yangsan.go.kr/small/smallNotice.do
+   '정보마당' -> https://lib.yangsan.go.kr/YS/small/smallNotice.do?idx=301010400
+====================================================================================================
+URL: https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000004/hire.do?idx=104010400&pageIndex=5
+status=200 final=https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000004/hire.do?idx=104010400&pageIndex=5 encoding=UTF-8 bytes=343588
+title: 양산통합도서관 | 열린마당 | 알림마당 | 채용공고
+
+[BODY TEXT] div#sub.tap4 > div.inner.sub_wrap > table.book_table1.book_table2.book_table3.mobile_lay
+게시판 목록
+번호
+구분
+제목
+작성자
+작성일
+조회수
+178
+서창도서관
+2026년 양산시립 서창도서관 기간제 근로자 최종합격자 안내
+관리자
+2025-12-11
+519
+177
+중앙도서관
+2026년 양산시립 중앙도서관 기간제근로자 채용 재공고
+관리자
+2025-12-11
+589
+176
+중앙도서관
+2026년 양산시립 중앙도서관 기간제근로자 최종합격자 안내
+관리자
+2025-12-11
+384
+175
+양산통합도서관
+2026년 공립작은도서관 기간제 근로자 최종합격자 안내
+관리자
+2025-12-11
+239
+174
+윤현진도서관
+2026년 양산시립 윤현진도서관 기간제 근로자 최종합격자 안내
+관리자
+2025-12-10
+556
+173
+상북도서관
+2026년 양산시립 상북도서관 기간제근로자 1차 서류전형 합격자 안내
+관리자
+2025-12-09
+207
+172
+중앙도서관
+2026년 양산시립 중앙도서관 기간제근로자 1차 서류전형 합격자 안내
+관리자
+2025-12-08
+485
+171
+영어도서관
+2026년 영어도서관 기간제 근로자 서류전형 합격자 안내
+관리자
+2025-12-05
+313
+170
+윤현진도서관
+2026년 윤현진도서관 기간제 근로자 서류전형 합격자 안내
+관리자
+2025-12-02
+501
+169
+상북도서관
+2026년 양산시립 상북도서관 기간제근로자 채용 공고
+관리자
+2025-11-19
+568
+
+[TABLE] div#sub.tap4 > div.inner.sub_wrap > table.book_table1.book_table2.book_table3.mobile_lay  rows=11
+   row: tr -> th.h2:번호 | th:구분 | th.h5:제목 | th.h4:작성자 | th.h4:작성일 | th.h4:조회수
+   row: tr -> td.h2:178 | td:서창도서관 | td.h5.tlt:2026년 양산시립 서창도서관 기간제 근로자 최 | td.h4.name:관리자 | td.h4.date:2025-12-11 | td.h4:519
+      td.h2 :: own='178' all='178'
+      td :: own='서창도서관' all='서창도서관'
+      td.h5.tlt :: own='' all='2026년 양산시립 서창도서관 기간제 근로자 최종합격자 안내'
+      a href=javascript:void(0); onclick=fncNoticedetail('BBSMSTR_000000000004', '4290'); :: own='2026년 양산시립 서창도서관 기간제 근로자 최종합격자 안내' all='2026년 양산시립 서창도서관 기간제 근로자 최종합격자 안내'
+      td.h4.name :: own='관리자' all='관리자'
+      td.h4.date :: own='2025-12-11' all='2025-12-11'
+      td.h4 :: own='519' all='519'
+
+[PAGING] ?pageIndex=1
+[DATES] sample: ['2025-12-11', '2025-12-11', '2025-12-11', '2025-12-11', '2025-12-10']
+
+[ANCHORS] most common link paths
+   x10 table.book_table1.book_table2.book_table3.mobile_lay > tr > td.h5.tlt > a  href=javascript:void(0); {'onclick': "fncNoticedetail('BBSMSTR_000000000004', "} text='2026년 양산시립 서창도서관 기간제 근로자 최종합격자 안내'
+      row? tr :: '178 서창도서관 2026년 양산시립 서창도서관 기간제 근로자 최종합격자 안내 관리자 2025-12-11 519'
+
+[LINKS] board candidates (11)
+   '이용안내' -> https://lib.yangsan.go.kr/YS/job/info.do?idx=108010100
+   '새로들어온자료' -> https://lib.yangsan.go.kr/YS/job/newdata.do?idx=108010200
+   '자격증 정보서비스 잡학다식' -> https://lib.yangsan.go.kr/YS/job/more.do?idx=108010400
+   '관련사이트' -> https://lib.yangsan.go.kr/YS/job/site.do?idx=108010300
+   '공지사항' -> https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000001/notice.do?idx=104010100
+   '도서관소식지' -> https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000002/news.do?idx=104010200
+   '채용공고' -> https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000004/hire.do?idx=104010400
+   '강사등록신청' -> https://lib.yangsan.go.kr/YS/madang/instructor.do?idx=104020400
+   '직원 및 담당업무' -> https://lib.yangsan.go.kr/YS/intro/libJob.do?idx=106010200
+   '정보마당' -> https://lib.yangsan.go.kr/small/smallNotice.do
+   '정보마당' -> https://lib.yangsan.go.kr/YS/small/smallNotice.do?idx=301010400
+====================================================================================================
+URL: https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000001/notice.do?idx=104010100
+status=200 final=https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000001/notice.do?idx=104010100 encoding=UTF-8 bytes=348104
+title: 양산통합도서관 | 열린마당 | 알림마당 | 공지사항
+
+[BODY TEXT] div#sub.tap1 > div.inner.sub_wrap > table.book_table1.book_table2.book_table3.mobile_lay
+게시판 목록
+번호
+구분
+제목
+작성자
+작성일
+조회수
+공지
+웅상도서관
+공지
+<교과서가 쉬워지는 주말 여행> 박은하 작가와의 만남
+관리자
+2026-10-29
+72
+공지
+중앙도서관
+공지
+중앙도서관 <그림책으로 만나는 다름의 이해> 유아 특강 운영 (현재
+관리자
+2026-10-29
+95
+공지
+중앙도서관
+공지
+2026년 양산시 독서문화축제 올해의 책 「독후화 그리기」 대회 수상자
+관리자
+2026-10-28
+220
+공지
+중앙도서관
+공지
+중앙도서관 문화누리 지원사업「생활 속 유니버설디자인의 이해」운영 안내
+관리자
+2026-10-24
+237
+공지
+웅상도서관
+공지
+웅상도서관 1층 하늘광장 공사 공지
+관리자
+2026-10-23
+144
+공지
+윤현진도서관
+공지
+윤현진도서관 「데굴데굴 삼년고개」 동화구연극 운영안내
+관리자
+2026-10-20
+195
+공지
+서창도서관
+공지
+서창도서관 동화와 음악이 함께하는 두근두근 견학(11월) 안내(어린이집
+관리자
+2026-10-19
+192
+공지
+서창도서관
+공지
+2026년 서창도서관 장서점검 안내
+관리자
+2026-10-18
+162
+공지
+중앙도서관
+공지
+좀 놀면 안 돼요? 백순심 작가와의 만남(2026년 올해의 책  마무리
+관리자
+2026-10-15
+235
+공지
+웅상도서관
+공지
+웅상도서관 김애란 작가와의 만남 운영 안내
+관리자
+2026-10-15
+341
+2000
+영어도서관
+영어도서관 11월 체험형 동화구연 특강 "장화신은 고양이" 운영 안내
+관리자
+2026-10-31
+14
+1999
+영어도서관
+영어도서관 11월  독서퀴즈 특강 Read Me, Quiz Me! 운영
+관리자
+2026-10-31
+7
+1998
+양산통합도서관
+2026년 양산시 올해의 책 전국 어린이 독후감 공모전 수상자 안내
+관리자
+2026-10-16
+355
+1997
+어린이영어도서관
+어린이영어도서관 어린이 스토리텔링 특강 안내
+관리자
+2026-10-08
+358
+1996
+웅상도서관
+웅상도서관 10월 이야기극장 운영 안내
+관리자
+2026-10-06
+146
+1995
+서창도서관
+서창도서관 동화랑 마술이랑(1차) 수강생 모집 ★초등 1~3학년★
+관리자
+2026-10-01
+134
+1994
+윤현진도서관
+윤현진도서관 취업진로 특강 「나만의 직무 서사 설계하기 」 신청 안내
+관리자
+2026-10-01
+173
+1993
+웅상도서관
+어린이 여행특성화 프로그램 [여행 한 조각, 그림일기] 강의계획서
+관리자
+2026-10-01
+157
+1992
+웅상도서관
+어린이 여행특성화 프로그램 [여행 한 조각, 그림일기] 수강생 모집
+관리자
+2026-09-30
+183
+1991
+상북도서관
+상북도서관 2026년 하반기 독서문화강좌 수강생 추가모집 안내
+관리자
+2026-09-30
+98
+
+[TABLE] div#sub.tap1 > div.inner.sub_wrap > table.book_table1.book_table2.book_table3.mobile_lay  rows=21
+   row: tr -> th.h2:번호 | th:구분 | th.h5:제목 | th.h4:작성자 | th.h4:작성일 | th.h4:조회수
+   row: tr.tcr -> td.h2:공지 | td:웅상도서관 | td.h5.tlt:공지 <교과서가 쉬워지는 주말 여행> 박은하 작 | td.h4.name:관리자 | td.h4.date:2026-10-29 | td.h4:72
+      td.h2 :: own='' all='공지'
+      em.nt :: own='공지' all='공지'
+      td :: own='웅상도서관' all='웅상도서관'
+      td.h5.tlt :: own='' all='공지 <교과서가 쉬워지는 주말 여행> 박은하 작가와의 만남'
+      a href=javascript:void(0); onclick=fncNoticedetail('BBSMSTR_000000000001', '5050'); :: own='<교과서가 쉬워지는 주말 여행> 박은하 작가와의 만남' all='공지 <교과서가 쉬워지는 주말 여행> 박은하 작가와의 만남'
+      em.nt.mo :: own='공지' all='공지'
+      td.h4.name :: own='관리자' all='관리자'
+      td.h4.date :: own='2026-10-29' all='2026-10-29'
+      td.h4 :: own='72' all='72'
+
+[PAGING] ?pageIndex=1
+[DATES] sample: ['2026-10-29', '2026-10-29', '2026-10-28', '2026-10-24', '2026-10-23']
+
+[ANCHORS] most common link paths
+   x10 table.book_table1.book_table2.book_table3.mobile_lay > tr.tcr > td.h5.tlt > a  href=javascript:void(0); {'onclick': "fncNoticedetail('BBSMSTR_000000000001', "} text='공지 <교과서가 쉬워지는 주말 여행> 박은하 작가와의 만남'
+      row? tr.tcr :: '공지 웅상도서관 공지 <교과서가 쉬워지는 주말 여행> 박은하 작가와의 만남 관리자 2026-10-29 72'
+   x10 table.book_table1.book_table2.book_table3.mobile_lay > tr > td.h5.tlt > a  href=javascript:void(0); {'onclick': "fncNoticedetail('BBSMSTR_000000000001', "} text='영어도서관 11월 체험형 동화구연 특강 "장화신은 고양이" 운영 안내'
+      row? tr :: '2000 영어도서관 영어도서관 11월 체험형 동화구연 특강 "장화신은 고양이" 운영 안내 관리자 2026-10-31 14'
+
+[LINKS] board candidates (11)
+   '이용안내' -> https://lib.yangsan.go.kr/YS/job/info.do?idx=108010100
+   '새로들어온자료' -> https://lib.yangsan.go.kr/YS/job/newdata.do?idx=108010200
+   '자격증 정보서비스 잡학다식' -> https://lib.yangsan.go.kr/YS/job/more.do?idx=108010400
+   '관련사이트' -> https://lib.yangsan.go.kr/YS/job/site.do?idx=108010300
+   '공지사항' -> https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000001/notice.do?idx=104010100
+   '도서관소식지' -> https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000002/news.do?idx=104010200
+   '채용공고' -> https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000004/hire.do?idx=104010400
+   '강사등록신청' -> https://lib.yangsan.go.kr/YS/madang/instructor.do?idx=104020400
+   '직원 및 담당업무' -> https://lib.yangsan.go.kr/YS/intro/libJob.do?idx=106010200
+   '정보마당' -> https://lib.yangsan.go.kr/small/smallNotice.do
+   '정보마당' -> https://lib.yangsan.go.kr/YS/small/smallNotice.do?idx=301010400
