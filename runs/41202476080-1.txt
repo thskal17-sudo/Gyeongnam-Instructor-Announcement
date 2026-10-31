@@ -1,0 +1,13 @@
+24:  default_days: 150
+::group::probe sc_culture
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.sccf.or.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page=1 "HTTP/1.1 200 OK"
+[probe] 사천문화재단 채용공고: 목록 0건
+::endgroup::
+::group::probe jj_cc
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://jjcc.or.kr/robots.txt "HTTP/1.1 404 Not Found"
+INFO httpx: HTTP Request: GET https://jjcc.or.kr/board/lists/type/1 "HTTP/1.1 200 OK"
+[probe] 진주문화원 공지사항: 목록 0건
+::endgroup::
