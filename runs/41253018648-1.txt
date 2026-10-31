@@ -1,0 +1,9 @@
+====================================================================================================
+URL: https://www.cwsisul.or.kr/bbs/board.php?bo_table=sub06_04_04&wr_id=1705&page=1
+status=200 final=https://www.cwsisul.or.kr/bbs/board.php?bo_table=sub06_04_04&wr_id=1705&page=1 encoding=utf-8 bytes=9463
+title: 오류안내 페이지
+
+[BODY candidates]
+
+[ATTACH candidates]
+[DATES] sample: []
