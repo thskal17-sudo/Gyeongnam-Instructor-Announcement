@@ -1,43 +1,19 @@
 ====================================================================================================
-URL: https://www.ghct.or.kr/board/board02
-status=200 final=https://www.ghct.or.kr/board/board02 encoding=UTF-8 bytes=104457
-title: 김해문화관광재단 > 채용공고 리스트
-
-[GREP] data\(.idx.\)|attr\(.data-idx|location.href|board02/
-   ... tion() { $.confirm({ theme : 'supervan', title : 'LOGOUT', content : '로그아웃 하시겠습니까?', confirmButton : '확인', cancelButton : '취소', confirm : function() { document.location.href = "/home/logout"; }, cancel : function() { } }); return false; }); }); function go_url(url) { window.open(url, "_blank"); } /*화면zoom button*/ var nowZoom = 100; function zoomOut() { nowZoom = nowZoom - 10; if (nowZoom <= 70) nowZoom = 70; zooms(); } function zoomIn() { nowZoom = nowZoom + 20; if (nowZoom >= 200) nowZoom = 200
-   ...  var menuNames = getMenuNames(); // 메뉴 이름이 존재하지 않는 경우 새로운 배열 생성 if (!menuNames) { menuNames = []; } // 현재 페이지의 URL 가져오기 var currentAddress = window.location.href; var currentAddress2 = window.location.pathname; var currentAddress3 = currentAddress2.split("/"); var currentAddress4 = currentAddress3[2]; if (currentAddress4 == "main"){ menuName = "메인"; } // 가장 최근에 메뉴 이름과와 현재 메뉴 이름이 동일한 경우 저장하지 않음 if (menuNames.length > 0 && menuNames[menuNames.length - 1] === menuName) { return; 
-   ... ], button[data-role=new]").click(function() { /* $("form[name=searchFrm] input[name=_method]").val("get"); $("form[name=searchFrm]").attr("action", "/board/write/board02").submit(); */ location.href = "/board/write/board02"; return false; }); // 선택삭제 $("button[data-role=delete]").click(function() { if($("input[name=targetWrIds]:checked").length < 1) { toastr.info("삭제하실 항목을 한개 이상 선택 해주세요."); } else { $.confirm({ theme: 'supervan', title: '게시글 삭제', content: '게시글을 삭제 하시겠습니까?<br/>삭제된 게시글은 복구가 불가능 하며, 
-   ... m: function(){ // To-Do : 삭제요청 $("form[name=searchFrm] input[name=_method]").val("delete"); $("form[name=searchFrm]").attr("method", "post").attr("action", "/board/board02/deletes").submit(); }, cancel: function(){} }); } return false; }); // 상세보기 $("tbody tr[data-wr-id]").click(function(event) { let boardId = 'BOARD_000000090'; let managerYn = ''; if(boardId == "BOARD_000000092" && managerYn == "Y"){ // 김해문화재단고객의 소리인 경우 분
-   ... ")); $("form[name=searchFrm] input[name=boardId]").val($(this).data("board-id")); /* $("form[name=searchFrm] input[name=returnUrl]").val(encodeURIComponent(location.href)); */ $("form[name=searchFrm]").attr("action", "/board/detail/board02/"+$(this).data("idx")).submit(); return false; } else { toastr.error("권한이 없습니다."); return false; } } else { $("form[name=searchFrm] input[
-   ... d")); /* $("form[name=searchFrm] input[name=returnUrl]").val(encodeURIComponent(location.href)); */ $("form[name=searchFrm]").attr("action", "/board/detail/board02/"+$(this).data("idx")).submit(); return false; } else { toastr.error("권한이 없습니다."); return false; } } else { $("form[name=searchFrm] input[name=_method]").val("get"); $("form[name=searchFrm] input[name=wrId]").val(
-   [SCRIPT src] ['https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js', '/resources/bootstrap/3.3.7/js/bootstrap.min.js', '/resources/custom/js/moment-with-locales.min.js', '/resources/custom/js/moment-kr.js', '/resources/custom/js/bootstrap-datetimepicker.min.js', '/resources/custom/js/bootstrap-select.js', '/resources/custom/js/bootstrap-select.min.js', '/resources/js/jquery/jquery-2.1.4.min.js', '/resources/js/jquery/jquery-confirm.min.js', '/resources/js/jquery/jquery-ui.datepicker.js', '/resources/js/jquery/jquery.fancybox.js', '/resources/js/jquery/jquery.cookie.js']
-
-[TABLE] form#searchFrm > div.board_content.fix-layout > table.basic_table.center  rows=21
-   row: tr -> th.board_number.text-center:번호 | th.text-center:제목 | th.text-center.txt-left.pc_Y.ta_N.mo_N:분류 | th.board_name.text-center:작성자 | th.date.text-center:등록일자 | th.board_file.text-center:첨부 | th.board_count.text-center:조회수
-   row: tr -> th.board_number.text-center:1,697 | td.left.title.clearfix:일반 (재)김해문화관광재단 김해문화의전당 기간제 | td.txt-left.pc_Y.ta_N.mo_N.fieldCategory:김해문화의전당 | td.board_name:김해문화의전당관리자 | td.date.text-center:2026-10-29 10:21:52 | td.board_file.text-center:첨부파일 아이콘 - 첨부파일 있음 | td.board_count.text-center:53
-      th.board_number.text-center :: own='1,697' all='1,697'
-      td.left.title.clearfix :: own='' all='일반 (재)김해문화관광재단 김해문화의전당 기간제 노동자(공연장 안내요원) 최종합격자 발표 '
-      span.label.label-default.mr10.sr-only :: own='일반' all='일반'
-      p :: own='' all='(재)김해문화관광재단 김해문화의전당 기간제 노동자(공연장 안내요원) 최종합격자 발표 공고'
-      button.board_title_btn :: own='(재)김해문화관광재단 김해문화의전당 기간제 노동자(공연장 안내요원) 최종' all='(재)김해문화관광재단 김해문화의전당 기간제 노동자(공연장 안내요원) 최종합격자 발표 공고'
-      td.txt-left.pc_Y.ta_N.mo_N.fieldCategory :: own='김해문화의전당' all='김해문화의전당'
-      td.board_name :: own='김해문화의전당관리자' all='김해문화의전당관리자'
-      td.date.text-center :: own='2026-10-29 10:21:52' all='2026-10-29 10:21:52'
-      td.board_file.text-center :: own='' all='첨부파일 아이콘 - 첨부파일 있음'
-      span.sr-only :: own='첨부파일 아이콘 - 첨부파일 있음' all='첨부파일 아이콘 - 첨부파일 있음'
-      td.board_count.text-center :: own='53' all='53'
+URL: https://www.ghct.or.kr/board/detail/board02/1737
+status=200 final=https://www.ghct.or.kr/board/detail/board02/1737 encoding=UTF-8 bytes=72324
+title: 김해문화관광재단 > 채용공고 상세화면
 
 [LIST] div.fix-layout.flexwrap > div.agSwiper > ul.ag-list.swiper-wrapper  items=12
    li: li.swiper-slide -> 김해문화의전당 (새 창 열림)
       a href=https://gasc.ghct.or.kr/ onclick= attrs={'target': '_blank', 'aria-label': '김해문화의전당 (새 창 열림)', 'tabindex': '0'} :: own='김해문화의전당' all='김해문화의전당 (새 창 열림)'
       span.sr-only :: own='(새 창 열림)' all='(새 창 열림)'
-[DATES] sample: ['2026-10-29', '2026-10-28', '2026-10-23', '2026-10-21', '2026-10-21']
+[DATES] sample: ['2026-10-28']
 
 [ANCHORS] most common link paths
-   x1 fieldset > div.pagenation_wrap > p.pagenation > a.first.angle-left-thin  href=# {'data-role': 'goPage', 'data-page': '1', 'title': '제일 첫 페이지로 이동'} text='제일 첫 페이지로 이동'
-   x1 fieldset > div.pagenation_wrap > p.pagenation > a.arrow-left  href=# {'data-role': 'goPage', 'data-page': '1', 'title': '이전 페이지로 이동'} text='이전 페이지로 이동'
-   x1 fieldset > div.pagenation_wrap > p.pagenation > a.arrow-right  href=# {'data-role': 'goPage', 'data-page': '2', 'title': '다음 페이지로 이동'} text='다음 페이지로 이동'
-   x1 fieldset > div.pagenation_wrap > p.pagenation > a.last.angle-right-thin  href=# {'data-role': 'goPage', 'data-page': '11', 'title': '제일 끝 페이지로 이동'} text='제일 끝 페이지로 이동'
+   x1 div.board_btnwp.fix-layout > ul.board_control.clearfix > li.btn_prev > a  href=javascript:void(0); {'data-role': 'boardMove', 'data-url': '/board/detail/board02/1736', 'title': '이전글로 이동하기'} text='이전글 (재)김해문화관광재단 김해가야테마파크 기간제 노동자(눈썰매장) 채'
+      row? li.btn_prev :: '이전글 (재)김해문화관광재단 김해가야테마파크 기간제 노동자(눈썰매장) 채용 공고'
+   x1 div.board_btnwp.fix-layout > ul.board_control.clearfix > li.btn_next > a  href=javascript:void(0); {'data-role': 'boardMove', 'data-url': '/board/detail/board02/1738', 'title': '다음글로 이동하기'} text='다음글 (재)김해문화관광재단 김해문화의전당 기간제 노동자(공연장 안내요원'
+      row? li.btn_next :: '다음글 (재)김해문화관광재단 김해문화의전당 기간제 노동자(공연장 안내요원) 최종합격자 발표 공고'
 
 [LINKS] board candidates (6)
    '재단소식' -> https://www.ghct.or.kr/menu/news
@@ -46,3 +22,20 @@ title: 김해문화관광재단 > 채용공고 리스트
    '채용공고' -> https://www.ghct.or.kr/board/board02
    '입찰공고' -> https://www.ghct.or.kr/content/disclosure04_02
    '평가위원회 결과공고' -> https://www.ghct.or.kr/board/disclosure04_03
+24:  default_days: 60
+::group::probe gh_ct
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.ghct.or.kr/robots.txt "HTTP/1.1 200 "
+INFO httpx: HTTP Request: GET https://www.ghct.or.kr/board/board02 "HTTP/1.1 200 "
+INFO httpx: HTTP Request: GET https://www.ghct.or.kr/board/detail/board02/1737 "HTTP/1.1 200 "
+[probe] 김해문화관광재단 채용공고: 목록 5건
+  - 2026-10-28 | 김해문화관광재단 채용공고 | (재)김해문화관광재단 시민스포츠센터 수익배분제 강사 최종합격자 발표 공고 | https://www.ghct.or.kr/board/detail/board02/1737
+  - 2026-10-23 | 김해문화관광재단 채용공고 | (재)김해문화관광재단 시민스포츠센터 수익배분제 강사 채용 서류전형 합격자발표 및 면접전형 시행 계획 공고 | https://www.ghct.or.kr/board/detail/board02/1735
+  - 2026-10-12 | 김해문화관광재단 채용공고 | (재)김해문화관광재단 시민스포츠센터 수익배분제 강사 채용 공고 | https://www.ghct.or.kr/board/detail/board02/1730
+  - 2026-09-18 | 김해문화관광재단 채용공고 | (재)김해문화관광재단 서부스포츠센터 기간제 강사(수영) 채용 최종합격자 발표 공고 | https://www.ghct.or.kr/board/detail/board02/1723
+  - 2026-09-16 | 김해문화관광재단 채용공고 | (재)김해문화관광재단 서부스포츠센터 기간제 강사(수영) 채용 서류전형 합격자 발표 및 면접전형 시행 계획 공고 | https://www.ghct.or.kr/board/detail/board02/1720
+[detail] 본문 340자 · 마감 None (unknown, 'None') · 점수 0 ['+50 제목 핵심어(강사)', '-60 제외어(합격자)'] · 분야 sports
+  [date?] 2026-10-28 13:46:21
+  [date?] 2026년 10월 28일
+[posting] 제외: 
+::endgroup::
