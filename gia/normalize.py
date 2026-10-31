@@ -28,7 +28,8 @@ _SIGUN_PATTERNS = {
 ORG_PREFIX_RE = re.compile(r"^\s*(?:\(재\)|\(사\)|\(주\)|재단법인|사단법인|주식회사)\s*")
 _BRACKET_RE = re.compile(r"[\[\(【〔]([^\]\)】〕]{1,20})[\]\)】〕]")
 # 게시판 배지: 목록 CMS 가 제목 앞뒤에 붙이는 '새 글'·'NEW'·'[공지]' (거창·진주시설공단·경남인재평생교육진흥원 등 .web CMS, #18)
-_BADGE_LEAD_RE = re.compile(r"^(?:[\[\(【]\s*(?:공지|필독|NEW|New|new|N)\s*[\]\)】]|공지(?=\s))\s*[:\-·]?\s*")
+# 사천문화재단(그누보드)은 '공지' 배지가 제목에 붙어 '공지2026년 …' 으로 읽힌다 — 바로 뒤가 숫자여도 뗀다
+_BADGE_LEAD_RE = re.compile(r"^(?:[\[\(【]\s*(?:공지|필독|NEW|New|new|N)\s*[\]\)】]|공지(?=\s|\d))\s*[:\-·]?\s*")
 _BADGE_TAIL_RE = re.compile(r"\s*(?:[\[\(【]\s*(?:새\s?글|NEW|New|new|N)\s*[\]\)】]|새\s?글|NEW|New|new)\s*$")
 _WS_RE = re.compile(r"\s+")
 _KEY_RE = re.compile(r"[^0-9a-z가-힣]")

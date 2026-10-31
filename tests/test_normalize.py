@@ -23,6 +23,7 @@ def test_title_strips_board_badges():
     assert normalize_title("2026 하반기 강사 모집 [NEW]")[0] == "2026 하반기 강사 모집"
     assert normalize_title("(공지) [재공고] 강사 모집 (N)")[0] == "강사 모집"
     assert normalize_title("공지 강사 모집")[0] == "강사 모집"
+    assert normalize_title("공지2026년 예술강사 모집 공고")[0] == "2026년 예술강사 모집 공고"  # 사천문화재단 (2026-10-31)
     # 제목의 일부인 낱말은 건드리지 않는다
     assert normalize_title("공지사항 게시판 운영 강사 모집")[0] == "공지사항 게시판 운영 강사 모집"
     assert normalize_title("새 글쓰기 강좌 강사 모집")[0] == "새 글쓰기 강좌 강사 모집"
