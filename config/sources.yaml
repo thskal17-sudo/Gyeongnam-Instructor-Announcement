@@ -1267,8 +1267,10 @@ sources:
       type: html_list
       list_url: https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page={page}
       row_selector: "form#fboardlist div.board.list_body div.column"
-      title_selector: a
+      # 행: <a><p.title>(공지 배지)제목</p><p.rowInfo>작성자 · 작성일 : 2026.08.26 · 조회수</p></a>
+      title_selector: p.title
       link_selector: a
+      date_selector: span.date
       keywords: [강사, 예술강사, 교강사, 지도사, 지도자, 강사진, 예술교육, 인력풀]
       paging: { max_pages: 1 }
       detail: { fetch: true, body_selector: "article#bo_v", attachment_selector: a.view_file_download }
@@ -1393,6 +1395,7 @@ sources:
       row_selector: ul.lst1 > li.li1
       title_selector: strong.t1
       link_selector: a.a1
+      date_selector: "span.t3:nth-of-type(1)"
       keywords: [강사, 강사진, 인력풀, 지도사, 튜터]
       paging: { max_pages: 2 }
       detail: { fetch: true, body_selector: div.bbs1view1, attachment_selector: "a.filename" }
