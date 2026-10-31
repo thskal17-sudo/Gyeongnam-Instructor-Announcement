@@ -1,0 +1,31 @@
+24:  default_days: 90
+::group::probe gh_fmc
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://ghdc.or.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://ghdc.or.kr/sub.html?code=03_03&Radd=03_03&page=1 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://ghdc.or.kr/sub.html?code=03_03&Radd=03_03&mode=list&mode=view&no=1191&page=1&search=&keyword=&tab= "HTTP/1.1 200 OK"
+[probe] 김해시도시개발공사 채용정보: 목록 3건
+  - 2026-10-27 | 김해시도시개발공사 채용정보 | 율하체육관 배분제 위탁강사(배드민턴) 공개모집 선정 최종합격자 공고 | https://ghdc.or.kr/sub.html?code=03_03&Radd=03_03&mode=list&mode=view&no=1191&page=1&search=&keyword=&tab=
+  - 2026-10-21 | 김해시도시개발공사 채용정보 | 율하체육관 배분제 위탁강사(배드민턴)모집 공개모집 서류심사 합격자 발표 및 면접시.. | https://ghdc.or.kr/sub.html?code=03_03&Radd=03_03&mode=list&mode=view&no=1190&page=1&search=&keyword=&tab=
+  - 2026-10-07 | 김해시도시개발공사 채용정보 | 김해시도시개발공사 장유스포츠센터(율하체육관) 배분제 위탁강사(배드민턴) 모집 공고 | https://ghdc.or.kr/sub.html?code=03_03&Radd=03_03&mode=list&mode=view&no=1189&page=1&search=&keyword=&tab=
+[detail] 본문 403자 · 마감 2026-10-19 23:59:00+09:00 (fixed, '2026-10-19') · 점수 25 ['+50 제목 핵심어(강사)', '+20 채용어(모집)', '+15 경남 지역', '-60 제외어(합격자)'] · 분야 sports
+[posting] 제외: 
+::endgroup::
+::group::probe sc_culture
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.sccf.or.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page=1 "HTTP/1.1 200 OK"
+[probe] 사천문화재단 채용공고: 목록 0건
+::endgroup::
+::group::probe gh_lib
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://lib.gimhae.go.kr/robots.txt "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://lib.gimhae.go.kr/00290/00309.web?cpage=1 "HTTP/1.1 200 200"
+[probe] 김해시 통합도서관 공지사항: 목록 0건
+::endgroup::
+::group::probe jj_cc
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://jjcc.or.kr/robots.txt "HTTP/1.1 404 Not Found"
+INFO httpx: HTTP Request: GET https://jjcc.or.kr/board/lists/type/1 "HTTP/1.1 200 OK"
+[probe] 진주문화원 공지사항: 목록 0건
+::endgroup::
