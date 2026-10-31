@@ -934,17 +934,28 @@ sources:
     notes: >-
       공지사항 중 채용공고 분류(EUC-KR ASP, 2026-09-22 러너에서 gia probe 검증: 도슨트 공고 1건 수집·본문 2711자). 상단 공지 행은 '작성일 2026.09.22', 일반 행은 '26.09.16' 이라 date_formats 와 느슨한 파서를 함께 씀.
   - id: gh_fmc
-    name: 김해시도시개발공사·김해문화관광재단
+    name: 김해시도시개발공사 채용정보
     org_type: local_public
     tier: 3
-    enabled: false
     homepage: https://ghdc.or.kr
+    verified: true
     adapter:
       type: html_list
-      list_url: TODO
-      candidate_list_url: https://www.ghct.or.kr/board/board02
+      list_url: https://ghdc.or.kr/sub.html?code=03_03&Radd=03_03&page={page}
+      # 행: 번호 / 제목 / 접수기간('2026-10-12~2026-10-19') / 진행현황 / 등록일('2026/10/27') / 조회수
+      row_selector: div.bbsTable table tbody tr
+      title_selector: td.tlft a
+      link_selector: td.tlft a
+      date_selector: "td:nth-child(5)"
+      deadline_selector: "td:nth-child(3)"
+      keywords: [강사, 교강사, 지도사, 지도자, 코치, 강습, 튜터, 인력풀, 트레이너]
+      paging: { max_pages: 2 }
+      detail: { fetch: true, body_selector: "div#scon" }
     notes: >-
-      시설관리공단은 2014년 도시개발공사(ghdc.or.kr)에 통합. ghdc.or.kr·ghct.or.kr(문화관광재단, 스포츠 강사 채용 게시)·ghcf.or.kr 모두 러너에서 연결 시간초과(2026-09-22) → 국내 IP 필요.
+      시설관리공단은 2014년 도시개발공사에 통합. 체육관·스포츠센터 배분제 위탁강사 공고가 올라온다
+      ('율하체육관 배분제 위탁강사(배드민턴)', 2026-10). 러너 IP 로는 연결 시간초과(2026-09-22), 국내 중계로 읽힌다(2026-10-31).
+      robots.txt 허용. 김해문화관광재단(ghct.or.kr/board/board02)은 글 링크가 행의 data-idx 와 스크립트라 아직 못 읽는다
+      — 출자출연기관이라 클린아이 API 로 들어온다
   - id: jj_fmc
     name: 진주시시설관리공단 채용정보
     org_type: local_public
@@ -1247,17 +1258,23 @@ sources:
     notes: >-
       공지사항(2026-09-22 러너에서 gia probe 검증: 목록 5건, '2026 통영시민오케스트라 교육강사(플루트) 모집 공고' 포함 판정). 합창지도자 채용도 올라옴. 본문이 짧고 공고문은 pdf 첨부라 마감이 게시일로 잡힐 수 있음(#19).
   - id: sc_culture
-    name: 사천문화재단
+    name: 사천문화재단 채용공고
     org_type: local_public
     tier: 3
-    enabled: false
     homepage: https://www.sccf.or.kr
+    verified: true
     adapter:
       type: html_list
-      list_url: TODO
-      candidate_list_url: https://www.sccf.or.kr/bbs/board.php?bo_table=recruit
+      list_url: https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page={page}
+      row_selector: "form#fboardlist div.board.list_body div.column"
+      title_selector: a
+      link_selector: a
+      keywords: [강사, 예술강사, 교강사, 지도사, 지도자, 강사진, 예술교육, 인력풀]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: "article#bo_v", attachment_selector: a.view_file_download }
     notes: >-
-      채용공고 게시판이 JS 봇 차단 페이지(cupid.js 쿠키 검사, 1.6KB)만 돌려줌(2026-09-22) → playwright 로도 통과 여부 확인 필요.
+      채용공고(그누보드). 2026-09-22 에는 JS 봇 차단 페이지(1.6KB)였는데 2026-10-31 국내 중계로는 목록이 그대로 열린다.
+      직원 채용이 대부분이라 keywords 로 강사·예술교육 인력 공고만 남긴다. robots.txt 없음(HTML 응답)
   - id: my_culture
     name: 밀양문화관광재단
     org_type: local_public
@@ -1323,6 +1340,29 @@ sources:
     notes: >-
       공지사항(그누보드, 2026-10-05 러너 덤프). 문화학교 강사 모집 공고가 올라온다(2026-07-27·08-05 통기타 강사, 공고문 pdf·지원서 hwpx 첨부).
       행사·수강생 안내가 대부분이라 keywords 로 거른다. 한 쪽 15건, 글이 뜸해 1쪽만 본다.
+  - id: jj_cc
+    name: 진주문화원 공지사항
+    org_type: private
+    tier: 3
+    homepage: https://jjcc.or.kr
+    verified: true
+    schedule: daily_light
+    adapter:
+      type: html_list
+      list_url: https://jjcc.or.kr/board/lists/type/1
+      # 행: 번호 / 제목(td.link onclick="location.href='/board/boardcontents/type/1/id/639'") / 작성자 / 작성일 / 조회
+      row_selector: table.board_list tbody tr
+      title_selector: td.link
+      link_selector: td.link
+      link_attr: onclick
+      link_regex: "location.href='([^']+)'"
+      date_selector: td.reg_data
+      keywords: [강사, 지도사, 지도자, 강사진]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: "div.hd" }
+    notes: >-
+      진주문화원 공지. 러너 IP 로는 연결 시간초과(2026-10-05), 국내 중계로 읽힌다(2026-10-31). robots.txt 없음(404).
+      문화학교 강좌·공모 안내가 대부분이라 keywords 로 강사 모집만 남긴다
   - { id: gn_cultural_centers, name: 시군 문화원 (18개 묶음), org_type: private, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: "창원·진주·통영·사천·김해·밀양·거제·양산·의령·창녕·고성·남해·하동·산청·함양·거창·합천 문화원. 사이트가 있는 곳만 개별 항목으로 분리 등록(함안은 ha_cc). 2026-10-05 러너 확인: 진주(jjcc.or.kr)·통영(tongyeong.kccf.or.kr) 연결 시간초과, 양산(yangsancc.or.kr, WordPress kboard)·남해(ccnh.or.kr/html/community/notice.php)는 열리나 최근 글에 강사 모집 없어 보류, 밀양 등 *.kccf.or.kr 는 연합회 화면만 나옴" }
 
 # ---------------------------------------------------------------------------
@@ -1341,16 +1381,24 @@ sources:
     notes: >-
       홈이 980B JS 앱 셸이고 index.do·main.do 는 404(2026-09-22). 강좌 강사 공고는 창원시청 채용 게시판(changwon)에 게시되므로 보류.
   - id: gh_lib
-    name: 김해시 도서관
+    name: 김해시 통합도서관 공지사항
     org_type: local_gov
     tier: 3
-    enabled: false
     homepage: https://lib.gimhae.go.kr
+    verified: true
     adapter:
       type: html_list
-      list_url: TODO
+      list_url: https://lib.gimhae.go.kr/00290/00309.web?cpage={page}
+      # 진주·거창과 같은 누리집 틀(ul.lst1 > li.li1)
+      row_selector: ul.lst1 > li.li1
+      title_selector: strong.t1
+      link_selector: a.a1
+      keywords: [강사, 강사진, 인력풀, 지도사, 튜터]
+      paging: { max_pages: 2 }
+      detail: { fetch: true, body_selector: div.bbs1view1, attachment_selector: "a.filename" }
     notes: >-
-      GitHub 러너에서 연결 시간초과(2026-09-22). 강사 공고는 김해시청 채용 게시판(gimhae)에 게시(진영한빛도서관 강사 공고 수집 사례).
+      통합도서관 공지(강좌 운영 안내가 대부분, 강사 모집은 제목 키워드로). 러너 IP 로는 연결 시간초과(2026-09-22),
+      국내 중계로 읽힌다(2026-10-31). robots.txt 허용. 도서관 강사 공고는 김해시청 채용 게시판(gimhae)에도 올라온다
   - id: jj_lib
     name: 진주시립도서관
     org_type: local_gov
