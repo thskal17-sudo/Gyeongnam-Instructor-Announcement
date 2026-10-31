@@ -1331,22 +1331,23 @@ sources:
     adapter:
       type: html_list
       org_name: 진주문화원
-      # 게시판(/board/lists/type/1)은 제목 칸에 <a> 가 없어 행 클릭으로 열린다(2026-10-31 러너 probe:
-      # table.board_list, 제목 td.link, 날짜 td.reg_data). 대문의 '공지사항' 묶음은 같은 글 5건을
-      # 제대로 된 링크(/board/boardcontents/type/1/id/N)로 보여 주므로 그쪽을 읽는다
-      list_url: https://jjcc.or.kr/
-      row_selector: div.clbottom > ul > li
-      title_selector: div.notice_title
-      link_selector: a
-      date_selector: div.date
-      keywords: [강사, 지도사, 지도자, 강좌, 교육]
+      # 2026-10-31 원본 HTML 확인: 제목 칸에 <a> 가 없고 td.link 의 onclick 에 주소가 들어 있다
+      # (onclick="location.href='/board/boardcontents/type/1/id/639'")
+      list_url: https://jjcc.or.kr/board/lists/type/1
+      row_selector: table.board_list tbody tr
+      title_selector: td.link
+      link_selector: td.link
+      link_attr: onclick
+      link_regex: "location.href='([^']+)'"
+      date_selector: td.reg_data
+      keywords: [강사, 지도사, 지도자, 강사진, 강좌]
       paging: { max_pages: 1 }
-      detail: { fetch: true }
+      detail: { fetch: true, body_selector: div.hd }
     notes: >-
       2026-09~10 러너에서 연결 시간초과였고 2026-10-30 국내 중계(KR_PROXY_URL) 뒤 HTTP 200 으로
-      열렸다(러너 probe). 대문 '공지사항' 묶음 5건만 읽어 글이 뜸한 문화원에 맞춘다 — 게시판
-      본체는 행 클릭 방식이라 링크를 못 만든다. 모집·공모 안내가 대부분이라 키워드로 거른다.
-      상세 본문 셀렉터는 미확인이라 본문 없이 제목·날짜만 쓴다.
+      열렸다. 게시판은 행 클릭 방식이라 onclick 에서 주소를 뽑는다(2026-10-31 원본 HTML 확인).
+      공모전·원고 투고 같은 안내가 대부분이고 강사 관련 글만 남기므로 평소 목록은 0건일 수 있다.
+      상세 본문 셀렉터는 추정(div.hd)이라 첫 수집에서 확인할 것.
   - id: ha_cc
     name: 함안문화원 공지사항
     org_type: private
