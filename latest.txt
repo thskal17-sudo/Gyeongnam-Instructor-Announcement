@@ -1,13 +1,73 @@
-24:  default_days: 150
-::group::probe sc_culture
-INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
-INFO httpx: HTTP Request: GET https://www.sccf.or.kr/robots.txt "HTTP/1.1 200 OK"
-INFO httpx: HTTP Request: GET https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page=1 "HTTP/1.1 200 OK"
-[probe] 사천문화재단 채용공고: 목록 0건
-::endgroup::
-::group::probe jj_cc
-INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
-INFO httpx: HTTP Request: GET https://jjcc.or.kr/robots.txt "HTTP/1.1 404 Not Found"
-INFO httpx: HTTP Request: GET https://jjcc.or.kr/board/lists/type/1 "HTTP/1.1 200 OK"
-[probe] 진주문화원 공지사항: 목록 0건
-::endgroup::
+====================================================================================================
+URL: https://www.sccf.or.kr/bbs/board.php?bo_table=recruit
+status=200 final=https://www.sccf.or.kr/bbs/board.php?bo_table=recruit encoding=utf-8 bytes=58816
+title: 사천문화재단
+
+[RAW HTML] form#fboardlist > div.board.list_body > div.column
+<div class="column">
+<a href="https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&amp;wr_id=632">
+<div scope="row">
+<p class="title">
+<span class="label1">공지</span>
+								2026년 하반기 사천문화재단 직원 공개채용 최종합격자 및 임용등록 공고																<i aria-hidden="true" class="fa fa-heart"></i> <i class="xi-download"></i> </p>
+<p class="rowInfo">
+<span class="name">작성자 : <strong>사천문화재단</strong></span><span class="graybar"></span>
+<span class="date">작성일 : 2026.09.18 </span><span class="graybar"></span> <span class="hit">조회수 : <strong>222</strong></span>
+</p>
+</div>
+</a>
+</div>
+
+[RAW HTML] form#fboardlist > div.board.list_body > div.column
+<div class="column">
+<a href="https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&amp;wr_id=631">
+<div scope="row">
+<p class="title">
+<span class="label1">공지</span>
+								2026년 하반기 사천문화재단 직원 공개채용 필기전형 합격자 발표 및 면접전형 시행 공고문																<i aria-hidden="true" class="fa fa-heart"></i> <i class="xi-download"></i> </p>
+<p class="rowInfo">
+<span class="name">작성자 : <strong>사천문화재단</strong></span><span class="graybar"></span>
+<span class="date">작성일 : 2026.09.02 </span><span class="graybar"></span> <span class="hit">조회수 : <strong>246</strong></span>
+</p>
+</div>
+</a>
+</div>
+
+[LIST] div.d_select > div.con2 > ul  items=15
+   li: li -> 문화체육관광부
+      a href=https://www.mcst.go.kr/kor/main.jsp onclick= attrs={'target': '_blank'} :: own='문화체육관광부' all='문화체육관광부'
+
+[PAGING] https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page=2
+[DATES] sample: ['2026.09.18', '2026.09.02', '2026.08.26', '2026.08.19', '2026.08.07']
+
+[ANCHORS] most common link paths
+   x15 form#fboardlist > div.board.list_body > div.column > a  href=https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=632  text='공지 2026년 하반기 사천문화재단 직원 공개채용 최종합격자 및 임용등록'
+      row? div.column :: '공지 2026년 하반기 사천문화재단 직원 공개채용 최종합격자 및 임용등록 공고 작성자 : 사천문화재단 작성일 : 2026.09.18 조회수 : 222'
+   x5 div.con2 > ul > li > a  href=https://www.kocaca.or.kr/main {'target': '_blank', 'title': '새창열림'} text='한국문화예술회관연합회'
+      row? li :: '한국문화예술회관연합회'
+
+[LINKS] board candidates (24)
+   '공지사항' -> https://www.sccf.or.kr/bbs/board.php?bo_table=notice
+   '채용공고' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit
+   '열린게시판' -> https://www.sccf.or.kr/bbs/board.php?bo_table=board_open
+   '공지 2026년 하반기 사천문화재단 직원 공개채용 최종' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=632
+   '공지 2026년 하반기 사천문화재단 직원 공개채용 필기' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=631
+   '공지 2026년 하반기 사천문화재단 직원 공개채용 서류' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=630
+   '공지 사천문화재단 대표이사 최종 임명 예정자 공고 작성' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=629
+   '공지 사천문화재단 대표이사 공개모집 서류심사 합격자 및' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=628
+   '공지 2026년 하반기 사천문화재단 직원 채용 공고 작' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=627
+   '사천문화재단 대표이사 공개모집 공고 작성자 : 사천문화' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=626
+   '2026년 상반기 사천문화재단 직원 채용 최종합격자 및' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=625
+   '2026년 상반기 사천문화재단 직원 공개채용 필기전형 ' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=624
+   '2026년 상반기 사천문화재단 직원 공개채용 서류전형 ' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=623
+   '『2026 꿈의 무용단 사천 참여인력 모집』 최종합격자' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=622
+   '2026년 상반기 사천문화재단 직원 채용 공고 작성자 ' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=621
+   '2026년도 제2차 사천문화재단 기간제근로자 채용 최종' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=620
+   '2026 꿈의 무용단 사천 참여인력 모집』 서류전형 합' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=619
+   '2026년도 제2차 사천문화재단 기간제근로자 서류전형 ' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=618
+   '2' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page=2
+   '3' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page=3
+   '4' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page=4
+   '5' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page=5
+   '다음 페이지' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page=6
+   '마지막' -> https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page=13
