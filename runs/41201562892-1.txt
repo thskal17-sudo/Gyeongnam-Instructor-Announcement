@@ -1,0 +1,50 @@
+24:  default_days: 90
+::group::probe sc_culture
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.sccf.or.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&page=1 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=632&page=1 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.sccf.or.kr/bbs/download.php?bo_table=recruit&wr_id=632&no=0&nonce=47525736727435664c51|1793457166|6f29c6a2906d0cf2e52d9cbca6dbe1ddb9001d5b&page=1 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.sccf.or.kr/bbs/download.php?bo_table=recruit&wr_id=632&no=1&nonce=47525736727435664c51|1793457166|6f29c6a2906d0cf2e52d9cbca6dbe1ddb9001d5b&page=1 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.sccf.or.kr/bbs/download.php?bo_table=recruit&wr_id=632&no=2&nonce=47525736727435664c51|1793457166|6f29c6a2906d0cf2e52d9cbca6dbe1ddb9001d5b&page=1 "HTTP/1.1 200 OK"
+[probe] 사천문화재단 채용공고: 목록 15건
+  - ????-??-?? | 사천문화재단 채용공고 | 공지2026년 하반기 사천문화재단 직원 공개채용 최종합격자 및 임용등록 공고작성자 :사천문화재단작성일 : 2026.09.18조회수 :220 | https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=632&page=1
+  - ????-??-?? | 사천문화재단 채용공고 | 공지2026년 하반기 사천문화재단 직원 공개채용 필기전형 합격자 발표 및 면접전형 시행 공고문작성자 :사천문화재단작성일 : 2026.09.02조회수 :246 | https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=631&page=1
+  - ????-??-?? | 사천문화재단 채용공고 | 공지2026년 하반기 사천문화재단 직원 공개채용 서류전형 합격자 발표 및 필기시험 시행계획 공고작성자 :사천문화재단작성일 : 2026.08.26조회수 :375 | https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=630&page=1
+  - ????-??-?? | 사천문화재단 채용공고 | 공지사천문화재단 대표이사 최종 임명 예정자 공고작성자 :사천문화재단작성일 : 2026.08.19조회수 :503 | https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=629&page=1
+  - ????-??-?? | 사천문화재단 채용공고 | 공지사천문화재단 대표이사 공개모집 서류심사 합격자 및 면접심사 공고작성자 :사천문화재단작성일 : 2026.08.07조회수 :474 | https://www.sccf.or.kr/bbs/board.php?bo_table=recruit&wr_id=628&page=1
+[detail] 본문 5753자 · 마감 2027-09-28 23:59:00+09:00 (fixed, '9. 28.(월)') · 점수 0 ['-30 핵심어 없음', '+20 채용어(채용)', '+15 경남 지역', '-60 제외어(합격자)'] · 분야 arts
+[posting] 제외: 
+::endgroup::
+::group::probe gh_lib
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://lib.gimhae.go.kr/robots.txt "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://lib.gimhae.go.kr/00290/00309.web?cpage=1 "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://lib.gimhae.go.kr/00290/00309.web?cpage=2 "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://lib.gimhae.go.kr/00290/00309.web?gcode=3068&idx=159230&amode=view&cpage=1 "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://lib.gimhae.go.kr/board/download.do?gcode=3068&name=%EB%B6%81%EB%B2%84%EB%94%94%2811%EC%9B%94%29.jpg "HTTP/1.1 200 200"
+[probe] 김해시 통합도서관 공지사항: 목록 20건
+  - ????-??-?? | 김해시 통합도서관 공지사항 | [영어]<북버디와 함께 읽어요(11월)> 운영 안내새 글 | https://lib.gimhae.go.kr/00290/00309.web?gcode=3068&idx=159230&amode=view&cpage=1
+  - ????-??-?? | 김해시 통합도서관 공지사항 | [작은][글로벗] 신간도서 안내새 글 | https://lib.gimhae.go.kr/00290/00309.web?gcode=3046&idx=159222&amode=view&cpage=1
+  - ????-??-?? | 김해시 통합도서관 공지사항 | [작은][불암]2026년 공항소음대책(인근)지역 주민지원 사업 - 그림책 요리사(초등 저) 모집 안내새 글 | https://lib.gimhae.go.kr/00290/00309.web?gcode=3046&idx=159220&amode=view&cpage=1
+  - ????-??-?? | 김해시 통합도서관 공지사항 | [화정]문화가 있는 날「패브릭 무드등 만들기」운영 안내새 글 | https://lib.gimhae.go.kr/00290/00309.web?gcode=3004&idx=159218&amode=view&cpage=1
+  - ????-??-?? | 김해시 통합도서관 공지사항 | [작은][책고래] 11월 책요리 교실 수강생 모집 안내새 글 | https://lib.gimhae.go.kr/00290/00309.web?gcode=3046&idx=159217&amode=view&cpage=1
+[detail] 첨부 추출 실패: ['%EB%B6%81%EB%B2%84%EB%94%94%2811%EC%9B%94%29.jpg: 지원하지 않는 형식']
+[detail] 본문 294자 · 마감 2027-01-05 23:59:00+09:00 (fixed, '1.5') · 점수 0 ['-30 핵심어 없음', '+15 경남 지역'] · 분야 lifelong
+[posting] 제외: 
+::endgroup::
+::group::probe jj_cc
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://jjcc.or.kr/robots.txt "HTTP/1.1 404 Not Found"
+INFO httpx: HTTP Request: GET https://jjcc.or.kr/board/lists/type/1 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://jjcc.or.kr/board/boardcontents/type/1/id/639 "HTTP/1.1 200 OK"
+[probe] 진주문화원 공지사항: 목록 8건
+  - 2026-10-29 | 진주문화원 공지사항 | ★[모집]2026년 어린이.청소년 프로그램 운영지원 "청소년 만화웹툰 공모전" 개최 안내 | https://jjcc.or.kr/board/boardcontents/type/1/id/639
+  - 2026-10-23 | 진주문화원 공지사항 | [2026 청소년 남명정신 숏폼 콘텐츠 공모전] 개최 안내 | https://jjcc.or.kr/board/boardcontents/type/1/id/633
+  - 2026-08-12 | 진주문화원 공지사항 | [모집] 2026년 제51호 진주문화 원고 투고 안내 | https://jjcc.or.kr/board/boardcontents/type/1/id/629
+  - 2026-10-29 | 진주문화원 공지사항 | ★[모집]2026년 어린이.청소년 프로그램 운영지원 "청소년 만화웹툰 공모전" 개최 안내 | https://jjcc.or.kr/board/boardcontents/type/1/id/639
+  - 2026-10-23 | 진주문화원 공지사항 | [2026 청소년 남명정신 숏폼 콘텐츠 공모전] 개최 안내 | https://jjcc.or.kr/board/boardcontents/type/1/id/633
+[detail] 본문 200자 · 마감 None (unknown, 'None') · 점수 0 ['-30 핵심어 없음', '+20 채용어(모집)', '+10 강의어(프로그램 운영)'] · 분야 counsel_welfare
+  [date?] 작성일 :2026-10-29 11:57
+[posting] 제외: 
+::endgroup::
