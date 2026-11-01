@@ -132,3 +132,31 @@ def test_link_from_row_attribute():
     rows, _ = parse_list_html(html, "https://www.ghct.or.kr/board/board02", a, cfg, date(2026, 10, 1))
     assert rows[0].url == "https://www.ghct.or.kr/board/detail/board02/1737"
     assert rows[0].posted_at == date(2026, 10, 28)
+
+
+def test_yangsan_library_config_reads_onclick_and_egov_files():
+    """양산시 도서관(ys_lib): onclick 의 게시판·글 번호로 상세 주소를, fn_egov_downFile 로 첨부 주소를 만든다."""
+    from datetime import date
+
+    from gia.collectors.html_list import extract_attachments_html, parse_list_html
+    from tests.conftest import make_source
+
+    src = next(s for s in yaml.safe_load(Path("config/sources.yaml").read_text(encoding="utf-8"))["sources"]
+               if s["id"] == "ys_lib")
+    a = src["adapter"]
+    html = """<table class="book_table1 book_table2"><tr><th>번호</th><th>제목</th></tr>
+      <tr><td class="h2">219</td><td>중앙도서관</td><td class="h5 tlt"><a href="javascript:void(0);"
+      onclick="fncNoticedetail('BBSMSTR_000000000004', '4970');">2026년 양산시립도서관 문화강좌 강사 모집 공고</a></td>
+      <td class="h4 name">관리자</td><td class="h4 date">2026-10-20</td><td class="h4">12</td></tr></table>"""
+    cfg = make_source("ys_lib", "local_gov", type="html_list", list_url=a["list_url"])
+    rows, _ = parse_list_html(html, "https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000004/hire.do", a, cfg,
+                              date(2026, 10, 1))
+    assert rows[0].url == "https://lib.yangsan.go.kr/YS/madang/detail.do?bbsId=BBSMSTR_000000000004&nttId=4970"
+    assert rows[0].posted_at == date(2026, 10, 20)
+
+    d = a["detail"]
+    view = """<table id="egov_file_view_table"><tr><td class="view_file_style">
+      <a href="javascript:fn_egov_downFile('FILE_000000000023166','0')">공고문.hwp</a></td></tr></table>"""
+    assert extract_attachments_html(view, rows[0].url, d["attachment_selector"], d["attachment_regex"],
+                                    d["attachment_url_template"]) == [
+        "https://lib.yangsan.go.kr/cmm/fms/FileDown.do?atchFileId=FILE_000000000023166&fileSn=0"]
