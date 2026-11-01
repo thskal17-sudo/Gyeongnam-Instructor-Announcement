@@ -153,3 +153,21 @@ def test_disabled_source_runs_only_when_named(settings, tmp_path):
         assert [s.source_id for s in named.sources] == ["board"]
     finally:
         http.close()
+
+
+def test_list_region_fills_city_first_and_backfills_known_postings(settings, tmp_path, monkeypatch):
+    """목록 지역 칸의 시군을 앞에 둔다. 지역 칸을 읽기 전에 저장된 공고도 목록을 다시 볼 때 채운다 (2026-11-01)."""
+    from datetime import timedelta
+
+    srcs = _sources(monkeypatch)
+    board = srcs[1]
+    store = Store(tmp_path / "data")
+    collect(_bundle(settings, [board]), store, _http(settings), now=NOW)
+    post = next(p for p in store.values() if "시민강좌" in p.title)
+    assert post.region == ["경남", "창원"]
+
+    board.adapter["region_selector"] = "td.num"  # 픽스처에 지역 칸이 없어 번호 칸을 흉내 낸다
+    monkeypatch.setattr("gia.pipeline.regions_from_field", lambda t: ["함안"] if t else [])
+    collect(_bundle(settings, [board]), store, _http(settings), now=NOW + timedelta(hours=1))
+    post = next(p for p in store.values() if "시민강좌" in p.title)
+    assert post.region == ["함안", "경남", "창원"]

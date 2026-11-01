@@ -75,3 +75,13 @@ def test_mask_pii():
 
 def test_clean_url():
     assert clean_url("HTTPS://Example.org/a?b=1&utm_source=x#frag") == "https://example.org/a?b=1"
+
+
+def test_regions_from_field():
+    """지역 칸의 맨 시군 이름 (경남교육청 구인포털 '통영 ｜ 기타', 2026-11-01)."""
+    from gia.normalize import regions_from_field
+    assert regions_from_field("통영  ｜ 기타") == ["통영"]
+    assert regions_from_field("함안") == ["함안"]
+    assert regions_from_field("경남 창원시 의창구") == ["창원"]
+    assert regions_from_field("강원 고성군") == []  # 다른 도의 같은 이름
+    assert regions_from_field("기타") == [] and regions_from_field(None) == []

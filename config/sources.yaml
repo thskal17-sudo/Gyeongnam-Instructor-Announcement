@@ -295,6 +295,9 @@ sources:
       date_selector: td:nth-child(3) span:nth-of-type(2)
       deadline_selector: td:nth-child(3) span:nth-of-type(2)   # '2026.10.24 ~ 2026.10.27' 의 뒤쪽이 접수 마감
       org_selector: td:nth-child(2) span:nth-of-type(2)
+      # 채용 정보 칸 머리 '통영  ｜ 기타' 의 앞쪽이 학교 지역. 학교 이름(칠원고)만으로는 시군을 알 수 없어
+      # 강사잇다 지역이 '경남'으로만 나갔다(2026-11-01)
+      region_selector: td.tl span.cate
       keywords: [강사, 교강사, 지도사, 지도자, 코치, 방과후, 늘봄, 돌봄]
       paging: { max_pages: 6 }   # 50건 × 6쪽. 수집 기간(default_days)보다 오래된 쪽에 닿으면 그 전에 멈춘다
       detail:

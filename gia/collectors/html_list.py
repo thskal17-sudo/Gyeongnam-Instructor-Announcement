@@ -89,6 +89,11 @@ def parse_list_html(html: str, page_url: str, a: dict, cfg, since: date) -> tupl
             org = on.text(strip=True) if on is not None else None
         if org is None and cfg.org_type.value != "portal":
             org = a.get("org_name") or cfg.name  # adapter.org_name: 게시판 이름 대신 쓸 기관명
+        region_text = None
+        if a.get("region_selector"):
+            # 목록에 지역 칸이 있는 게시판(경남교육청 구인포털 '통영 ｜ 기타'). 학교 이름만으로는 시군을 알 수 없다
+            rn = row.css_first(a["region_selector"])
+            region_text = rn.text(strip=True) if rn is not None else None
         deadline_text = None
         if a.get("deadline_selector"):
             # 목록에 접수기간이 있는 게시판(경남교육청 구인포털 '2026.10.24 ~ 2026.10.27'): 물결 뒤가 마감일.
@@ -103,7 +108,7 @@ def parse_list_html(html: str, page_url: str, a: dict, cfg, since: date) -> tupl
         if posted and posted < since:
             continue
         out.append(RawListing(source_id=cfg.id, title=title, url=target, org_name=org, posted_at=posted,
-                              deadline_text=deadline_text))
+                              deadline_text=deadline_text, region_text=region_text))
     return out, oldest_on_page
 
 

@@ -84,7 +84,8 @@ def test_deadline_from_list_period():
     from tests.conftest import make_source
 
     html = """<table class="frmbd-list-tbl"><tbody><tr>
-      <td class="tl"><span class="tit"><a onclick="openDetail('1815159');">거창중앙고 시간강사 채용</a></span></td>
+      <td class="tl"><span class="cate">함안  ｜ 결원대체강사</span>
+        <span class="tit"><a onclick="openDetail('1815159');">거창중앙고 시간강사 채용</a></span></td>
       <td><span class="cate">모집기관</span><span>거창중앙고</span></td>
       <td><span class="cate">접수기간</span><span>2026.10.24 ~ 2026.10.27</span></td>
     </tr></tbody></table>"""
@@ -93,10 +94,11 @@ def test_deadline_from_list_period():
          "link_attr": "onclick", "link_regex": r"openDetail\('(\d+)'\)",
          "link_url_template": "https://www.gne.go.kr/d?regSn={1}",
          "date_selector": "td:nth-child(3) span:nth-of-type(2)",
-         "deadline_selector": "td:nth-child(3) span:nth-of-type(2)"}
+         "deadline_selector": "td:nth-child(3) span:nth-of-type(2)", "region_selector": "td.tl span.cate"}
     rows, _ = parse_list_html(html, "https://www.gne.go.kr/l", a, cfg, date(2026, 10, 1))
     assert rows[0].posted_at == date(2026, 10, 24)
     assert rows[0].deadline_text == "2026.10.27"
+    assert rows[0].region_text == "함안  ｜ 결원대체강사"  # 학교 지역 (2026-11-01)
 
 
 def test_deadline_from_list_period_korean_words():

@@ -106,6 +106,27 @@ def extract_regions(text: str) -> list[str]:
     return out
 
 
+_OTHER_PROVINCES = ["서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", "경기", "강원", "충북", "충남", "충청",
+                    "전북", "전남", "전라", "경북", "경상북도", "제주"]
+
+
+def regions_from_field(text: str | None) -> list[str]:
+    """'지역' 칸처럼 시군 이름만 적힌 글에서 시군을 뽑는다 ('통영 ｜ 기타' → ['통영'], '함안' → ['함안']).
+
+    extract_regions 는 본문 오탐을 막으려고 '함안' 같은 맨이름을 시군으로 보지 않는다. 지역 칸은 그 자체가
+    경남 교육청·기관의 지역 표시라 낱말마다 경남 문맥을 붙여 본다.
+    """
+    t = nfkc(text or "")
+    if any(w in t for w in _OTHER_PROVINCES):
+        return []  # '강원 고성군' 의 고성은 경남 고성이 아니다
+    out: list[str] = []
+    for word in re.findall(r"[가-힣]+", t):
+        for r in extract_regions(f"경남 {word}"):
+            if r != "경남" and r not in out:
+                out.append(r)
+    return out
+
+
 def mentions_gyeongnam(text: str) -> bool:
     """경남 또는 경남 시군이 언급되는지."""
     return bool(extract_regions(text))
