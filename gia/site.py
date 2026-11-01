@@ -102,7 +102,7 @@ def build_site(postings, reports_dir: Path, out_dir: Path, now: datetime) -> dic
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "reports").mkdir(exist_ok=True)
     (out_dir / "data").mkdir(exist_ok=True)
-    active = [p for p in postings if p.status != Status.expired and "피드백제외" not in p.flags]
+    active = [p for p in postings if p.status != Status.expired and "피드백제외" not in p.flags and p.removed_at is None]
     active.sort(key=lambda p: (p.deadline is None, p.deadline or now))
     records = [public_record(p) for p in active]
     (out_dir / "data" / "postings.json").write_text(json.dumps(records, ensure_ascii=False, indent=1), encoding="utf-8")

@@ -13,7 +13,7 @@ from selectolax.lexbor import LexborHTMLParser as HTMLParser
 
 from ..extract.deadline import KST
 from ..models import RawListing, RawPosting
-from .base import SourceAdapter, matches_keywords, parse_date_loose
+from .base import FetchError, SourceAdapter, matches_keywords, parse_date_loose
 
 _META_CHARSET = re.compile(rb"charset=[\"']?([\w\-]+)", re.I)
 
@@ -185,6 +185,24 @@ class HtmlListAdapter(SourceAdapter):
             if "{page}" not in list_url or (oldest and oldest < since):
                 break
         return out
+
+    def is_gone(self, url: str) -> bool | None:
+        """상세 주소가 더는 공고를 보여 주지 않는가 (pipeline.check_removed).
+
+        True  — 없는 글(HTTP 404·410), 또는 열리지만 본문 칸(detail.body_selector)이 없는 오류 화면
+        False — 본문 칸이 있다 (공고가 그대로 있음)
+        None  — 알 수 없다 (접속 실패·서버 오류·본문 칸 설정 없음). 이때는 아무것도 표시하지 않는다
+        """
+        d = self.a.get("detail") or {}
+        selector = d.get("body_selector")
+        if not selector:
+            return None
+        try:
+            r = self.http.get(url)
+        except FetchError as e:
+            return True if re.search(r"HTTP (404|410)\b", str(e)) else None
+        html = decode_html(r, d.get("encoding") or self.a.get("encoding"))
+        return HTMLParser(html).css_first(selector) is None
 
     def fetch_detail(self, listing: RawListing) -> RawPosting:
         d = self.a.get("detail") or {}

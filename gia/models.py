@@ -106,6 +106,9 @@ class Posting(BaseModel):
     first_seen_at: datetime
     last_seen_at: datetime
     last_reported_at: datetime | None = None
+    # 원문에서 내려간 것을 확인한 시각 (목록에서 사라지고 상세도 열리지 않음, pipeline.check_removed).
+    # 리포트·강사잇다 양식에서 빼고, 강사잇다에는 removed.json 으로 알려 사이트에서도 숨기게 한다
+    removed_at: datetime | None = None
     reannouncement_of: str | None = None
     # 개인정보(전화·메일)를 가린 본문 앞부분. 강사잇다 양식의 상세 내용·수업 일정을 뽑는 데 쓴다.
     # 공개 아카이브(site.py)는 필드를 골라 내보내므로 여기로 새지 않지만, data/ 는 공개 저장소에
@@ -125,6 +128,7 @@ class SourceRunResult(BaseModel):
     updated: int = 0
     detail_fetched: int = 0
     llm_excluded: int = 0
+    removed: int = 0  # 원문에서 내려간 것을 이번에 확인한 공고 수
     errors: list[str] = Field(default_factory=list)
     duration_ms: int = 0
 

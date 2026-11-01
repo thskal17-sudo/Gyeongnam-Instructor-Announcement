@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import logging
 import os
 import sys
@@ -279,8 +280,6 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     if args.cmd == "korea-export":
-        import json
-
         from .collectors.relay import load_relay
         from .korea import export_relay
 
@@ -339,12 +338,17 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     if args.cmd == "gangsaitda":
-        from .report.gangsaitda import build_gangsaitda, gangsaitda_name
+        from .report.gangsaitda import build_gangsaitda, gangsaitda_name, removed_entries
         blob, ready, held = build_gangsaitda(store, now)
         out = Path(args.out or f"reports/{gangsaitda_name(now)}")
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_bytes(blob)
-        print(f"[gangsaitda] {out} · 바로 올릴 줄 {ready} · 보류 {held}")
+        # 원문에서 내려간 공고: 같은 폴더의 removed.json. 울산 브리핑이 읽어 강사잇다에서 숨기게 한다
+        removed = removed_entries(store, now)
+        (out.parent / "removed.json").write_text(
+            json.dumps({"generated_at": now.isoformat(), "removed": removed}, ensure_ascii=False, indent=1) + "\n",
+            encoding="utf-8")
+        print(f"[gangsaitda] {out} · 바로 올릴 줄 {ready} · 보류 {held} · 원문에서 내려감 {len(removed)}")
         return 0
 
     if args.cmd == "excel":
@@ -389,8 +393,6 @@ def main(argv: list[str] | None = None) -> int:
 
 def _eval(bundle, labeled: Path, use_llm: bool) -> int:
     """라벨 세트에 파이프라인과 같은 판별 정책을 적용해 정밀도·재현율을 계산한다."""
-    import json
-
     from .classify.rules import score_posting
 
     cs = bundle.settings.classifier

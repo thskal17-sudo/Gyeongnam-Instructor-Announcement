@@ -300,6 +300,9 @@ sources:
       detail:
         fetch: true
         body_selector: div.prgr-bd-view
+        # 목록에서 사라진 진행 중 공고는 상세를 다시 열어, 본문 칸이 없으면 '원문에서 내려감'으로 표시한다
+        # (학교가 지운 공고는 '사이트 오류' 화면이 된다. 2026-11-01 동포초 regSn=1815262). pipeline.check_removed
+        removed_check: true
         # 저장할 발췌는 머리 표(작성자·전화번호·첨부 이름)를 뺀 본문 글만. 2026-09-28 러너 덤프로 확인
         content_selector: div.bd-view__vcontent div.txt
     notes: >-
