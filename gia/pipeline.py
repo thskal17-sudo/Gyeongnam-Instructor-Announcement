@@ -10,6 +10,8 @@ from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta
 
+import httpx
+
 from .classify.llm import Extraction, LlmClassifier
 from .classify.rules import score_posting
 from .collectors.base import FetchError, HttpClient, UnconfiguredSource
@@ -23,6 +25,7 @@ from .extract.deadline import KST, DeadlineType, parse_deadline, parse_known_for
 from .models import Posting, RawListing, RawPosting, RunLog, SourceRef, SourceRunResult, Status
 from .models import FIELD_NAMES
 from .normalize import clean_url, extract_regions, mask_pii, normalize_title, standardize_org, strip_surrogates
+from .school_region import SchoolRegions, fill_siguns
 from .store import Store
 
 log = logging.getLogger("gia")
@@ -455,6 +458,11 @@ def collect(bundle: ConfigBundle, store: Store, http: HttpClient, only: list[str
                 batch[batch.index(dup)] = merged
         run.sources.append(oc.result)
 
+    # '경남'만 있는 진행 중 공고에 시군을 채운다 (수집처 이름·나이스 학교 주소, gia/school_region.py)
+    with httpx.Client(timeout=20, transport=getattr(http, "_transport", None)) as neis:
+        schools = SchoolRegions(store.index_dir / "school_regions.json", neis)
+        counts["sigun_filled"] = fill_siguns([p for p in store.values() if p.status != Status.expired],
+                                             {s.id: s.name for s in bundle.sources}, schools)
     store.refresh_statuses(now, bundle.settings.report.closing_soon_days)
     counts["removed"] = sum(r.removed for r in run.sources)
     counts["closing_soon"] = sum(1 for p in store.values() if p.status == Status.closing_soon)
@@ -465,4 +473,5 @@ def collect(bundle: ConfigBundle, store: Store, http: HttpClient, only: list[str
     if not dry_run:
         store.save()
         store.save_run(run)
+        schools.save()
     return run
