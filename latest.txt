@@ -1,15 +1,10 @@
-24:  default_days: 60
-::group::probe ys_lib
-INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
-INFO httpx: HTTP Request: GET https://lib.yangsan.go.kr/robots.txt "HTTP/1.1 200 200"
-INFO httpx: HTTP Request: GET https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000004/hire.do?idx=104010400&pageIndex=1 "HTTP/1.1 200 200"
-[probe] 양산시 도서관 채용공고: 목록 0건
-::endgroup::
-::group::probe ys_lib_notice
-INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
-INFO httpx: HTTP Request: GET https://lib.yangsan.go.kr/robots.txt "HTTP/1.1 200 200"
-INFO httpx: HTTP Request: GET https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000001/notice.do?idx=104010100&pageIndex=1 "HTTP/1.1 200 200"
-INFO httpx: HTTP Request: GET https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000001/notice.do?idx=104010100&pageIndex=2 "HTTP/1.1 200 200"
-INFO httpx: HTTP Request: GET https://lib.yangsan.go.kr/YS/madang/BBSMSTR_000000000001/notice.do?idx=104010100&pageIndex=3 "HTTP/1.1 200 200"
-[probe] 양산시 도서관 공지사항: 목록 0건
-::endgroup::
+====================================================================================================
+URL: https://www.kosha.or.kr/robots.txt
+status=200 final=https://www.kosha.or.kr/robots.txt encoding=utf-8 bytes=1993
+title: 
+body (short): <!doctype html> <html lang="ko"> <head> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, max-scale=1.0, user-scalable=no, viewport-fit=cover, target-densityDpi=device-dpi"> <preference name="KeyboardShrinksView" value="false" /> <link rel="stylesheet" href="/css/global.css"> <script type="text/javascript" src="/stdtboard/js/kosha-tboard-config.js"></script> <script type="text/javascript" src="/stdtboard/js/kosha-tboard-common.js"></script> <!-- Google tag --> <script> const m
+====================================================================================================
+URL: https://www.kosha.or.kr/kosha/index.do
+status=200 final=https://kosha.or.kr/landing encoding=utf-8 bytes=1993
+title: 
+body (short): <!doctype html> <html lang="ko"> <head> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, max-scale=1.0, user-scalable=no, viewport-fit=cover, target-densityDpi=device-dpi"> <preference name="KeyboardShrinksView" value="false" /> <link rel="stylesheet" href="/css/global.css"> <script type="text/javascript" src="/stdtboard/js/kosha-tboard-config.js"></script> <script type="text/javascript" src="/stdtboard/js/kosha-tboard-common.js"></script> <!-- Google tag --> <script> const m
