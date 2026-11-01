@@ -11,7 +11,7 @@ from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta
 
 from .classify.llm import Extraction, LlmClassifier
-from .classify.rules import score_posting
+from .classify.rules import score_posting, title_veto
 from .collectors.base import FetchError, HttpClient, UnconfiguredSource
 from .collectors.registry import build_adapter
 from .collectors.relay import RELAY_ENV, KoreaRelayMissing, load_relay
@@ -60,6 +60,8 @@ def build_posting(raw: RawPosting, cfg: SourceConfig, bundle: ConfigBundle, now:
     cs = bundle.settings.classifier
     title, flags = normalize_title(strip_surrogates(raw.title))
     org = standardize_org(raw.org_name or cfg.adapter.get("org_name") or cfg.name, bundle.aliases)  # adapter.org_name: 게시판 이름 대신 쓸 기관명
+    if title_veto(title):
+        return None  # 제목만으로 강사 구인이 아니라고 단정되는 글(기관 모집·합격자 안내 등)
     body = mask_pii(raw.body_text or "")
     rule = score_posting(title, body, raw.region_text, org)
     if rule.score < cs.review_threshold:

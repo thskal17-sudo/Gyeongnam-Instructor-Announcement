@@ -115,12 +115,15 @@ def test_build_fills_template_and_holds_incomplete_rows(tmp_path):
                         status=Status.active)
     no_body = make_posting("대진초 집중돌봄교실 외부 강사 모집", org="대진초", deadline=later - timedelta(days=5),
                            org_type=OrgType.edu_office, region=["김해"], body_excerpt=DAEJIN, status=Status.active)
-    doubtful = make_posting("청소년방과후아카데미 기간제근로자 채용", org="하동군", deadline=later,
+    doubtful = make_posting("청소년방과후아카데미 운영 인력 채용", org="하동군", deadline=later,
                             region=["하동"], body_excerpt=GYEONGHAE, flags=["판별유보"], relevance_score=60,
                             status=Status.active)
     expired = make_posting("지난 공고", deadline=NOW - timedelta(days=1), body_excerpt=MUJIGAE, status=Status.expired)
+    # 규칙이 생기기 전에 저장된 결과 안내 글은 보류로도 싣지 않는다 (title_veto)
+    result = make_posting("장유도서관 평생학습강좌 강사 채용 서류전형 결과 및 면접시험 계획 공고", org="김해시",
+                          region=["김해"], flags=["판별유보"], relevance_score=35, status=Status.active)
 
-    blob, ready, held = build_gangsaitda(_store(tmp_path, full, no_body, doubtful, expired), NOW)
+    blob, ready, held = build_gangsaitda(_store(tmp_path, full, no_body, doubtful, expired, result), NOW)
     assert (ready, held) == (2, 1)  # 수업 일정을 못 찾은 줄도 '원문 공고 참고'로 올린다
 
     wb = load_workbook(BytesIO(blob))
@@ -148,8 +151,8 @@ def test_build_fills_template_and_holds_incomplete_rows(tmp_path):
     assert held_rows["대진초 집중돌봄교실 외부 강사 모집"][0] is None
     daejin = next(r for r in (2, 3, 4) if ws.cell(r, 1).value.startswith("대진초"))
     assert ws.cell(daejin, 5).value == "원문 공고 참고"
-    assert held_rows["청소년방과후아카데미 기간제근로자 채용"][0] == "보류"
-    assert "판별 유보" in held_rows["청소년방과후아카데미 기간제근로자 채용"][1]
+    assert held_rows["청소년방과후아카데미 운영 인력 채용"][0] == "보류"
+    assert "판별 유보" in held_rows["청소년방과후아카데미 운영 인력 채용"][1]
     assert ws.max_row == 4  # 마감 지난 공고는 싣지 않는다
 
 

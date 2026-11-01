@@ -21,6 +21,7 @@ from pathlib import Path
 from openpyxl import load_workbook
 from openpyxl.styles import Alignment, PatternFill
 
+from ..classify.rules import title_veto
 from ..extract.deadline import KST
 from ..extract.detail import (
     clean_detail, clean_title, expand_school_name, extract_documents, extract_headcount,
@@ -138,6 +139,7 @@ def select_postings(store: Store, now: datetime) -> list[Posting]:
             if p.status != Status.expired
             and not (p.deadline and p.deadline < now)
             and not stale_undated(p)
+            and not title_veto(p.title)  # 규칙이 생기기 전에 저장된 합격자 안내·기관 모집 글
             and "피드백제외" not in p.flags
             and p.removed_at is None]  # 원문에서 내려간 공고는 싣지 않는다 (아래 removed_entries 로 따로 알린다)
 

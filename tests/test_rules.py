@@ -103,3 +103,18 @@ def test_appointee_list_is_not_a_recruitment():
     r = score_posting("2026년 함안군 민방위 교육 강사 위촉대상자 공고", "", "경상남도 함안군")
     assert r.score < 70
     assert score_posting("2026년 함안군 민방위 교육 강사 위촉 공고", "", "경상남도 함안군").score >= 70
+
+
+def test_title_veto_result_notices_and_org_programs():
+    """강사잇다 보류 줄에 남던 비구인 글 (2026-11-01): 결과·일정 안내, 행사, 기관·기업·심사위원 모집."""
+    from gia.classify.rules import title_veto
+    assert title_veto("진영한빛도서관 2027년 평생학습강좌 강사 채용 서류 전형 합격자 및 면접 심사 안내") == "구인 아님(합격자)"
+    assert title_veto("장유도서관 2027년 평생학습강좌 교육강사 채용 서류전형 결과 및 면접시험 계획 공고") == "구인 아님(면접시험)"
+    assert title_veto("2026년 경상남도 청소년활동 지도자대회 개최안내") == "구인 아님(개최안내)"
+    assert title_veto("「식물생장조절실 제작 및 설치」 제안서 평가위원(후보자) 공개모집 공고") == "구인 아님(평가위원)"
+    assert title_veto("2026년 의령군 청년 일경험(인턴) 지원사업 참여기업 모집") == "기관 모집(참여기업)"
+    assert title_veto("2027년 장애인일자리사업(장애인편의시설 모니터링) 수행기관 모집 공고") == "기관 모집(수행기관)"
+    # 실제 강사 구인은 그대로
+    assert title_veto("2026. 영어A 방과후학교 프로그램 개인위탁 모집 공고") is None
+    assert title_veto("2027년 칠산서부동 주민자치센터 교양강좌 강사 공개모집 공고") is None
+    assert title_veto("초중등 수학 전담 강사") is None
