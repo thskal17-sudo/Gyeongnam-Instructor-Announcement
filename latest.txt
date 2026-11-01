@@ -1,10 +1,231 @@
 ====================================================================================================
-URL: https://www.kosha.or.kr/robots.txt
-status=200 final=https://www.kosha.or.kr/robots.txt encoding=utf-8 bytes=1993
-title: 
-body (short): <!doctype html> <html lang="ko"> <head> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, max-scale=1.0, user-scalable=no, viewport-fit=cover, target-densityDpi=device-dpi"> <preference name="KeyboardShrinksView" value="false" /> <link rel="stylesheet" href="/css/global.css"> <script type="text/javascript" src="/stdtboard/js/kosha-tboard-config.js"></script> <script type="text/javascript" src="/stdtboard/js/kosha-tboard-common.js"></script> <!-- Google tag --> <script> const m
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=10&q_currPage=1
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=10&q_currPage=1 encoding=UTF-8 bytes=98542
+title: 구인·구직포털 : HOME > 모집공고
+
+[RAW HTML] div.cinner.cnavi-in > div.cnavi__list > dl.cn-dl1.toggle-item
+<dl class="cn-dl1 toggle-item">
+<dt>
+<a class="tit" href="#n" title="닫힘">모집공고</a>
+</dt>
+<dd class="toggle-list list">
+<ul>
+<li class="active">
+<a href="/works/user/recruitment/BD_recruitmentList.do">
+<span>
+														모집공고</span>
+</a>
+</li>
+<li class="">
+<a href="/works/pool/poolchoice/poolinfo.jsp">
+<span>
+														인력풀</span>
+</a>
+</li>
+</ul>
+</dd>
+</dl>
+
+[RAW HTML] table.frmbd-list-tbl > tbody > tr
+<tr>
+<td class="data-btn tl">
+<span class="cate">
+                    통영  ｜ 기타 
+                  </span>
+<span class="tit"><a href="#self;" onclick="openDetail('1815295');" title="조리실무사 대체인력 채용공고">조리실무사 대체인력 채용공고</a></span>
+</td>
+<td class="data-btn">
+<span class="cate">모집기관</span>
+<span>동원고</span>
+</td>
+<td class="data-btn">
+<span class="cate">접수기간</span>
+<span>2026.11.02 ~ 2026.11.06</span>
+</td>
+<td class="data-btn">
+<span class="cate dn">접수상태</span>
+<div class="df">
+<span class="st1">접수전</span>
+<span class="st4">
+<button onclick="openDetail('1815295')" type="button">상세보기</button>
+</span>
+</div>
+</td>
+</tr>
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=11
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:진주  ｜ 기간제교원(강사 제외) 중등기간제교사 | td.data-btn:모집기관 문산중 | td.data-btn:접수기간 2026.10.31 ~ 2026.11. | td.data-btn:접수상태 접수중 상세보기
+      td.data-btn.tl :: own='' all='진주  ｜ 기간제교원(강사 제외) 중등기간제교사 문산중학교 기간제교사(체육) 채용 공고(2'
+      span.cate :: own='진주  ｜ 기간제교원(강사 제외) 중등기간제교사' all='진주  ｜ 기간제교원(강사 제외) 중등기간제교사'
+      span.tit :: own='' all='문산중학교 기간제교사(체육) 채용 공고(2차)'
+      a href=#self; onclick=openDetail('1815296'); :: own='문산중학교 기간제교사(체육) 채용 공고(2차)' all='문산중학교 기간제교사(체육) 채용 공고(2차)'
+      td.data-btn :: own='' all='모집기관 문산중'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='문산중' all='문산중'
+      td.data-btn :: own='' all='접수기간 2026.10.31 ~ 2026.11.03'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.10.31 ~ 2026.11.03' all='2026.10.31 ~ 2026.11.03'
+      td.data-btn :: own='' all='접수상태 접수중 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='접수중 상세보기'
+      span.st2 :: own='접수중' all='접수중'
+[DATES] sample: ['2026.10.31', '2026.11.03', '2026.11.02', '2026.11.06', '2026.11.01']
+
+[ANCHORS] most common link paths
+   x10 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1815296');", 'title': '문산중학교 기간제교사(체육) 채용 공고(2차)'} text='문산중학교 기간제교사(체육) 채용 공고(2차)'
+      row? tr :: '진주  ｜ 기간제교원(강사 제외) 중등기간제교사 문산중학교 기간제교사(체육) 채용 공고(2차) 모집기관 문산중 접수기간 2026.10.31 ~ 2026.11.03 접수상태 접수중 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(11144); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
 ====================================================================================================
-URL: https://www.kosha.or.kr/kosha/index.do
-status=200 final=https://kosha.or.kr/landing encoding=utf-8 bytes=1993
-title: 
-body (short): <!doctype html> <html lang="ko"> <head> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, max-scale=1.0, user-scalable=no, viewport-fit=cover, target-densityDpi=device-dpi"> <preference name="KeyboardShrinksView" value="false" /> <link rel="stylesheet" href="/css/global.css"> <script type="text/javascript" src="/stdtboard/js/kosha-tboard-config.js"></script> <script type="text/javascript" src="/stdtboard/js/kosha-tboard-common.js"></script> <!-- Google tag --> <script> const m
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1814546
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1814546 encoding=UTF-8 bytes=36013
+title: 구인·구직포털 : HOME > 모집공고
+    
+    
+        
+            
+            
+            
+
+
+[RAW HTML] div.cinner.cnavi-in > div.cnavi__list > dl.cn-dl1.toggle-item
+<dl class="cn-dl1 toggle-item">
+<dt>
+<a class="tit" href="#n" title="닫힘">모집공고</a>
+</dt>
+<dd class="toggle-list list">
+<ul>
+<li class="active">
+<a href="/works/user/recruitment/BD_recruitmentList.do">
+<span>
+														모집공고</span>
+</a>
+</li>
+<li class="">
+<a href="/works/pool/poolchoice/poolinfo.jsp">
+<span>
+														인력풀</span>
+</a>
+</li>
+</ul>
+</dd>
+</dl>
+
+[RAW HTML] div#contents-in > div.prgr-works > div.prgr-bd-view
+<div class="prgr-bd-view">
+<div class="bd-view__vhead">
+<h4 class="vtitle">
+<span class="tit">2026. 칠원고등학교 결원대체강사(시간제:영어) 채용 공고</span>
+</h4>
+</div>
+<div class="bd-view__vetc">
+<ul>
+<li>
+<span class="tit">작성자</span>
+<span class="txt">칠원고</span>
+</li>
+<li>
+<span class="tit">등록일</span>
+<span class="txt">2026-09-28</span>
+</li>
+<li class="full">
+<span class="tit">전화번호</span>
+<span class="txt">055-587-1013</span>
+</li>
+<li>
+<span class="tit">직종</span>
+<span class="txt">결원대체강사</span>
+</li>
+<li>
+<span class="tit">세부분류</span>
+<span class="txt"></span>
+</li>
+<!-- 직종: 기간제교원(강사 제외)일 경우에만 보임-->
+<li class="full">
+<span class="tit">과목 및 분야</span>
+<span class="txt">영어(1)</span>
+</li>
+<!-- /직종: 기간제교원(강사 제외)일 경우에만 보임 -->
+<li>
+<span class="tit">지역</span>
+<span class="txt">함안</span>
+</li>
+<li>
+<span class="tit">채용상태</span>
+<span class="txt prgr-status">
+<span class="st3">마감</span>
+</span>
+</li>
+<li class="full">
+<span class="tit">접수기간</span>
+<span class="txt">
+<label class="blind" for="startDt">시작일</label>
+<input class="frm-input textOnly" disabled="" id="startDt" type="text" value="2026.09.29"/>
+<span class="sp-txt">-</span>
+<label class="blind" for="endDt">종료일</label>
+<input class="frm-input textOnly" disabled="" id="endDt" type="text" value="2026.10.11"/>
+</span>
+</li>
+</ul>
+</div>
+<div class="bd-view__vattach">
+<span class="tit">첨부파일</span>
+<ul>
+<li>
+<a class="file" href="javascript:fnKfileDownload('80371887-fdf1-4e51-bbe0-3a541ebafbae');"><img alt="hwp 이미지" src="/resources/openworks4/image/bbs/ico_hwp.png"/> 2026학년도 결원대체강사(영어) 채용 공고.hwp</a>
+<button class="btn-view" onclick="filePreview('181612426', '80371887-fdf1-4e51-bbe0-3a541ebafbae');" title="새창 열기" type="button">미리보기</button>
+</li>
+<li>
+<a class="file" href="javascript:fnKfileDownload('35cec0ac-5d0d-4ee1-9441-56b7abb4defb');"><img alt="hwp 이미지" src="/resources/openworks4/image/bbs/ico_hwp.png"/> 응시원서_자기소개서_개인정보수집이용동의서.hwp</a>
+<button class="btn-view" onclick="filePreview('181612426', '35cec0ac-5d0d-4ee1-9441-56b7abb4defb');" title="새창 열기" type="button">미리보기</button>
+</li>
+</ul>
+</div>
+<div id="component_holder" style="width: 1px;height: 1px; display: none;"></div>
+<div class="bd-view__vcontent">
+<div class="txt">
+                    2026학년도 칠원고등학교 결원대체강사(시간제:영어) 채용 공고
+<br/>
+<br/>1. 채용과목: 영어(1명)
+<br/>2. 채용기간: 2026. 11. 16.~2026. 11. 17.(8시간), 2026. 11.23.~2026. 12. 11.(주당 15시간)
+<br/>
+<br/>상세내용은 첨부파일 확인 바랍니다.
+                </div>
+</div>
+<div class="bd-view__vetc">
+<ul>
+<li style="background:#f7f7f7">
+<span class="tit">칠원고 문의처: </span>
+<span>055-587-1013</span>
+</li>
+<li style="background:#f7f7f7">
+</li>
+</ul>
+</div>
+<div class="bd-btns">
+<button class="btn btn-info" onclick="recuitmentList();" type="button">목록</button>
+</div>
+</div>
+
+[BODY candidates]
+   div#contents-in > div.prgr-works > div.prgr-bd-view  textlen=379 :: '2026. 칠원고등학교 결원대체강사(시간제:영어) 채용 공고 작성자 칠원고 등록일 2026-09-28 전화번호 055-587-1013 직종 결원'
+   div.prgr-bd-view > div.bd-view__vcontent > div.txt  textlen=150 :: '2026학년도 칠원고등학교 결원대체강사(시간제:영어) 채용 공고 1. 채용과목: 영어(1명) 2. 채용기간: 2026. 11. 16.~2026.'
+   main#container > section#contents.cinner > div.page__contents  textlen=384 :: '모집공고 2026. 칠원고등학교 결원대체강사(시간제:영어) 채용 공고 작성자 칠원고 등록일 2026-09-28 전화번호 055-587-1013 '
+   div#wrap > main#container > section#contents.cinner  textlen=384 :: '모집공고 2026. 칠원고등학교 결원대체강사(시간제:영어) 채용 공고 작성자 칠원고 등록일 2026-09-28 전화번호 055-587-1013 '
+   section#contents.cinner > div.page__contents > div#contents-in  textlen=379 :: '2026. 칠원고등학교 결원대체강사(시간제:영어) 채용 공고 작성자 칠원고 등록일 2026-09-28 전화번호 055-587-1013 직종 결원'
+
+[ATTACH candidates]
+   ul > li > a.file href=javascript:fnKfileDownload('80371887-fdf1-4e51-bbe0-3a541ebafbae'); onclick= text='2026학년도 결원대체강사(영어) 채용 공고.hwp'
+   ul > li > a.file href=javascript:fnKfileDownload('35cec0ac-5d0d-4ee1-9441-56b7abb4defb'); onclick= text='응시원서_자기소개서_개인정보수집이용동의서.hwp'
+[DATES] sample: ['2026-09-28', '2026. 11. 16', '2026. 11. 17', '2026. 11.23', '2026. 12. 11']
