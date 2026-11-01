@@ -194,6 +194,8 @@ def run_source(cfg: SourceConfig, bundle: ConfigBundle, store: Store, http: Http
         if url in store.excluded_urls:
             continue
         existing = store.by_url(url)
+        if existing and existing.removed_at is not None:
+            existing.removed_at = None  # 내려갔다고 본 공고가 목록에 다시 나왔다 (다시 게시)
         if existing and not refetch and not (existing.status != Status.expired and existing.last_seen_at < recheck_before):
             out.touched.append(existing.canonical_key)
             continue
@@ -221,9 +223,67 @@ def run_source(cfg: SourceConfig, bundle: ConfigBundle, store: Store, http: Http
             out.excluded.append(url)
     if res.status != "fail" and getattr(adapter, "supports_backfill", True):
         backfill_bodies(cfg, adapter, store, out, http, cs, t0)
+    if res.status == "ok":
+        check_removed(cfg, adapter, store, out, listings, cs, t0, now)
     adapter.close()
     res.duration_ms = int((time.monotonic() - t0) * 1000)
     return out
+
+
+# 한 번에 다시 열어 볼 공고 수와, '너무 많이 사라졌다'고 보는 기준
+REMOVED_CHECK_MAX = 20
+REMOVED_MIN_ALARM = 3
+
+
+def check_removed(cfg: SourceConfig, adapter, store: Store, out: SourceOutcome, listings: list[RawListing],
+                  cs, t0: float, now: datetime) -> None:
+    """원문에서 내려간 공고를 찾아 removed_at 을 적는다 (adapter.detail.removed_check: true 인 소스만).
+
+    학교가 공고를 지우면 목록에서 사라지고 상세 주소는 '사이트 오류'가 된다(2026-11-01 동포초 전일제 강사,
+    10/30 아침 뒤로 목록에 없음). 그런데 저장소에는 진행 중으로 남아 강사잇다에 마감일까지 보였다.
+    목록에서 안 보이는 것만으로는 판단하지 않는다 — 쪽 넘김 범위 밖으로 밀려났을 수도 있다. 상세를 직접 열어 확인한다.
+
+    잘못 숨기지 않게:
+      - 이번 수집이 정상(ok)인 소스만
+      - 지금 목록에 있는 공고 하나를 먼저 열어 '있음'으로 나와야 진행 (상세 확인 방법이 지금도 맞는지)
+      - 접속 실패·서버 오류는 '알 수 없음'으로 두고 다음 수집에서 다시 본다
+      - 한 번에 많이 사라졌다고 나오면(사이트 구조가 바뀌었을 수 있음) 아무것도 표시하지 않고 오류로 남긴다
+    """
+    d = cfg.adapter.get("detail") or {}
+    if not d.get("removed_check") or not hasattr(adapter, "is_gone"):
+        return
+    seen = {clean_url(l.url) for l in listings}
+    todo = [p for p in list(store.values())
+            if p.removed_at is None and p.status != Status.expired
+            and not (p.deadline and p.deadline < now)
+            and p.sources and p.sources[0].source_id == cfg.id
+            and clean_url(p.primary_url) not in seen]
+    if not todo or not listings:
+        return
+    if adapter.is_gone(listings[0].url) is not False:
+        out.result.errors.append("내려간 공고 확인 건너뜀: 지금 목록에 있는 공고의 상세도 확인되지 않음")
+        return
+    todo.sort(key=lambda p: p.last_seen_at, reverse=True)  # 최근까지 보이다 사라진 것부터
+    gone: list[Posting] = []
+    checked = 0
+    for p in todo[:REMOVED_CHECK_MAX]:
+        if time.monotonic() - t0 > cs.source_time_budget_sec:
+            out.result.errors.append("시간 예산 초과: 내려간 공고 확인 중단")
+            break
+        verdict = adapter.is_gone(p.primary_url)
+        if verdict is None:
+            continue
+        checked += 1
+        if verdict:
+            gone.append(p)
+    if len(gone) > max(REMOVED_MIN_ALARM, checked // 2):
+        out.result.errors.append(f"내려간 공고로 보이는 것이 {len(gone)}/{checked}건으로 너무 많아 표시하지 않음 (사이트 구조 확인 필요)")
+        return
+    for p in gone:
+        # 소스마다 다른 스레드에서 돌지만 자기 소스 공고만 건드리므로 서로 겹치지 않는다
+        p.removed_at = now
+        log.info("[%s] 원문에서 내려감: %s %s", cfg.id, p.title, p.primary_url)
+    out.result.removed = len(gone)
 
 
 def backfill_bodies(cfg: SourceConfig, adapter, store: Store, out: SourceOutcome, http: HttpClient | None,
@@ -396,6 +456,7 @@ def collect(bundle: ConfigBundle, store: Store, http: HttpClient, only: list[str
         run.sources.append(oc.result)
 
     store.refresh_statuses(now, bundle.settings.report.closing_soon_days)
+    counts["removed"] = sum(r.removed for r in run.sources)
     counts["closing_soon"] = sum(1 for p in store.values() if p.status == Status.closing_soon)
     counts["expired"] = sum(1 for p in store.values() if p.status == Status.expired)
     run.totals = counts

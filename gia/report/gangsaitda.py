@@ -138,7 +138,32 @@ def select_postings(store: Store, now: datetime) -> list[Posting]:
             if p.status != Status.expired
             and not (p.deadline and p.deadline < now)
             and not stale_undated(p)
-            and "피드백제외" not in p.flags]
+            and "피드백제외" not in p.flags
+            and p.removed_at is None]  # 원문에서 내려간 공고는 싣지 않는다 (아래 removed_entries 로 따로 알린다)
+
+
+# 원문에서 내려간 공고를 강사잇다에 며칠 동안 계속 알릴지. 사이트가 그 사이 한 번만 받아도 숨겨진다
+REMOVED_NOTICE_DAYS = 14
+
+
+def removed_entries(store: Store, now: datetime) -> list[dict[str, str]]:
+    """원문에서 내려간 공고 목록 (reports/gangsaitda/removed.json).
+
+    울산 저장소의 '오늘의 브리핑'이 이 파일을 읽어 강사잇다 받는 문(/api/jobs/import)에 removed 로 보내면,
+    사이트는 원문 링크가 같은 공고를 숨긴다. 마감이 지난 것과 알린 지 오래된 것은 뺀다.
+    """
+    out = []
+    for p in store.values():
+        if p.removed_at is None or (p.deadline and p.deadline < now):
+            continue
+        if now - p.removed_at > timedelta(days=REMOVED_NOTICE_DAYS):
+            continue
+        if not p.primary_url.startswith("https://"):
+            continue  # 사이트는 https:// 원문 링크만 받는다 (to_row 와 같음)
+        out.append({"url": p.primary_url, "title": clean_title(p.title), "org": p.org_name,
+                    "removed_at": p.removed_at.astimezone(KST).isoformat()})
+    out.sort(key=lambda e: e["removed_at"], reverse=True)
+    return out
 
 
 def build_gangsaitda(store: Store, now: datetime, template: Path = TEMPLATE) -> tuple[bytes, int, int]:
