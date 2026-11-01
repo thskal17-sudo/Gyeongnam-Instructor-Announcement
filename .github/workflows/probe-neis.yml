@@ -1,0 +1,17 @@
+# 일회용 시험: 깃허브 러너에서 나이스(학교 정보) 공개 창구에 닿는지. 결과를 본 뒤 이 가지는 지운다.
+name: probe-neis
+on:
+  push:
+    branches: [probe/neis-reachability]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: neis school lookup
+        run: |
+          for name in 동포초등학교 칠원고등학교 남지초등학교; do
+            echo "== $name"
+            curl -sS --max-time 30 -G "https://open.neis.go.kr/hub/schoolInfo" \
+              --data-urlencode "Type=json" --data-urlencode "ATPT_OFCDC_SC_CODE=S10" --data-urlencode "SCHUL_NM=$name" \
+              | python3 -c "import json,sys; d=json.load(sys.stdin); r=d.get('schoolInfo',[{},{}]); rows=r[1].get('row',[]) if len(r)>1 else []; print('RESULT', d.get('RESULT') or r[0].get('head')); [print(x['SCHUL_NM'], '|', x['ORG_RDNMA'], '|', x.get('JU_ORG_NM')) for x in rows]" || echo "FAILED"
+          done
