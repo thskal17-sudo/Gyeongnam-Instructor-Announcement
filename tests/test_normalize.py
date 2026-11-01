@@ -28,6 +28,11 @@ def test_title_strips_board_badges():
     assert normalize_title("공지사항 게시판 운영 강사 모집")[0] == "공지사항 게시판 운영 강사 모집"
     assert normalize_title("새 글쓰기 강좌 강사 모집")[0] == "새 글쓰기 강좌 강사 모집"
     assert normalize_title("NEW 미디어 교육 강사 모집")[0] == "NEW 미디어 교육 강사 모집"
+    # 띄어쓰기 없이 붙은 'New' 배지 (경남청소년활동진흥센터, 2026-11-01). 영어 낱말은 그대로
+    assert normalize_title("New2026년 청소년지도자 강사 모집")[0] == "2026년 청소년지도자 강사 모집"
+    assert normalize_title("NEW[재공고] 강사 모집")[0] == "강사 모집"
+    assert normalize_title("Newton 과학교실 강사 모집")[0] == "Newton 과학교실 강사 모집"
+    assert normalize_title("New York 영어캠프 강사 모집")[0] == "New York 영어캠프 강사 모집"
     assert norm_key("[공지] 강사 모집 새 글") == norm_key("강사 모집")
 
 
