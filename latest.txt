@@ -1,6 +1,6 @@
 ====================================================================================================
-URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=300&q_currPage=1
-status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=300&q_currPage=1 encoding=UTF-8 bytes=529322
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EC%9B%85%EC%83%81%EA%B3%A0
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EC%9B%85%EC%83%81%EA%B3%A0 encoding=UTF-8 bytes=91311
 title: 구인·구직포털 : HOME > 모집공고
 
 [BODY TEXT] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl
@@ -9,87 +9,734 @@ title: 구인·구직포털 : HOME > 모집공고
 모집기관
 접수기간
 접수상태
-진주  ｜ 기간제교원(강사 제외) 중등기간제교사
-문산중학교 기간제교사(체육) 채용 공고(2차)
+양산  ｜ 결원대체강사
+웅상고 계약제교원(결원대체 시간강사)채용 공고
 모집기관
-문산중
+웅상고
 접수기간
-2026.10.31 ~ 2026.11.03
+2026.10.26 ~ 2026.11.30
 접수상태
 접수중
 상세보기
-통영  ｜ 기타
-조리실무사 대체인력 채용공고
+양산  ｜ 기타각종강사
+웅상고 계약제교원(학교폭력담당자 수업경감 강사) 4차 수시 채용 공고
 모집기관
-동원고
+웅상고
 접수기간
-2026.11.02 ~ 2026.11.06
+2026.10.12 ~ 2026.11.30
 접수상태
-접수전
+마감
 상세보기
-김해  ｜ 기타
-2026학년도 신문초등학교 아이로지킴이 추가 모집 공고
+양산  ｜ 결원대체강사
+웅상고 계약제교원(결원대체시간강사)2차채용공고-물리(과학)
 모집기관
-신문초등학교
+웅상고
 접수기간
-2026.11.01 ~ 2026.11.30
+2026.09.16 ~ 2026.09.21
 접수상태
-접수중
+마감
 상세보기
-진주  ｜ 기타
-봉곡초등학교 계약제 교원(전일제강사) 채용 공고
+양산  ｜ 결원대체강사
+웅상고 계약제교원(결원대체 시간강사) 채용공고
 모집기관
-봉곡초
+웅상고
 접수기간
-2026.10.30 ~ 2026.11.06
+2026.09.08 ~ 2026.09.14
 접수상태
-접수중
+마감
 상세보기
-하동  ｜ 기간제교원(강사 제외) 초등기간제교사
-궁항초, 초등기간제교사 채용 공고(1차)
+양산  ｜ 교육공무직원 조리실무사
+웅상고등학교 교육공무직원(조리실무사) 대체인력 채용 재공고
 모집기관
-궁항초
+웅상고
 접수기간
-2026.10.30 ~ 2026.11.02
+2026.08.20 ~ 2026.08.25
 접수상태
-접수중
+마감
 상세보기
-김해  ｜ 기타각종강사
-김해생명과학고 시간강사 채용 공고(농공)(1차)
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=6
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:양산  ｜ 결원대체강사 웅상고 계약제교원(결원대 | td.data-btn:모집기관 웅상고 | td.data-btn:접수기간 2026.10.26 ~ 2026.11. | td.data-btn:접수상태 접수중 상세보기
+      td.data-btn.tl :: own='' all='양산  ｜ 결원대체강사 웅상고 계약제교원(결원대체 시간강사)채용 공고'
+      span.cate :: own='양산  ｜ 결원대체강사' all='양산  ｜ 결원대체강사'
+      span.tit :: own='' all='웅상고 계약제교원(결원대체 시간강사)채용 공고'
+      a href=#self; onclick=openDetail('1815169'); :: own='웅상고 계약제교원(결원대체 시간강사)채용 공고' all='웅상고 계약제교원(결원대체 시간강사)채용 공고'
+      td.data-btn :: own='' all='모집기관 웅상고'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='웅상고' all='웅상고'
+      td.data-btn :: own='' all='접수기간 2026.10.26 ~ 2026.11.30'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.10.26 ~ 2026.11.30' all='2026.10.26 ~ 2026.11.30'
+      td.data-btn :: own='' all='접수상태 접수중 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='접수중 상세보기'
+      span.st2 :: own='접수중' all='접수중'
+[DATES] sample: ['2026.10.26', '2026.11.30', '2026.10.12', '2026.11.30', '2026.09.16']
+
+[ANCHORS] most common link paths
+   x5 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1815169');", 'title': '웅상고 계약제교원(결원대체 시간강사)채용 공고'} text='웅상고 계약제교원(결원대체 시간강사)채용 공고'
+      row? tr :: '양산  ｜ 결원대체강사 웅상고 계약제교원(결원대체 시간강사)채용 공고 모집기관 웅상고 접수기간 2026.10.26 ~ 2026.11.30 접수상태 접수중 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(30); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
+====================================================================================================
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EC%9C%A8%ED%95%98%EC%A4%91
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EC%9C%A8%ED%95%98%EC%A4%91 encoding=UTF-8 bytes=91315
+title: 구인·구직포털 : HOME > 모집공고
+
+[BODY TEXT] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl
+채용정보 목록
+채용 정보
 모집기관
-김해생명과학고
 접수기간
-2026.10.30 ~ 2026.11.01
 접수상태
-접수중
+김해  ｜ 결원대체강사
+율하중 계약제교원(체육 시간강사) 채용 계획(3차 공고)
+모집기관
+율하중
+접수기간
+2026.10.06 ~ 2026.10.09
+접수상태
+마감
 상세보기
-창원  ｜ 결원대체강사
-창원상남중학교 수학과 전일제강사 채용 공고
+김해  ｜ 기간제교원(강사 제외) 중등기간제교사
+2026. 계약제교원(기간제교사) 채용 재공고(기술가정)
 모집기관
-창원상남중
+율하중
 접수기간
-2026.11.02 ~ 2026.11.08
+2026.10.02 ~ 2026.10.11
 접수상태
-접수전
+마감
+상세보기
+김해  ｜ 기간제교원(강사 제외) 중등기간제교사
+2026. 계약제교원(기간제교사) 채용 공고(기술가정)
+모집기관
+율하중
+접수기간
+2026.09.28 ~ 2026.10.01
+접수상태
+마감
 상세보기
 김해  ｜ 결원대체강사
-김해삼문고등학교 계약제 교원(시간강사) 채용 공고
+율하중 계약제교원(체육,영어 시간강사) 채용 계획(재공고)
 모집기관
-김해삼문고
+율하중
 접수기간
-2026.10.30 ~ 2026.11.04
+2026.09.28 ~ 2026.10.05
+접수상태
+마감
+상세보기
+김해  ｜ 결원대체강사
+율하중학교 2026. 계약제 교원(체육, 영어 시간 강사) 채용 공고
+모집기관
+율하중
+접수기간
+2026.09.22 ~ 2026.09.27
+접수상태
+마감
+상세보기
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=6
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:김해  ｜ 결원대체강사 율하중 계약제교원(체육  | td.data-btn:모집기관 율하중 | td.data-btn:접수기간 2026.10.06 ~ 2026.10. | td.data-btn:접수상태 마감 상세보기
+      td.data-btn.tl :: own='' all='김해  ｜ 결원대체강사 율하중 계약제교원(체육 시간강사) 채용 계획(3차 공고)'
+      span.cate :: own='김해  ｜ 결원대체강사' all='김해  ｜ 결원대체강사'
+      span.tit :: own='' all='율하중 계약제교원(체육 시간강사) 채용 계획(3차 공고)'
+      a href=#self; onclick=openDetail('1814756'); :: own='율하중 계약제교원(체육 시간강사) 채용 계획(3차 공고)' all='율하중 계약제교원(체육 시간강사) 채용 계획(3차 공고)'
+      td.data-btn :: own='' all='모집기관 율하중'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='율하중' all='율하중'
+      td.data-btn :: own='' all='접수기간 2026.10.06 ~ 2026.10.09'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.10.06 ~ 2026.10.09' all='2026.10.06 ~ 2026.10.09'
+      td.data-btn :: own='' all='접수상태 마감 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='마감 상세보기'
+      span.st3 :: own='마감' all='마감'
+[DATES] sample: ['2026.10.06', '2026.10.09', '2026.10.02', '2026.10.11', '2026.09.28']
+
+[ANCHORS] most common link paths
+   x5 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1814756');", 'title': '율하중 계약제교원(체육 시간강사) 채용 계획(3차 공고)'} text='율하중 계약제교원(체육 시간강사) 채용 계획(3차 공고)'
+      row? tr :: '김해  ｜ 결원대체강사 율하중 계약제교원(체육 시간강사) 채용 계획(3차 공고) 모집기관 율하중 접수기간 2026.10.06 ~ 2026.10.09 접수상태 마감 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(50); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
+====================================================================================================
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EB%82%A8%EC%A7%80%EC%B4%88
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EB%82%A8%EC%A7%80%EC%B4%88 encoding=UTF-8 bytes=91166
+title: 구인·구직포털 : HOME > 모집공고
+
+[BODY TEXT] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl
+채용정보 목록
+채용 정보
+모집기관
+접수기간
+접수상태
+창녕  ｜ 결원대체강사
+2026학년도 10월 남지초등학교 기간제(전일제) 교원 채용
+모집기관
+남지초
+접수기간
+2026.10.28 ~ 2026.10.30
+접수상태
+마감
+상세보기
+창녕  ｜ 결원대체강사
+2026.10.19.자 계약제교원(전일제) 채용 공고
+모집기관
+남지초
+접수기간
+2026.10.12 ~ 2026.10.14
+접수상태
+마감
+상세보기
+창녕  ｜ 교육공무직원 조리실무사
+남지초 교육공무직원(조리실무사) 채용 재공고
+모집기관
+남지초
+접수기간
+2026.10.08 ~ 2026.10.13
+접수상태
+마감
+상세보기
+창녕  ｜ 기간제교원(강사 제외) 초등기간제교사
+2026. 남지초 기간제 교원 채용
+모집기관
+남지초
+접수기간
+2026.10.07 ~ 2026.10.10
+접수상태
+마감
+상세보기
+창녕  ｜ 교육공무직원 조리실무사
+남지초  교육공무직원(조리실무사) 대체 채용공고
+모집기관
+남지초
+접수기간
+2026.10.06 ~ 2026.10.08
+접수상태
+마감
+상세보기
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=6
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:창녕  ｜ 결원대체강사 2026학년도 10월 남 | td.data-btn:모집기관 남지초 | td.data-btn:접수기간 2026.10.28 ~ 2026.10. | td.data-btn:접수상태 마감 상세보기
+      td.data-btn.tl :: own='' all='창녕  ｜ 결원대체강사 2026학년도 10월 남지초등학교 기간제(전일제) 교원 채용'
+      span.cate :: own='창녕  ｜ 결원대체강사' all='창녕  ｜ 결원대체강사'
+      span.tit :: own='' all='2026학년도 10월 남지초등학교 기간제(전일제) 교원 채용'
+      a href=#self; onclick=openDetail('1815235'); :: own='2026학년도 10월 남지초등학교 기간제(전일제) 교원 채용' all='2026학년도 10월 남지초등학교 기간제(전일제) 교원 채용'
+      td.data-btn :: own='' all='모집기관 남지초'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='남지초' all='남지초'
+      td.data-btn :: own='' all='접수기간 2026.10.28 ~ 2026.10.30'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.10.28 ~ 2026.10.30' all='2026.10.28 ~ 2026.10.30'
+      td.data-btn :: own='' all='접수상태 마감 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='마감 상세보기'
+      span.st3 :: own='마감' all='마감'
+[DATES] sample: ['2026.10.28', '2026.10.30', '2026.10.19', '2026.10.12', '2026.10.14']
+
+[ANCHORS] most common link paths
+   x5 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1815235');", 'title': '2026학년도 10월 남지초등학교 기간제(전일제) 교원 채용'} text='2026학년도 10월 남지초등학교 기간제(전일제) 교원 채용'
+      row? tr :: '창녕  ｜ 결원대체강사 2026학년도 10월 남지초등학교 기간제(전일제) 교원 채용 모집기관 남지초 접수기간 2026.10.28 ~ 2026.10.30 접수상태 마감 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(29); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
+====================================================================================================
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EC%B9%A0%EC%9B%90%EA%B3%A0
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EC%B9%A0%EC%9B%90%EA%B3%A0 encoding=UTF-8 bytes=91073
+title: 구인·구직포털 : HOME > 모집공고
+
+[BODY TEXT] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl
+채용정보 목록
+채용 정보
+모집기관
+접수기간
+접수상태
+함안  ｜ 결원대체강사
+결원대체강사(영어) 채용 3차 공고
+모집기관
+칠원고
+접수기간
+2026.10.27 ~ 2026.11.01
 접수상태
 접수중
 상세보기
-사천  ｜ 기간제교원(강사 제외) 중등기간제교사
-2026. 2학기 곤양고등학교 계약제교원(국어 기간제교사)채용 공고
+함안  ｜ 결원대체강사
+2026. 결원대체강사(시간강사) 채용 2차 재공고(영어)
 모집기관
-곤양고
+칠원고
 접수기간
-2026.11.02 ~ 2026.11.04
+2026.10.13 ~ 2026.10.25
 접수상태
-접수전
+마감
 상세보기
+함안  ｜ 결원대체강사
+2026. 칠원고등학교 결원대체강사(시간제:영어) 채용 공고
+모집기관
+칠원고
+접수기간
+2026.09.29 ~ 2026.10.11
+접수상태
+마감
+상세보기
+함안  ｜ 기타
+AI교육 코디네이터
+모집기관
+칠원고
+접수기간
+2026.07.01 ~ 2026.07.04
+접수상태
+마감
+상세보기
+함안  ｜ 교육공무직원 조리실무사
+2026년 교육공무직원 조리실무사 채용 재공고(3차)
+모집기관
+칠원고
+접수기간
+2026.05.15 ~ 2026.05.21
+접수상태
+마감
+상세보기
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=6
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:함안  ｜ 결원대체강사 결원대체강사(영어) 채용 | td.data-btn:모집기관 칠원고 | td.data-btn:접수기간 2026.10.27 ~ 2026.11. | td.data-btn:접수상태 접수중 상세보기
+      td.data-btn.tl :: own='' all='함안  ｜ 결원대체강사 결원대체강사(영어) 채용 3차 공고'
+      span.cate :: own='함안  ｜ 결원대체강사' all='함안  ｜ 결원대체강사'
+      span.tit :: own='' all='결원대체강사(영어) 채용 3차 공고'
+      a href=#self; onclick=openDetail('1815180'); :: own='결원대체강사(영어) 채용 3차 공고' all='결원대체강사(영어) 채용 3차 공고'
+      td.data-btn :: own='' all='모집기관 칠원고'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='칠원고' all='칠원고'
+      td.data-btn :: own='' all='접수기간 2026.10.27 ~ 2026.11.01'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.10.27 ~ 2026.11.01' all='2026.10.27 ~ 2026.11.01'
+      td.data-btn :: own='' all='접수상태 접수중 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='접수중 상세보기'
+      span.st2 :: own='접수중' all='접수중'
+[DATES] sample: ['2026.10.27', '2026.11.01', '2026.10.13', '2026.10.25', '2026.09.29']
+
+[ANCHORS] most common link paths
+   x5 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1815180');", 'title': '결원대체강사(영어) 채용 3차 공고'} text='결원대체강사(영어) 채용 3차 공고'
+      row? tr :: '함안  ｜ 결원대체강사 결원대체강사(영어) 채용 3차 공고 모집기관 칠원고 접수기간 2026.10.27 ~ 2026.11.01 접수상태 접수중 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(31); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
+====================================================================================================
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EC%95%88%EC%9D%98%EA%B3%A0
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EC%95%88%EC%9D%98%EA%B3%A0 encoding=UTF-8 bytes=91408
+title: 구인·구직포털 : HOME > 모집공고
+
+[BODY TEXT] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl
+채용정보 목록
+채용 정보
+모집기관
+접수기간
+접수상태
+함양  ｜ 결원대체강사
+사회과(역사 또는 일반사회 또는 지리 등) 결원대체강사 채용 공고(3차)
+모집기관
+안의고
+접수기간
+2026.10.28 ~ 2026.11.02
+접수상태
+접수중
+상세보기
+함양  ｜ 결원대체강사
+안의고 국어,역사과 결원대체강사(시간제,전일제) 채용 공고(2차)
+모집기관
+안의고
+접수기간
+2026.10.19 ~ 2026.10.22
+접수상태
+마감
+상세보기
+함양  ｜ 결원대체강사
+안의고등학교 역사, 국어과 결원대체강사 채용 공고
+모집기관
+안의고
+접수기간
+2026.10.12 ~ 2026.10.16
+접수상태
+마감
+상세보기
+함양  ｜ 기타각종강사
+안의고 중등 학생 맞춤형 멘토링 강사（시간강사） 채용
+모집기관
+안의고
+접수기간
+2026.08.26 ~ 2026.08.28
+접수상태
+마감
+상세보기
+함양  ｜ 교육공무직원 조리실무사
+2026학년도 하반기 안의고등학교 교육공무직원 기간제 대체 인력 조리실무사 채용 공고
+모집기관
+안의고
+접수기간
+2026.08.19 ~ 2026.08.27
+접수상태
+마감
+상세보기
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=6
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:함양  ｜ 결원대체강사 사회과(역사 또는 일반사 | td.data-btn:모집기관 안의고 | td.data-btn:접수기간 2026.10.28 ~ 2026.11. | td.data-btn:접수상태 접수중 상세보기
+      td.data-btn.tl :: own='' all='함양  ｜ 결원대체강사 사회과(역사 또는 일반사회 또는 지리 등) 결원대체강사 채용 공고('
+      span.cate :: own='함양  ｜ 결원대체강사' all='함양  ｜ 결원대체강사'
+      span.tit :: own='' all='사회과(역사 또는 일반사회 또는 지리 등) 결원대체강사 채용 공고(3차)'
+      a href=#self; onclick=openDetail('1815226'); :: own='사회과(역사 또는 일반사회 또는 지리 등) 결원대체강사 채용 공고(3차)' all='사회과(역사 또는 일반사회 또는 지리 등) 결원대체강사 채용 공고(3차)'
+      td.data-btn :: own='' all='모집기관 안의고'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='안의고' all='안의고'
+      td.data-btn :: own='' all='접수기간 2026.10.28 ~ 2026.11.02'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.10.28 ~ 2026.11.02' all='2026.10.28 ~ 2026.11.02'
+      td.data-btn :: own='' all='접수상태 접수중 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='접수중 상세보기'
+      span.st2 :: own='접수중' all='접수중'
+[DATES] sample: ['2026.10.28', '2026.11.02', '2026.10.19', '2026.10.22', '2026.10.12']
+
+[ANCHORS] most common link paths
+   x5 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1815226');", 'title': '사회과(역사 또는 일반사회 또는 지리 등) 결원대체강사 채용 공고(3차)'} text='사회과(역사 또는 일반사회 또는 지리 등) 결원대체강사 채용 공고(3차)'
+      row? tr :: '함양  ｜ 결원대체강사 사회과(역사 또는 일반사회 또는 지리 등) 결원대체강사 채용 공고(3차) 모집기관 안의고 접수기간 2026.10.28 ~ 2026.11.02 접수상태 접수중 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(12); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
+====================================================================================================
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EC%B0%BD%EC%9B%90%EC%B2%9C%EA%B4%91%ED%95%99%EA%B5%90
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EC%B0%BD%EC%9B%90%EC%B2%9C%EA%B4%91%ED%95%99%EA%B5%90 encoding=UTF-8 bytes=91045
+title: 구인·구직포털 : HOME > 모집공고
+
+[BODY TEXT] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl
+채용정보 목록
+채용 정보
+모집기관
+접수기간
+접수상태
+창원  ｜ 결원대체강사
+2026. 전일제 강사  채용 공고
+모집기관
+창원천광학교
+접수기간
+2026.10.12 ~ 2026.10.14
+접수상태
+마감
+상세보기
+창원  ｜ 기타
+2026. 특수교육 지원 자원봉사자 모집
+모집기관
+창원천광학교
+접수기간
+2026.09.28 ~ 2026.10.02
+접수상태
+마감
+상세보기
+창원  ｜ 결원대체강사
+2026. 전일제 강사 채용 공고
+모집기관
+창원천광학교
+접수기간
+2026.09.10 ~ 2026.09.14
+접수상태
+마감
+상세보기
+창원  ｜ 기타
+2026. 특수교육 지원 자원봉사자 모집 공고
+모집기관
+창원천광학교
+접수기간
+2026.08.19 ~ 2026.08.25
+접수상태
+마감
+상세보기
+창원  ｜ 교육공무직원 특수교육실무원
+2026. 특수교육실무원(기간제) 공개 채용 공고
+모집기관
+창원천광학교
+접수기간
+2026.08.19 ~ 2026.08.21
+접수상태
+마감
+상세보기
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=6
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:창원  ｜ 결원대체강사 2026. 전일제 강사  | td.data-btn:모집기관 창원천광학교 | td.data-btn:접수기간 2026.10.12 ~ 2026.10. | td.data-btn:접수상태 마감 상세보기
+      td.data-btn.tl :: own='' all='창원  ｜ 결원대체강사 2026. 전일제 강사  채용 공고'
+      span.cate :: own='창원  ｜ 결원대체강사' all='창원  ｜ 결원대체강사'
+      span.tit :: own='' all='2026. 전일제 강사  채용 공고'
+      a href=#self; onclick=openDetail('1814884'); :: own='2026. 전일제 강사  채용 공고' all='2026. 전일제 강사  채용 공고'
+      td.data-btn :: own='' all='모집기관 창원천광학교'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='창원천광학교' all='창원천광학교'
+      td.data-btn :: own='' all='접수기간 2026.10.12 ~ 2026.10.14'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.10.12 ~ 2026.10.14' all='2026.10.12 ~ 2026.10.14'
+      td.data-btn :: own='' all='접수상태 마감 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='마감 상세보기'
+      span.st3 :: own='마감' all='마감'
+[DATES] sample: ['2026.10.12', '2026.10.14', '2026.09.28', '2026.10.02', '2026.09.10']
+
+[ANCHORS] most common link paths
+   x5 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1814884');", 'title': '2026. 전일제 강사  채용 공고'} text='2026. 전일제 강사  채용 공고'
+      row? tr :: '창원  ｜ 결원대체강사 2026. 전일제 강사  채용 공고 모집기관 창원천광학교 접수기간 2026.10.12 ~ 2026.10.14 접수상태 마감 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(32); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
+====================================================================================================
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EB%A7%88%EC%82%B0%EA%B3%A0
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EB%A7%88%EC%82%B0%EA%B3%A0 encoding=UTF-8 bytes=91460
+title: 구인·구직포털 : HOME > 모집공고
+
+[BODY TEXT] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl
+채용정보 목록
+채용 정보
+모집기관
+접수기간
+접수상태
+창원  ｜ 결원대체강사
+2026학년도 마산고등학교 (과학) 전일제 강사 또는 시간강사 채용 공고
+모집기관
+마산고
+접수기간
+2026.10.20 ~ 2026.11.27
+접수상태
+접수중
+상세보기
+창원  ｜ 교육공무직원 조리실무사
+교육공무직원 기간제 조리실무사 채용(4차) 공고
+모집기관
+마산고운초등학교
+접수기간
+2026.10.12 ~ 2026.10.19
+접수상태
+마감
+상세보기
+창원  ｜ 기타
+2026. 마산고등학교 학교운동부 야구부 지도자-코치(출산휴가 및 육아휴직 대체자) 수시채용 공고
+모집기관
+마산고
+접수기간
+2026.10.12 ~ 2027.02.28
+접수상태
+접수중
+상세보기
+창원  ｜ 기타
+2026. 학교운동부 야구부 지도자-코치(출산휴가 및 육아휴직 대체자) 모집공고
+모집기관
+마산고
+접수기간
+2026.10.03 ~ 2026.10.09
+접수상태
+마감
+상세보기
+창원  ｜ 기타
+2026. 돌봄·방과후학교 학생 이동 지원 자원봉사자 위촉 공고
+모집기관
+마산고운초등학교
+접수기간
+2026.10.02 ~ 2026.10.08
+접수상태
+마감
+상세보기
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=6
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:창원  ｜ 결원대체강사 2026학년도 마산고등학 | td.data-btn:모집기관 마산고 | td.data-btn:접수기간 2026.10.20 ~ 2026.11. | td.data-btn:접수상태 접수중 상세보기
+      td.data-btn.tl :: own='' all='창원  ｜ 결원대체강사 2026학년도 마산고등학교 (과학) 전일제 강사 또는 시간강사 채용'
+      span.cate :: own='창원  ｜ 결원대체강사' all='창원  ｜ 결원대체강사'
+      span.tit :: own='' all='2026학년도 마산고등학교 (과학) 전일제 강사 또는 시간강사 채용 공고'
+      a href=#self; onclick=openDetail('1815055'); :: own='2026학년도 마산고등학교 (과학) 전일제 강사 또는 시간강사 채용 공고' all='2026학년도 마산고등학교 (과학) 전일제 강사 또는 시간강사 채용 공고'
+      td.data-btn :: own='' all='모집기관 마산고'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='마산고' all='마산고'
+      td.data-btn :: own='' all='접수기간 2026.10.20 ~ 2026.11.27'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.10.20 ~ 2026.11.27' all='2026.10.20 ~ 2026.11.27'
+      td.data-btn :: own='' all='접수상태 접수중 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='접수중 상세보기'
+      span.st2 :: own='접수중' all='접수중'
+[DATES] sample: ['2026.10.20', '2026.11.27', '2026.10.12', '2026.10.19', '2026.10.12']
+
+[ANCHORS] most common link paths
+   x5 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1815055');", 'title': '2026학년도 마산고등학교 (과학) 전일제 강사 또는 시간강사 채용 공고'} text='2026학년도 마산고등학교 (과학) 전일제 강사 또는 시간강사 채용 공고'
+      row? tr :: '창원  ｜ 결원대체강사 2026학년도 마산고등학교 (과학) 전일제 강사 또는 시간강사 채용 공고 모집기관 마산고 접수기간 2026.10.20 ~ 2026.11.27 접수상태 접수중 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(57); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
+====================================================================================================
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EC%A0%9C%EC%82%B0%EC%B4%88
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EC%A0%9C%EC%82%B0%EC%B4%88 encoding=UTF-8 bytes=91201
+title: 구인·구직포털 : HOME > 모집공고
+
+[BODY TEXT] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl
+채용정보 목록
+채용 정보
+모집기관
+접수기간
+접수상태
+거제  ｜ 기타각종강사
+제산초 학교보건지원강사 채용 공고
+모집기관
+제산초
+접수기간
+2026.10.27 ~ 2026.11.04
+접수상태
+접수중
+상세보기
+거제  ｜ 기타각종강사
+제산초 풍물 동아리 외부강사 모집
+모집기관
+제산초
+접수기간
+2026.10.19 ~ 2026.10.23
+접수상태
+마감
+상세보기
+거제  ｜ 기타각종강사
+2026. 돌봄교실 특기적성 프로그램 개인위탁 외부강사 모집 공고
+모집기관
+제산초
+접수기간
+2026.10.15 ~ 2026.10.21
+접수상태
+마감
+상세보기
+거제  ｜ 교육공무직원 조리실무사
+2026. 하반기 제산초 조리실무사(기간제 근로자) 채용 공고
+모집기관
+제산초
+접수기간
+2026.08.05 ~ 2026.08.11
+접수상태
+마감
+상세보기
+거제  ｜ 기타
+제산초병설유치원 방학중 방과후 과정(돌봄) 외부강사 채용 공고
+모집기관
+제산초
+접수기간
+2026.06.30 ~ 2026.07.03
+접수상태
+마감
+상세보기
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=6
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:거제  ｜ 기타각종강사 제산초 학교보건지원강사  | td.data-btn:모집기관 제산초 | td.data-btn:접수기간 2026.10.27 ~ 2026.11. | td.data-btn:접수상태 접수중 상세보기
+      td.data-btn.tl :: own='' all='거제  ｜ 기타각종강사 제산초 학교보건지원강사 채용 공고'
+      span.cate :: own='거제  ｜ 기타각종강사' all='거제  ｜ 기타각종강사'
+      span.tit :: own='' all='제산초 학교보건지원강사 채용 공고'
+      a href=#self; onclick=openDetail('1815121'); :: own='제산초 학교보건지원강사 채용 공고' all='제산초 학교보건지원강사 채용 공고'
+      td.data-btn :: own='' all='모집기관 제산초'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='제산초' all='제산초'
+      td.data-btn :: own='' all='접수기간 2026.10.27 ~ 2026.11.04'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.10.27 ~ 2026.11.04' all='2026.10.27 ~ 2026.11.04'
+      td.data-btn :: own='' all='접수상태 접수중 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='접수중 상세보기'
+      span.st2 :: own='접수중' all='접수중'
+[DATES] sample: ['2026.10.27', '2026.11.04', '2026.10.19', '2026.10.23', '2026.10.15']
+
+[ANCHORS] most common link paths
+   x5 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1815121');", 'title': '제산초 학교보건지원강사 채용 공고 '} text='제산초 학교보건지원강사 채용 공고'
+      row? tr :: '거제  ｜ 기타각종강사 제산초 학교보건지원강사 채용 공고 모집기관 제산초 접수기간 2026.10.27 ~ 2026.11.04 접수상태 접수중 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(31); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
+====================================================================================================
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EC%A7%84%ED%95%B4%EA%B3%A0
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EC%A7%84%ED%95%B4%EA%B3%A0 encoding=UTF-8 bytes=91405
+title: 구인·구직포털 : HOME > 모집공고
+
+[BODY TEXT] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl
+채용정보 목록
+채용 정보
+모집기관
+접수기간
+접수상태
 창원  ｜ 결원대체강사
 2026학년도 진해고등학교 계약제교원(과학과 전일제강사) 채용 공고
 모집기관
@@ -99,204 +746,978 @@ title: 구인·구직포털 : HOME > 모집공고
 접수상태
 접수중
 상세보기
+창원  ｜ 결원대체강사
+2026학년도 진해고등학교 계약제교원(지구과학과 전일제강사) 채용 공고
+모집기관
+진해고
+접수기간
+2026.10.26 ~ 2026.10.30
+접수상태
+마감
+상세보기
+창원  ｜ 교육공무직원 조리실무사
+진해고등학교 교육공무직원(조리실무사) 대체인력 채용 공고
+모집기관
+진해고
+접수기간
+2026.10.16 ~ 2026.10.20
+접수상태
+마감
+상세보기
+창원  ｜ 기타
+진해고등학교 특수학급 자원봉사자 위촉 공고(오전, 남)
+모집기관
+진해고
+접수기간
+2026.10.07 ~ 2026.12.11
+접수상태
+접수중
+상세보기
 창원  ｜ 기간제교원(강사 제외) 중등기간제교사
-창원토월고 계약제교원 기간제교사(물리) 채용 공고
+2026학년도 진해고등학교 계약제교원(영양 기간제교사) 채용 공고
 모집기관
-창원토월고
+진해고
 접수기간
-2026.11.02 ~ 2026.11.04
+2026.10.07 ~ 2026.10.11
 접수상태
-접수전
+마감
 상세보기
-밀양  ｜ 기간제교원(강사 제외) 초등기간제교사
-초동초등학교 기간제교사 채용 재공고
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=6
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:창원  ｜ 결원대체강사 2026학년도 진해고등학 | td.data-btn:모집기관 진해고 | td.data-btn:접수기간 2026.10.30 ~ 2026.11. | td.data-btn:접수상태 접수중 상세보기
+      td.data-btn.tl :: own='' all='창원  ｜ 결원대체강사 2026학년도 진해고등학교 계약제교원(과학과 전일제강사) 채용 공고'
+      span.cate :: own='창원  ｜ 결원대체강사' all='창원  ｜ 결원대체강사'
+      span.tit :: own='' all='2026학년도 진해고등학교 계약제교원(과학과 전일제강사) 채용 공고'
+      a href=#self; onclick=openDetail('1815287'); :: own='2026학년도 진해고등학교 계약제교원(과학과 전일제강사) 채용 공고' all='2026학년도 진해고등학교 계약제교원(과학과 전일제강사) 채용 공고'
+      td.data-btn :: own='' all='모집기관 진해고'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='진해고' all='진해고'
+      td.data-btn :: own='' all='접수기간 2026.10.30 ~ 2026.11.04'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.10.30 ~ 2026.11.04' all='2026.10.30 ~ 2026.11.04'
+      td.data-btn :: own='' all='접수상태 접수중 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='접수중 상세보기'
+      span.st2 :: own='접수중' all='접수중'
+[DATES] sample: ['2026.10.30', '2026.11.04', '2026.10.26', '2026.10.30', '2026.10.16']
+
+[ANCHORS] most common link paths
+   x5 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1815287');", 'title': '2026학년도 진해고등학교 계약제교원(과학과 전일제강사) 채용 공고'} text='2026학년도 진해고등학교 계약제교원(과학과 전일제강사) 채용 공고'
+      row? tr :: '창원  ｜ 결원대체강사 2026학년도 진해고등학교 계약제교원(과학과 전일제강사) 채용 공고 모집기관 진해고 접수기간 2026.10.30 ~ 2026.11.04 접수상태 접수중 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(36); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
+====================================================================================================
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EA%B9%80%ED%95%B4%EA%B1%B4%EC%84%A4%EA%B3%B5%EC%97%85%EA%B3%A0
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EA%B9%80%ED%95%B4%EA%B1%B4%EC%84%A4%EA%B3%B5%EC%97%85%EA%B3%A0 encoding=UTF-8 bytes=91549
+title: 구인·구직포털 : HOME > 모집공고
+
+[BODY TEXT] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl
+채용정보 목록
+채용 정보
 모집기관
-초동초
 접수기간
-2026.10.30 ~ 2026.11.03
+접수상태
+김해  ｜ 기간제교원(강사 제외) 중등기간제교사
+김해건설공업고 시간강사 및 기간제 채용 공고(건설,국어,한국사)
+모집기관
+김해건설공업고
+접수기간
+2026.10.27 ~ 2026.11.01
 접수상태
 접수중
 상세보기
-창원  ｜ 기간제교원(강사 제외) 초등기간제교사
-의창초등학교 기간제교사 채용 재공고
+김해  ｜ 교육공무직원 조리실무사
+김해건설공업고등학교 교육공무직원(조리실무사) 대체인력 채용 공고
 모집기관
-의창초
+김해건설공업고
 접수기간
-2026.10.30 ~ 2026.11.02
+2026.10.22 ~ 2026.10.28
 접수상태
-접수중
-상세보기
-통영  ｜ 결원대체강사
-통영여자고등학교 전일제 강사(국어) 채용 공고
-모집기관
-통영여자고
-접수기간
-2026.11.02 ~ 2026.11.04
-접수상태
-접수전
-상세보기
-거제  ｜ 교육공무직원 조리실무사
-장목초등학교 교육공무직(기간제 조리실무사) 대체 인력 채용 공고
-모집기관
-장목초
-접수기간
-2026.10.30 ~ 2026.11.04
-접수상태
-접수중
-상세보기
-함안  ｜ 기타각종강사
-2026. 돌봄교실 특기 적성 개인 위탁(맞춤형 문해력 교실) 외부강사 모집 공고
-모집기관
-대산초
-접수기간
-2026.10.30 ~ 2026.11.03
-접수상태
-접수중
-상세보기
-통영  ｜ 결원대체강사
-2026. 동원고등학교 결원대체강사 채용 공고(수학)
-모집기관
-동원고
-접수기간
-2026.11.02 ~ 2026.11.05
-접수상태
-접수전
-상세보기
-창원  ｜ 방과후학교강사
-2026. 영어A 방과후학교 프로그램 개인위탁 모집 공고
-모집기관
-양덕초
-접수기간
-2026.11.02 ~ 2026.11.06
-접수상태
-접수전
-상세보기
-김해  ｜ 기간제교원(강사 제외) 기타
-김해외국어고등학교 기간제교사(영양) 채용 공고
-모집기관
-김해외국어고
-접수기간
-2026.10.30 ~ 2026.11.02
-접수상태
-접수중
-상세보기
-통영  ｜ 교육공무직원 조리실무사
-인평초등학교 교육공무직(조리 실무사) 대체인력 채용 공고
-모집기관
-인평초
-접수기간
-2026.10.30 ~ 2026.11.04
-접수상태
-접수중
-상세보기
-의령  ｜ 교육공무직원 조리실무사
-칠곡초 초단시간 조리실무사(기간제) 채용 공고
-모집기관
-칠곡초
-접수기간
-2026.10.30 ~ 2026.11.05
-접수상태
-접수중
-상세보기
-창원  ｜ 교육공무직원 교무행정원
-진해신항중학교 교무행정원 대체인력 채용 공고
-모집기관
-진해신항중학교
-접수기간
-2026.11.03 ~ 2026.11.05
-접수상태
-접수전
-상세보기
-밀양  ｜ 기간제교원(강사 제외) 초등기간제교사
-2026학년도 밀성초등학교 계약제교원(기간제교사) 채용 공고(3차공고)
-모집기관
-밀성초
-접수기간
-2026.10.30 ~ 2026.11.01
-접수상태
-접수중
+마감
 상세보기
 김해  ｜ 기간제교원(강사 제외) 중등기간제교사
-김해생명과학고등학교 계약제(기간제, 전일제강사)교원 채용 공고
+김해건설공업고 기간제 및 시간강사 채용공고(국어,미술,한국사)
 모집기관
-김해생명과학고
+김해건설공업고
 접수기간
-2026.10.29 ~ 2026.11.04
+2026.10.15 ~ 2026.10.25
+접수상태
+마감
+상세보기
+김해  ｜ 교육공무직원 당직전담사
+김해건설공업고등학교 교육공무직원(당직전담사) 채용 공고
+모집기관
+김해건설공업고
+접수기간
+2026.09.15 ~ 2026.09.21
+접수상태
+마감
+상세보기
+김해  ｜ 기간제교원(강사 제외) 중등기간제교사
+김해건설공업고 기간제교사 2차 채용 공고(건설)
+모집기관
+김해건설공업고
+접수기간
+2026.09.12 ~ 2026.09.15
+접수상태
+마감
+상세보기
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=6
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:김해  ｜ 기간제교원(강사 제외) 중등기간제교사 | td.data-btn:모집기관 김해건설공업고 | td.data-btn:접수기간 2026.10.27 ~ 2026.11. | td.data-btn:접수상태 접수중 상세보기
+      td.data-btn.tl :: own='' all='김해  ｜ 기간제교원(강사 제외) 중등기간제교사 김해건설공업고 시간강사 및 기간제 채용 공'
+      span.cate :: own='김해  ｜ 기간제교원(강사 제외) 중등기간제교사' all='김해  ｜ 기간제교원(강사 제외) 중등기간제교사'
+      span.tit :: own='' all='김해건설공업고 시간강사 및 기간제 채용 공고(건설,국어,한국사)'
+      a href=#self; onclick=openDetail('1815206'); :: own='김해건설공업고 시간강사 및 기간제 채용 공고(건설,국어,한국사)' all='김해건설공업고 시간강사 및 기간제 채용 공고(건설,국어,한국사)'
+      td.data-btn :: own='' all='모집기관 김해건설공업고'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='김해건설공업고' all='김해건설공업고'
+      td.data-btn :: own='' all='접수기간 2026.10.27 ~ 2026.11.01'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.10.27 ~ 2026.11.01' all='2026.10.27 ~ 2026.11.01'
+      td.data-btn :: own='' all='접수상태 접수중 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='접수중 상세보기'
+      span.st2 :: own='접수중' all='접수중'
+[DATES] sample: ['2026.10.27', '2026.11.01', '2026.10.22', '2026.10.28', '2026.10.15']
+
+[ANCHORS] most common link paths
+   x5 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1815206');", 'title': '김해건설공업고 시간강사 및 기간제 채용 공고(건설,국어,한국사)'} text='김해건설공업고 시간강사 및 기간제 채용 공고(건설,국어,한국사)'
+      row? tr :: '김해  ｜ 기간제교원(강사 제외) 중등기간제교사 김해건설공업고 시간강사 및 기간제 채용 공고(건설,국어,한국사) 모집기관 김해건설공업고 접수기간 2026.10.27 ~ 2026.11.01 접수상태 접수중 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(52); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
+====================================================================================================
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EB%B4%89%EA%B0%95%EC%B4%88
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EB%B4%89%EA%B0%95%EC%B4%88 encoding=UTF-8 bytes=91217
+title: 구인·구직포털 : HOME > 모집공고
+
+[BODY TEXT] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl
+채용정보 목록
+채용 정보
+모집기관
+접수기간
+접수상태
+창원  ｜ 결원대체강사
+창원 봉강초등학교 특수학급 전일제 강사 모집 공고
+모집기관
+봉강초
+접수기간
+2026.10.28 ~ 2026.11.06
 접수상태
 접수중
 상세보기
-사천  ｜ 지방공무원 대체인력
-사천초등학교 지방공무원 대체인력(교육행정) 채용 공고
+창원  ｜ 기타
+창원 봉강초등학교 도서관 자원봉사자 위촉 재공고
 모집기관
-사천초
+봉강초
 접수기간
-2026.10.30 ~ 2026.11.05
+2026.10.15 ~ 2026.10.21
+접수상태
+마감
+상세보기
+창원  ｜ 기타
+봉강초등학교 도서관 자원봉사자 위촉 공고
+모집기관
+봉강초
+접수기간
+2026.10.08 ~ 2026.10.14
+접수상태
+마감
+상세보기
+창원  ｜ 기타각종강사
+2026. 봉강초등학교병설유치원 방과후 특성화 블럭강사 위탁 계약 공고
+모집기관
+봉강초
+접수기간
+2026.09.09 ~ 2026.09.15
+접수상태
+마감
+상세보기
+창원  ｜ 기타
+2026. 2학기 초등돌봄교실 특수교육지원 자원봉사자 위촉 공고
+모집기관
+봉강초
+접수기간
+2026.08.10 ~ 2026.08.14
+접수상태
+마감
+상세보기
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=6
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:창원  ｜ 결원대체강사 창원 봉강초등학교 특수학 | td.data-btn:모집기관 봉강초 | td.data-btn:접수기간 2026.10.28 ~ 2026.11. | td.data-btn:접수상태 접수중 상세보기
+      td.data-btn.tl :: own='' all='창원  ｜ 결원대체강사 창원 봉강초등학교 특수학급 전일제 강사 모집 공고'
+      span.cate :: own='창원  ｜ 결원대체강사' all='창원  ｜ 결원대체강사'
+      span.tit :: own='' all='창원 봉강초등학교 특수학급 전일제 강사 모집 공고'
+      a href=#self; onclick=openDetail('1815207'); :: own='창원 봉강초등학교 특수학급 전일제 강사 모집 공고' all='창원 봉강초등학교 특수학급 전일제 강사 모집 공고'
+      td.data-btn :: own='' all='모집기관 봉강초'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='봉강초' all='봉강초'
+      td.data-btn :: own='' all='접수기간 2026.10.28 ~ 2026.11.06'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.10.28 ~ 2026.11.06' all='2026.10.28 ~ 2026.11.06'
+      td.data-btn :: own='' all='접수상태 접수중 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='접수중 상세보기'
+      span.st2 :: own='접수중' all='접수중'
+[DATES] sample: ['2026.10.28', '2026.11.06', '2026.10.15', '2026.10.21', '2026.10.08']
+
+[ANCHORS] most common link paths
+   x5 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1815207');", 'title': '창원 봉강초등학교 특수학급 전일제 강사 모집 공고'} text='창원 봉강초등학교 특수학급 전일제 강사 모집 공고'
+      row? tr :: '창원  ｜ 결원대체강사 창원 봉강초등학교 특수학급 전일제 강사 모집 공고 모집기관 봉강초 접수기간 2026.10.28 ~ 2026.11.06 접수상태 접수중 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(20); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
+====================================================================================================
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EA%B0%80%EB%A1%80%EC%B4%88
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EA%B0%80%EB%A1%80%EC%B4%88 encoding=UTF-8 bytes=91235
+title: 구인·구직포털 : HOME > 모집공고
+
+[BODY TEXT] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl
+채용정보 목록
+채용 정보
+모집기관
+접수기간
+접수상태
+의령  ｜ 기타각종강사
+가례초등학교 합창강사 채용 공고
+모집기관
+가례초
+접수기간
+2026.11.04 ~ 2026.11.10
+접수상태
+접수전
+상세보기
+의령  ｜ 교육공무직원 교무행정원
+［재공고］가례초 교육공무직원(교무행정원 대체인력) 채용 공고
+모집기관
+가례초
+접수기간
+2026.09.21 ~ 2026.09.25
+접수상태
+마감
+상세보기
+의령  ｜ 교육공무직원 교무행정원
+가례초등학교 교무행정원 대체인력 채용 공고
+모집기관
+가례초
+접수기간
+2026.09.11 ~ 2026.09.15
+접수상태
+마감
+상세보기
+의령  ｜ 기간제교원(강사 제외) 기타
+가례초등학교  기간제교사(보건)  채용 공고
+모집기관
+가례초
+접수기간
+2026.08.18 ~ 2026.08.24
+접수상태
+마감
+상세보기
+의령  ｜ 기타각종강사
+2026. 여름방학 중 돌봄 방과후학교 개인위탁 외부강사 모집 공고
+모집기관
+가례초
+접수기간
+2026.06.29 ~ 2026.07.03
+접수상태
+마감
+상세보기
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=6
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:의령  ｜ 기타각종강사 가례초등학교 합창강사 채 | td.data-btn:모집기관 가례초 | td.data-btn:접수기간 2026.11.04 ~ 2026.11. | td.data-btn:접수상태 접수전 상세보기
+      td.data-btn.tl :: own='' all='의령  ｜ 기타각종강사 가례초등학교 합창강사 채용 공고'
+      span.cate :: own='의령  ｜ 기타각종강사' all='의령  ｜ 기타각종강사'
+      span.tit :: own='' all='가례초등학교 합창강사 채용 공고'
+      a href=#self; onclick=openDetail('1815209'); :: own='가례초등학교 합창강사 채용 공고' all='가례초등학교 합창강사 채용 공고'
+      td.data-btn :: own='' all='모집기관 가례초'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='가례초' all='가례초'
+      td.data-btn :: own='' all='접수기간 2026.11.04 ~ 2026.11.10'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.11.04 ~ 2026.11.10' all='2026.11.04 ~ 2026.11.10'
+      td.data-btn :: own='' all='접수상태 접수전 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='접수전 상세보기'
+      span.st1 :: own='접수전' all='접수전'
+[DATES] sample: ['2026.11.04', '2026.11.10', '2026.09.21', '2026.09.25', '2026.09.11']
+
+[ANCHORS] most common link paths
+   x5 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1815209');", 'title': '가례초등학교 합창강사 채용 공고'} text='가례초등학교 합창강사 채용 공고'
+      row? tr :: '의령  ｜ 기타각종강사 가례초등학교 합창강사 채용 공고 모집기관 가례초 접수기간 2026.11.04 ~ 2026.11.10 접수상태 접수전 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(17); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
+====================================================================================================
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EC%B0%BD%EC%9B%90%EC%82%AC%ED%8C%8C%EA%B3%A0
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EC%B0%BD%EC%9B%90%EC%82%AC%ED%8C%8C%EA%B3%A0 encoding=UTF-8 bytes=91448
+title: 구인·구직포털 : HOME > 모집공고
+
+[BODY TEXT] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl
+채용정보 목록
+채용 정보
+모집기관
+접수기간
+접수상태
+창원  ｜ 결원대체강사
+창원사파고 시간강사(지리) 채용 공고
+모집기관
+창원사파고
+접수기간
+2026.10.28 ~ 2026.11.02
 접수상태
 접수중
 상세보기
+창원  ｜ 교육공무직원 조리실무사
+창원사파고등학교 교육공무직원(조리실무사) 기간제근로자 채용 재공고
+모집기관
+창원사파고
+접수기간
+2026.10.23 ~ 2026.10.27
+접수상태
+마감
+상세보기
+창원  ｜ 교육공무직원 조리실무사
+창원사파고등학교 교육공무직 조리실무사 기간제근로자 채용 공고
+모집기관
+창원사파고
+접수기간
+2026.10.14 ~ 2026.10.21
+접수상태
+마감
+상세보기
+창원  ｜ 교육공무직원 조리실무사
+창원사파고등학교 교육공무직원(조리실무사) 기간제근로자 채용 공고
+모집기관
+창원사파고
+접수기간
+2026.09.11 ~ 2026.09.17
+접수상태
+마감
+상세보기
+창원  ｜ 교육공무직원 조리실무사
+창원사파고 교육공무직원(조리실무사) 기간제근로자 채용 재공고
+모집기관
+창원사파고
+접수기간
+2026.08.12 ~ 2026.08.19
+접수상태
+마감
+상세보기
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=6
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:창원  ｜ 결원대체강사 창원사파고 시간강사(지리 | td.data-btn:모집기관 창원사파고 | td.data-btn:접수기간 2026.10.28 ~ 2026.11. | td.data-btn:접수상태 접수중 상세보기
+      td.data-btn.tl :: own='' all='창원  ｜ 결원대체강사 창원사파고 시간강사(지리) 채용 공고'
+      span.cate :: own='창원  ｜ 결원대체강사' all='창원  ｜ 결원대체강사'
+      span.tit :: own='' all='창원사파고 시간강사(지리) 채용 공고'
+      a href=#self; onclick=openDetail('1815245'); :: own='창원사파고 시간강사(지리) 채용 공고' all='창원사파고 시간강사(지리) 채용 공고'
+      td.data-btn :: own='' all='모집기관 창원사파고'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='창원사파고' all='창원사파고'
+      td.data-btn :: own='' all='접수기간 2026.10.28 ~ 2026.11.02'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.10.28 ~ 2026.11.02' all='2026.10.28 ~ 2026.11.02'
+      td.data-btn :: own='' all='접수상태 접수중 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='접수중 상세보기'
+      span.st2 :: own='접수중' all='접수중'
+[DATES] sample: ['2026.10.28', '2026.11.02', '2026.10.23', '2026.10.27', '2026.10.14']
+
+[ANCHORS] most common link paths
+   x5 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1815245');", 'title': '창원사파고 시간강사(지리) 채용 공고'} text='창원사파고 시간강사(지리) 채용 공고'
+      row? tr :: '창원  ｜ 결원대체강사 창원사파고 시간강사(지리) 채용 공고 모집기관 창원사파고 접수기간 2026.10.28 ~ 2026.11.02 접수상태 접수중 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(25); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
+====================================================================================================
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EA%B9%80%ED%95%B4%EC%A4%91
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EA%B9%80%ED%95%B4%EC%A4%91 encoding=UTF-8 bytes=91223
+title: 구인·구직포털 : HOME > 모집공고
+
+[BODY TEXT] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl
+채용정보 목록
+채용 정보
+모집기관
+접수기간
+접수상태
 김해  ｜ 결원대체강사
-2026학년도 장유고등학교 계약제교원(과학) 채용 공고
+김해중학교 시간 강사(영어) 채용 공고
 모집기관
-장유고
+김해중
+접수기간
+2026.10.29 ~ 2026.11.01
+접수상태
+접수중
+상세보기
+김해  ｜ 기타
+전일제강사 채용 공고(보건)
+모집기관
+김해중
+접수기간
+2026.10.08 ~ 2026.10.14
+접수상태
+마감
+상세보기
+김해  ｜ 기타각종강사
+2026. 이중언어강사(몽골어) 채용 공고
+모집기관
+김해중앙여중
+접수기간
+2026.09.04 ~ 2026.09.07
+접수상태
+마감
+상세보기
+김해  ｜ 기타각종강사
+2026.김해중앙여자중학교 1인 1악기 파트별 지도강사 초빙 공고(드럼)
+모집기관
+김해중앙여중
+접수기간
+2026.08.20 ~ 2026.08.24
+접수상태
+마감
+상세보기
+김해  ｜ 기간제교원(강사 제외) 중등기간제교사
+2026학년도 2학기 김해중앙여자고등학교  기간제교사[영어] 채용 공고
+모집기관
+김해중앙여자고
+접수기간
+2026.08.13 ~ 2026.08.18
+접수상태
+마감
+상세보기
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=6
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:김해  ｜ 결원대체강사 김해중학교 시간 강사(영 | td.data-btn:모집기관 김해중 | td.data-btn:접수기간 2026.10.29 ~ 2026.11. | td.data-btn:접수상태 접수중 상세보기
+      td.data-btn.tl :: own='' all='김해  ｜ 결원대체강사 김해중학교 시간 강사(영어) 채용 공고'
+      span.cate :: own='김해  ｜ 결원대체강사' all='김해  ｜ 결원대체강사'
+      span.tit :: own='' all='김해중학교 시간 강사(영어) 채용 공고'
+      a href=#self; onclick=openDetail('1815264'); :: own='김해중학교 시간 강사(영어) 채용 공고' all='김해중학교 시간 강사(영어) 채용 공고'
+      td.data-btn :: own='' all='모집기관 김해중'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='김해중' all='김해중'
+      td.data-btn :: own='' all='접수기간 2026.10.29 ~ 2026.11.01'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.10.29 ~ 2026.11.01' all='2026.10.29 ~ 2026.11.01'
+      td.data-btn :: own='' all='접수상태 접수중 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='접수중 상세보기'
+      span.st2 :: own='접수중' all='접수중'
+[DATES] sample: ['2026.10.29', '2026.11.01', '2026.10.08', '2026.10.14', '2026.09.04']
+
+[ANCHORS] most common link paths
+   x5 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1815264');", 'title': '김해중학교 시간 강사(영어) 채용 공고'} text='김해중학교 시간 강사(영어) 채용 공고'
+      row? tr :: '김해  ｜ 결원대체강사 김해중학교 시간 강사(영어) 채용 공고 모집기관 김해중 접수기간 2026.10.29 ~ 2026.11.01 접수상태 접수중 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(61); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
+====================================================================================================
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EB%8F%99%ED%8F%AC%EC%B4%88
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EB%8F%99%ED%8F%AC%EC%B4%88 encoding=UTF-8 bytes=91293
+title: 구인·구직포털 : HOME > 모집공고
+
+[BODY TEXT] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl
+채용정보 목록
+채용 정보
+모집기관
+접수기간
+접수상태
+창녕  ｜ 지방공무원 대체인력
+2026년도 지방공무원(시설관리) 대체인력 채용 공고
+모집기관
+동포초
+접수기간
+2026.06.24 ~ 2026.07.01
+접수상태
+마감
+상세보기
+창녕  ｜ 기타각종강사
+2026학년도 동포초등학교 풍물동아리 외부 강사 모집 공고
+모집기관
+동포초
+접수기간
+2026.05.07 ~ 2026.05.11
+접수상태
+마감
+상세보기
+창녕  ｜ 기타각종강사
+2026. 동포초 기초학력 전담강사 채용 공고
+모집기관
+동포초
+접수기간
+2026.03.04 ~ 2026.03.09
+접수상태
+마감
+상세보기
+창녕  ｜ 기타각종강사
+2026학년도 동포초등학교병설유치원 방과후 과정 특성화 강사 위탁 공고
+모집기관
+동포초등학교병설유치원
+접수기간
+2026.02.12 ~ 2026.02.19
+접수상태
+마감
+상세보기
+창녕  ｜ 기타
+동포초등학교 교육공무직원(조리실무사) 대체인력 채용 재공고
+모집기관
+동포초
+접수기간
+2026.02.12 ~ 2026.02.20
+접수상태
+마감
+상세보기
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=6
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:창녕  ｜ 지방공무원 대체인력 2026년도 지방 | td.data-btn:모집기관 동포초 | td.data-btn:접수기간 2026.06.24 ~ 2026.07. | td.data-btn:접수상태 마감 상세보기
+      td.data-btn.tl :: own='' all='창녕  ｜ 지방공무원 대체인력 2026년도 지방공무원(시설관리) 대체인력 채용 공고'
+      span.cate :: own='창녕  ｜ 지방공무원 대체인력' all='창녕  ｜ 지방공무원 대체인력'
+      span.tit :: own='' all='2026년도 지방공무원(시설관리) 대체인력 채용 공고'
+      a href=#self; onclick=openDetail('1810945'); :: own='2026년도 지방공무원(시설관리) 대체인력 채용 공고' all='2026년도 지방공무원(시설관리) 대체인력 채용 공고'
+      td.data-btn :: own='' all='모집기관 동포초'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='동포초' all='동포초'
+      td.data-btn :: own='' all='접수기간 2026.06.24 ~ 2026.07.01'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.06.24 ~ 2026.07.01' all='2026.06.24 ~ 2026.07.01'
+      td.data-btn :: own='' all='접수상태 마감 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='마감 상세보기'
+      span.st3 :: own='마감' all='마감'
+[DATES] sample: ['2026.06.24', '2026.07.01', '2026.05.07', '2026.05.11', '2026.03.04']
+
+[ANCHORS] most common link paths
+   x5 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1810945');", 'title': ' 2026년도 지방공무원(시설관리) 대체인력 채용 공고 '} text='2026년도 지방공무원(시설관리) 대체인력 채용 공고'
+      row? tr :: '창녕  ｜ 지방공무원 대체인력 2026년도 지방공무원(시설관리) 대체인력 채용 공고 모집기관 동포초 접수기간 2026.06.24 ~ 2026.07.01 접수상태 마감 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(21); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
+====================================================================================================
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EC%B0%BD%EC%9B%90%EB%82%A8%EA%B3%A0
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EC%B0%BD%EC%9B%90%EB%82%A8%EA%B3%A0 encoding=UTF-8 bytes=91256
+title: 구인·구직포털 : HOME > 모집공고
+
+[BODY TEXT] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl
+채용정보 목록
+채용 정보
+모집기관
+접수기간
+접수상태
+창원  ｜ 결원대체강사
+창원남고등학교 전일제강사 채용 2차 공고(지구과학)
+모집기관
+창원남고
+접수기간
+2026.10.29 ~ 2026.11.01
+접수상태
+접수중
+상세보기
+창원  ｜ 결원대체강사
+창원남고등학교 전일제 강사 채용 공고(지구과학)
+모집기관
+창원남고
+접수기간
+2026.10.26 ~ 2026.10.28
+접수상태
+마감
+상세보기
+창원  ｜ 결원대체강사
+학교법인남제학원 전일제강사 채용 공고(수학)
+모집기관
+창원남고
+접수기간
+2026.09.14 ~ 2026.09.16
+접수상태
+마감
+상세보기
+창원  ｜ 기간제교원(강사 제외) 중등기간제교사
+학교법인남제학원 기간제교사 채용 2차 공고(수학)
+모집기관
+창원남고
+접수기간
+2026.09.14 ~ 2026.09.16
+접수상태
+마감
+상세보기
+창원  ｜ 기간제교원(강사 제외) 중등기간제교사
+학교법인남제학원 기간제교사 채용 공고(수학)
+모집기관
+창원남고
+접수기간
+2026.09.11 ~ 2026.09.13
+접수상태
+마감
+상세보기
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=6
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:창원  ｜ 결원대체강사 창원남고등학교 전일제강사 | td.data-btn:모집기관 창원남고 | td.data-btn:접수기간 2026.10.29 ~ 2026.11. | td.data-btn:접수상태 접수중 상세보기
+      td.data-btn.tl :: own='' all='창원  ｜ 결원대체강사 창원남고등학교 전일제강사 채용 2차 공고(지구과학)'
+      span.cate :: own='창원  ｜ 결원대체강사' all='창원  ｜ 결원대체강사'
+      span.tit :: own='' all='창원남고등학교 전일제강사 채용 2차 공고(지구과학)'
+      a href=#self; onclick=openDetail('1815253'); :: own='창원남고등학교 전일제강사 채용 2차 공고(지구과학)' all='창원남고등학교 전일제강사 채용 2차 공고(지구과학)'
+      td.data-btn :: own='' all='모집기관 창원남고'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='창원남고' all='창원남고'
+      td.data-btn :: own='' all='접수기간 2026.10.29 ~ 2026.11.01'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.10.29 ~ 2026.11.01' all='2026.10.29 ~ 2026.11.01'
+      td.data-btn :: own='' all='접수상태 접수중 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='접수중 상세보기'
+      span.st2 :: own='접수중' all='접수중'
+[DATES] sample: ['2026.10.29', '2026.11.01', '2026.10.26', '2026.10.28', '2026.09.14']
+
+[ANCHORS] most common link paths
+   x5 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1815253');", 'title': '창원남고등학교 전일제강사 채용 2차 공고(지구과학)'} text='창원남고등학교 전일제강사 채용 2차 공고(지구과학)'
+      row? tr :: '창원  ｜ 결원대체강사 창원남고등학교 전일제강사 채용 2차 공고(지구과학) 모집기관 창원남고 접수기간 2026.10.29 ~ 2026.11.01 접수상태 접수중 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(15); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
+====================================================================================================
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EB%8B%A8%EC%84%B1%EC%A4%91
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EB%8B%A8%EC%84%B1%EC%A4%91 encoding=UTF-8 bytes=91189
+title: 구인·구직포털 : HOME > 모집공고
+
+[BODY TEXT] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl
+채용정보 목록
+채용 정보
+모집기관
+접수기간
+접수상태
+산청  ｜ 기타각종강사
+단성중 학교폭력 업무담당자 수업경감 시간강사 채용 재공고(체육)
+모집기관
+단성중
 접수기간
 2026.10.29 ~ 2026.11.02
 접수상태
 접수중
 상세보기
-김해  ｜ 기타
-2026. 동부 거점형 다문화교육센터(김해동광초) 기간제 청소원 채용 계획
+산청  ｜ 기타각종강사
+단성중 학교폭력 업무담당자 수업경감 시간강사 채용 공고(체육)
 모집기관
-초등교육과
+단성중
 접수기간
-2026.10.30 ~ 2026.11.06
+2026.10.21 ~ 2026.10.28
 접수상태
-접수중
+마감
 상세보기
-김해  ｜ 교육공무직원 유치원방과후전담사
-2026. 동부 거점형 다문화교육센터(진례초병설유치원) 기간제 유치원방과후전담사 채용 공고
+산청  ｜ 기타각종강사
+2026. 단성중학교 디지털튜터 채용 재공고
 모집기관
-초등교육과
+단성중
 접수기간
-2026.10.30 ~ 2026.11.06
+2026.03.20 ~ 2026.03.25
 접수상태
-접수중
+마감
 상세보기
-김해  ｜ 결원대체강사
-2026. 구산초등학교 계약제교원(보건 전일제강사) 채용 공고
+산청  ｜ 기타각종강사
+2026. 단성중학교 디지털튜터 채용 재공고
 모집기관
-구산초
+단성중
 접수기간
-2026.10.29 ~ 2026.11.03
+2026.03.13 ~ 2026.03.18
 접수상태
-접수중
+마감
 상세보기
-진주  ｜ 기간제교원(강사 제외) 초등기간
+산청  ｜ 기타각종강사
+2026. 단성중학교 디지털튜터 채용 재공고
+모집기관
+단성중
+접수기간
+2026.03.13 ~ 2026.03.18
+접수상태
+마감
+상세보기
 
-[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=301
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=6
    row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
-   row: tr -> td.data-btn.tl:진주  ｜ 기간제교원(강사 제외) 중등기간제교사 | td.data-btn:모집기관 문산중 | td.data-btn:접수기간 2026.10.31 ~ 2026.11. | td.data-btn:접수상태 접수중 상세보기
-      td.data-btn.tl :: own='' all='진주  ｜ 기간제교원(강사 제외) 중등기간제교사 문산중학교 기간제교사(체육) 채용 공고(2'
-      span.cate :: own='진주  ｜ 기간제교원(강사 제외) 중등기간제교사' all='진주  ｜ 기간제교원(강사 제외) 중등기간제교사'
-      span.tit :: own='' all='문산중학교 기간제교사(체육) 채용 공고(2차)'
-      a href=#self; onclick=openDetail('1815296'); :: own='문산중학교 기간제교사(체육) 채용 공고(2차)' all='문산중학교 기간제교사(체육) 채용 공고(2차)'
-      td.data-btn :: own='' all='모집기관 문산중'
+   row: tr -> td.data-btn.tl:산청  ｜ 기타각종강사 단성중 학교폭력 업무담당 | td.data-btn:모집기관 단성중 | td.data-btn:접수기간 2026.10.29 ~ 2026.11. | td.data-btn:접수상태 접수중 상세보기
+      td.data-btn.tl :: own='' all='산청  ｜ 기타각종강사 단성중 학교폭력 업무담당자 수업경감 시간강사 채용 재공고(체육)'
+      span.cate :: own='산청  ｜ 기타각종강사' all='산청  ｜ 기타각종강사'
+      span.tit :: own='' all='단성중 학교폭력 업무담당자 수업경감 시간강사 채용 재공고(체육)'
+      a href=#self; onclick=openDetail('1815259'); :: own='단성중 학교폭력 업무담당자 수업경감 시간강사 채용 재공고(체육)' all='단성중 학교폭력 업무담당자 수업경감 시간강사 채용 재공고(체육)'
+      td.data-btn :: own='' all='모집기관 단성중'
       span.cate :: own='모집기관' all='모집기관'
-      span :: own='문산중' all='문산중'
-      td.data-btn :: own='' all='접수기간 2026.10.31 ~ 2026.11.03'
+      span :: own='단성중' all='단성중'
+      td.data-btn :: own='' all='접수기간 2026.10.29 ~ 2026.11.02'
       span.cate :: own='접수기간' all='접수기간'
-      span :: own='2026.10.31 ~ 2026.11.03' all='2026.10.31 ~ 2026.11.03'
+      span :: own='2026.10.29 ~ 2026.11.02' all='2026.10.29 ~ 2026.11.02'
       td.data-btn :: own='' all='접수상태 접수중 상세보기'
       span.cate.dn :: own='접수상태' all='접수상태'
       div.df :: own='' all='접수중 상세보기'
       span.st2 :: own='접수중' all='접수중'
-[DATES] sample: ['2026.10.31', '2026.11.03', '2026.11.02', '2026.11.06', '2026.11.01']
+[DATES] sample: ['2026.10.29', '2026.11.02', '2026.10.21', '2026.10.28', '2026.03.20']
 
 [ANCHORS] most common link paths
-   x298 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1815296');", 'title': '문산중학교 기간제교사(체육) 채용 공고(2차)'} text='문산중학교 기간제교사(체육) 채용 공고(2차)'
-      row? tr :: '진주  ｜ 기간제교원(강사 제외) 중등기간제교사 문산중학교 기간제교사(체육) 채용 공고(2차) 모집기관 문산중 접수기간 2026.10.31 ~ 2026.11.03 접수상태 접수중 상세보기'
+   x5 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1815259');", 'title': '단성중 학교폭력 업무담당자 수업경감 시간강사 채용 재공고(체육)'} text='단성중 학교폭력 업무담당자 수업경감 시간강사 채용 재공고(체육)'
+      row? tr :: '산청  ｜ 기타각종강사 단성중 학교폭력 업무담당자 수업경감 시간강사 채용 재공고(체육) 모집기관 단성중 접수기간 2026.10.29 ~ 2026.11.02 접수상태 접수중 상세보기'
    x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
       row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
-   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(372); return false;'} text='마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(14); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
+====================================================================================================
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%ED%86%B5%EC%98%81%EC%A4%91%EC%95%99%EC%A4%91
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%ED%86%B5%EC%98%81%EC%A4%91%EC%95%99%EC%A4%91 encoding=UTF-8 bytes=91351
+title: 구인·구직포털 : HOME > 모집공고
+
+[BODY TEXT] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl
+채용정보 목록
+채용 정보
+모집기관
+접수기간
+접수상태
+통영  ｜ 결원대체강사
+통영중앙중학교 체육과 전일제/시간제 강사 채용 재공고
+모집기관
+통영중앙중
+접수기간
+2026.10.29 ~ 2026.11.01
+접수상태
+접수중
+상세보기
+통영  ｜ 결원대체강사
+통영중앙중학교 체육과 전일제/시간제 강사 채용 공고
+모집기관
+통영중앙중
+접수기간
+2026.10.26 ~ 2026.10.28
+접수상태
+마감
+상세보기
+통영  ｜ 교육공무직원 조리실무사
+통영중앙중학교 기간제 교육공무직원(조리실무사) 채용 재공고
+모집기관
+통영중앙중
+접수기간
+2026.10.13 ~ 2026.10.19
+접수상태
+마감
+상세보기
+통영  ｜ 교육공무직원 조리실무사
+통영중앙중학교 기간제 교육공무직원(조리실무사) 채용 공고
+모집기관
+통영중앙중
+접수기간
+2026.10.02 ~ 2026.10.08
+접수상태
+마감
+상세보기
+통영  ｜ 방과후학교강사
+통영중앙중학교 방과후학교 외부 강사 채용 재공고
+모집기관
+통영중앙중
+접수기간
+2026.09.14 ~ 2026.09.16
+접수상태
+마감
+상세보기
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=6
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:통영  ｜ 결원대체강사 통영중앙중학교 체육과 전 | td.data-btn:모집기관 통영중앙중 | td.data-btn:접수기간 2026.10.29 ~ 2026.11. | td.data-btn:접수상태 접수중 상세보기
+      td.data-btn.tl :: own='' all='통영  ｜ 결원대체강사 통영중앙중학교 체육과 전일제/시간제 강사 채용 재공고'
+      span.cate :: own='통영  ｜ 결원대체강사' all='통영  ｜ 결원대체강사'
+      span.tit :: own='' all='통영중앙중학교 체육과 전일제/시간제 강사 채용 재공고'
+      a href=#self; onclick=openDetail('1815258'); :: own='통영중앙중학교 체육과 전일제/시간제 강사 채용 재공고' all='통영중앙중학교 체육과 전일제/시간제 강사 채용 재공고'
+      td.data-btn :: own='' all='모집기관 통영중앙중'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='통영중앙중' all='통영중앙중'
+      td.data-btn :: own='' all='접수기간 2026.10.29 ~ 2026.11.01'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.10.29 ~ 2026.11.01' all='2026.10.29 ~ 2026.11.01'
+      td.data-btn :: own='' all='접수상태 접수중 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='접수중 상세보기'
+      span.st2 :: own='접수중' all='접수중'
+[DATES] sample: ['2026.10.29', '2026.11.01', '2026.10.26', '2026.10.28', '2026.10.13']
+
+[ANCHORS] most common link paths
+   x5 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1815258');", 'title': '통영중앙중학교 체육과 전일제/시간제 강사 채용 재공고'} text='통영중앙중학교 체육과 전일제/시간제 강사 채용 재공고'
+      row? tr :: '통영  ｜ 결원대체강사 통영중앙중학교 체육과 전일제/시간제 강사 채용 재공고 모집기관 통영중앙중 접수기간 2026.10.29 ~ 2026.11.01 접수상태 접수중 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(28); return false;'} text='마지막페이지로 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+
+[LINKS] board candidates (6)
+   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
+   '모집공고' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
+   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
+   '한국어 강사' -> https://www.gne.go.kr/works/user/bbs/BD_selectBbsList.do?q_bbsSn=1545
+   '기간제교원' -> https://edurecruit.go.kr/nxui/index.html
+   '글쓰기' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentForm.do
+====================================================================================================
+URL: https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EB%82%A8%ED%8F%AC%EC%B4%88
+status=200 final=https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=5&q_currPage=1&q_searchKey=1003&q_searchVal=%EB%82%A8%ED%8F%AC%EC%B4%88 encoding=UTF-8 bytes=91269
+title: 구인·구직포털 : HOME > 모집공고
+
+[BODY TEXT] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl
+채용정보 목록
+채용 정보
+모집기관
+접수기간
+접수상태
+통영  ｜ 결원대체강사
+2026. 남포초등학교 정규 교원 결원대체강사(전일제 강사) 채용 공고문
+모집기관
+남포초
+접수기간
+2026.10.30 ~ 2026.11.01
+접수상태
+접수중
+상세보기
+통영  ｜ 기타
+2026. AI교육 코디네이터 채용 재공고
+모집기관
+남포초
+접수기간
+2026.07.16 ~ 2026.07.19
+접수상태
+마감
+상세보기
+통영  ｜ 기타
+남포초등학교 여름방학 중 집중돌봄교실 자원봉사자 공고
+모집기관
+남포초
+접수기간
+2026.07.15 ~ 2026.07.21
+접수상태
+마감
+상세보기
+통영  ｜ 기타각종강사
+2026학년도 남포초등학교 AI교육 코디네이터 채용 공고
+모집기관
+남포초
+접수기간
+2026.07.13 ~ 2026.07.15
+접수상태
+마감
+상세보기
+통영  ｜ 기타각종강사
+2026 .남포초등학교  돌봄교실  방학중 특기적성 프로그램 외부강사 모집 공고
+모집기관
+남포초
+접수기간
+2026.04.07 ~ 2026.04.13
+접수상태
+마감
+상세보기
+
+[TABLE] form#dataForm > div.prgr-list-cont.prgr-status > table.frmbd-list-tbl  rows=6
+   row: tr -> th:채용 정보 | th:모집기관 | th:접수기간 | th:접수상태
+   row: tr -> td.data-btn.tl:통영  ｜ 결원대체강사 2026. 남포초등학교  | td.data-btn:모집기관 남포초 | td.data-btn:접수기간 2026.10.30 ~ 2026.11. | td.data-btn:접수상태 접수중 상세보기
+      td.data-btn.tl :: own='' all='통영  ｜ 결원대체강사 2026. 남포초등학교 정규 교원 결원대체강사(전일제 강사) 채용 '
+      span.cate :: own='통영  ｜ 결원대체강사' all='통영  ｜ 결원대체강사'
+      span.tit :: own='' all='2026. 남포초등학교 정규 교원 결원대체강사(전일제 강사) 채용 공고문'
+      a href=#self; onclick=openDetail('1815257'); :: own='2026. 남포초등학교 정규 교원 결원대체강사(전일제 강사) 채용 공고문' all='2026. 남포초등학교 정규 교원 결원대체강사(전일제 강사) 채용 공고문'
+      td.data-btn :: own='' all='모집기관 남포초'
+      span.cate :: own='모집기관' all='모집기관'
+      span :: own='남포초' all='남포초'
+      td.data-btn :: own='' all='접수기간 2026.10.30 ~ 2026.11.01'
+      span.cate :: own='접수기간' all='접수기간'
+      span :: own='2026.10.30 ~ 2026.11.01' all='2026.10.30 ~ 2026.11.01'
+      td.data-btn :: own='' all='접수상태 접수중 상세보기'
+      span.cate.dn :: own='접수상태' all='접수상태'
+      div.df :: own='' all='접수중 상세보기'
+      span.st2 :: own='접수중' all='접수중'
+[DATES] sample: ['2026.10.30', '2026.11.01', '2026.07.16', '2026.07.19', '2026.07.15']
+
+[ANCHORS] most common link paths
+   x5 tr > td.data-btn.tl > span.tit > a  href=#self; {'onclick': "openDetail('1815257');", 'title': '2026. 남포초등학교 정규 교원 결원대체강사(전일제 강사) 채용 공고문'} text='2026. 남포초등학교 정규 교원 결원대체강사(전일제 강사) 채용 공고문'
+      row? tr :: '통영  ｜ 결원대체강사 2026. 남포초등학교 정규 교원 결원대체강사(전일제 강사) 채용 공고문 모집기관 남포초 접수기간 2026.10.30 ~ 2026.11.01 접수상태 접수중 상세보기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next  href=# {'onclick': 'opMovePage(11); return false;'} text='다음페이지그룹 가기'
+      row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
+   x1 div.prgr-bd-page > div.paging > div.paging-next > a.next.last  href=# {'onclick': 'opMovePage(19); return false;'} text='마지막페이지로 가기'
       row? div.paging-next :: '다음페이지그룹 가기 마지막페이지로 가기'
 
 [LINKS] board candidates (6)
