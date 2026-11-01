@@ -24,7 +24,8 @@ from .extract.attachments import extract_text, file_extension, filename_from_url
 from .extract.deadline import KST, DeadlineType, parse_deadline, parse_known_format
 from .models import Posting, RawListing, RawPosting, RunLog, SourceRef, SourceRunResult, Status
 from .models import FIELD_NAMES
-from .normalize import clean_url, extract_regions, mask_pii, normalize_title, standardize_org, strip_surrogates
+from .normalize import (clean_url, extract_regions, mask_pii, normalize_title, regions_from_field, standardize_org,
+                        strip_surrogates)
 from .school_region import SchoolRegions, fill_siguns
 from .store import Store
 
@@ -95,6 +96,9 @@ def build_posting(raw: RawPosting, cfg: SourceConfig, bundle: ConfigBundle, now:
     if raw.extra.get("attachment_errors"):
         flags.append("첨부추출실패")
     regions = extract_regions(" ".join([title, org, raw.region_text or "", body[:3000]]))
+    # 지역 칸의 시군을 앞에 둔다 — 강사잇다 '지역'(region_label)은 첫 시군을 쓴다
+    field = regions_from_field(raw.region_text)
+    regions = field + [r for r in regions if r not in field]
     if not regions and cfg.region_hint and cfg.org_type.value != "portal":
         regions = [r if r != "경상남도" else "경남" for r in cfg.region_hint][:1]
 
@@ -203,6 +207,10 @@ def run_source(cfg: SourceConfig, bundle: ConfigBundle, store: Store, http: Http
             existing.removed_at = None  # 내려갔다고 본 공고가 목록에 다시 나왔다 (다시 게시)
         if existing and not refetch and not (existing.status != Status.expired and existing.last_seen_at < recheck_before):
             out.touched.append(existing.canonical_key)
+            # 지역 칸을 읽기 전에 저장된 공고('경남'뿐)도 목록을 다시 볼 때 시군을 채운다
+            field = [r for r in regions_from_field(l.region_text) if r not in existing.region]
+            if field:
+                existing.region = field + list(existing.region)
             continue
         try:
             raw = adapter.fetch_detail(l)

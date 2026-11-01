@@ -28,6 +28,11 @@ def test_title_strips_board_badges():
     assert normalize_title("공지사항 게시판 운영 강사 모집")[0] == "공지사항 게시판 운영 강사 모집"
     assert normalize_title("새 글쓰기 강좌 강사 모집")[0] == "새 글쓰기 강좌 강사 모집"
     assert normalize_title("NEW 미디어 교육 강사 모집")[0] == "NEW 미디어 교육 강사 모집"
+    # 띄어쓰기 없이 붙은 'New' 배지 (경남청소년활동진흥센터, 2026-11-01). 영어 낱말은 그대로
+    assert normalize_title("New2026년 청소년지도자 강사 모집")[0] == "2026년 청소년지도자 강사 모집"
+    assert normalize_title("NEW[재공고] 강사 모집")[0] == "강사 모집"
+    assert normalize_title("Newton 과학교실 강사 모집")[0] == "Newton 과학교실 강사 모집"
+    assert normalize_title("New York 영어캠프 강사 모집")[0] == "New York 영어캠프 강사 모집"
     assert norm_key("[공지] 강사 모집 새 글") == norm_key("강사 모집")
 
 
@@ -70,3 +75,13 @@ def test_mask_pii():
 
 def test_clean_url():
     assert clean_url("HTTPS://Example.org/a?b=1&utm_source=x#frag") == "https://example.org/a?b=1"
+
+
+def test_regions_from_field():
+    """지역 칸의 맨 시군 이름 (경남교육청 구인포털 '통영 ｜ 기타', 2026-11-01)."""
+    from gia.normalize import regions_from_field
+    assert regions_from_field("통영  ｜ 기타") == ["통영"]
+    assert regions_from_field("함안") == ["함안"]
+    assert regions_from_field("경남 창원시 의창구") == ["창원"]
+    assert regions_from_field("강원 고성군") == []  # 다른 도의 같은 이름
+    assert regions_from_field("기타") == [] and regions_from_field(None) == []

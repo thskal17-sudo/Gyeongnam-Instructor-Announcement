@@ -295,6 +295,9 @@ sources:
       date_selector: td:nth-child(3) span:nth-of-type(2)
       deadline_selector: td:nth-child(3) span:nth-of-type(2)   # '2026.10.24 ~ 2026.10.27' 의 뒤쪽이 접수 마감
       org_selector: td:nth-child(2) span:nth-of-type(2)
+      # 채용 정보 칸 머리 '통영  ｜ 기타' 의 앞쪽이 학교 지역. 학교 이름(칠원고)만으로는 시군을 알 수 없어
+      # 강사잇다 지역이 '경남'으로만 나갔다(2026-11-01)
+      region_selector: td.tl span.cate
       keywords: [강사, 교강사, 지도사, 지도자, 코치, 방과후, 늘봄, 돌봄]
       paging: { max_pages: 6 }   # 50건 × 6쪽. 수집 기간(default_days)보다 오래된 쪽에 닿으면 그 전에 멈춘다
       detail:
@@ -1132,7 +1135,7 @@ sources:
       candidate_list_url: https://www.hrdkorea.or.kr/3/1/2/2
     notes: >-
       채용공고는 본부 통합(3/1/2/2)이고 지사별 강사 공고는 없음(2026-09-22 확인). 필요 시 본부 게시판을 등록하되 지역 필터에 의존.
-  - { id: kosha_gn,      name: 한국산업안전보건공단 경남본부, org_type: central_public, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 안전교육 강사 }
+  - { id: kosha_gn,      name: 한국산업안전보건공단 경남본부, org_type: central_public, tier: 3, enabled: false, homepage: https://www.kosha.or.kr, adapter: { type: html_list, list_url: TODO }, notes: "안전교육 강사. 누리집이 자바스크립트 화면(kosha.or.kr/landing)이라 게시판을 HTML 로 읽을 수 없다(2026-11-01 probe). 공공기관 채용은 alio 로 들어온다" }
   - { id: lh,            name: 한국토지주택공사(LH, 진주), org_type: central_public, tier: 3, enabled: false, homepage: https://www.lh.or.kr, adapter: { type: html_list, list_url: TODO }, notes: 강사 공고 빈도 낮음. alio로 대체 가능 }
   - { id: kosmes,        name: 중소벤처기업진흥공단(진주), org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 연수원 강사 풀 }
   - { id: koen,          name: 한국남동발전(진주),         org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
@@ -1398,7 +1401,7 @@ sources:
     notes: >-
       진주문화원 공지. 러너 IP 로는 연결 시간초과(2026-10-05), 국내 중계로 읽힌다(2026-10-31). robots.txt 없음(404).
       문화학교 강좌·공모 안내가 대부분이라 keywords 로 강사 모집만 남긴다
-  - { id: gn_cultural_centers, name: 시군 문화원 (18개 묶음), org_type: private, tier: 3, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: "창원·진주·통영·사천·김해·밀양·거제·양산·의령·창녕·고성·남해·하동·산청·함양·거창·합천 문화원. 사이트가 있는 곳만 개별 항목으로 분리 등록(함안은 ha_cc). 2026-10-05 러너 확인: 진주(jjcc.or.kr)·통영(tongyeong.kccf.or.kr) 연결 시간초과, 양산(yangsancc.or.kr, WordPress kboard)·남해(ccnh.or.kr/html/community/notice.php)는 열리나 최근 글에 강사 모집 없어 보류, 밀양 등 *.kccf.or.kr 는 연합회 화면만 나옴" }
+  - { id: gn_cultural_centers, name: 시군 문화원 (18개 묶음), org_type: private, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: "창원·진주·통영·사천·김해·밀양·거제·양산·의령·창녕·고성·남해·하동·산청·함양·거창·합천 문화원. 사이트가 있는 곳만 개별 항목으로 분리 등록(함안은 ha_cc). 2026-10-05 러너 확인: 진주(jjcc.or.kr)·통영(tongyeong.kccf.or.kr) 연결 시간초과, 양산(yangsancc.or.kr, WordPress kboard)·남해(ccnh.or.kr/html/community/notice.php)는 열리나 최근 글에 강사 모집 없어 보류, 밀양 등 *.kccf.or.kr 는 연합회 화면만 나옴. 묶음 자체는 읽을 주소가 없어 끈다(2026-11-01) — 개별 문화원은 jj_cc·ha_cc 처럼 따로 넣는다" }
 
 # ---------------------------------------------------------------------------
 # Tier 3-E. 시군 도서관  — Phase 3

@@ -29,7 +29,9 @@ ORG_PREFIX_RE = re.compile(r"^\s*(?:\(재\)|\(사\)|\(주\)|재단법인|사단�
 _BRACKET_RE = re.compile(r"[\[\(【〔]([^\]\)】〕]{1,20})[\]\)】〕]")
 # 게시판 배지: 목록 CMS 가 제목 앞뒤에 붙이는 '새 글'·'NEW'·'[공지]' (거창·진주시설공단·경남인재평생교육진흥원 등 .web CMS, #18)
 # 사천문화재단(그누보드)은 '공지' 배지가 제목에 붙어 '공지2026년 …' 으로 읽힌다 — 바로 뒤가 숫자여도 뗀다
-_BADGE_LEAD_RE = re.compile(r"^(?:[\[\(【]\s*(?:공지|필독|NEW|New|new|N)\s*[\]\)】]|공지(?=\s|\d))\s*[:\-·]?\s*")
+# 'New' 가 띄어쓰기 없이 붙은 제목도 있다 (경남청소년활동진흥센터 'New2026년 … 개최안내', 2026-11-01).
+# 영어 낱말(New York)과 헷갈리지 않게 바로 뒤가 숫자·한글·괄호일 때만 뗀다
+_BADGE_LEAD_RE = re.compile(r"^(?:[\[\(【]\s*(?:공지|필독|NEW|New|new|N)\s*[\]\)】]|공지(?=\s|\d)|(?:NEW|New)(?=\d|[가-힣\[\(「<]))\s*[:\-·]?\s*")
 _BADGE_TAIL_RE = re.compile(r"\s*(?:[\[\(【]\s*(?:새\s?글|NEW|New|new|N)\s*[\]\)】]|새\s?글|NEW|New|new)\s*$")
 _WS_RE = re.compile(r"\s+")
 _KEY_RE = re.compile(r"[^0-9a-z가-힣]")
@@ -101,6 +103,27 @@ def extract_regions(text: str) -> list[str]:
     for name, pattern in _SIGUN_PATTERNS.items():
         if pattern.search(t):
             out.append(name)
+    return out
+
+
+_OTHER_PROVINCES = ["서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", "경기", "강원", "충북", "충남", "충청",
+                    "전북", "전남", "전라", "경북", "경상북도", "제주"]
+
+
+def regions_from_field(text: str | None) -> list[str]:
+    """'지역' 칸처럼 시군 이름만 적힌 글에서 시군을 뽑는다 ('통영 ｜ 기타' → ['통영'], '함안' → ['함안']).
+
+    extract_regions 는 본문 오탐을 막으려고 '함안' 같은 맨이름을 시군으로 보지 않는다. 지역 칸은 그 자체가
+    경남 교육청·기관의 지역 표시라 낱말마다 경남 문맥을 붙여 본다.
+    """
+    t = nfkc(text or "")
+    if any(w in t for w in _OTHER_PROVINCES):
+        return []  # '강원 고성군' 의 고성은 경남 고성이 아니다
+    out: list[str] = []
+    for word in re.findall(r"[가-힣]+", t):
+        for r in extract_regions(f"경남 {word}"):
+            if r != "경남" and r not in out:
+                out.append(r)
     return out
 
 
