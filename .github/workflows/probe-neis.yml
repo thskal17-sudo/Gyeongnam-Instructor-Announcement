@@ -1,4 +1,4 @@
-# 일회용 시험: 깃허브 러너에서 나이스(학교 정보) 공개 창구에 닿는지. 결과를 본 뒤 이 가지는 지운다.
+# 일회용 시험: 깃허브 러너에서 경남교육청 구인구직포털 상세 화면이 어떻게 보이는지 (지워진 공고 vs 있는 공고). 결과를 본 뒤 이 가지는 지운다.
 name: probe-neis
 on:
   push:
@@ -7,11 +7,26 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: neis school lookup
+      - name: gne detail
         run: |
-          for name in 동포초등학교 칠원고등학교 남지초등학교; do
-            echo "== $name"
-            curl -sS --max-time 30 -G "https://open.neis.go.kr/hub/schoolInfo" \
-              --data-urlencode "Type=json" --data-urlencode "ATPT_OFCDC_SC_CODE=S10" --data-urlencode "SCHUL_NM=$name" \
-              | python3 -c "import json,sys; d=json.load(sys.stdin); r=d.get('schoolInfo',[{},{}]); rows=r[1].get('row',[]) if len(r)>1 else []; print('RESULT', d.get('RESULT') or r[0].get('head')); [print(x['SCHUL_NM'], '|', x['ORG_RDNMA'], '|', x.get('JU_ORG_NM')) for x in rows]" || echo "FAILED"
-          done
+          pip install -q httpx selectolax
+          python3 - <<'PY'
+          import httpx, re
+          from selectolax.lexbor import LexborHTMLParser as P
+          base = "https://www.gne.go.kr/works/user/recruitment/"
+          ua = {"User-Agent": "Mozilla/5.0 (probe)", "Accept-Language": "ko,en;q=0.8"}
+          def show(label, r):
+              t = P(r.text)
+              title = (t.css_first("title").text() if t.css_first("title") else "").strip()
+              body = t.css_first("div.prgr-bd-view")
+              txt = re.sub(r"\s+", " ", (body.text() if body else t.body.text() if t.body else ""))[:160]
+              print(f"{label}: HTTP {r.status_code} final={r.url} len={len(r.text)} title={title!r} prgr-bd-view={'있음' if body else '없음'} | {txt}")
+          with httpx.Client(headers=ua, follow_redirects=True, timeout=30) as c:
+              for sn in ("1815262", "1815259"):
+                  show(f"[세션없이] {sn}", c.get(base + f"BD_recruitmentDetail.do?regSn={sn}"))
+          with httpx.Client(headers=ua, follow_redirects=True, timeout=30) as c:
+              lst = c.get(base + "BD_recruitmentList.do?q_rowPerPage=50&q_currPage=1")
+              print("목록", lst.status_code, "1815262 in list:", "1815262" in lst.text, "| 1815259 in list:", "1815259" in lst.text)
+              for sn in ("1815262", "1815259"):
+                  show(f"[목록 다음] {sn}", c.get(base + f"BD_recruitmentDetail.do?regSn={sn}"))
+          PY
