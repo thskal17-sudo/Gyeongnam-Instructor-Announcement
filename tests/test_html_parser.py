@@ -162,3 +162,27 @@ def test_yangsan_library_config_reads_onclick_and_egov_files():
     assert extract_attachments_html(view, rows[0].url, d["attachment_selector"], d["attachment_regex"],
                                     d["attachment_url_template"]) == [
         "https://lib.yangsan.go.kr/cmm/fms/FileDown.do?atchFileId=FILE_000000000023166&fileSn=0"]
+
+
+def test_category_keywords_pick_rows_without_title_keyword():
+    """직종 칸이 '결원대체강사'면 제목에 키워드가 없어도 고른다. '강사 제외' 직종은 고르지 않는다 (gne, 2026-11-02)."""
+    from datetime import date
+
+    from gia.collectors.html_list import parse_list_html
+    from tests.conftest import make_source
+
+    def row(n, cate, title):
+        return (f'<tr><td class="tl"><span class="cate">{cate}</span><span class="tit">'
+                f'<a onclick="openDetail(\'{n}\');">{title}</a></span></td>'
+                '<td><span class="cate">모집기관</span><span>장유고</span></td>'
+                '<td><span class="cate">접수기간</span><span>2026.10.24 ~ 2026.10.27</span></td></tr>')
+    html = ('<table class="frmbd-list-tbl"><tbody>' + row(1, "김해  ｜ 결원대체강사", "계약제교원(전일제) 채용 공고")
+            + row(2, "진주  ｜ 기간제교원(강사 제외) 중등기간제교사", "문산중학교 기간제교사(체육) 채용 공고")
+            + row(3, "통영  ｜ 기타", "2026 방과후학교 외부강사 모집") + "</tbody></table>")
+    cfg = make_source("gne", "edu_office", type="html_list", list_url="https://www.gne.go.kr/l")
+    a = {"row_selector": "table.frmbd-list-tbl tr", "title_selector": "td.tl span.tit", "link_selector": "td.tl a",
+         "link_attr": "onclick", "link_regex": r"openDetail\('(\d+)'\)",
+         "link_url_template": "https://www.gne.go.kr/d?regSn={1}", "region_selector": "td.tl span.cate",
+         "keywords": ["강사", "방과후"], "category_keywords": ["결원대체강사", "기타각종강사", "방과후학교강사"]}
+    rows, _ = parse_list_html(html, "https://www.gne.go.kr/l", a, cfg, date(2026, 10, 1))
+    assert [r.title for r in rows] == ["계약제교원(전일제) 채용 공고", "2026 방과후학교 외부강사 모집"]

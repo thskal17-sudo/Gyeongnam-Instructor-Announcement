@@ -299,6 +299,8 @@ sources:
       # 강사잇다 지역이 '경남'으로만 나갔다(2026-11-01)
       region_selector: td.tl span.cate
       keywords: [강사, 교강사, 지도사, 지도자, 코치, 방과후, 늘봄, 돌봄]
+      # 같은 칸 뒤쪽의 직종. 제목에 '강사'가 없는 강사 공고('계약제교원(전일제) 채용', '디지털튜터 채용')도 잡는다
+      category_keywords: [결원대체강사, 기타각종강사, 방과후학교강사]
       paging: { max_pages: 6 }   # 50건 × 6쪽. 수집 기간(default_days)보다 오래된 쪽에 닿으면 그 전에 멈춘다
       detail:
         fetch: true
