@@ -194,18 +194,25 @@ class HtmlListAdapter(SourceAdapter):
     def is_gone(self, url: str) -> bool | None:
         """상세 주소가 더는 공고를 보여 주지 않는가 (pipeline.check_removed).
 
-        True  — 없는 글(HTTP 404·410), 또는 열리지만 본문 칸(detail.body_selector)이 없는 오류 화면
+        True  — 없는 글(HTTP 404·410, 또는 detail.gone_status 에 적은 코드), 또는 열리지만 본문 칸(detail.body_selector)이 없는 오류 화면
         False — 본문 칸이 있다 (공고가 그대로 있음)
-        None  — 알 수 없다 (접속 실패·서버 오류·본문 칸 설정 없음). 이때는 아무것도 표시하지 않는다
+        None  — 알 수 없다 (접속 실패·그 밖의 서버 오류·본문 칸 설정 없음). 이때는 아무것도 표시하지 않는다
+
+        경남교육청 구인구직포털은 지워진 공고를 HTTP 500 'SERVER ERROR' 화면으로 돌려준다 (2026-11-02 러너 확인:
+        동포초 regSn=1815262 → 500, 같은 때 단성중 1815259 → 200). 그래서 그 소스는 gone_status: [500] 으로 둔다.
+        잠깐 난 서버 오류와 헷갈리지 않게 HttpClient 가 몇 번 다시 시도한 뒤에도 같을 때만이고,
+        지금 목록의 공고 하나가 먼저 정상으로 열려야 한다 (check_removed 의 대조군).
         """
         d = self.a.get("detail") or {}
         selector = d.get("body_selector")
         if not selector:
             return None
+        gone_codes = {404, 410, *(int(c) for c in d.get("gone_status") or [])}
         try:
             r = self.http.get(url)
         except FetchError as e:
-            return True if re.search(r"HTTP (404|410)\b", str(e)) else None
+            m = re.search(r"HTTP (\d{3})\b", str(e))
+            return True if m and int(m.group(1)) in gone_codes else None
         html = decode_html(r, d.get("encoding") or self.a.get("encoding"))
         return HTMLParser(html).css_first(selector) is None
 
