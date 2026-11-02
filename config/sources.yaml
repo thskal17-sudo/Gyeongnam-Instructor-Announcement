@@ -323,7 +323,10 @@ sources:
     enabled: false
     homepage: TODO
     adapter: { type: html_list, list_url: TODO }
-    notes: gne 통합 게시판이 학교 공고를 포함하면 불필요. 아니면 시군별로 18개 항목으로 분리 등록
+    notes: >-
+      불필요(2026-11-02 확인). 교육지원청(학교통합지원센터 등) 채용도 gne 구인포털에 올라오고, 경남교육청
+      돌봄·방과후지원센터(gne.go.kr/educare)의 '외부강사 모집공고(학교)' 메뉴도 그 포털로 연결된다.
+      같은 곳의 '외부강사 강사풀(강사회원)'(q_bbsSn=1490)은 강사가 올리는 등록 게시판이라 넣지 않는다
 
   # --- 8개 시 ---
   - id: changwon
