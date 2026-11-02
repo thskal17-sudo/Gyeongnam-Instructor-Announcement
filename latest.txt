@@ -1,102 +1,25 @@
-====================================================================================================
-URL: https://www.gne.go.kr/educare/sitemap.jsp
-status=200 final=https://www.gne.go.kr/educare/sitemap.jsp encoding=UTF-8 bytes=38850
-title: 돌봄·방과후지원센터 : HOME > 이용안내 > 사이트맵
-
-[GREP] teacher_0|모집공고|강사풀|Disallow
-   ...  <span class="mn-s2"> 자료실</span> </a> </li> <li class="mn-li2 has-sub "> <a href="/educare/info/teacher/teacher_01.jsp" class="mn-a2"> <span class="mn-s2"> 방과후학교 외부강사</span> </a> <div class="main-nav__depth3"> <ul class="mn-ul3"> <li class="mn-li3 "> <a href="/educare/info/teacher/teacher_01.jsp" class="mn-a3"> <span class="mn-s3"> 
-   ...  </a> <div class="main-nav__depth3"> <ul class="mn-ul3"> <li class="mn-li3 "> <a href="/educare/info/teacher/teacher_01.jsp" class="mn-a3"> <span class="mn-s3"> 운영절차</span> </a> </li> <li class="mn-li3 "> <a href="/works/user/recruitment/BD_recruitmentList.do" class="mn-a3"> <span class="mn-s3"> 외부강사 모집공고(학교)</span>
-   ...  <li class="mn-li3 "> <a href="/works/user/recruitment/BD_recruitmentList.do" class="mn-a3"> <span class="mn-s3"> 외부강사 모집공고(학교)</span> </a> </li> <li class="mn-li3 "> <a href="/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490" class="mn-a3"> <span class="mn-s3"> 외부강사 강사풀(강사회원)</span> </a> </li> </ul> 
-   ... <li class="mn-li3 "> <a href="/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490" class="mn-a3"> <span class="mn-s3"> 외부강사 강사풀(강사회원)</span> </a> </li> </ul> </div> </li> <li class="mn-li2 "> <a href="/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1478" class="mn-a2"> <span class="mn-s2"> 학교별 실행계획서</span> </a> </li> 
-   ... sSn=1477" class="mn-a2"> <span class="mn-s2"> 자료실</span> </a> </li> <li class="mn-li2 has-sub"> <a href="/educare/info/teacher/teacher_01.jsp" class="mn-a2"> <span class="mn-s2"> 방과후학교 외부강사</span> </a> <div class="sitemap-dep3"> <ul class="mn-ul3"> <li class="mn-li3"> <a href="/educare/info/teacher/teacher_01.jsp" class="mn-a3"> <span class="mn-s3"> 운영절차</span> </a> 
-   ...  방과후학교 외부강사</span> </a> <div class="sitemap-dep3"> <ul class="mn-ul3"> <li class="mn-li3"> <a href="/educare/info/teacher/teacher_01.jsp" class="mn-a3"> <span class="mn-s3"> 운영절차</span> </a> </li> <li class="mn-li3"> <a href="/works/user/recruitment/BD_recruitmentList.do" class="mn-a3"> <span class="mn-s3"> 외부강사 모집공고(학교)</span> </a> </
-   [SCRIPT src] ['/resources/libs/jquery/jquery-3.7.1.min.js', '/resources/libs/jquery/jquery-migrate-3.5.2.min.js', '/resources/libs/jquery-ui-1.14.2.custom/jquery-ui.min.js', '/component/js/ND_globalConfig.do', '/component/js/ND_massageConfig.do', '/resources/openworks4/js/openworks.global.js', '/resources/openworks4/js/openworks.message.js', '/resources/openworks4/js/openworks.initialize.js', '/resources/libs/fancybox-2.1.5/js/jquery.fancybox.js', '/resources/openworks4/js/openworks.modal.js', '/resources/openworks4/js/base.js', '/resources/libs/swiper-v8.4.4/js/swiper-bundle.min.js']
-[DATES] sample: []
-
-[RETRY without noise filter]
-
-[LIST] nav#main-nav > div#nav_depth1.main-nav__depth1 > ul.mn-ul1  items=5
-   li: li.mn-li1.has-sub -> 돌봄 · 방과후 지원센터 소개 돌봄 · 방과후 지원센터 소개 돌봄·방과후학교 운영지원체계 돌봄·방과후학교 비전 돌봄·방과후학교 운영절차 조직구성 지원센터역할
-      a.mn-a1 href=/educare/support/after.jsp onclick= :: own='' all='돌봄 · 방과후 지원센터 소개'
-      span.mn-s1 :: own='돌봄 · 방과후 지원센터 소개' all='돌봄 · 방과후 지원센터 소개'
-      div.main-nav__depth2 :: own='' all='돌봄 · 방과후 지원센터 소개 돌봄·방과후학교 운영지원체계 돌봄·방과후학교 비전 돌봄·방과'
-      div.title :: own='' all='돌봄 · 방과후 지원센터 소개'
-      div.title__inner :: own='' all='돌봄 · 방과후 지원센터 소개'
-      h3.title__tit :: own='' all='돌봄 · 방과후 지원센터 소개'
-      span.txt :: own='돌봄 · 방과후 지원센터 소개' all='돌봄 · 방과후 지원센터 소개'
-      ul.mn-ul2 :: own='' all='돌봄·방과후학교 운영지원체계 돌봄·방과후학교 비전 돌봄·방과후학교 운영절차 조직구성 지원센'
-      li.mn-li2 :: own='' all='돌봄·방과후학교 운영지원체계'
-      a.mn-a2 href=/educare/support/after.jsp onclick= :: own='' all='돌봄·방과후학교 운영지원체계'
-      span.mn-s2 :: own='돌봄·방과후학교 운영지원체계' all='돌봄·방과후학교 운영지원체계'
-      li.mn-li2 :: own='' all='돌봄·방과후학교 비전'
-      a.mn-a2 href=/educare/support/school.jsp onclick= :: own='' all='돌봄·방과후학교 비전'
-      span.mn-s2 :: own='돌봄·방과후학교 비전' all='돌봄·방과후학교 비전'
-[DATES] sample: []
-
-[ANCHORS] most common link paths
-   x2 dd.toggle-list.list > ul > li > a  href=/educare/support/after.jsp  text='돌봄 · 방과후 지원센터 소개'
-      row? li :: '돌봄 · 방과후 지원센터 소개'
-
-[LINKS] board candidates (6)
-   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
-   '공지사항' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1476
-   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/info/teacher/teacher_01.jsp
-   '외부강사 모집공고(학교)' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
-   '외부강사 강사풀(강사회원)' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
-   '공지사항' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1573
-====================================================================================================
-URL: https://www.gne.go.kr/educare/info/teacher/teacher_01.jsp
-status=200 final=https://www.gne.go.kr/educare/info/teacher/teacher_01.jsp encoding=UTF-8 bytes=35396
-title: 돌봄·방과후지원센터 : HOME > 방과후학교 > 방과후학교 외부강사 > 운영절차
-
-[GREP] teacher_0|모집공고|강사풀|Disallow
-   ...  <span class="mn-s2"> 자료실</span> </a> </li> <li class="mn-li2 has-sub active"> <a href="/educare/info/teacher/teacher_01.jsp" class="mn-a2"> <span class="mn-s2"> 방과후학교 외부강사</span> </a> <div class="main-nav__depth3"> <ul class="mn-ul3"> <li class="mn-li3 active"> <a href="/educare/info/teacher/teacher_01.jsp" class="mn-a3"> <span class="mn-s3"> 
-   ...  </a> <div class="main-nav__depth3"> <ul class="mn-ul3"> <li class="mn-li3 active"> <a href="/educare/info/teacher/teacher_01.jsp" class="mn-a3"> <span class="mn-s3"> 운영절차</span> </a> </li> <li class="mn-li3 "> <a href="/works/user/recruitment/BD_recruitmentList.do" class="mn-a3"> <span class="mn-s3"> 외부강사 모집공고(학교)</span>
-   ...  <li class="mn-li3 "> <a href="/works/user/recruitment/BD_recruitmentList.do" class="mn-a3"> <span class="mn-s3"> 외부강사 모집공고(학교)</span> </a> </li> <li class="mn-li3 "> <a href="/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490" class="mn-a3"> <span class="mn-s3"> 외부강사 강사풀(강사회원)</span> </a> </li> </ul> 
-   ... <li class="mn-li3 "> <a href="/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490" class="mn-a3"> <span class="mn-s3"> 외부강사 강사풀(강사회원)</span> </a> </li> </ul> </div> </li> <li class="mn-li2 "> <a href="/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1478" class="mn-a2"> <span class="mn-s2"> 학교별 실행계획서</span> </a> </li> 
-   ... o?q_bbsSn=1477" > <span> 자료실</span> </a> </li> <li class="active"> <a href="/educare/info/teacher/teacher_01.jsp" > <span> 방과후학교 외부강사</span> </a> </li> <li class=""> <a href="/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1478" > <span> 학교별 실행계획서</span> </a> </li> <li class=""> <a href="/educare/user/bb
-   ... ><span class="blind">HOME</span></a></li> <li> <a href="/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1476" > <span>방과후학교</span> </a> </li> <li> <a href="/educare/info/teacher/teacher_01.jsp" > <span>방과후학교 외부강사</span> </a> </li> <li> <a href="/educare/info/teacher/teacher_01.jsp" > <span>운영절차</span> </a> </li> </ol> </div> <script src="/resources/user/common/kakao/kakao.js"></script> <script src="/EDotXPressHtml/js/edotxpress-html.min.js?t=20240402"></script> <script src="/EDotXPressHtml/js/edotxpress-common.js?
-   [SCRIPT src] ['/resources/libs/jquery/jquery-3.7.1.min.js', '/resources/libs/jquery/jquery-migrate-3.5.2.min.js', '/resources/libs/jquery-ui-1.14.2.custom/jquery-ui.min.js', '/component/js/ND_globalConfig.do', '/component/js/ND_massageConfig.do', '/resources/openworks4/js/openworks.global.js', '/resources/openworks4/js/openworks.message.js', '/resources/openworks4/js/openworks.initialize.js', '/resources/libs/fancybox-2.1.5/js/jquery.fancybox.js', '/resources/openworks4/js/openworks.modal.js', '/resources/openworks4/js/base.js', '/resources/libs/swiper-v8.4.4/js/swiper-bundle.min.js']
-[DATES] sample: []
-
-[RETRY without noise filter]
-
-[LIST] nav#main-nav > div#nav_depth1.main-nav__depth1 > ul.mn-ul1  items=5
-   li: li.mn-li1.has-sub -> 돌봄 · 방과후 지원센터 소개 돌봄 · 방과후 지원센터 소개 돌봄·방과후학교 운영지원체계 돌봄·방과후학교 비전 돌봄·방과후학교 운영절차 조직구성 지원센터역할
-      a.mn-a1 href=/educare/support/after.jsp onclick= :: own='' all='돌봄 · 방과후 지원센터 소개'
-      span.mn-s1 :: own='돌봄 · 방과후 지원센터 소개' all='돌봄 · 방과후 지원센터 소개'
-      div.main-nav__depth2 :: own='' all='돌봄 · 방과후 지원센터 소개 돌봄·방과후학교 운영지원체계 돌봄·방과후학교 비전 돌봄·방과'
-      div.title :: own='' all='돌봄 · 방과후 지원센터 소개'
-      div.title__inner :: own='' all='돌봄 · 방과후 지원센터 소개'
-      h3.title__tit :: own='' all='돌봄 · 방과후 지원센터 소개'
-      span.txt :: own='돌봄 · 방과후 지원센터 소개' all='돌봄 · 방과후 지원센터 소개'
-      ul.mn-ul2 :: own='' all='돌봄·방과후학교 운영지원체계 돌봄·방과후학교 비전 돌봄·방과후학교 운영절차 조직구성 지원센'
-      li.mn-li2 :: own='' all='돌봄·방과후학교 운영지원체계'
-      a.mn-a2 href=/educare/support/after.jsp onclick= :: own='' all='돌봄·방과후학교 운영지원체계'
-      span.mn-s2 :: own='돌봄·방과후학교 운영지원체계' all='돌봄·방과후학교 운영지원체계'
-      li.mn-li2 :: own='' all='돌봄·방과후학교 비전'
-      a.mn-a2 href=/educare/support/school.jsp onclick= :: own='' all='돌봄·방과후학교 비전'
-      span.mn-s2 :: own='돌봄·방과후학교 비전' all='돌봄·방과후학교 비전'
-[DATES] sample: []
-
-[ANCHORS] most common link paths
-   x2 dd.toggle-list.list > ul > li > a  href=/educare/support/after.jsp  text='돌봄 · 방과후 지원센터 소개'
-      row? li :: '돌봄 · 방과후 지원센터 소개'
-   x2 div.page__tab2.toggle-item > ul > li > a  href=/works/user/recruitment/BD_recruitmentList.do  text='외부강사 모집공고(학교)'
-      row? li :: '외부강사 모집공고(학교)'
-   x1 div.cnavi__list > dl.cn-dl2.toggle-item > dt > a.tit  href=#n {'title': '닫힘'} text='방과후학교 외부강사'
-   x1 dd.toggle-list.list > ul > li.active > a  href=/educare/info/teacher/teacher_01.jsp  text='방과후학교 외부강사'
-      row? li.active :: '방과후학교 외부강사'
-
-[LINKS] board candidates (6)
-   '구인·구직포털' -> https://www.gne.go.kr/works/index.do
-   '공지사항' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1476
-   '방과후학교 외부강사' -> https://www.gne.go.kr/educare/info/teacher/teacher_01.jsp
-   '외부강사 모집공고(학교)' -> https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do
-   '외부강사 강사풀(강사회원)' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1490
-   '공지사항' -> https://www.gne.go.kr/educare/user/bbs/BD_selectBbsList.do?q_bbsSn=1573
-====================================================================================================
-URL: https://www.gne.go.kr/robots.txt
-status=404 final=https://www.gne.go.kr/robots.txt encoding=UTF-8 bytes=1361
-title: SERVER ERROR
-body (short):  <!DOCTYPE html> <html lang="ko"> <head> <meta charset="utf-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title>SERVER ERROR</title> <link rel="stylesheet" type="text/css" href="/resources/openworks4/css/webfont.css"> <link rel="stylesheet" type="text/css" href="/resources/openworks4/css/openworks4-custom.css?v20250828"> <link rel="stylesheet" type="text/css" href="/resources/openworks4/css/error.css?v20251001"> </head> <body> <div id="error"> <div class="inner"> <h1 class="error__tit"> <span class="eng">SERVER E
+24:  default_days: 14
+::group::probe gne
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.gne.go.kr/robots.txt "HTTP/1.1 404 Not Found"
+INFO httpx: HTTP Request: GET https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=50&q_currPage=1 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=50&q_currPage=2 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=50&q_currPage=3 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=50&q_currPage=4 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=50&q_currPage=5 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=50&q_currPage=6 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1815298 "HTTP/1.1 200 OK"
+[probe] 경상남도교육청 구인구직포털: 목록 87건
+  - 2026-11-02 | 창원남고 | 학교법인남제학원 전일제강사 채용 3차 공고(지구과학) | https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1815298
+  - 2026-11-02 | 명곡초 | 명곡초등학교 기초학력 맞춤지원 전담강사 채용 공고 | https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1815297
+  - 2026-10-30 | 봉곡초 | 봉곡초등학교 계약제 교원(전일제강사) 채용 공고 | https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1815293
+  - 2026-10-30 | 김해생명과학고 | 김해생명과학고 시간강사 채용 공고(농공)(1차) | https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1815291
+  - 2026-11-02 | 창원상남중 | 창원상남중학교 수학과 전일제강사 채용 공고 | https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1815290
+[detail] 본문 246자 · 마감 None (unknown, 'None') · 점수 70 ['+50 제목 핵심어(강사)', '+20 채용어(채용)'] · 분야 other
+  [date?] 2026-11-02
+  [date?] 055-285-4992
+  [date?] 접수중
+  [date?] 접수기간
+  [date?] 055-285-4992
+[posting] 포함: 학교법인남제학원 전일제강사 채용 3차 공고(지구과학)
+::endgroup::

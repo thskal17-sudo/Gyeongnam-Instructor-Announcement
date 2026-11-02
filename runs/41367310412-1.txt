@@ -1,0 +1,25 @@
+24:  default_days: 14
+::group::probe gne
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.gne.go.kr/robots.txt "HTTP/1.1 404 Not Found"
+INFO httpx: HTTP Request: GET https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=50&q_currPage=1 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=50&q_currPage=2 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=50&q_currPage=3 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=50&q_currPage=4 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=50&q_currPage=5 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_rowPerPage=50&q_currPage=6 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1815298 "HTTP/1.1 200 OK"
+[probe] 경상남도교육청 구인구직포털: 목록 87건
+  - 2026-11-02 | 창원남고 | 학교법인남제학원 전일제강사 채용 3차 공고(지구과학) | https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1815298
+  - 2026-11-02 | 명곡초 | 명곡초등학교 기초학력 맞춤지원 전담강사 채용 공고 | https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1815297
+  - 2026-10-30 | 봉곡초 | 봉곡초등학교 계약제 교원(전일제강사) 채용 공고 | https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1815293
+  - 2026-10-30 | 김해생명과학고 | 김해생명과학고 시간강사 채용 공고(농공)(1차) | https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1815291
+  - 2026-11-02 | 창원상남중 | 창원상남중학교 수학과 전일제강사 채용 공고 | https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1815290
+[detail] 본문 246자 · 마감 None (unknown, 'None') · 점수 70 ['+50 제목 핵심어(강사)', '+20 채용어(채용)'] · 분야 other
+  [date?] 2026-11-02
+  [date?] 055-285-4992
+  [date?] 접수중
+  [date?] 접수기간
+  [date?] 055-285-4992
+[posting] 포함: 학교법인남제학원 전일제강사 채용 3차 공고(지구과학)
+::endgroup::
