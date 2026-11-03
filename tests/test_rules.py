@@ -129,3 +129,11 @@ def test_category_cell_counts_as_title_core():
     # '강사 제외' 직종은 강사 공고가 아니다
     assert score_posting("문산중학교 기간제교사(체육) 채용 공고(2차)", "",
                          "진주  ｜ 기간제교원(강사 제외) 중등기간제교사").score < 30
+
+
+def test_title_veto_instructor_excluded():
+    """제목에 '(강사제외)'가 있으면 강사 공고가 아니다 (남지초 기간제 교원, 2026-11-02)."""
+    from gia.classify.rules import title_veto
+    assert title_veto("2026학년도 남지초등학교 기간제 교원(강사제외) 채용") == "비강사 직종(강사 제외)"
+    assert title_veto("남지초등학교 기간제 교원(강사 제외) 채용(2차) 공고") == "비강사 직종(강사 제외)"
+    assert title_veto("2026. 계약제 교원(시간 강사) 채용 공고") is None

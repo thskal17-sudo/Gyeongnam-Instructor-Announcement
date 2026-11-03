@@ -170,6 +170,10 @@ def title_veto(title: str) -> str | None:
     notice = [w for w in NOT_HIRING_TITLE if w in t]
     if notice:
         return f"구인 아님({notice[0]})"
+    # '기간제 교원(강사제외) 채용' — 제목이 스스로 강사 자리가 아니라고 밝힌다. '강사' 글자가 핵심어로 잡히므로
+    # 핵심어 검사보다 먼저 본다 (남지초, 2026-11-02)
+    if re.search(r"강사\s*제외", t):
+        return "비강사 직종(강사 제외)"
     if _core_hits(t):
         return None
     jobs = [w for w in NON_INSTRUCTOR_JOBS if w in t]
