@@ -20,10 +20,13 @@ VIEW_OK = '<html><body><div class="prgr-bd-view">본문: 강사를 모집합니�
 VIEW_ERROR = "<html><body><h1>사이트 오류</h1><p>요청하신 페이지를 찾을 수 없습니다.</p></body></html>"
 
 
-def _source(removed_check: bool = True):
+def _source(removed_check: bool = True, gone_status: list[int] | None = None):
+    detail = {"body_selector": "div.prgr-bd-view", "removed_check": removed_check}
+    if gone_status:
+        detail["gone_status"] = gone_status
     return make_source("gne", "edu_office", type="html_list", list_url=f"{BASE}/list",
                        row_selector="table.list tbody tr", title_selector="td.tl a", date_selector="td.date",
-                       keywords=["강사"], detail={"body_selector": "div.prgr-bd-view", "removed_check": removed_check})
+                       keywords=["강사"], detail=detail)
 
 
 def _http(settings, pages: dict[str, httpx.Response]):
@@ -135,3 +138,21 @@ def test_removed_entries_drop_old_and_closed(tmp_path):
     _old(store, "2", "오래전에 내려간 강사 공고", days_left=30, removed_at=NOW - timedelta(days=20))
     _old(store, "3", "마감 지난 강사 공고", days_left=-1, removed_at=NOW - timedelta(days=1))
     assert [e["url"] for e in removed_entries(store, NOW)] == [recent.primary_url]
+
+
+def test_server_error_counts_as_gone_only_when_configured(settings, tmp_path):
+    """경남교육청 포털은 지워진 공고를 HTTP 500 으로 돌려준다 (2026-11-02). gone_status: [500] 인 소스만 사라짐으로 본다."""
+    error_page = httpx.Response(500, text="<html><title>SERVER ERROR</title><body>서버 오류가 발생했습니다!</body></html>")
+
+    store = Store(tmp_path / "a")
+    p = _old(store, "9", "11월 전일제 강사 모집 공고")
+    bundle = ConfigBundle(settings=settings, sources=[_source()], aliases={})
+    collect(bundle, store, _http(settings, {"9": error_page}), now=NOW)
+    assert store.get(p.canonical_key).removed_at is None  # 설정이 없으면 서버 오류는 '알 수 없음'
+
+    store = Store(tmp_path / "b")
+    p = _old(store, "9", "11월 전일제 강사 모집 공고")
+    bundle = ConfigBundle(settings=settings, sources=[_source(gone_status=[500])], aliases={})
+    run = collect(bundle, store, _http(settings, {"9": error_page}), now=NOW)
+    assert store.get(p.canonical_key).removed_at == NOW
+    assert next(s for s in run.sources if s.source_id == "gne").removed == 1
