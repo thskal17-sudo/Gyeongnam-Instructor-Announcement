@@ -30,6 +30,9 @@ ORG_RECRUIT_WORDS = ["수탁기관", "수탁운영", "수탁법인", "수탁자 
 # '청소년활동 지도자대회 개최안내', '제안서 평가위원(후보자) 공개모집', 2026-11-01 강사잇다 보류 줄)
 NOT_HIRING_TITLE = ["합격자", "면접시험", "면접 시험", "면접심사", "면접 심사", "서류전형 결과", "서류 전형 결과",
                     "전형결과", "전형 결과", "위촉대상자", "위촉 대상자", "개최안내", "개최 안내", "평가위원"]
+# 목록의 직종 칸(경남교육청 구인포털 '함안  ｜ 결원대체강사')이 강사 직종이면 제목에 '강사'가 없어도 제목 핵심어로 친다.
+# '기간제교원(강사 제외)' 처럼 '강사'가 든 다른 직종과 헷갈리지 않게 직종 이름 그대로만 본다
+CATEGORY_CORE = ["결원대체강사", "기타각종강사", "방과후학교강사"]
 HIRE_WORDS = ["모집", "채용", "공모", "위촉", "공개채용", "인력풀", "선발", "공개모집", "구인", "채용공고", "위촉공고", "초빙"]
 LECTURE_WORDS = ["강의", "수업", "교육과정 운영", "프로그램 운영", "출강", "강좌", "교육 운영", "교육운영"]
 EXCLUDE_TITLE = [
@@ -95,7 +98,7 @@ def score_posting(title: str, body: str = "", region_text: str | None = None, or
     score = 0
     reasons: list[str] = []
 
-    core_t = _core_hits(t)
+    core_t = _core_hits(t) or [w for w in CATEGORY_CORE if w in r]
     if core_t:
         score += 50
         reasons.append(f"+50 제목 핵심어({core_t[0]})")
@@ -167,6 +170,10 @@ def title_veto(title: str) -> str | None:
     notice = [w for w in NOT_HIRING_TITLE if w in t]
     if notice:
         return f"구인 아님({notice[0]})"
+    # '기간제 교원(강사제외) 채용' — 제목이 스스로 강사 자리가 아니라고 밝힌다. '강사' 글자가 핵심어로 잡히므로
+    # 핵심어 검사보다 먼저 본다 (남지초, 2026-11-02)
+    if re.search(r"강사\s*제외", t):
+        return "비강사 직종(강사 제외)"
     if _core_hits(t):
         return None
     jobs = [w for w in NON_INSTRUCTOR_JOBS if w in t]

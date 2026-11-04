@@ -118,3 +118,22 @@ def test_title_veto_result_notices_and_org_programs():
     assert title_veto("2026. 영어A 방과후학교 프로그램 개인위탁 모집 공고") is None
     assert title_veto("2027년 칠산서부동 주민자치센터 교양강좌 강사 공개모집 공고") is None
     assert title_veto("초중등 수학 전담 강사") is None
+
+
+def test_category_cell_counts_as_title_core():
+    """경남교육청 구인포털 직종 칸이 강사 직종이면 제목에 '강사'가 없어도 강사 공고다 (2026-11-02)."""
+    from gia.classify.rules import score_posting
+    r = score_posting("2026.10.19.자 계약제교원(전일제) 채용 공고", "", "김해  ｜ 결원대체강사", "장유고")
+    assert r.score >= 70 and "+50 제목 핵심어(결원대체강사)" in r.reasons
+    assert score_posting("2026. 단성중학교 디지털튜터 채용 재공고", "", "산청  ｜ 기타각종강사").score >= 70
+    # '강사 제외' 직종은 강사 공고가 아니다
+    assert score_posting("문산중학교 기간제교사(체육) 채용 공고(2차)", "",
+                         "진주  ｜ 기간제교원(강사 제외) 중등기간제교사").score < 30
+
+
+def test_title_veto_instructor_excluded():
+    """제목에 '(강사제외)'가 있으면 강사 공고가 아니다 (남지초 기간제 교원, 2026-11-02)."""
+    from gia.classify.rules import title_veto
+    assert title_veto("2026학년도 남지초등학교 기간제 교원(강사제외) 채용") == "비강사 직종(강사 제외)"
+    assert title_veto("남지초등학교 기간제 교원(강사 제외) 채용(2차) 공고") == "비강사 직종(강사 제외)"
+    assert title_veto("2026. 계약제 교원(시간 강사) 채용 공고") is None

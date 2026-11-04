@@ -103,7 +103,11 @@ def parse_list_html(html: str, page_url: str, a: dict, cfg, since: date) -> tupl
             # 경남도청 경남채용정보는 '2026-11-04부터 2026-11-11까지' 꼴
             tail = re.split(r"[~∼〜]|부터", text)[-1].strip()
             deadline_text = re.sub(r"\s*까지$", "", tail) or None
-        if not matches_keywords(title, a.get("keywords")):
+        # category_keywords: 목록의 직종 칸으로도 고른다. 경남교육청 구인포털은 직종이 '결원대체강사'인데
+        # 제목은 '계약제교원(전일제) 채용 공고'뿐인 글이 있다(2026-11-02). 직종 칸은 region_selector 로 읽은 글에 함께 있다
+        by_category = bool(region_text and a.get("category_keywords")
+                           and any(k in region_text for k in a["category_keywords"]))
+        if not by_category and not matches_keywords(title, a.get("keywords")):
             continue
         if posted and posted < since:
             continue
