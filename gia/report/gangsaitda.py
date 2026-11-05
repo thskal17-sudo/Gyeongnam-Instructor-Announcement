@@ -60,10 +60,16 @@ def detail_fallback(p: Posting, title: str) -> str:
     return "\n".join(lines)
 
 
+def _web_url(url: str) -> bool:
+    return (url or "").lower().startswith(("https://", "http://"))
+
+
 def to_row(p: Posting) -> dict[str, object]:
     body = p.body_excerpt or ""
     title = clean_title(p.title)
-    url = p.primary_url if p.primary_url.startswith("https://") else ""  # 양식: https:// 로 시작
+    # 사이트는 http:// · https:// 원문 링크를 받는다. 시군 새올(eminwon.cng.go.kr 등)은 http:// 만 있어서
+    # 예전처럼 https:// 만 받으면 원문 링크가 빠져 '원문 공고 보기'가 없었다 (2026-11-04 창녕·거제·하동)
+    url = p.primary_url if _web_url(p.primary_url) else ""
     row = _to_row(p, body, title, url)
     if not row["수업 일정"]:
         row["수업 일정"] = SCHEDULE_FALLBACK
@@ -160,8 +166,8 @@ def removed_entries(store: Store, now: datetime) -> list[dict[str, str]]:
             continue
         if now - p.removed_at > timedelta(days=REMOVED_NOTICE_DAYS):
             continue
-        if not p.primary_url.startswith("https://"):
-            continue  # 사이트는 https:// 원문 링크만 받는다 (to_row 와 같음)
+        if not _web_url(p.primary_url):
+            continue  # 사이트는 http(s):// 원문 링크만 받는다 (to_row 와 같음)
         out.append({"url": p.primary_url, "title": clean_title(p.title), "org": p.org_name,
                     "removed_at": p.removed_at.astimezone(KST).isoformat()})
     out.sort(key=lambda e: e["removed_at"], reverse=True)

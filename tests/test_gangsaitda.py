@@ -438,3 +438,13 @@ def test_undated_rows_drop_after_two_weeks(tmp_path):
     from gia.report.gangsaitda import select_postings
     titles = {p.title for p in select_postings(_store(tmp_path, fresh, old, dated), NOW)}
     assert titles == {"A초 방과후 강사 모집", "C초 방과후 강사 모집"}
+
+
+def test_http_source_link_is_kept():
+    """시군 새올은 http:// 주소만 있다. 원문 링크를 빼면 사이트에 '원문 공고 보기'가 없다 (2026-11-04 창녕군)."""
+    from gia.report.gangsaitda import to_row
+    p = make_posting("장애인생활체육지도자 채용", org="창녕군", deadline=NOW + timedelta(days=5), now=NOW,
+                     sources=[SourceRef(source_id="changnyeong",
+                                        url="http://eminwon.cng.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?x=1",
+                                        fetched_at=NOW)])
+    assert to_row(p)["원문 링크"].startswith("http://eminwon.cng.go.kr/")
