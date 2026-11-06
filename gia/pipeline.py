@@ -25,7 +25,7 @@ from .extract.deadline import KST, DeadlineType, parse_deadline, parse_known_for
 from .models import Posting, RawListing, RawPosting, RunLog, SourceRef, SourceRunResult, Status
 from .models import FIELD_NAMES
 from .normalize import (clean_url, extract_regions, mask_pii, normalize_title, regions_from_field, standardize_org,
-                        strip_surrogates)
+                        strip_surrogates, tidy_body)
 from .school_region import SchoolRegions, fill_siguns
 from .store import Store
 
@@ -56,7 +56,10 @@ def body_excerpt(raw: RawPosting) -> str:
         content = (str(raw.extra["content_text"] or "") + "\n\n" + str(raw.extra.get("attachment_text") or "")).strip()
     else:
         content = raw.body_text or ""
-    return mask_pii(content).strip()[:EXCERPT_MAX]
+    # tidy_body: HWP 에서 붙여넣은 공고문은 글자마다 span 이 쪼개져 있어 태그를 떼면
+    # '2026 년 11 월', '( 예시 :' 처럼 띄어쓰기가 어긋난다. 그 공백을 되돌리고 항목 기호
+    # 앞에서 줄을 나눈다 — 원문 그대로이고 글자는 지우지 않는다
+    return tidy_body(mask_pii(content))[:EXCERPT_MAX]
 
 
 def build_posting(raw: RawPosting, cfg: SourceConfig, bundle: ConfigBundle, now: datetime) -> Posting | None:
