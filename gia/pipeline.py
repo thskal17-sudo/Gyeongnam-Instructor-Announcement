@@ -24,7 +24,7 @@ from .extract.attachments import extract_text, file_extension, filename_from_url
 from .extract.deadline import KST, DeadlineType, parse_deadline, parse_known_format
 from .models import Posting, RawListing, RawPosting, RunLog, SourceRef, SourceRunResult, Status
 from .models import FIELD_NAMES
-from .normalize import (clean_url, extract_regions, mask_pii, normalize_title, regions_from_field, standardize_org,
+from .normalize import (clean_url, nfkc, extract_regions, mask_pii, normalize_title, regions_from_field, standardize_org,
                         strip_surrogates, tidy_body)
 from .school_region import SchoolRegions, fill_siguns
 from .store import Store
@@ -38,6 +38,7 @@ class SourceOutcome:
     postings: list[Posting] = field(default_factory=list)
     touched: list[str] = field(default_factory=list)  # 이미 알던 URL (last_seen 갱신)
     excluded: list[str] = field(default_factory=list)  # 규칙 점수 미달 URL
+    result_titles: list[str] = field(default_factory=list)  # 이번에 본 합격자·전형 결과 공고 제목 (close_finished)
     bodies: dict[str, tuple[str, str | None]] = field(default_factory=dict)  # canonical_key → (본문, 근무지 필드) — LLM 입력용
 
 
@@ -237,6 +238,8 @@ def run_source(cfg: SourceConfig, bundle: ConfigBundle, store: Store, http: Http
             out.bodies[p.canonical_key] = (mask_pii(raw.body_text or ""), raw.region_text)
         else:
             out.excluded.append(url)
+            if is_result_title(raw.title):
+                out.result_titles.append(raw.title)
     if res.status != "fail" and getattr(adapter, "supports_backfill", True):
         backfill_bodies(cfg, adapter, store, out, http, cs, t0)
     if res.status == "ok":
@@ -300,6 +303,69 @@ def check_removed(cfg: SourceConfig, adapter, store: Store, out: SourceOutcome, 
         p.removed_at = now
         log.info("[%s] 원문에서 내려감: %s %s", cfg.id, p.title, p.primary_url)
     out.result.removed = len(gone)
+
+
+# 모집이 끝났다는 뜻의 결과·일정 공고 제목 낱말 (NOT_HIRING_TITLE 가운데 행사·평가위원 모집은 뺀다)
+RESULT_TITLE_WORDS = ["합격자", "면접시험", "면접 시험", "면접심사", "면접 심사", "면접대상자", "면접 대상자",
+                      "서류전형 결과", "서류 전형 결과", "전형결과", "전형 결과", "위촉대상자", "위촉 대상자"]
+# 모집 제목의 핵심이 이보다 짧으면('강사 채용') 다른 모집과 헷갈릴 수 있어 비교하지 않는다
+SERIES_MIN_LEN = 10
+
+
+def is_result_title(title: str) -> bool:
+    t = nfkc(title or "")
+    return any(w in t for w in RESULT_TITLE_WORDS)
+
+
+def _series_core(title: str) -> str:
+    """제목에서 연도·'공고'·괄호 표시·띄어쓰기·문장부호를 뺀 핵심 ('2027년도 진영한빛도서관 … 공고' → '진영한빛도서관…')."""
+    t = nfkc(title or "")
+    t = re.sub(r"\[[^\]]*\]|【[^】]*】", "", t)  # [재공고] 같은 머리표
+    t = re.sub(r"(19|20)\d{2}\s*(학년도|년도|년)?", "", t)
+    t = re.sub(r"\((재|추가|연장)?\s*공고\)|공고문?", "", t)
+    return re.sub(r"[^0-9A-Za-z가-힣]", "", t)
+
+
+def close_finished(store: Store, outcomes: list[SourceOutcome], now: datetime) -> int:
+    """같은 게시판에 합격자·전형 결과 공고가 올라오면 그 앞의 모집 공고를 '내려감'으로 표시한다.
+
+    김해시 '진영한빛도서관 평생학습강좌 강사 채용 공고'(접수 10.12까지)는 원문이 내려갔는데도 마감일이
+    12.31 로 잘못 읽혀 강사잇다에 D-51 로 남았다. 같은 게시판에 '… 서류 전형 합격자 및 면접 심사 일정 공고'(10.20),
+    '… 최종합격자 공고'(10.30)가 올라왔으니 모집은 끝난 것이다 (2026-11-10).
+    removed_at 을 적으면 removed.json 에 실려 강사잇다에서도 숨겨지고 카톡으로 알려진다.
+
+    잘못 닫지 않게: 같은 수집처(게시판)에서, 모집 제목의 핵심(연도·'공고'·띄어쓰기 뺌, 10자 이상)이
+    결과 제목 안에 그대로 들어 있고, 모집이 결과보다 먼저 올라온 것만 닫는다.
+    """
+    results: dict[str, list[tuple[str, date | None]]] = {}
+    for oc in outcomes:
+        for t in oc.result_titles:
+            results.setdefault(oc.result.source_id, []).append((_series_core(t), now.date()))
+    for p in store.values():
+        if is_result_title(p.title):
+            for s in p.sources:
+                results.setdefault(s.source_id, []).append((_series_core(p.title), p.posted_at))
+    if not results:
+        return 0
+    closed = 0
+    for p in list(store.values()):
+        if p.removed_at is not None or p.status == Status.expired or (p.deadline and p.deadline < now):
+            continue
+        if is_result_title(p.title):
+            continue
+        core = _series_core(p.title)
+        if len(core) < SERIES_MIN_LEN:
+            continue
+        for s in p.sources:
+            hit = next((r for r, posted in results.get(s.source_id, [])
+                        if core in r and r != core and (posted is None or p.posted_at is None or p.posted_at <= posted)),
+                       None)
+            if hit:
+                p.removed_at = now
+                closed += 1
+                log.info("[%s] 결과 공고가 올라와 모집 닫음: %s", s.source_id, p.title)
+                break
+    return closed
 
 
 def backfill_bodies(cfg: SourceConfig, adapter, store: Store, out: SourceOutcome, http: HttpClient | None,
@@ -476,8 +542,9 @@ def collect(bundle: ConfigBundle, store: Store, http: HttpClient, only: list[str
         schools = SchoolRegions(store.index_dir / "school_regions.json", neis)
         counts["sigun_filled"] = fill_siguns([p for p in store.values() if p.status != Status.expired],
                                              {s.id: s.name for s in bundle.sources}, schools)
+    counts["finished"] = close_finished(store, outcomes, now)
     store.refresh_statuses(now, bundle.settings.report.closing_soon_days)
-    counts["removed"] = sum(r.removed for r in run.sources)
+    counts["removed"] = sum(r.removed for r in run.sources) + counts["finished"]
     counts["closing_soon"] = sum(1 for p in store.values() if p.status == Status.closing_soon)
     counts["expired"] = sum(1 for p in store.values() if p.status == Status.expired)
     run.totals = counts
