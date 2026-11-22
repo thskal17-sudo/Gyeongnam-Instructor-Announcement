@@ -21,13 +21,14 @@ from pathlib import Path
 from openpyxl import load_workbook
 from openpyxl.styles import Alignment, PatternFill
 
-from ..classify.rules import title_veto
+from ..classify.rules import score_posting, title_veto
+from ..config import ClassifierSettings
 from ..extract.deadline import KST
 from ..extract.detail import (
     clean_detail, clean_title, expand_school_name, extract_documents, extract_headcount,
     extract_qualifications, extract_schedule, extract_target,
 )
-from ..models import OrgType, Posting, Status
+from ..models import DeadlineType, OrgType, Posting, Status
 from ..normalize import SIGUN_SUFFIX
 from ..store import Store
 
@@ -75,6 +76,12 @@ def to_row(p: Posting) -> dict[str, object]:
         row["수업 일정"] = SCHEDULE_FALLBACK
     if not row["상세 내용"]:
         row["상세 내용"] = detail_fallback(p, title)
+    if not row["마감일"] and p.deadline_type == DeadlineType.until_filled:
+        # '채용 시까지'·'상시채용'(학원·직업훈련 학교 등): 사이트는 날짜만 받는다. 마감일 없는 공고를 싣는
+        # 기간(UNDATED_MAX_AGE, 게시 뒤 2주)의 끝날을 적고, 조기 마감될 수 있다고 상세에 밝힌다 (2026-11-22)
+        since = p.posted_at or p.first_seen_at.astimezone(KST).date()
+        row["마감일"] = (since + UNDATED_MAX_AGE).isoformat()
+        row["상세 내용"] = f"{row['상세 내용']}\n\n{UNTIL_FILLED_NOTE}"
     return row
 
 
@@ -105,6 +112,16 @@ DEADLINE_TODO = "공고문 확인"
 TODO_FILL = PatternFill("solid", fgColor="FFF2CC")
 
 
+def now_confident(p: Posting) -> bool:
+    """수집 때 판별 유보였던 공고를 지금 규칙으로 다시 채점해 강사 공고로 확실하면 True.
+
+    판별 규칙이 나아져도 저장된 공고의 '판별유보' 표시는 그대로라 보류가 풀리지 않는다. 저장된 것은
+    본문 발췌뿐이라 점수가 수집 때보다 낮게 나올 수는 있어도 높게 나오지는 않으니, 보류를 푸는 쪽으로만 쓴다.
+    """
+    rule = score_posting(p.title, p.body_excerpt or "", " ".join(p.region), p.org_name)
+    return rule.score >= ClassifierSettings().include_threshold
+
+
 def hold_reason(p: Posting, row: dict[str, object]) -> str:
     """보류로 둘 이유. 없으면 빈 문자열(바로 올릴 수 있는 줄)."""
     why: list[str] = []
@@ -116,7 +133,7 @@ def hold_reason(p: Posting, row: dict[str, object]) -> str:
             why.append("마감일: 공고에서 찾지 못했어요. 원문 링크의 공고문에서 확인해 적어 주세요")
     elif missing:
         why.append("빈 필수 칸: " + ", ".join(missing))
-    if "판별유보" in p.flags:
+    if "판별유보" in p.flags and not now_confident(p):
         why.append(f"강사 공고인지 판별 유보(점수 {p.relevance_score})")
     if not why:
         return ""
@@ -127,6 +144,7 @@ def hold_reason(p: Posting, row: dict[str, object]) -> str:
 # 학교 강사 공고는 접수가 1~2주라, 게시 뒤 이만큼 지난 것은 이미 끝났다고 보고 양식에서 뺀다
 # (2026-10-27: 보류 25줄 중 18줄이 9/22~10/13 경남교육청 공고였다)
 UNDATED_MAX_AGE = timedelta(days=14)
+UNTIL_FILLED_NOTE = "※ 원문은 '채용 시까지' 모집하는 공고예요. 마감일 전에 채용이 끝날 수 있어요."
 
 
 def select_postings(store: Store, now: datetime) -> list[Posting]:
