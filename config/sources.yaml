@@ -101,7 +101,9 @@ sources:
       region_filter: "@gyeongnam"
       detail: { fetch: false }
     enabled: false
-    notes: gojobs 가 이 API(1051000/recruitment/list)를 이미 쓴다(2026-10-02 확인). 중복이라 끈다
+    notes: >-
+      gojobs 가 이 API(1051000/recruitment/list, 잡알리오 공공기관 채용정보)를 이미 근무지 경남(workRgnLst R3022)으로
+      쓴다(2026-10-02 확인, 2026-11-22 재확인). 부산·울산판의 잡알리오(근무지 필터)와 같은 소스라 이 자리는 중복이라 끈다
 
   - id: cleaneye
     name: 클린아이 잡플러스 (행안부, 지방공기업·출자출연기관)
@@ -1151,15 +1153,90 @@ sources:
     notes: >-
       채용공고는 본부 통합(3/1/2/2)이고 지사별 강사 공고는 없음(2026-09-22 확인). 필요 시 본부 게시판을 등록하되 지역 필터에 의존.
   - { id: kosha_gn,      name: 한국산업안전보건공단 경남본부, org_type: central_public, tier: 3, enabled: false, homepage: https://www.kosha.or.kr, adapter: { type: html_list, list_url: TODO }, notes: "안전교육 강사. 누리집이 자바스크립트 화면(kosha.or.kr/landing)이라 게시판을 HTML 로 읽을 수 없다(2026-11-01 probe). 공공기관 채용은 alio 로 들어온다" }
-  - { id: lh,            name: 한국토지주택공사(LH, 진주), org_type: central_public, tier: 3, enabled: false, homepage: https://www.lh.or.kr, adapter: { type: html_list, list_url: TODO }, notes: 강사 공고 빈도 낮음. alio로 대체 가능 }
-  - { id: kosmes,        name: 중소벤처기업진흥공단(진주), org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 연수원 강사 풀 }
-  - { id: koen,          name: 한국남동발전(진주),         org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: keri,          name: 한국전기연구원(창원),       org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: kims,          name: 한국재료연구원(창원),       org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: kicet,         name: 한국세라믹기술원(진주),     org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: koelsa,        name: 한국승강기안전공단(거창),   org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: copyright_kr,  name: 한국저작권위원회(진주),     org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
-  - { id: nhis_gn,       name: 국민건강보험공단 경남지역본부, org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 건강강좌 강사 }
+  - id: lh
+    name: 한국토지주택공사(LH, 진주) 비정규직 채용공고
+    org_type: central_public
+    tier: 3
+    homepage: https://www.lh.or.kr
+    verified: true
+    adapter:
+      type: html_list
+      # 본사(진주)·전국 지역본부 기간제 채용이 한 게시판에 모인다. 다른 지역 공고는 판별의 타지역 감점으로 빠진다
+      list_url: https://www.lh.or.kr/board.es?mid=a10602050000&bid=0036&nPage={page}
+      row_selector: table.tstyle_list tbody tr
+      title_selector: td.txt_left a
+      link_attr: onclick
+      link_regex: "goView3\\('(\\d+)'"
+      link_url_template: "https://www.lh.or.kr/board.es?mid=a10602050000&bid=0036&act=view&list_no={1}"
+      date_selector: "td[aria-label='등록일']"
+      keywords: [강사, 교강사, 시간강사, 외래강사, 교육강사, 지도사, 지도자, 튜터, 코치, 강사진, 인력풀]
+      paging: { max_pages: 2 }
+      detail:
+        fetch: true
+        body_selector: div#contents_body
+        attachment_selector: "a[href*='boardDownload.es']"
+    notes: >-
+      국내 중계로 열린다(2026-11-22 probe). robots.txt 는 /user/dept/·/user/customerProposal/ 만 막는다.
+      강사 공고는 드물다. 정규직 게시판(bid=0035)은 신입·경력 공채라 넣지 않는다
+  - { id: kosmes,        name: 중소벤처기업진흥공단(진주), org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: "연수원 강사 풀. 2026-11-22 국내 중계로 열리나 누리집이 자바스크립트로 이동하는 화면이라 채용 게시판 주소를 찾지 못했다. 채용은 gojobs 로" }
+  - id: koen
+    name: 한국남동발전(진주) 채용공고
+    org_type: central_public
+    tier: 3
+    homepage: https://www.koenergy.kr
+    verified: true
+    adapter:
+      type: html_list
+      # 옛 koenergy.co.kr 은 화면이 비고 /bbs/ 를 robots 로 막는다. 지금 누리집은 koenergy.kr (robots 는 검색만 막음)
+      list_url: https://www.koenergy.kr/kosep/fr/ov/jo/ovjo01/main.do?menuCd=FN030601
+      row_selector: table.data_list tbody tr
+      title_selector: td.td_left a
+      link_attr: onclick
+      link_regex: "fncGoView\\('(\\d+)'\\)"
+      link_url_template: "https://www.koenergy.kr/kosep/fr/ov/jo/ovjo01/view.do?seqNo={1}"
+      date_selector: td:nth-child(4)       # '2026.08.03 ~ 2026.08.18' 모집기간
+      deadline_selector: td:nth-child(4)
+      keywords: [강사, 교강사, 시간강사, 외래강사, 교육강사, 지도사, 지도자, 튜터, 코치, 강사진, 인력풀]
+      paging: { max_pages: 1 }          # 쪽 넘김은 자바스크립트(fncGoPage)
+      detail: { fetch: true, body_selector: div.cont_area }
+    notes: 국내 중계로 열린다(2026-11-22 probe). 공채 위주라 강사 공고는 드물다
+  - { id: keri,          name: 한국전기연구원(창원),       org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: "2026-11-22 국내 중계로 열리지만 robots.txt 가 모든 봇(User-agent *)에 Disallow: / — 넣지 않는다. 채용은 gojobs(잡알리오)로 들어온다" }
+  - { id: kims,          name: 한국재료연구원(창원),       org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: "2026-11-22 국내 중계로 누리집은 열리나 robots.txt 요청을 웹 방화벽(WAF)이 막는다 — 봇 접근을 원치 않는 것으로 보고 넣지 않는다. 채용은 gojobs 로" }
+  - id: kicet
+    name: 한국세라믹기술원(진주) 채용정보
+    org_type: central_public
+    tier: 3
+    homepage: https://www.kicet.re.kr
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://www.kicet.re.kr/00020/00117/00253.web?gcode=1024&cpage={page}
+      row_selector: table.t1 tbody tr
+      title_selector: td.tal a
+      date_selector: td:nth-child(3)       # '2026-10-15 ~ 2026-10-29' 접수기간
+      deadline_selector: td:nth-child(3)
+      keywords: [강사, 교강사, 시간강사, 외래강사, 교육강사, 지도사, 지도자, 튜터, 코치, 강사진, 인력풀]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: div.bbs1view1 }
+    notes: 국내 중계로 열린다(2026-11-22 probe). robots.txt 전체 허용. 분기별 통합 채용 공고가 대부분
+  - { id: koelsa,        name: 한국승강기안전공단(거창),   org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: "2026-11-22 국내 중계로 열리나 누리집이 자바스크립트 화면(Vue)이라 채용 게시판을 HTML 로 읽을 수 없다. 채용은 gojobs 로" }
+  - id: copyright_kr
+    name: 한국저작권위원회(진주) 채용공고
+    org_type: central_public
+    tier: 3
+    homepage: https://www.copyright.or.kr
+    verified: true
+    adapter:
+      type: html_list
+      list_url: https://www.copyright.or.kr/notify/recruitment/list.do?pageIndex={page}
+      row_selector: table.table-col tbody tr
+      title_selector: td.lf a
+      date_selector: td:nth-child(3)
+      keywords: [강사, 교강사, 시간강사, 외래강사, 교육강사, 지도사, 지도자, 튜터, 코치, 강사진, 인력풀]
+      paging: { max_pages: 1 }
+      detail: { fetch: true, body_selector: div.table-style, attachment_selector: a.attachment }
+    notes: 국내 중계로 열린다(2026-11-22 probe). robots.txt 는 Googlebot 의 검색만 막는다
+  - { id: nhis_gn,       name: 국민건강보험공단 경남지역본부, org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: "건강강좌 강사. 2026-11-22 국내 중계로 열리지만 robots.txt 가 /nhis/ 전체를 막는다 — 넣지 않는다. 채용은 gojobs 로" }
 
 # ---------------------------------------------------------------------------
 # Tier 3-C. 대학 시간강사·채용공고  — Phase 3
@@ -1555,6 +1632,31 @@ sources:
 # ---------------------------------------------------------------------------
 # Tier 3-H. 중앙 산하 공공기관 경남 지역본부 (강사 공고 빈도 낮음)  — Phase 3, 기본 비활성
 # ---------------------------------------------------------------------------
-  - { id: ekr_gn,    name: 한국농어촌공사 경남지역본부,   org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 농업인 교육 강사. alio로 대체 가능 }
-  - { id: lx_gn,     name: 한국국토정보공사 경남지역본부, org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO } }
+  - { id: ekr_gn,    name: 한국농어촌공사 경남지역본부,   org_type: central_public, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: "농업인 교육 강사. 2026-11-22 국내 중계로 열리지만 robots.txt 가 모든 봇에 Disallow: / — 넣지 않는다. 채용은 gojobs 로" }
+  - id: lx_gn
+    name: 한국국토정보공사(LX) 채용공고
+    org_type: central_public
+    tier: 3
+    homepage: https://www.lx.or.kr
+    verified: true
+    adapter:
+      type: html_list
+      # 전국 통합 게시판(본사 전주). 경남지역본부 공고도 여기 올라온다. 다른 지역은 타지역 감점으로 빠진다
+      list_url: https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000001/317/lst.do?pageIndex={page}
+      row_selector: div.board.notice.list > ul > li
+      title_selector: div.ntt_sj a strong
+      link_selector: div.ntt_sj a
+      link_attr: onclick
+      link_regex: "bbsMstrView\\('(\\d+)'\\)"
+      link_url_template: "https://www.lx.or.kr/kor/BBSMSTR_000000000001/317/{1}/view.do"
+      date_selector: p.frst_register_nm
+      keywords: [강사, 교강사, 시간강사, 외래강사, 교육강사, 지도사, 지도자, 튜터, 코치, 강사진, 인력풀]
+      paging: { max_pages: 1 }
+      detail:
+        fetch: true
+        body_selector: div.board.notice.view
+        attachment_selector: "a[href*=fn_egov_downFile]"
+        attachment_regex: "fn_egov_downFile\\('([^']+)',\\s*'(\\d+)'\\)"
+        attachment_url_template: "https://www.lx.or.kr/cmm/fms/FileDown.do?atchFileId={1}&fileSn={2}"
+    notes: 국내 중계로 열린다(2026-11-22 probe). robots.txt 는 /uat/·/mec/·/search/ 만 막는다
   - { id: gn_agri_tech, name: 경상남도농업기술원·시군 농업기술센터, org_type: local_gov, tier: 3, enabled: false, homepage: TODO, adapter: { type: html_list, list_url: TODO }, notes: 농업인대학·귀농교육 강사. 시군청 게시판 통합 여부 확인 }
