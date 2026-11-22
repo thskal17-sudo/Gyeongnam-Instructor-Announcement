@@ -1,0 +1,144 @@
+====================================================================================================
+URL: https://www.lx.or.kr/kor.do
+status=200 final=https://www.lx.or.kr/kor.do encoding=UTF-8 bytes=79764
+title: LX 한국국토정보공사
+
+[GREP] 채용
+   ... /kor/bbs/BBSMSTR_000000000032/lst.do' target='_self' title='' class=''><span>법률고문현황</span></a></li> <li class="sub03_05_04_10"><a href='/kor/sub03_05_04_10.do' target='_self' title='' class=''><span>채용정보</span></a></li> <li class="sub03_05_04_11"><a href='/kor/bbs/BBSMSTR_000000000271/lst.do' target='_self' title='' class=''><span>개별 비상임이사 활동내용</span></a></li> <li class="sub03_05_04_12"><a href='/kor/bbs/BBSMSTR_000000000281/lst.do' target='_self' title='' class=''><span>태양광 설치 및 발전현황</span></a></li> <li class="sub03_05_04_13"><a href='/kor/bbs/BBSMSTR_000000000282/lst.do' target='_self' tit
+   ... '/kor/sub04_05_08_05.do' target='_self' title='' class=''><span>인권침해신고</span></a></li> <li class="sub04_05_08_11"><a href='https://bit.ly/38RFqMN' target='_blank' title='새창이동' class='blank'><span>인사·채용비리</span></a></li> <li class="sub04_05_08_12"><a href='/kor/sub04_05_08_12.do' target='_self' title='' class=''><span>비실명 대리신고 제도</span></a></li> </ul> </li> </ul> </li> <li class="sub04_06"><a href='/kor/sub04_06_01_01.do' target='_self' title='' class=''><span>사회공헌</span></a> <ul> <li class="sub04_06_01"><a href='/kor/sub04_06_01_01.do' target='_self' title='' class=''><span>누리지 봉사단</spa
+   ... STR_000000000001/lst.do' target='_self' title='' class=''><span>공지사항</span></a></li> <li class="sub05_01_02"><a href='/kor/bbs/BBSMSTR_000000000001/317/lst.do' target='_self' title='' class=''><span>채용공고</span></a></li> <li class="sub05_01_03"><a href='/kor/bid/list.do' target='_self' title='' class=''><span>입찰공고</span></a></li> <li class="sub05_01_04"><a href='/kor/bbs/BBSMSTR_000000000003/lst.do' target='_self' title='' class=''><span>인사소식</span></a></li> <li class="sub05_01_05"><a href='/kor/bbs/BBSMSTR_000000000004/lst.do' target='_self' title='' class=''><span>입안예고</span></a></li> </ul
+   ... 01"><a href='/kor/sub06_08_01.do' target='_self' title='' class=''><span>홍보관방문</span></a></li> </ul> </li> <li class="sub06_09"><a href='/kor/sub06_09_01.do' target='_self' title='' class=''><span>채용정보</span></a> <ul> <li class="sub06_09_01"><a href='/kor/sub06_09_01.do' target='_self' title='' class=''><span>공사인재상</span></a></li> <li class="sub06_09_02"><a href='/kor/sub06_09_02_01.do' target='_self' title='' class=''><span>채용안내</span></a> <ul> <li class="sub06_09_02_01"><a href='/kor/sub06_09_02_01.do' target='_self' title='' class=''><span>제도안내</span></a></li> <li class="sub06_09_02_
+   ... ub06_09_01"><a href='/kor/sub06_09_01.do' target='_self' title='' class=''><span>공사인재상</span></a></li> <li class="sub06_09_02"><a href='/kor/sub06_09_02_01.do' target='_self' title='' class=''><span>채용안내</span></a> <ul> <li class="sub06_09_02_01"><a href='/kor/sub06_09_02_01.do' target='_self' title='' class=''><span>제도안내</span></a></li> <li class="sub06_09_02_02"><a href='/kor/sub06_09_02_02.do' target='_self' title='' class=''><span>채용방법 및 분야</span></a></li> </ul> </li> <li class="sub06_09_03"><a href='/kor/bbs/BBSMSTR_000000000001/317/lst.do' target='_self' title='' class=''><span>채용공고
+   ... 02_01"><a href='/kor/sub06_09_02_01.do' target='_self' title='' class=''><span>제도안내</span></a></li> <li class="sub06_09_02_02"><a href='/kor/sub06_09_02_02.do' target='_self' title='' class=''><span>채용방법 및 분야</span></a></li> </ul> </li> <li class="sub06_09_03"><a href='/kor/bbs/BBSMSTR_000000000001/317/lst.do' target='_self' title='' class=''><span>채용공고</span></a></li> </ul> </li> <li class="sub06_10"><a href='/kor/sub06_10.do' target='_self' title='' class=''><span>찾아오시는 길</span></a> </li> </ul> </li> <li class="sub07"><a href='/kor/sub07_01_01.do' target='_self' title='' class=''><s
+   [SCRIPT src] ['/js/kor/new/libs/jquery-3.6.0.min.js', '/js/kor/new/libs/swiper/swiper11.min.js', '/js/kor/new/common.js', '/js/kor/new/main.js', '/js/cms/bluebird.js', '/js/loginTimer.js', 'https://www.googletagmanager.com/gtag/js?id=UA-131426347-1', 'https://www.googletagmanager.com/gtag/js?id=G-0B48QYSFDH', '/js/jquery.lazy-master/jquery.lazy.min.js']
+
+[LIST] div.bod-item.notice-area.scroll-toggle > div.con-body > ul#main_news.list  items=5
+   li: li -> 채용 한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지 2026-11-19
+      a.item href=# onclick=mainBbsView('BBSMSTR_000000000001','25766'); return false; :: own='' all='채용 한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지 2026-11-19'
+      span.category :: own='채용' all='채용'
+      div.txt :: own='' all='한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지'
+      em :: own='한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지' all='한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지'
+      span.date :: own='2026-11-19' all='2026-11-19'
+[DATES] sample: ['2026-11-19', '2026-11-03', '2026-11-03', '2026-11-03', '2026-11-02']
+
+[ANCHORS] most common link paths
+   x5 div.con-body > ul#main_news.list > li > a.item  href=# {'onclick': "mainBbsView('BBSMSTR_000000000001','2576"} text='채용 한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지 2026'
+      row? li :: '채용 한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지 2026-11-19'
+   x2 div.section-wrap > ul.related-wrap.scroll-toggle > li > a.item.scroll-toggle  href=https://www.lxcti.or.kr/ {'target': '_blank', 'title': '새 창 이동, 국토정보연구원', 'data-s-type': 'edu', 'data-scroll-offset': '200'} text='국토정보교육원 국내유일 국토정보 전문 교육기관'
+      row? li :: '국토정보교육원 국내유일 국토정보 전문 교육기관'
+   x1 div.service-item.survey-area.scroll-toggle > ul.list > li > a.item  href=https://baro.lx.or.kr/main.do#slide03 {'target': '_blank', 'title': '새 창 이동, 지적측량신청포털', 'data-s-type': 'a'} text='지적측량 신청(인터넷)'
+      row? li :: '지적측량 신청(인터넷)'
+   x1 div.service-item.survey-area.scroll-toggle > ul.list > li.tel > a.item  href=# {'data-s-type': 'b'} text='지적측량 신청(전화) 1588-7704'
+      row? li.tel :: '지적측량 신청(전화) 1588-7704'
+
+[LINKS] board candidates (16)
+   '보상공고' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000321/lst.do
+   '협의 공고' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000322/lst.do
+   '기업성장응답 게시판' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000311/lst.do
+   '채용정보' -> https://www.lx.or.kr/kor/sub03_05_04_10.do
+   '- 공지사항' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000041/lst.do
+   '인사·채용비리' -> https://bit.ly/38RFqMN
+   '누리지 소식' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000091/lst.do
+   '안전보건 제안 게시판' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000251/lst.do
+   '공고' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000001/lst.do
+   '채용공고' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000001/317/lst.do
+   '입찰공고' -> https://www.lx.or.kr/kor/bid/list.do
+   '인사소식' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000003/lst.do
+   '채용정보' -> https://www.lx.or.kr/kor/sub06_09_01.do
+   '채용안내' -> https://www.lx.or.kr/kor/sub06_09_02_01.do
+   '채용방법 및 분야' -> https://www.lx.or.kr/kor/sub06_09_02_02.do
+   '공지사항' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000011/lst.do
+====================================================================================================
+URL: https://www.kosmes.or.kr/intro/intro.html
+status=200 final=https://www.kosmes.or.kr/intro/intro.html encoding=utf-8 bytes=1518
+title: 중소벤처기업진흥공단
+body (short): <!DOCTYPE html> <html lang="ko"> <head> <meta charset="UTF-8"> <meta name="Author" content="중소벤처기업진흥공단" /> <meta name="description" content="정책자금, 수출·글로벌, 인력·창업, 지역혁신 등을 연계 지원하는 중소벤처기업 중심의 혁신성장 선도 플랫폼"> <meta name="keywords" content=""> <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />--> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <meta http-equiv="X-UA-Compatible" content="IE=edge" /> <meta property="og:image" content="./img/img-og.png"> <meta property="og:url" content=""> <meta pr
+====================================================================================================
+URL: https://www.kosmes.or.kr/nsh/SH/MAP/SHMAP001M0.do
+status=200 final=https://www.kosmes.or.kr/nsh/SH/MAP/SHMAP001M0.do encoding=utf-8 bytes=2659
+title: 중소벤처기업진흥공단
+
+[GREP] 채용
+   (없음)
+   [SCRIPT src] ['/static/compat/js/common.js', '/static/compat/js/jquery-1.12.4.js', '/static/compat/js/jquery-ui.min.js', '/static/compat/js/admin_script.js', '/static/compat/js/axisj-1.1.12/dist/AXJ.min.js', '/static/compat/js/axisj-1.1.12/lib/AXGrid.js']
+[DATES] sample: []
+
+[RETRY without noise filter]
+[DATES] sample: []
+====================================================================================================
+URL: https://www.koenergy.kr/kosep/fr/main.do
+status=200 final=https://www.koenergy.kr/kosep/fr/main.do encoding=UTF-8 bytes=595949
+title: 한국남동발전(주)
+
+[GREP] 채용
+   ... 0305","menuCd":"FN030502","menuNm":"국내외 주요투자사업","linkUrl":"/kosep/hw/fr/ov/ovhw27/main.do?menuCd=FN030502","linkType":"_self","childCnt":0},{"menuLvl":3,"parMenuCd":"FN03","menuCd":"FN0306","menuNm":"채용정보","linkUrl":"/kosep/fr/ov/jo/ovjo01/main.do?menuCd=FN030601","linkType":"_self","childCnt":8},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030601","menuNm":"채용공고","linkUrl":"/kosep/fr/ov/jo/ovjo01/main.do?menuCd=FN030601","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030602","menuNm":"인재상 및 복리후생","linkUrl":"/kosep/hw/fr/ov/ovhw30/main.do?menuCd=FN030602","linkTy
+   ... d":"FN03","menuCd":"FN0306","menuNm":"채용정보","linkUrl":"/kosep/fr/ov/jo/ovjo01/main.do?menuCd=FN030601","linkType":"_self","childCnt":8},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030601","menuNm":"채용공고","linkUrl":"/kosep/fr/ov/jo/ovjo01/main.do?menuCd=FN030601","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030602","menuNm":"인재상 및 복리후생","linkUrl":"/kosep/hw/fr/ov/ovhw30/main.do?menuCd=FN030602","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030603","menuNm":"채용문의","linkUrl":"/kosep/fr/ov/rc/ovrc01/main.do?menuCd=FN030603","linkTy
+   ... ","menuCd":"FN030602","menuNm":"인재상 및 복리후생","linkUrl":"/kosep/hw/fr/ov/ovhw30/main.do?menuCd=FN030602","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030603","menuNm":"채용문의","linkUrl":"/kosep/fr/ov/rc/ovrc01/main.do?menuCd=FN030603","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030604","menuNm":"공지사항","linkUrl":"/kosep/fr/bo/board/main.do?menuCd=FN030604","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030605","menuNm":"친인척 채용현황","linkUrl":"/kosep/fr/ov/rc/ovrc05/main.do?menuCd=FN030605","linkType":"_
+   ... FN0306","menuCd":"FN030604","menuNm":"공지사항","linkUrl":"/kosep/fr/bo/board/main.do?menuCd=FN030604","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030605","menuNm":"친인척 채용현황","linkUrl":"/kosep/fr/ov/rc/ovrc05/main.do?menuCd=FN030605","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030606","menuNm":"채용정보 알림서비스","linkUrl":"/kosep/fr/ov/rc/ovrc03/consent.do?menuCd=FN030606","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030607","menuNm":"채용홍보 및 입사수기","linkUrl":"/kosep/hw/fr/ov/ovhw60/main.do?menuCd=FN03060
+   ... 06","menuCd":"FN030605","menuNm":"친인척 채용현황","linkUrl":"/kosep/fr/ov/rc/ovrc05/main.do?menuCd=FN030605","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030606","menuNm":"채용정보 알림서비스","linkUrl":"/kosep/fr/ov/rc/ovrc03/consent.do?menuCd=FN030606","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030607","menuNm":"채용홍보 및 입사수기","linkUrl":"/kosep/hw/fr/ov/ovhw60/main.do?menuCd=FN030607","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030608","menuNm":"체험형인턴 경력증명 발급","linkUrl":"/kosep/fr/ov/rc/ovrc04/main.do?menuC
+   ... menuCd":"FN030606","menuNm":"채용정보 알림서비스","linkUrl":"/kosep/fr/ov/rc/ovrc03/consent.do?menuCd=FN030606","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030607","menuNm":"채용홍보 및 입사수기","linkUrl":"/kosep/hw/fr/ov/ovhw60/main.do?menuCd=FN030607","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030608","menuNm":"체험형인턴 경력증명 발급","linkUrl":"/kosep/fr/ov/rc/ovrc04/main.do?menuCd=FN030608","linkType":"_self","childCnt":0},{"menuLvl":3,"parMenuCd":"FN03","menuCd":"FN0309","menuNm":"홍보자료","linkUrl":"/kosep/fr/pr/eb/preb01/main.do?menuCd=FN030901","
+   [SCRIPT src] ['/kosep/static/js/cm/jquery-1.8.3.min.js', '/kosep/static/js/cm/swiper-bundle.min.js', '/kosep/static/js/cm/common.js?ver=20260916', '/kosep/static/js/fr/main/main.js?ver=20260916']
+
+[LIST] div.tab-wrapper > div#tab4.tab-content > ul.list  items=5
+   li: li -> 2026년 국민제안 감사아이디어 공모 2026/10/08
+      a href=javascript:fncGoViewNotice('5182') onclick= :: own='2026년 국민제안 감사아이디어 공모' all='2026년 국민제안 감사아이디어 공모'
+      span.date :: own='2026/10/08' all='2026/10/08'
+
+[LIST] div.tab-wrapper > div#tab5.tab-content > ul.list  items=5
+   li: li -> (11.20) KOEN 한국남동발전, 이현빈 사장 “에너지 산업의 미래, 소비와 효율에서 찾아야” 2026/11/20
+      a href=javascript:fncGoViewBodo('64267') onclick= :: own='(11.20) KOEN 한국남동발전, 이현빈 사장 “에너지 산업의 미래,' all='(11.20) KOEN 한국남동발전, 이현빈 사장 “에너지 산업의 미래, 소비와 효율에서 '
+      span.date :: own='2026/11/20' all='2026/11/20'
+
+[LIST] div.tab-wrapper > div#tab6.tab-content > ul.list  items=5
+   li: li -> 일·생활 균형 캠페인 지금 참여하세요! 2026/08/19
+      a href=javascript:fncGoViewNews('5175') onclick= :: own='일·생활 균형 캠페인 지금 참여하세요!' all='일·생활 균형 캠페인 지금 참여하세요!'
+      span.date :: own='2026/08/19' all='2026/08/19'
+[DATES] sample: ['2026.09.23', '2026.10.08', '2026/10/08', '2026/10/02', '2026/09/18']
+
+[ANCHORS] most common link paths
+   x5 div#tab4.tab-content > ul.list > li > a  href=javascript:fncGoViewNotice('5182')  text='2026년 국민제안 감사아이디어 공모'
+      row? li :: '2026년 국민제안 감사아이디어 공모 2026/10/08'
+   x5 div#tab5.tab-content > ul.list > li > a  href=javascript:fncGoViewBodo('64267')  text='(11.20) KOEN 한국남동발전, 이현빈 사장 “에너지 산업의 미래,'
+      row? li :: '(11.20) KOEN 한국남동발전, 이현빈 사장 “에너지 산업의 미래, 소비와 효율에서 찾아야” 2026/11/20'
+   x5 div#tab6.tab-content > ul.list > li > a  href=javascript:fncGoViewNews('5175')  text='일·생활 균형 캠페인 지금 참여하세요!'
+      row? li :: '일·생활 균형 캠페인 지금 참여하세요! 2026/08/19'
+   x1 div.line > dl > dt > a  href=/kosep/fr/ov/jo/ovjo01/view.do?seqNo=33  text='발전공기업 통합실무지원단장 채용공고'
+      row? div.line :: '채용마감 발전공기업 통합실무지원단장 채용공고 2026.09.23~2026.10.08'
+
+[LINKS] board candidates (19)
+   '채용정보' -> https://www.koenergy.kr/kosep/fr/ov/jo/ovjo01/main.do?menuCd=FN030601
+   '채용문의' -> https://www.koenergy.kr/kosep/fr/ov/rc/ovrc01/main.do?menuCd=FN030603
+   '공지사항' -> https://www.koenergy.kr/kosep/fr/bo/board/main.do?menuCd=FN030604
+   '친인척 채용현황' -> https://www.koenergy.kr/kosep/fr/ov/rc/ovrc05/main.do?menuCd=FN030605
+   '채용정보 알림서비스' -> https://www.koenergy.kr/kosep/fr/ov/rc/ovrc03/consent.do?menuCd=FN030606
+   '채용홍보 및 입사수기' -> https://www.koenergy.kr/kosep/hw/fr/ov/ovhw60/main.do?menuCd=FN030607
+   '정보공개 모니터단 게시판' -> https://www.koenergy.kr/kosep/gv/bo/board/main.do?menuCd=FN092002
+   '소통게시판 운영 안내' -> https://www.koenergy.kr/kosep/hw/gv/im/imhw02/main.do?menuCd=FN092003
+   '소통게시판' -> https://www.koenergy.kr/kosep/gv/im/gvim01/main.do?menuCd=FN092004
+   'KOEN 옴부즈만 게시판' -> https://www.koenergy.kr/kosep/fr/ne/frNe01/main.do?gubun=NEOM&menuCd=FN100602
+   '공지사항/새소식' -> https://www.koenergy.kr/kosep/fr/pr/nt/prnt00/main.do?menuCd=FN051501
+   '새소식' -> https://www.koenergy.kr/kosep/fr/pr/nt/prnt01/main.do?menuCd=FN051503
+   '공지사항' -> https://www.koenergy.kr/kosep/fr/bo/board/main.do?menuCd=FN052404
+   '봉사활동소식' -> https://www.koenergy.kr/kosep/fr/bo/board/main.do?menuCd=FN0603010301
+   '발전공기업 통합실무지원단장 채용공고' -> https://www.koenergy.kr/kosep/fr/ov/jo/ovjo01/view.do?seqNo=33
+   '채용문의' -> https://www.koenergy.kr/kosep/fr/ov/rc/ovrc01/main.do?menuCd=FN03060301
+   '채용 알림서비스' -> https://www.koenergy.kr/kosep/fr/ov/rc/ovrc03/main.do?menuCd=FN030606
+   '일자리포털' -> https://www.koenergy.kr/job
+   '입찰공고' -> http://srm.kepco.net
+====================================================================================================
+URL: https://www.koenergy.kr/robots.txt
+status=200 final=https://www.koenergy.kr/robots.txt encoding=UTF-8 bytes=60
+title: 
+body (short): User-agent : Googlebot Disallow: /kosep/cm/search/main.do
+====================================================================================================
+URL: https://www.koelsa.or.kr/main.do
+status=404 final=https://www.koelsa.or.kr/main.do encoding=utf-8 bytes=4329
+title: 한국승강기안전공단 - 정부 통합인증으로 여는 공단의 모든 서비스
+
+[GREP] 채용
+   (없음)
+   [SCRIPT src] ['/js/jquery.min.js', '/js/jquery-ui.min.js', '/js/common.js', '/js/semantic.min.js', '/js/modal.js']
+[DATES] sample: []
+
+[RETRY without noise filter]
+[DATES] sample: []
