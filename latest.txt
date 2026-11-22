@@ -1,35 +1,206 @@
 ====================================================================================================
-URL: https://www.lx.or.kr/kor.do
-status=200 final=https://www.lx.or.kr/kor.do encoding=UTF-8 bytes=79764
-title: LX 한국국토정보공사
+URL: https://www.lh.or.kr/board.es?mid=a10602050000&bid=0036
+status=200 final=https://www.lh.or.kr/board.es?mid=a10602050000&bid=0036 encoding=UTF-8 bytes=127633
+title: 목록 | 비정규직 채용공고 | 채용정보 | 새소식 : 한국토지주택공사
 
-[GREP] 채용
-   ... /kor/bbs/BBSMSTR_000000000032/lst.do' target='_self' title='' class=''><span>법률고문현황</span></a></li> <li class="sub03_05_04_10"><a href='/kor/sub03_05_04_10.do' target='_self' title='' class=''><span>채용정보</span></a></li> <li class="sub03_05_04_11"><a href='/kor/bbs/BBSMSTR_000000000271/lst.do' target='_self' title='' class=''><span>개별 비상임이사 활동내용</span></a></li> <li class="sub03_05_04_12"><a href='/kor/bbs/BBSMSTR_000000000281/lst.do' target='_self' title='' class=''><span>태양광 설치 및 발전현황</span></a></li> <li class="sub03_05_04_13"><a href='/kor/bbs/BBSMSTR_000000000282/lst.do' target='_self' tit
-   ... '/kor/sub04_05_08_05.do' target='_self' title='' class=''><span>인권침해신고</span></a></li> <li class="sub04_05_08_11"><a href='https://bit.ly/38RFqMN' target='_blank' title='새창이동' class='blank'><span>인사·채용비리</span></a></li> <li class="sub04_05_08_12"><a href='/kor/sub04_05_08_12.do' target='_self' title='' class=''><span>비실명 대리신고 제도</span></a></li> </ul> </li> </ul> </li> <li class="sub04_06"><a href='/kor/sub04_06_01_01.do' target='_self' title='' class=''><span>사회공헌</span></a> <ul> <li class="sub04_06_01"><a href='/kor/sub04_06_01_01.do' target='_self' title='' class=''><span>누리지 봉사단</spa
-   ... STR_000000000001/lst.do' target='_self' title='' class=''><span>공지사항</span></a></li> <li class="sub05_01_02"><a href='/kor/bbs/BBSMSTR_000000000001/317/lst.do' target='_self' title='' class=''><span>채용공고</span></a></li> <li class="sub05_01_03"><a href='/kor/bid/list.do' target='_self' title='' class=''><span>입찰공고</span></a></li> <li class="sub05_01_04"><a href='/kor/bbs/BBSMSTR_000000000003/lst.do' target='_self' title='' class=''><span>인사소식</span></a></li> <li class="sub05_01_05"><a href='/kor/bbs/BBSMSTR_000000000004/lst.do' target='_self' title='' class=''><span>입안예고</span></a></li> </ul
-   ... 01"><a href='/kor/sub06_08_01.do' target='_self' title='' class=''><span>홍보관방문</span></a></li> </ul> </li> <li class="sub06_09"><a href='/kor/sub06_09_01.do' target='_self' title='' class=''><span>채용정보</span></a> <ul> <li class="sub06_09_01"><a href='/kor/sub06_09_01.do' target='_self' title='' class=''><span>공사인재상</span></a></li> <li class="sub06_09_02"><a href='/kor/sub06_09_02_01.do' target='_self' title='' class=''><span>채용안내</span></a> <ul> <li class="sub06_09_02_01"><a href='/kor/sub06_09_02_01.do' target='_self' title='' class=''><span>제도안내</span></a></li> <li class="sub06_09_02_
-   ... ub06_09_01"><a href='/kor/sub06_09_01.do' target='_self' title='' class=''><span>공사인재상</span></a></li> <li class="sub06_09_02"><a href='/kor/sub06_09_02_01.do' target='_self' title='' class=''><span>채용안내</span></a> <ul> <li class="sub06_09_02_01"><a href='/kor/sub06_09_02_01.do' target='_self' title='' class=''><span>제도안내</span></a></li> <li class="sub06_09_02_02"><a href='/kor/sub06_09_02_02.do' target='_self' title='' class=''><span>채용방법 및 분야</span></a></li> </ul> </li> <li class="sub06_09_03"><a href='/kor/bbs/BBSMSTR_000000000001/317/lst.do' target='_self' title='' class=''><span>채용공고
-   ... 02_01"><a href='/kor/sub06_09_02_01.do' target='_self' title='' class=''><span>제도안내</span></a></li> <li class="sub06_09_02_02"><a href='/kor/sub06_09_02_02.do' target='_self' title='' class=''><span>채용방법 및 분야</span></a></li> </ul> </li> <li class="sub06_09_03"><a href='/kor/bbs/BBSMSTR_000000000001/317/lst.do' target='_self' title='' class=''><span>채용공고</span></a></li> </ul> </li> <li class="sub06_10"><a href='/kor/sub06_10.do' target='_self' title='' class=''><span>찾아오시는 길</span></a> </li> </ul> </li> <li class="sub07"><a href='/kor/sub07_01_01.do' target='_self' title='' class=''><s
-   [SCRIPT src] ['/js/kor/new/libs/jquery-3.6.0.min.js', '/js/kor/new/libs/swiper/swiper11.min.js', '/js/kor/new/common.js', '/js/kor/new/main.js', '/js/cms/bluebird.js', '/js/loginTimer.js', 'https://www.googletagmanager.com/gtag/js?id=UA-131426347-1', 'https://www.googletagmanager.com/gtag/js?id=G-0B48QYSFDH', '/js/jquery.lazy-master/jquery.lazy.min.js']
+[RAW HTML] table.tstyle_list > tbody > tr
+<tr>
+<td aria-label="번호" class="m_hidden">2157</td>
+<td aria-label="본ㆍ지사">
+						수도권정비사업특별본부
+				</td>
+<td aria-label="제목" class="txt_left">
+<a href="#none" onclick="goView3('734879','/board.es?mid=a10602050000&amp;bid=0036&amp;act=view&amp;list_no=734879&amp;tag=&amp;nPage=1'); return false;">  한국토지주택공사 수도권정비사업특별본부 기간제근로자(정비사업지원역) 채용공고</a>
+</td>
+<td aria-label="등록일">2026-11-02</td>
+<td aria-label="조회수" class="m_hidden">3722</td>
+<td aria-label="첨부파일">
+<a class="b_modal_open" href="#" title="클릭하시면 첨부파일 목록이 보여집니다.">
+<img alt="첨부파일" src="/upload/skin/board/basic/attach.png"/>
+</a>
+<div class="board_modal" style="display: none;" tabindex="0">
+<ul class="file_list">
+<li>
+<a download="" href="/boardDownload.es?bid=0036&amp;list_no=734879&amp;seq=69251229" title="(붙임1)한국토지주택공사수도권정비사업특별본부기간제근로자(정비사업지원역)채용공고문.hwpx 다운로드">
+<img alt="" src="/upload/skin/board/basic/hwpx.png"/>(붙임1)한국토지주택공사수도권정비사업특별본부기간제근로자(정비사업지원역)채용공고문.hwpx
+										<span class="txt">(105.15KB)</span>
+</a>
+</li>
+<li>
+<a download="" href="/boardDownload.es?bid=0036&amp;list_no=734879&amp;seq=69251230" title="(붙임2)입사지원서등(채용홈페이지통하여접수).hwpx 다운로드">
+<img alt="" src="/upload/skin/board/basic/hwpx.png"/>(붙임2)입사지원서등(채용홈페이지통하여접수).hwpx
+										<span class="txt">(56.31KB)</span>
+</a>
+</li>
+<li>
+<a download="" href="/boardDownload.es?bid=0036&amp;list_no=734879&amp;seq=69251231" title="(붙임3)한국토지주택공사수도권정비사업특별본부기간제근로자(정비사업지원역)채용직무기술서.hwpx 다운로드">
+<img alt="" src="/upload/skin/board/basic/hwpx.png"/>(붙임3)한국토지주택공사수도권정비사업특별본부기간제근로자(정비사업지원역)채용직무기술서.hwpx
+										<span class="txt">(33.66KB)</span>
+</a>
+</li>
+</ul>
+<button class="modal_close" type="button"><span class="sr_only">첨부파일 팝업 닫기</span></button>
+</div>
+</td>
+</tr>
 
-[LIST] div.bod-item.notice-area.scroll-toggle > div.con-body > ul#main_news.list  items=5
-   li: li -> 채용 한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지 2026-11-19
-      a.item href=# onclick=mainBbsView('BBSMSTR_000000000001','25766'); return false; :: own='' all='채용 한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지 2026-11-19'
-      span.category :: own='채용' all='채용'
-      div.txt :: own='' all='한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지'
-      em :: own='한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지' all='한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지'
-      span.date :: own='2026-11-19' all='2026-11-19'
-[DATES] sample: ['2026-11-19', '2026-11-03', '2026-11-03', '2026-11-03', '2026-11-02']
+[TABLE] div#contents_body > div.board_list > table.tstyle_list  rows=16
+   row: tr -> th:번호 | th:본ㆍ지사 | th:제목 | th:등록일 | th:조회수 | th:첨부파일
+   row: tr -> td.m_hidden:2158 | td:대구경북지역본부 | td.txt_left:새글 한국토지주택공사 대구경북지역본부 기간제근로 | td:2026-11-18 | td.m_hidden:992 | td:(붙임1)대구경북기간제근로자채용공고(2026-0
+      td.m_hidden :: own='2158' all='2158'
+      td :: own='대구경북지역본부' all='대구경북지역본부'
+      td.txt_left :: own='' all='새글 한국토지주택공사 대구경북지역본부 기간제근로자(대체채용) 채용공고(2026-09)'
+      a href=#none onclick=goView3('735105','/board.es?mid=a10602050000&bid=0036&act=vi :: own='한국토지주택공사 대구경북지역본부 기간제근로자(대체채용) 채용공고(2026' all='새글 한국토지주택공사 대구경북지역본부 기간제근로자(대체채용) 채용공고(2026-09)'
+      span.sr_only :: own='새글' all='새글'
+      td :: own='2026-11-18' all='2026-11-18'
+      td.m_hidden :: own='992' all='992'
+      td :: own='' all='(붙임1)대구경북기간제근로자채용공고(2026-09).hwpx (120.85KB) (붙임2)'
+      div.board_modal :: own='' all='(붙임1)대구경북기간제근로자채용공고(2026-09).hwpx (120.85KB) (붙임2)'
+      ul.file_list :: own='' all='(붙임1)대구경북기간제근로자채용공고(2026-09).hwpx (120.85KB) (붙임2)'
+      li :: own='' all='(붙임1)대구경북기간제근로자채용공고(2026-09).hwpx (120.85KB)'
+      a href=/boardDownload.es?bid=0036&list_no=735105&seq=69415561 onclick= attrs={'download': ''} :: own='(붙임1)대구경북기간제근로자채용공고(2026-09).hwpx' all='(붙임1)대구경북기간제근로자채용공고(2026-09).hwpx (120.85KB)'
+      span.txt :: own='(120.85KB)' all='(120.85KB)'
+      li :: own='' all='(붙임2)입사지원서등(채용홈페이지작성및제출)(2026-09).hwpx (57.69KB)'
+
+[LIST] td > div.board_modal > ul.file_list  items=3
+   li: li -> (붙임1)대구경북기간제근로자채용공고(2026-09).hwpx (120.85KB)
+      a href=/boardDownload.es?bid=0036&list_no=735105&seq=69415561 onclick= attrs={'download': ''} :: own='(붙임1)대구경북기간제근로자채용공고(2026-09).hwpx' all='(붙임1)대구경북기간제근로자채용공고(2026-09).hwpx (120.85KB)'
+      span.txt :: own='(120.85KB)' all='(120.85KB)'
+
+[LIST] td > div.board_modal > ul.file_list  items=3
+   li: li -> (붙임1)한국토지주택공사수도권정비사업특별본부기간제근로자(정비사업지원역)채용공고문.hwpx (105.15KB)
+      a href=/boardDownload.es?bid=0036&list_no=734879&seq=69251229 onclick= attrs={'download': ''} :: own='(붙임1)한국토지주택공사수도권정비사업특별본부기간제근로자(정비사업지원역)채' all='(붙임1)한국토지주택공사수도권정비사업특별본부기간제근로자(정비사업지원역)채용공고문.hwpx '
+      span.txt :: own='(105.15KB)' all='(105.15KB)'
+
+[LIST] td > div.board_modal > ul.file_list  items=3
+   li: li -> (붙임1)채용공고문(2026.11)_260415개정.hwpx (134.96KB)
+      a href=/boardDownload.es?bid=0036&list_no=734814&seq=69195637 onclick= attrs={'download': ''} :: own='(붙임1)채용공고문(2026.11)_260415개정.hwpx' all='(붙임1)채용공고문(2026.11)_260415개정.hwpx (134.96KB)'
+      span.txt :: own='(134.96KB)' all='(134.96KB)'
+
+[LIST] td > div.board_modal > ul.file_list  items=3
+   li: li -> 1.한국토지주택공사토지주택연구원기간제근로자채용공고(2026.10.29.).pdf (483.22KB)
+      a href=/boardDownload.es?bid=0036&list_no=734756&seq=69159312 onclick= attrs={'download': ''} :: own='1.한국토지주택공사토지주택연구원기간제근로자채용공고(2026.10.29.)' all='1.한국토지주택공사토지주택연구원기간제근로자채용공고(2026.10.29.).pdf (483.'
+      span.txt :: own='(483.22KB)' all='(483.22KB)'
+
+[LIST] td > div.board_modal > ul.file_list  items=3
+   li: li -> (붙임1)대구경북기간제근로자채용공고(2026-08).hwpx (118.88KB)
+      a href=/boardDownload.es?bid=0036&list_no=734740&seq=69145133 onclick= attrs={'download': ''} :: own='(붙임1)대구경북기간제근로자채용공고(2026-08).hwpx' all='(붙임1)대구경북기간제근로자채용공고(2026-08).hwpx (118.88KB)'
+      span.txt :: own='(118.88KB)' all='(118.88KB)'
+
+[LIST] td > div.board_modal > ul.file_list  items=3
+   li: li -> 붙임1_채용공고문(매입직무)_최종.hwpx (126.35KB)
+      a href=/boardDownload.es?bid=0036&list_no=734721&seq=69122243 onclick= attrs={'download': ''} :: own='붙임1_채용공고문(매입직무)_최종.hwpx' all='붙임1_채용공고문(매입직무)_최종.hwpx (126.35KB)'
+      span.txt :: own='(126.35KB)' all='(126.35KB)'
+
+[LIST] td > div.board_modal > ul.file_list  items=3
+   li: li -> 붙임1. 기간제 근로자 채용공고문(매입분야).hwpx (117.11KB)
+      a href=/boardDownload.es?bid=0036&list_no=734673&seq=1 onclick= attrs={'download': ''} :: own='붙임1. 기간제 근로자 채용공고문(매입분야).hwpx' all='붙임1. 기간제 근로자 채용공고문(매입분야).hwpx (117.11KB)'
+      span.txt :: own='(117.11KB)' all='(117.11KB)'
+
+[LIST] td > div.board_modal > ul.file_list  items=4
+   li: li -> (붙임1)채용공고문.hwpx (119.27KB)
+      a href=/boardDownload.es?bid=0036&list_no=734705&seq=69122814 onclick= attrs={'download': ''} :: own='(붙임1)채용공고문.hwpx' all='(붙임1)채용공고문.hwpx (119.27KB)'
+      span.txt :: own='(119.27KB)' all='(119.27KB)'
+
+[LIST] td > div.board_modal > ul.file_list  items=3
+   li: li -> 1.경남지역본부기간제근로자채용공고(26년_4회차).pdf (245.34KB)
+      a href=/boardDownload.es?bid=0036&list_no=734669&seq=69107166 onclick= attrs={'download': ''} :: own='1.경남지역본부기간제근로자채용공고(26년_4회차).pdf' all='1.경남지역본부기간제근로자채용공고(26년_4회차).pdf (245.34KB)'
+      span.txt :: own='(245.34KB)' all='(245.34KB)'
+
+[LIST] td > div.board_modal > ul.file_list  items=3
+   li: li -> (붙임1)채용공고문(주거복지법률조직변호사).hwpx (207.8KB)
+      a href=/boardDownload.es?bid=0036&list_no=734656&seq=69088570 onclick= attrs={'download': ''} :: own='(붙임1)채용공고문(주거복지법률조직변호사).hwpx' all='(붙임1)채용공고문(주거복지법률조직변호사).hwpx (207.8KB)'
+      span.txt :: own='(207.8KB)' all='(207.8KB)'
+
+[LIST] td > div.board_modal > ul.file_list  items=3
+   li: li -> 1.서울지역본부기간제근로자(매입직무)채용공고문.hwpx (126.76KB)
+      a href=/boardDownload.es?bid=0036&list_no=734578&seq=69013184 onclick= attrs={'download': ''} :: own='1.서울지역본부기간제근로자(매입직무)채용공고문.hwpx' all='1.서울지역본부기간제근로자(매입직무)채용공고문.hwpx (126.76KB)'
+      span.txt :: own='(126.76KB)' all='(126.76KB)'
+
+[LIST] td > div.board_modal > ul.file_list  items=3
+   li: li -> 1)한국토지주택공사전북지역본부기간제근로자채용공고.pdf (246.8KB)
+      a href=/boardDownload.es?bid=0036&list_no=734514&seq=68962701 onclick= attrs={'download': ''} :: own='1)한국토지주택공사전북지역본부기간제근로자채용공고.pdf' all='1)한국토지주택공사전북지역본부기간제근로자채용공고.pdf (246.8KB)'
+      span.txt :: own='(246.8KB)' all='(246.8KB)'
+
+[LIST] td > div.board_modal > ul.file_list  items=4
+   li: li -> (붙임1)채용공고문(5차공고).hwpx (87.21KB)
+      a href=/boardDownload.es?bid=0036&list_no=734417&seq=68890417 onclick= attrs={'download': ''} :: own='(붙임1)채용공고문(5차공고).hwpx' all='(붙임1)채용공고문(5차공고).hwpx (87.21KB)'
+      span.txt :: own='(87.21KB)' all='(87.21KB)'
+
+[LIST] td > div.board_modal > ul.file_list  items=3
+   li: li -> 1.(공고)한국토지주택공사기간제근로자(전세사기최소보장지원)채용공고.hwpx (85.37KB)
+      a href=/boardDownload.es?bid=0036&list_no=734406&seq=1 onclick= attrs={'download': ''} :: own='1.(공고)한국토지주택공사기간제근로자(전세사기최소보장지원)채용공고.hwp' all='1.(공고)한국토지주택공사기간제근로자(전세사기최소보장지원)채용공고.hwpx (85.37KB'
+      span.txt :: own='(85.37KB)' all='(85.37KB)'
+[DATES] sample: ['2026-11-18', '2026-11-02', '2026-11-02', '2026-10-29', '2026.10.29']
 
 [ANCHORS] most common link paths
-   x5 div.con-body > ul#main_news.list > li > a.item  href=# {'onclick': "mainBbsView('BBSMSTR_000000000001','2576"} text='채용 한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지 2026'
-      row? li :: '채용 한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지 2026-11-19'
-   x2 div.section-wrap > ul.related-wrap.scroll-toggle > li > a.item.scroll-toggle  href=https://www.lxcti.or.kr/ {'target': '_blank', 'title': '새 창 이동, 국토정보연구원', 'data-s-type': 'edu', 'data-scroll-offset': '200'} text='국토정보교육원 국내유일 국토정보 전문 교육기관'
-      row? li :: '국토정보교육원 국내유일 국토정보 전문 교육기관'
-   x1 div.service-item.survey-area.scroll-toggle > ul.list > li > a.item  href=https://baro.lx.or.kr/main.do#slide03 {'target': '_blank', 'title': '새 창 이동, 지적측량신청포털', 'data-s-type': 'a'} text='지적측량 신청(인터넷)'
-      row? li :: '지적측량 신청(인터넷)'
-   x1 div.service-item.survey-area.scroll-toggle > ul.list > li.tel > a.item  href=# {'data-s-type': 'b'} text='지적측량 신청(전화) 1588-7704'
-      row? li.tel :: '지적측량 신청(전화) 1588-7704'
+   x45 div.board_modal > ul.file_list > li > a  href=/boardDownload.es?bid=0036&list_no=735105&seq=69415561 {'download': '', 'title': '(붙임1)대구경북기간제근로자채용공고(2026-09).hwpx 다운로드'} text='(붙임1)대구경북기간제근로자채용공고(2026-09).hwpx (120.8'
+      row? li :: '(붙임1)대구경북기간제근로자채용공고(2026-09).hwpx (120.85KB)'
+   x15 tbody > tr > td.txt_left > a  href=#none {'onclick': "goView3('735105','/board.es?mid=a1060205"} text='새글 한국토지주택공사 대구경북지역본부 기간제근로자(대체채용) 채용공고(2'
+      row? tr :: '2158 대구경북지역본부 새글 한국토지주택공사 대구경북지역본부 기간제근로자(대체채용) 채용공고(2026-09) 2026-11-18 992 (붙임1)대구경북기간제근로자채용공고(2026-09).hwpx (120.85KB'
+
+[LINKS] board candidates (42)
+   '새소식' -> https://www.lh.or.kr/menu.es?mid=a10601000000
+   '공지ㆍ공모' -> https://www.lh.or.kr/menu.es?mid=a10601010000
+   '채용정보' -> https://www.lh.or.kr/menu.es?mid=a10602010000
+   'NCS 기반 채용' -> https://www.lh.or.kr/menu.es?mid=a10602020100
+   '정규직 채용공고' -> https://www.lh.or.kr/menu.es?mid=a10602040000
+   '비정규직 채용공고' -> https://www.lh.or.kr/menu.es?mid=a10602050000
+   '공지사항' -> https://www.lh.or.kr/menu.es?mid=a10602060000
+   '인사부조리, 채용비리' -> http://www.molit.go.kr/USR/WPGE0201/m_37055/DTL.jsp
+   '정보공개 소통게시판' -> https://www.lh.or.kr/menu.es?mid=a10112000000
+   '새소식 >' -> https://www.lh.or.kr/menu.es?mid=a10600000000
+   '채용정보 >' -> https://www.lh.or.kr/menu.es?mid=a10602000000
+   '(붙임1)대구경북기간제근로자채용공고(2026-09).h' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=735105&seq=69415561
+   '(붙임2)입사지원서등(채용홈페이지작성및제출)(2026-' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=735105&seq=69415562
+   '(붙임1)한국토지주택공사수도권정비사업특별본부기간제근로자' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734879&seq=69251229
+   '(붙임2)입사지원서등(채용홈페이지통하여접수).hwpx ' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734879&seq=69251230
+   '(붙임3)한국토지주택공사수도권정비사업특별본부기간제근로자' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734879&seq=69251231
+   '(붙임1)채용공고문(2026.11)_260415개정.h' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734814&seq=69195637
+   '(붙임3)입사지원서등서식(채용홈페이지작성및제출).hwp' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734814&seq=69195639
+   '1.한국토지주택공사토지주택연구원기간제근로자채용공고(20' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734756&seq=69159312
+   '2.(모집단위1)직무기술서_촉탁연구(연구2).pdf (' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734756&seq=69159313
+   '3.입사지원서등(채용홈페이지통하여작성).pdf (268' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734756&seq=69159314
+   '(붙임1)대구경북기간제근로자채용공고(2026-08).h' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734740&seq=69145133
+   '(붙임2)입사지원서등(채용홈페이지작성및제출)(2026-' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734740&seq=69145134
+   '붙임1_채용공고문(매입직무)_최종.hwpx (126.3' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734721&seq=69122243
+   '붙임2_직무기술서_26년10월공고(매입직무).hwpx ' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734721&seq=69122244
+   '붙임1. 기간제 근로자 채용공고문(매입분야).hwpx ' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734673&seq=1
+   '붙임3.기간제근로자채용직무기술서(매입분야).hwpx (' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734673&seq=3
+   '(붙임1)채용공고문.hwpx (119.27KB)' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734705&seq=69122814
+   '(붙임4)입사지원서등_채용홈페이지작성및제출.hwpx (' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734705&seq=69122817
+   '1.경남지역본부기간제근로자채용공고(26년_4회차).pd' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734669&seq=69107166
+   '3.입사지원서등서식(채용홈페이지작성및제출).pdf (2' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734669&seq=69107168
+   '(붙임1)채용공고문(주거복지법률조직변호사).hwpx (' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734656&seq=69088570
+   '(붙임3)입사지원서등서식(채용홈페이지작성및제출).hwp' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734656&seq=69088572
+   '1.서울지역본부기간제근로자(매입직무)채용공고문.hwpx' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734578&seq=69013184
+   '3.입사지원서등(서식)_채용홈페이지통하여작성.hwpx ' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734578&seq=69023834
+   '1)한국토지주택공사전북지역본부기간제근로자채용공고.pdf' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734514&seq=68962701
+   '2)입사지원서등(채용홈페이지통해작성).pdf (212.' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734514&seq=68962702
+   '(붙임1)채용공고문(5차공고).hwpx (87.21KB' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734417&seq=68890417
+   '(붙임2)직무기술서(5차공고).hwpx (39.57KB' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734417&seq=68890418
+   '(붙임3)경력증명서등(5차공고).hwpx (45.19K' -> https://www.lh.or.kr/boardDownload.es?bid=0036&list_no=734417&seq=68890419
+====================================================================================================
+URL: https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000001/317/lst.do
+status=200 final=https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000001/317/lst.do encoding=UTF-8 bytes=88540
+title: 채용공고 < 공고 < 뉴스룸 < LX 한국국토정보공사
+
+[LIST] div#txt > div.board.notice.list > ul  items=11
+   li: li.thead -> 번호 제목 작성일 조회 첨부
+      strong.ntt_no :: own='번호' all='번호'
+      strong.ntt_sj :: own='제목' all='제목'
+      strong.frst_register_nm :: own='작성일' all='작성일'
+      strong.rdcnt :: own='조회' all='조회'
+      strong.atch_file_id :: own='첨부' all='첨부'
+
+[PAGING] ?pageIndex=1
+[DATES] sample: ['2026-11-19', '2026-11-03', '2026-11-03', '2026-11-03', '2026-10-28']
+
+[ANCHORS] most common link paths
+   x10 ul > li > div.ntt_sj.left > a.no_secret  href=# {'onclick': "bbsMstrView('25766'); return false;"} text='한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지 [new] ['
+      row? div.ntt_sj.left :: '제목 한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지 [new] [secret]'
+   x8 ul > li > p.atch_file_id > a.folder  href=# {'onclick': "bbsMstrView('25726');;return false;"} text='1개이상 첨부파일이 있음[상세보기]'
+      row? li :: '번호 1027 제목 2026년 하반기 한국국토정보공사 전문경력직(토지보상) 채용 공고 [new] [secret] 작성일 : 2026-11-03 조회수 291690 첨부 : 1개이상 첨부파일이 있음[상세보기]'
 
 [LINKS] board candidates (16)
    '보상공고' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000321/lst.do
@@ -49,63 +220,50 @@ title: LX 한국국토정보공사
    '채용방법 및 분야' -> https://www.lx.or.kr/kor/sub06_09_02_02.do
    '공지사항' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000011/lst.do
 ====================================================================================================
-URL: https://www.kosmes.or.kr/intro/intro.html
-status=200 final=https://www.kosmes.or.kr/intro/intro.html encoding=utf-8 bytes=1518
-title: 중소벤처기업진흥공단
-body (short): <!DOCTYPE html> <html lang="ko"> <head> <meta charset="UTF-8"> <meta name="Author" content="중소벤처기업진흥공단" /> <meta name="description" content="정책자금, 수출·글로벌, 인력·창업, 지역혁신 등을 연계 지원하는 중소벤처기업 중심의 혁신성장 선도 플랫폼"> <meta name="keywords" content=""> <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />--> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <meta http-equiv="X-UA-Compatible" content="IE=edge" /> <meta property="og:image" content="./img/img-og.png"> <meta property="og:url" content=""> <meta pr
-====================================================================================================
-URL: https://www.kosmes.or.kr/nsh/SH/MAP/SHMAP001M0.do
-status=200 final=https://www.kosmes.or.kr/nsh/SH/MAP/SHMAP001M0.do encoding=utf-8 bytes=2659
-title: 중소벤처기업진흥공단
+URL: https://www.koenergy.kr/kosep/fr/ov/jo/ovjo01/main.do?menuCd=FN030601
+status=200 final=https://www.koenergy.kr/kosep/fr/ov/jo/ovjo01/main.do?menuCd=FN030601 encoding=UTF-8 bytes=186152
+title: 채용공고 | 채용정보 | 회사소개 | 한국남동발전(주)
 
-[GREP] 채용
-   (없음)
-   [SCRIPT src] ['/static/compat/js/common.js', '/static/compat/js/jquery-1.12.4.js', '/static/compat/js/jquery-ui.min.js', '/static/compat/js/admin_script.js', '/static/compat/js/axisj-1.1.12/dist/AXJ.min.js', '/static/compat/js/axisj-1.1.12/lib/AXGrid.js']
-[DATES] sample: []
+[RAW HTML] table.data_list > tbody > tr
+<tr>
+<td>32</td>
+<td class="td_left">
+<a href="#" onclick="fncGoView('32'); return false;">2026년 한국남동발전(주) 하반기 신입사원 채용공고</a>
+</td>
+<td>
+<button class="BtnAI" onclick="javascript:fnDownFile('b579e9610b312184fe496ad6bffe0bb6f7b011a086d8272721656e75ecfe1607','0','54a7d9f6b97f5147d15f80262561d46e6bd4661244889f03f3e2c95303387c6c'); return false;" type="button"><strong>다운</strong>로드</button>
+</td>
+<td>2026.08.03 ~ 2026.08.18</td>
+<td>
+							접수마감
+					</td>
+<td>24748</td>
+</tr>
 
-[RETRY without noise filter]
-[DATES] sample: []
-====================================================================================================
-URL: https://www.koenergy.kr/kosep/fr/main.do
-status=200 final=https://www.koenergy.kr/kosep/fr/main.do encoding=UTF-8 bytes=595949
-title: 한국남동발전(주)
+[RAW HTML] section.contents > div.pagebox > div.paging
+<div class="paging">
+<a class="on" href="#" title="현재 페이지">1</a> <a href="#" onclick="fncGoPage(2); return false;">2</a> <a href="#" onclick="fncGoPage(3); return false;">3</a> <a href="#" onclick="fncGoPage(4); return false;">4</a> 
+			</div>
 
-[GREP] 채용
-   ... 0305","menuCd":"FN030502","menuNm":"국내외 주요투자사업","linkUrl":"/kosep/hw/fr/ov/ovhw27/main.do?menuCd=FN030502","linkType":"_self","childCnt":0},{"menuLvl":3,"parMenuCd":"FN03","menuCd":"FN0306","menuNm":"채용정보","linkUrl":"/kosep/fr/ov/jo/ovjo01/main.do?menuCd=FN030601","linkType":"_self","childCnt":8},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030601","menuNm":"채용공고","linkUrl":"/kosep/fr/ov/jo/ovjo01/main.do?menuCd=FN030601","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030602","menuNm":"인재상 및 복리후생","linkUrl":"/kosep/hw/fr/ov/ovhw30/main.do?menuCd=FN030602","linkTy
-   ... d":"FN03","menuCd":"FN0306","menuNm":"채용정보","linkUrl":"/kosep/fr/ov/jo/ovjo01/main.do?menuCd=FN030601","linkType":"_self","childCnt":8},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030601","menuNm":"채용공고","linkUrl":"/kosep/fr/ov/jo/ovjo01/main.do?menuCd=FN030601","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030602","menuNm":"인재상 및 복리후생","linkUrl":"/kosep/hw/fr/ov/ovhw30/main.do?menuCd=FN030602","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030603","menuNm":"채용문의","linkUrl":"/kosep/fr/ov/rc/ovrc01/main.do?menuCd=FN030603","linkTy
-   ... ","menuCd":"FN030602","menuNm":"인재상 및 복리후생","linkUrl":"/kosep/hw/fr/ov/ovhw30/main.do?menuCd=FN030602","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030603","menuNm":"채용문의","linkUrl":"/kosep/fr/ov/rc/ovrc01/main.do?menuCd=FN030603","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030604","menuNm":"공지사항","linkUrl":"/kosep/fr/bo/board/main.do?menuCd=FN030604","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030605","menuNm":"친인척 채용현황","linkUrl":"/kosep/fr/ov/rc/ovrc05/main.do?menuCd=FN030605","linkType":"_
-   ... FN0306","menuCd":"FN030604","menuNm":"공지사항","linkUrl":"/kosep/fr/bo/board/main.do?menuCd=FN030604","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030605","menuNm":"친인척 채용현황","linkUrl":"/kosep/fr/ov/rc/ovrc05/main.do?menuCd=FN030605","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030606","menuNm":"채용정보 알림서비스","linkUrl":"/kosep/fr/ov/rc/ovrc03/consent.do?menuCd=FN030606","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030607","menuNm":"채용홍보 및 입사수기","linkUrl":"/kosep/hw/fr/ov/ovhw60/main.do?menuCd=FN03060
-   ... 06","menuCd":"FN030605","menuNm":"친인척 채용현황","linkUrl":"/kosep/fr/ov/rc/ovrc05/main.do?menuCd=FN030605","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030606","menuNm":"채용정보 알림서비스","linkUrl":"/kosep/fr/ov/rc/ovrc03/consent.do?menuCd=FN030606","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030607","menuNm":"채용홍보 및 입사수기","linkUrl":"/kosep/hw/fr/ov/ovhw60/main.do?menuCd=FN030607","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030608","menuNm":"체험형인턴 경력증명 발급","linkUrl":"/kosep/fr/ov/rc/ovrc04/main.do?menuC
-   ... menuCd":"FN030606","menuNm":"채용정보 알림서비스","linkUrl":"/kosep/fr/ov/rc/ovrc03/consent.do?menuCd=FN030606","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030607","menuNm":"채용홍보 및 입사수기","linkUrl":"/kosep/hw/fr/ov/ovhw60/main.do?menuCd=FN030607","linkType":"_self","childCnt":0},{"menuLvl":4,"parMenuCd":"FN0306","menuCd":"FN030608","menuNm":"체험형인턴 경력증명 발급","linkUrl":"/kosep/fr/ov/rc/ovrc04/main.do?menuCd=FN030608","linkType":"_self","childCnt":0},{"menuLvl":3,"parMenuCd":"FN03","menuCd":"FN0309","menuNm":"홍보자료","linkUrl":"/kosep/fr/pr/eb/preb01/main.do?menuCd=FN030901","
-   [SCRIPT src] ['/kosep/static/js/cm/jquery-1.8.3.min.js', '/kosep/static/js/cm/swiper-bundle.min.js', '/kosep/static/js/cm/common.js?ver=20260916', '/kosep/static/js/fr/main/main.js?ver=20260916']
-
-[LIST] div.tab-wrapper > div#tab4.tab-content > ul.list  items=5
-   li: li -> 2026년 국민제안 감사아이디어 공모 2026/10/08
-      a href=javascript:fncGoViewNotice('5182') onclick= :: own='2026년 국민제안 감사아이디어 공모' all='2026년 국민제안 감사아이디어 공모'
-      span.date :: own='2026/10/08' all='2026/10/08'
-
-[LIST] div.tab-wrapper > div#tab5.tab-content > ul.list  items=5
-   li: li -> (11.20) KOEN 한국남동발전, 이현빈 사장 “에너지 산업의 미래, 소비와 효율에서 찾아야” 2026/11/20
-      a href=javascript:fncGoViewBodo('64267') onclick= :: own='(11.20) KOEN 한국남동발전, 이현빈 사장 “에너지 산업의 미래,' all='(11.20) KOEN 한국남동발전, 이현빈 사장 “에너지 산업의 미래, 소비와 효율에서 '
-      span.date :: own='2026/11/20' all='2026/11/20'
-
-[LIST] div.tab-wrapper > div#tab6.tab-content > ul.list  items=5
-   li: li -> 일·생활 균형 캠페인 지금 참여하세요! 2026/08/19
-      a href=javascript:fncGoViewNews('5175') onclick= :: own='일·생활 균형 캠페인 지금 참여하세요!' all='일·생활 균형 캠페인 지금 참여하세요!'
-      span.date :: own='2026/08/19' all='2026/08/19'
-[DATES] sample: ['2026.09.23', '2026.10.08', '2026/10/08', '2026/10/02', '2026/09/18']
+[TABLE] section.contents > div.data_table.table_out > table.data_list  rows=11
+   row: tr -> th:번호 | th:제목 | th:첨부파일 | th:모집기간 | th:진행현황 | th:조회수
+   row: tr -> td:33 | td.td_left:발전공기업 통합실무지원단장 채용공고 | td:다운 로드 | td:2026.09.23 ~ 2026.10.08 | td:공고중 | td:2144
+      td :: own='33' all='33'
+      td.td_left :: own='' all='발전공기업 통합실무지원단장 채용공고'
+      a href=# onclick=fncGoView('33'); return false; :: own='발전공기업 통합실무지원단장 채용공고' all='발전공기업 통합실무지원단장 채용공고'
+      td :: own='' all='다운 로드'
+      button.BtnAI :: own='로드' all='다운 로드'
+      strong :: own='다운' all='다운'
+      td :: own='2026.09.23 ~ 2026.10.08' all='2026.09.23 ~ 2026.10.08'
+      td :: own='공고중' all='공고중'
+      td :: own='2144' all='2144'
+[DATES] sample: ['2026.09.23', '2026.10.08', '2026.08.03', '2026.08.18', '2026.08.03']
 
 [ANCHORS] most common link paths
-   x5 div#tab4.tab-content > ul.list > li > a  href=javascript:fncGoViewNotice('5182')  text='2026년 국민제안 감사아이디어 공모'
-      row? li :: '2026년 국민제안 감사아이디어 공모 2026/10/08'
-   x5 div#tab5.tab-content > ul.list > li > a  href=javascript:fncGoViewBodo('64267')  text='(11.20) KOEN 한국남동발전, 이현빈 사장 “에너지 산업의 미래,'
-      row? li :: '(11.20) KOEN 한국남동발전, 이현빈 사장 “에너지 산업의 미래, 소비와 효율에서 찾아야” 2026/11/20'
-   x5 div#tab6.tab-content > ul.list > li > a  href=javascript:fncGoViewNews('5175')  text='일·생활 균형 캠페인 지금 참여하세요!'
-      row? li :: '일·생활 균형 캠페인 지금 참여하세요! 2026/08/19'
-   x1 div.line > dl > dt > a  href=/kosep/fr/ov/jo/ovjo01/view.do?seqNo=33  text='발전공기업 통합실무지원단장 채용공고'
-      row? div.line :: '채용마감 발전공기업 통합실무지원단장 채용공고 2026.09.23~2026.10.08'
+   x10 tbody > tr > td.td_left > a  href=# {'onclick': "fncGoView('33'); return false;"} text='발전공기업 통합실무지원단장 채용공고'
+      row? tr :: '33 발전공기업 통합실무지원단장 채용공고 다운 로드 2026.09.23 ~ 2026.10.08 공고중 2144'
 
-[LINKS] board candidates (19)
+[LINKS] board candidates (14)
    '채용정보' -> https://www.koenergy.kr/kosep/fr/ov/jo/ovjo01/main.do?menuCd=FN030601
    '채용문의' -> https://www.koenergy.kr/kosep/fr/ov/rc/ovrc01/main.do?menuCd=FN030603
    '공지사항' -> https://www.koenergy.kr/kosep/fr/bo/board/main.do?menuCd=FN030604
@@ -119,26 +277,167 @@ title: 한국남동발전(주)
    '공지사항/새소식' -> https://www.koenergy.kr/kosep/fr/pr/nt/prnt00/main.do?menuCd=FN051501
    '새소식' -> https://www.koenergy.kr/kosep/fr/pr/nt/prnt01/main.do?menuCd=FN051503
    '공지사항' -> https://www.koenergy.kr/kosep/fr/bo/board/main.do?menuCd=FN052404
-   '봉사활동소식' -> https://www.koenergy.kr/kosep/fr/bo/board/main.do?menuCd=FN0603010301
-   '발전공기업 통합실무지원단장 채용공고' -> https://www.koenergy.kr/kosep/fr/ov/jo/ovjo01/view.do?seqNo=33
-   '채용문의' -> https://www.koenergy.kr/kosep/fr/ov/rc/ovrc01/main.do?menuCd=FN03060301
-   '채용 알림서비스' -> https://www.koenergy.kr/kosep/fr/ov/rc/ovrc03/main.do?menuCd=FN030606
-   '일자리포털' -> https://www.koenergy.kr/job
    '입찰공고' -> http://srm.kepco.net
 ====================================================================================================
-URL: https://www.koenergy.kr/robots.txt
-status=200 final=https://www.koenergy.kr/robots.txt encoding=UTF-8 bytes=60
-title: 
-body (short): User-agent : Googlebot Disallow: /kosep/cm/search/main.do
+URL: https://www.kicet.re.kr/00020/00117/00253.web
+status=200 final=https://www.kicet.re.kr/00020/00117/00253.web encoding=UTF-8 bytes=48450
+title: 채용정보 | 한국세라믹기술원
+
+[RAW HTML] table.t1.w100.tttac.ttvam.lhD > tbody > tr
+<tr>
+<td>824</td>
+<td class="tal">
+<a href="?gcode=1024&amp;idx=12072&amp;amode=view&amp;">
+						2026년도 제3분기 채용 공고 안내
+					</a>
+</td>
+<td>
+								2026-05-22 ~ 2026-06-05 17:00
+				</td>
+<td>
+</td>
+</tr>
+
+[RAW HTML] form#listForm > div.infomenu1 > div.pagination
+<div class="pagination" title="페이지 수 매기기">
+<span class="control">
+<span class="m first"><a title="맨앞 페이지"><i class="ic">«</i></a></span>
+<span class="m prev"><a title="이전 페이지"><i class="ic">‹</i></a></span>
+</span><span class="pages">
+<span class="m on"><a title="현재 1 페이지">1</a></span>
+<span class="m"><a href="?gcode=1024&amp;cpage=2" title="2 페이지">2</a></span>
+<span class="m"><a href="?gcode=1024&amp;cpage=3" title="3 페이지">3</a></span>
+<span class="m"><a href="?gcode=1024&amp;cpage=4" title="4 페이지">4</a></span>
+<span class="m"><a href="?gcode=1024&amp;cpage=5" title="5 페이지">5</a></span>
+<span class="m"><a href="?gcode=1024&amp;cpage=6" title="6 페이지">6</a></span>
+<span class="m"><a href="?gcode=1024&amp;cpage=7" title="7 페이지">7</a></span>
+<span class="m"><a href="?gcode=1024&amp;cpage=8" title="8 페이지">8</a></span>
+<span class="m"><a href="?gcode=1024&amp;cpage=9" title="9 페이지">9</a></span>
+<span class="m"><a href="?gcode=1024&amp;cpage=10" title="10 페이지">10</a></span>
+</span><span class="control">
+<span class="m next"><a href="?gcode=1024&amp;cpage=11" title="다음 페이지"><i class="ic">›</i></a></span>
+<span class="m last"><a href="?gcode=1024&amp;cpage=83" title="맨끝 페이지"><i class="ic">»</i></a></span>
+</span></div>
+
+[TABLE] form#listForm > div.list2table1 > table.t1.w100.tttac.ttvam.lhD  rows=11
+   row: tr -> th:번호 | th:제목 | th:접수기간 | th:접수현황
+   row: tr -> td:825 | td.tal:2026년도 제4분기 채용 공고 안내 | td:2026-10-15 ~ 2026-10-29 17 | td:
+      td :: own='825' all='825'
+      td.tal :: own='' all='2026년도 제4분기 채용 공고 안내'
+      a href=?gcode=1024&idx=12349&amode=view& onclick= :: own='2026년도 제4분기 채용 공고 안내' all='2026년도 제4분기 채용 공고 안내'
+      td :: own='2026-10-15 ~ 2026-10-29 17:00' all='2026-10-15 ~ 2026-10-29 17:00'
+
+[PAGING] ?gcode=1024&cpage=2
+[DATES] sample: ['2026-10-15', '2026-10-29', '2026-05-22', '2026-06-05', '2026-04-23']
+
+[ANCHORS] most common link paths
+   x10 tbody > tr > td.tal > a  href=?gcode=1024&idx=12349&amode=view&  text='2026년도 제4분기 채용 공고 안내'
+      row? tr :: '825 2026년도 제4분기 채용 공고 안내 2026-10-15 ~ 2026-10-29 17:00'
+
+[LINKS] board candidates (19)
+   '연구인력정보' -> https://www.kicet.re.kr/00015/00032/00035.web
+   '공공데이터 정보 공지' -> https://www.kicet.re.kr/00017/00372/00373.web
+   '청렴 옴부즈만 게시판' -> https://www.kicet.re.kr/00017/00055/00076.web
+   '알림마당' -> https://www.kicet.re.kr/00117.web
+   '알림자료' -> https://www.kicet.re.kr/00120.web
+   '공지사항' -> https://www.kicet.re.kr/00020/00117/00120.web
+   '입찰공고' -> https://www.kicet.re.kr/00020/00117/00121.web
+   '채용정보' -> https://www.kicet.re.kr/00253.web
+   '채용정보알리미' -> https://www.kicet.re.kr/00020/00117/00323.web
+   '2026년도 제4분기 채용 공고 안내' -> https://www.kicet.re.kr/00020/00117/00253.web?gcode=1024&idx=12349&amode=view&
+   '2026년도 제3분기 채용 공고 안내' -> https://www.kicet.re.kr/00020/00117/00253.web?gcode=1024&idx=12072&amode=view&
+   '2026년도 제1분기 채용 면접전형 결과 발표 안내' -> https://www.kicet.re.kr/00020/00117/00253.web?gcode=1024&idx=12045&amode=view&
+   '2026년도 제2분기 채용 공고 안내' -> https://www.kicet.re.kr/00020/00117/00253.web?gcode=1024&idx=12029&amode=view&
+   '2026년도 제1분기 채용 서류전형 결과 발표 안내' -> https://www.kicet.re.kr/00020/00117/00253.web?gcode=1024&idx=11993&amode=view&
+   '2026년도 제1분기 채용 공고 안내' -> https://www.kicet.re.kr/00020/00117/00253.web?gcode=1024&idx=11949&amode=view&
+   '2025년도 제4분기 2차 채용 면접전형 결과 안내' -> https://www.kicet.re.kr/00020/00117/00253.web?gcode=1024&idx=11940&amode=view&
+   '2025년도 제4분기 2차 채용 서류전형 결과 안내' -> https://www.kicet.re.kr/00020/00117/00253.web?gcode=1024&idx=11939&amode=view&
+   '2025년도 제4분기 채용 면접전형 결과 안내' -> https://www.kicet.re.kr/00020/00117/00253.web?gcode=1024&idx=11813&amode=view&
+   '[체험형 인턴] 한국세라믹기술원 2025년도 제4분기 ' -> https://www.kicet.re.kr/00020/00117/00253.web?gcode=1024&idx=11809&amode=view&
 ====================================================================================================
-URL: https://www.koelsa.or.kr/main.do
-status=404 final=https://www.koelsa.or.kr/main.do encoding=utf-8 bytes=4329
-title: 한국승강기안전공단 - 정부 통합인증으로 여는 공단의 모든 서비스
+URL: https://www.copyright.or.kr/notify/recruitment/list.do
+status=200 final=https://www.copyright.or.kr/notify/recruitment/list.do encoding=UTF-8 bytes=104986
+title: 채용공고(목록)
+						
+						
+						
+					
+					>
+				
+				
+			
+		
+			
+				
+					
+					
 
-[GREP] 채용
-   (없음)
-   [SCRIPT src] ['/js/jquery.min.js', '/js/jquery-ui.min.js', '/js/common.js', '/js/semantic.min.js', '/js/modal.js']
-[DATES] sample: []
+[RAW HTML] table.table-col.mtp20 > tbody > tr
+<tr>
+<td>68</td>
+<td class="lf">
+<a href="view.do?brdctsno=56130&amp;pageIndex=1&amp;brdclasscodeList=&amp;etc2=&amp;etc1=&amp;searchText=&amp;searchkeyword=&amp;brdclasscode=&amp;nationcodeList=&amp;searchTarget=ALL&amp;nationcode=" title="상세보기">
+								&lt;2026년 제3차 직원 채용&gt; 최종면접 안내
+							</a>
+</td>
+<td>2026-11-02</td>
+<td class="files_top">
+<a class="file_pop_btn" href="selectfiles-load.do?brdno=31&amp;brdctsno=56130#content"><img alt="첨부파일 목록 보기" src="/images/sub/sub6_08.gif" title="첨부파일 목록 보기"/>   2</a>
+</td>
+<td>1,027</td>
+</tr>
 
-[RETRY without noise filter]
-[DATES] sample: []
+[RAW HTML] div.sub_content > div.sub-con > div.paging
+<div class="paging">
+<a class="on" href="?pageIndex=1&amp;brdclasscodeList=&amp;etc2=&amp;etc1=&amp;searchText=&amp;searchkeyword=&amp;brdclasscode=&amp;nationcodeList=&amp;searchTarget=ALL&amp;nationcode=" title="현재 1페이지가 선택되어 있습니다">1</a>
+<a href="?pageIndex=2&amp;brdclasscodeList=&amp;etc2=&amp;etc1=&amp;searchText=&amp;searchkeyword=&amp;brdclasscode=&amp;nationcodeList=&amp;searchTarget=ALL&amp;nationcode=" title="2">2</a>
+<a href="?pageIndex=3&amp;brdclasscodeList=&amp;etc2=&amp;etc1=&amp;searchText=&amp;searchkeyword=&amp;brdclasscode=&amp;nationcodeList=&amp;searchTarget=ALL&amp;nationcode=" title="3">3</a>
+<a href="?pageIndex=4&amp;brdclasscodeList=&amp;etc2=&amp;etc1=&amp;searchText=&amp;searchkeyword=&amp;brdclasscode=&amp;nationcodeList=&amp;searchTarget=ALL&amp;nationcode=" title="4">4</a>
+<a href="?pageIndex=5&amp;brdclasscodeList=&amp;etc2=&amp;etc1=&amp;searchText=&amp;searchkeyword=&amp;brdclasscode=&amp;nationcodeList=&amp;searchTarget=ALL&amp;nationcode=" title="5">5</a>
+<a href="?pageIndex=6&amp;brdclasscodeList=&amp;etc2=&amp;etc1=&amp;searchText=&amp;searchkeyword=&amp;brdclasscode=&amp;nationcodeList=&amp;searchTarget=ALL&amp;nationcode=" title="6">6</a>
+<a href="?pageIndex=7&amp;brdclasscodeList=&amp;etc2=&amp;etc1=&amp;searchText=&amp;searchkeyword=&amp;brdclasscode=&amp;nationcodeList=&amp;searchTarget=ALL&amp;nationcode=" title="7">7</a>
+<!-- 한 블럭 씩 이동 할때 -->
+<a class="dent" href="?pageIndex=7&amp;brdclasscodeList=&amp;etc2=&amp;etc1=&amp;searchText=&amp;searchkeyword=&amp;brdclasscode=&amp;nationcodeList=&amp;searchTarget=ALL&amp;nationcode=" title="다음"><img alt="다음" src="/images/sub/page03.gif"/></a>
+<a class="dent" href="?pageIndex=7&amp;brdclasscodeList=&amp;etc2=&amp;etc1=&amp;searchText=&amp;searchkeyword=&amp;brdclasscode=&amp;nationcodeList=&amp;searchTarget=ALL&amp;nationcode=" title="마지막페이지"><img alt="마지막" src="/images/sub/page04.gif"/></a>
+</div>
+
+[TABLE] div.sub_content > div.sub-con > table.table-col.mtp20  rows=12
+   row: tr -> th:번호 | th:제목 | th:등록일 | th:첨부 | th:조회수
+   row: tr -> td:[공지] | td.lf:<2026년 제3차 직원 채용> 최종합격자 및  | td:2026-11-18 | td.files_top:2 | td:169
+      td :: own='[공지]' all='[공지]'
+      td.lf :: own='' all='<2026년 제3차 직원 채용> 최종합격자 및 예비합격자 공고'
+      a href=view.do?brdctsno=56201&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchText=&searchkeyword onclick= :: own='<2026년 제3차 직원 채용> 최종합격자 및 예비합격자 공고' all='<2026년 제3차 직원 채용> 최종합격자 및 예비합격자 공고'
+      td :: own='2026-11-18' all='2026-11-18'
+      td.files_top :: own='' all='2'
+      a.file_pop_btn href=selectfiles-load.do?brdno=31&brdctsno=56201&#content onclick= :: own='2' all='2'
+      td :: own='169' all='169'
+
+[PAGING] view.do?brdctsno=56201&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchText=&searchkeyword=&brdclasscode=&nationcodeList=&searchTarget=ALL&n
+[DATES] sample: ['2026-11-18', '2026-11-02', '2026-11-02', '2026-10-19', '2026-10-12']
+
+[ANCHORS] most common link paths
+   x11 tbody > tr > td.lf > a  href=view.do?brdctsno=56201&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchText=&searchkeyword {'title': '상세보기'} text='<2026년 제3차 직원 채용> 최종합격자 및 예비합격자 공고'
+      row? tr :: '[공지] <2026년 제3차 직원 채용> 최종합격자 및 예비합격자 공고 2026-11-18 2 169'
+   x1 div.sub_content > div.sub-con > div.right > a.business_a2  href=/customer-center/alarm_apply.do  text='정보알리미서비스 신청 바로가기'
+      row? div.right :: '정보알리미서비스 신청 바로가기'
+
+[LINKS] board candidates (19)
+   '경영공시' -> https://www.copyright.or.kr/committee-introduction/management/notice/list.do
+   '해외사무소소식' -> https://www.copyright.or.kr/information-materials/trend/International-copyright-center/list.do
+   '소식' -> https://www.copyright.or.kr/notify/press-release/list.do
+   '알림사항' -> https://www.copyright.or.kr/notify/notice/list.do
+   '채용공고' -> https://www.copyright.or.kr/notify/recruitment/list.do
+   '입찰공고' -> https://www.copyright.or.kr/notify/bid/list.do
+   '채용정보API' -> https://www.copyright.or.kr/open/public-data/recruitment/index.do
+   '소식지' -> https://www.copyright.or.kr/business/koreacopyright/publicize/newsletter/list.do
+   '<2026년 제3차 직원 채용> 최종합격자 및 예비합격' -> https://www.copyright.or.kr/notify/recruitment/view.do?brdctsno=56201&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchTe
+   '<2026년 제3차 직원 채용> 최종면접 안내' -> https://www.copyright.or.kr/notify/recruitment/view.do?brdctsno=56130&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchTe
+   '<2026년 제3차 직원 채용> 실무면접 합격자 공고' -> https://www.copyright.or.kr/notify/recruitment/view.do?brdctsno=56129&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchTe
+   '<2026년 제3차 직원 채용> 필기전형 합격자 공고 ' -> https://www.copyright.or.kr/notify/recruitment/view.do?brdctsno=56063&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchTe
+   '<2026년 제3차 직원 채용> 필기전형 안내' -> https://www.copyright.or.kr/notify/recruitment/view.do?brdctsno=56053&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchTe
+   '<2026년 제3차 직원 채용> 서류전형 합격자 공고' -> https://www.copyright.or.kr/notify/recruitment/view.do?brdctsno=56050&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchTe
+   '한국저작권위원회 2026년 제3차 직원 채용' -> https://www.copyright.or.kr/notify/recruitment/view.do?brdctsno=55944&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchTe
+   '<2026년 제2차 직원 채용> 최종합격자 및 예비합격' -> https://www.copyright.or.kr/notify/recruitment/view.do?brdctsno=55846&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchTe
+   '<2026년 제2차 직원 채용> 최종면접 안내' -> https://www.copyright.or.kr/notify/recruitment/view.do?brdctsno=55769&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchTe
+   '<2026년 제2차 직원 채용> 실무면접 합격자 공고' -> https://www.copyright.or.kr/notify/recruitment/view.do?brdctsno=55768&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchTe
+   '<2026년 제2차 직원 채용> 필기전형 합격자 공고 ' -> https://www.copyright.or.kr/notify/recruitment/view.do?brdctsno=55737&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchTe
