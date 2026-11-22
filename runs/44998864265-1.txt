@@ -1,0 +1,101 @@
+====================================================================================================
+URL: https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000001/317/lst.do
+status=200 final=https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000001/317/lst.do encoding=UTF-8 bytes=88540
+title: 채용공고 < 공고 < 뉴스룸 < LX 한국국토정보공사
+
+[GREP] function bbsMstrView
+   ... "home">홈</span> <span>뉴스룸 </span> <span> 공고 </span> <span> 채용공고 </span> </div> <!-- 텝메뉴 ::s:: --> <!-- 텝메뉴 ::e:: --> <script type="text/javascript"> function bbsMstrViewSecret(id){ $("form[name=secretViewFrm]").attr("action", "/kor/BBSMSTR_000000000001/"+id+"/view.do;jsessionid=A9E378FB0CBE76C61412CDF658ED1842.worker1") return false; } function board_secret_form(){ document.secretViewFrm.passwd.value=$("#sct_password").val(); var pw_box = $(".js_password_box"); //닫기 pw_box.fadeOut(200,function(){ blind_off(); }); document.secretView
+   ...  function bbsWrt(){ $("form[name=bbsMstr]").attr("action", "/kor/bbs/BBSMSTR_000000000001/wrt.do;jsessionid=A9E378FB0CBE76C61412CDF658ED1842.worker1") $("form[name=bbsMstr]").submit(); } function bbsMstrView(id){ var temp = "faq"; if(temp != "notice"){ $("form[name=bbsMstr]").attr("action", "/kor;jsessionid=A9E378FB0CBE76C61412CDF658ED1842.worker1/BBSMSTR_000000000001/317/"+id+"/view.do") $("form[name=bbsMstr]").submit(); } else{ return false; } } function fn_egov_select_noticeList(t){ $("input[name=pageIndex]").val(t); $("form[name=bbsMstr]").attr("action", "/kor/bbs/BBSMS
+   [SCRIPT src] ['/js/kor/js.js', '/js/core/html5.js', '/js/core/respond.min.js', '/js/cms/bluebird.js', '/js/loginTimer.js', 'https://www.googletagmanager.com/gtag/js?id=UA-131426347-1', 'https://www.googletagmanager.com/gtag/js?id=G-0B48QYSFDH']
+
+[RAW HTML] div.board.notice.list > ul > li
+<li>
+<p class="ntt_no"><span class="hidden">번호</span>1028</p>
+<div class="ntt_sj left">
+<span class="hidden">제목</span>
+<a class="no_secret" href="#" onclick="bbsMstrView('25766'); return false;">
+<strong>
+			                     한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지
+			                        <span class="new">[new]</span>
+<span class="js_secret">[secret]</span>
+</strong>
+</a>
+</div>
+<p class="frst_register_nm"><span>작성일 : </span> 2026-11-19</p>
+<p class="rdcnt"><span class="hidden">조회수</span>66265</p>
+<p class="atch_file_id">
+<span>첨부 : </span>
+<input name="nttId" type="hidden" value="25766"/>
+<input name="atchFileId" type="hidden" value="FILE_000000000046209wtH2j"/>
+<input name="fileSn" type="hidden"/>
+<input name="fileListCnt" type="hidden" value="1"/>
+<!-- id="fileListCnt"  -->
+<a class="pdf" href="#" onclick="fn_egov_downFile('FILE_000000000046209wtH2j','0', this); return false;">
+			다운로드
+			</a>
+<a class="preview" href="/cmm/fms/previewFile.do?atchFileId=FILE_000000000046209wtH2j&amp;fileSn=0" target="_blank" title="새창이동">미리보기<!--pdf--></a>
+</p>
+</li>
+
+[RAW HTML] div.board.notice.list > ul > li
+<li>
+<p class="ntt_no"><span class="hidden">번호</span>1027</p>
+<div class="ntt_sj left">
+<span class="hidden">제목</span>
+<a class="no_secret" href="#" onclick="bbsMstrView('25726'); return false;">
+<strong>
+			                     2026년 하반기 한국국토정보공사 전문경력직(토지보상) 채용 공고
+			                        <span class="new">[new]</span>
+<span class="js_secret">[secret]</span>
+</strong>
+</a>
+</div>
+<p class="frst_register_nm"><span>작성일 : </span> 2026-11-03</p>
+<p class="rdcnt"><span class="hidden">조회수</span>291701</p>
+<p class="atch_file_id">
+<span>첨부 : </span>
+<input name="nttId" type="hidden" value="25726"/>
+<input name="atchFileId" type="hidden" value="FILE_000000000046136OoHg6"/>
+<input name="fileSn" type="hidden"/>
+<input name="fileListCnt" type="hidden" value="2"/>
+<!-- id="fileListCnt"  -->
+<a class="folder" href="#" onclick="bbsMstrView('25726');;return false;">
+			1개이상 첨부파일이 있음[상세보기]
+			</a>
+</p>
+</li>
+
+[LIST] div#txt > div.board.notice.list > ul  items=11
+   li: li.thead -> 번호 제목 작성일 조회 첨부
+      strong.ntt_no :: own='번호' all='번호'
+      strong.ntt_sj :: own='제목' all='제목'
+      strong.frst_register_nm :: own='작성일' all='작성일'
+      strong.rdcnt :: own='조회' all='조회'
+      strong.atch_file_id :: own='첨부' all='첨부'
+
+[PAGING] ?pageIndex=1
+[DATES] sample: ['2026-11-19', '2026-11-03', '2026-11-03', '2026-11-03', '2026-10-28']
+
+[ANCHORS] most common link paths
+   x10 ul > li > div.ntt_sj.left > a.no_secret  href=# {'onclick': "bbsMstrView('25766'); return false;"} text='한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지 [new] ['
+      row? div.ntt_sj.left :: '제목 한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지 [new] [secret]'
+   x8 ul > li > p.atch_file_id > a.folder  href=# {'onclick': "bbsMstrView('25726');;return false;"} text='1개이상 첨부파일이 있음[상세보기]'
+      row? li :: '번호 1027 제목 2026년 하반기 한국국토정보공사 전문경력직(토지보상) 채용 공고 [new] [secret] 작성일 : 2026-11-03 조회수 291701 첨부 : 1개이상 첨부파일이 있음[상세보기]'
+
+[LINKS] board candidates (16)
+   '보상공고' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000321/lst.do
+   '협의 공고' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000322/lst.do
+   '기업성장응답 게시판' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000311/lst.do
+   '채용정보' -> https://www.lx.or.kr/kor/sub03_05_04_10.do
+   '- 공지사항' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000041/lst.do
+   '인사·채용비리' -> https://bit.ly/38RFqMN
+   '누리지 소식' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000091/lst.do
+   '안전보건 제안 게시판' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000251/lst.do
+   '공고' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000001/lst.do
+   '채용공고' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000001/317/lst.do
+   '입찰공고' -> https://www.lx.or.kr/kor/bid/list.do
+   '인사소식' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000003/lst.do
+   '채용정보' -> https://www.lx.or.kr/kor/sub06_09_01.do
+   '채용안내' -> https://www.lx.or.kr/kor/sub06_09_02_01.do
+   '채용방법 및 분야' -> https://www.lx.or.kr/kor/sub06_09_02_02.do
+   '공지사항' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000011/lst.do
