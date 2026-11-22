@@ -85,3 +85,12 @@ def test_regions_from_field():
     assert regions_from_field("경남 창원시 의창구") == ["창원"]
     assert regions_from_field("강원 고성군") == []  # 다른 도의 같은 이름
     assert regions_from_field("기타") == [] and regions_from_field(None) == []
+
+
+def test_board_badges_lh_lx():
+    """LH '새글' 머리, LX '[new][secret]' 꼬리 (2026-11-22)."""
+    from gia.normalize import normalize_title
+    assert normalize_title("새글한국토지주택공사 경남지역본부 기간제근로자 채용공고")[0] == "한국토지주택공사 경남지역본부 기간제근로자 채용공고"
+    assert normalize_title("새글 2026 강사 모집")[0] == "2026 강사 모집"
+    assert normalize_title("한국국토정보공사 교육강사 채용 공고[new][secret]")[0] == "한국국토정보공사 교육강사 채용 공고"
+    assert normalize_title("새글쓰기 강좌 강사 모집")[0] == "새글쓰기 강좌 강사 모집"
