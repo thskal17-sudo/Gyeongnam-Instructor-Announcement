@@ -1,0 +1,77 @@
+24:  default_days: 60
+::group::probe lh
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.lh.or.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.lh.or.kr/board.es?mid=a10602050000&bid=0036&nPage=1 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.lh.or.kr/board.es?mid=a10602050000&bid=0036&nPage=2 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.lh.or.kr/board.es?mid=a10602050000&bid=0036&act=view&list_no=735105 "HTTP/1.1 200 OK"
+[probe] 한국토지주택공사(LH, 진주) 비정규직 채용공고: 목록 30건
+  - 2026-11-18 | 한국토지주택공사(LH, 진주) 비정규직 채용공고 | 새글한국토지주택공사 대구경북지역본부 기간제근로자(대체채용) 채용공고(2026-09) | https://www.lh.or.kr/board.es?mid=a10602050000&bid=0036&act=view&list_no=735105
+  - 2026-11-02 | 한국토지주택공사(LH, 진주) 비정규직 채용공고 | 한국토지주택공사 수도권정비사업특별본부 기간제근로자(정비사업지원역) 채용공고 | https://www.lh.or.kr/board.es?mid=a10602050000&bid=0036&act=view&list_no=734879
+  - 2026-11-02 | 한국토지주택공사(LH, 진주) 비정규직 채용공고 | 한국토지주택공사 광주전남지역본부 기간제근로자(사업관리) 채용공고(2026.11) | https://www.lh.or.kr/board.es?mid=a10602050000&bid=0036&act=view&list_no=734814
+  - 2026-10-29 | 한국토지주택공사(LH, 진주) 비정규직 채용공고 | 한국토지주택공사 토지주택연구원 기간제근로자 채용공고 | https://www.lh.or.kr/board.es?mid=a10602050000&bid=0036&act=view&list_no=734756
+  - 2026-10-28 | 한국토지주택공사(LH, 진주) 비정규직 채용공고 | 한국토지주택공사 대구경북지역본부 기간제근로자(대체채용) 채용 공고(2026-08) | https://www.lh.or.kr/board.es?mid=a10602050000&bid=0036&act=view&list_no=734740
+[detail] 본문 340자 · 마감 None (unknown, 'None') · 점수 0 ['-30 핵심어 없음', '+20 채용어(채용)', '-40 비강사 직종(기간제근로자)', '-30 조달어(공사)'] · 분야 school
+  [date?] 한국토지주택공사 대구경북지역본부 기간제근로자(대체채용) 채용공고(2026-09)
+  [date?] 2026-11-18
+  [date?] (붙임1)대구경북기간제근로자채용공고(2026-09).hwpx
+  [date?] (120.85KB)
+  [date?] (붙임2)입사지원서등(채용홈페이지작성및제출)(2026-09).hwpx
+  [date?] (57.69KB)
+  [date?] (붙임3)직무기술서(2026-09).hwpx
+  [date?] (26.03KB)
+[posting] 제외: 
+::endgroup::
+::group::probe kicet
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.kicet.re.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.kicet.re.kr/00020/00117/00253.web?gcode=1024&cpage=1 "HTTP/1.1 200 200"
+INFO httpx: HTTP Request: GET https://www.kicet.re.kr/00020/00117/00253.web?gcode=1024&idx=12349&amode=view&cpage=1 "HTTP/1.1 200 200"
+[probe] 한국세라믹기술원(진주) 채용정보: 목록 1건
+  - 2026-10-15 | 한국세라믹기술원(진주) 채용정보 | 2026년도 제4분기 채용 공고 안내 | https://www.kicet.re.kr/00020/00117/00253.web?gcode=1024&idx=12349&amode=view&cpage=1
+[detail] 본문 190자 · 마감 2026-10-29 17:00:00+09:00 (fixed, '2026년 10월 29일(목) 17시') · 점수 0 ['-30 핵심어 없음', '+20 채용어(채용)'] · 분야 other
+[posting] 제외: 
+::endgroup::
+::group::probe copyright_kr
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.copyright.or.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.copyright.or.kr/notify/recruitment/list.do?pageIndex=1 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.copyright.or.kr/notify/recruitment/view.do?brdctsno=56201&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchText=&searchkeyword=&brdclasscode=&nationcodeList=&searchTarget=ALL&nationcode= "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.copyright.or.kr/notify/recruitment/download.do?brdctsno=56201&brdctsfileno=28554 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.copyright.or.kr/notify/recruitment/download.do?brdctsno=56201&brdctsfileno=28564 "HTTP/1.1 200 OK"
+[probe] 한국저작권위원회(진주) 채용공고: 목록 6건
+  - 2026-11-18 | 한국저작권위원회(진주) 채용공고 | <2026년 제3차 직원 채용> 최종합격자 및 예비합격자 공고 | https://www.copyright.or.kr/notify/recruitment/view.do?brdctsno=56201&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchText=&searchkeyword=&brdclasscode=&nationcodeList=&searchTarget=ALL&nationcode=
+  - 2026-11-02 | 한국저작권위원회(진주) 채용공고 | <2026년 제3차 직원 채용> 최종면접 안내 | https://www.copyright.or.kr/notify/recruitment/view.do?brdctsno=56130&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchText=&searchkeyword=&brdclasscode=&nationcodeList=&searchTarget=ALL&nationcode=
+  - 2026-11-02 | 한국저작권위원회(진주) 채용공고 | <2026년 제3차 직원 채용> 실무면접 합격자 공고 | https://www.copyright.or.kr/notify/recruitment/view.do?brdctsno=56129&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchText=&searchkeyword=&brdclasscode=&nationcodeList=&searchTarget=ALL&nationcode=
+  - 2026-10-19 | 한국저작권위원회(진주) 채용공고 | <2026년 제3차 직원 채용> 필기전형 합격자 공고 및 실무면접 안내 | https://www.copyright.or.kr/notify/recruitment/view.do?brdctsno=56063&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchText=&searchkeyword=&brdclasscode=&nationcodeList=&searchTarget=ALL&nationcode=
+  - 2026-10-12 | 한국저작권위원회(진주) 채용공고 | <2026년 제3차 직원 채용> 필기전형 안내 | https://www.copyright.or.kr/notify/recruitment/view.do?brdctsno=56053&pageIndex=1&brdclasscodeList=&etc2=&etc1=&searchText=&searchkeyword=&brdclasscode=&nationcodeList=&searchTarget=ALL&nationcode=
+[detail] 본문 3485자 · 마감 2026-11-30 23:59:00+09:00 (fixed, '2026. 11. 30.(월)') · 점수 0 ['-30 핵심어 없음', '+20 채용어(채용)', '-60 제외어(합격자)'] · 분야 school
+[posting] 제외: 
+::endgroup::
+::group::probe lx_gn
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.lx.or.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000001/317/lst.do?pageIndex=1 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.lx.or.kr/kor/BBSMSTR_000000000001/317/25766/view.do "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.lx.or.kr/cmm/fms/FileDown.do?atchFileId=FILE_000000000046209wtH2j&fileSn=0 "HTTP/1.1 200 OK"
+[probe] 한국국토정보공사(LX) 채용공고: 목록 7건
+  - 2026-11-19 | 한국국토정보공사(LX) 채용공고 | 한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지[new][secret] | https://www.lx.or.kr/kor/BBSMSTR_000000000001/317/25766/view.do
+  - 2026-11-03 | 한국국토정보공사(LX) 채용공고 | 2026년 하반기 한국국토정보공사 전문경력직(토지보상) 채용 공고[new][secret] | https://www.lx.or.kr/kor/BBSMSTR_000000000001/317/25726/view.do
+  - 2026-11-03 | 한국국토정보공사(LX) 채용공고 | 2026년 하반기 한국국토정보공사 전문경력직(조교수_Geo AI 및 공간데이터 분석) 채용 공고[new][secret] | https://www.lx.or.kr/kor/BBSMSTR_000000000001/317/25725/view.do
+  - 2026-11-03 | 한국국토정보공사(LX) 채용공고 | 2026년 하반기 한국국토정보공사 전문경력직(기계소방, 전기통신) 채용 공고[new][secret] | https://www.lx.or.kr/kor/BBSMSTR_000000000001/317/25724/view.do
+  - 2026-10-28 | 한국국토정보공사(LX) 채용공고 | 2026년 한국국토정보공사 장애인 맞춤훈련 채용 면접심사 합격자 공고[new][secret] | https://www.lx.or.kr/kor/BBSMSTR_000000000001/317/25705/view.do
+[detail] 본문 424자 · 마감 None (unknown, 'None') · 점수 0 ['-30 핵심어 없음', '+20 채용어(채용)', '-60 제외어(합격자)', '-30 조달어(공사)'] · 분야 other
+  [date?] 2026-11-19
+  [date?] 2026. 11. 19.
+[posting] 제외: 
+::endgroup::
+::group::probe koen
+INFO gia.http: [http] 나가는 경로: 한국 사이트(.kr)는 국내 중계(KR_PROXY_URL), 나머지는 러너 IP 직접
+INFO httpx: HTTP Request: GET https://www.koenergy.kr/robots.txt "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.koenergy.kr/kosep/fr/ov/jo/ovjo01/main.do?menuCd=FN030601 "HTTP/1.1 200 OK"
+INFO httpx: HTTP Request: GET https://www.koenergy.kr/kosep/fr/ov/jo/ovjo01/view.do?seqNo=33 "HTTP/1.1 200 OK"
+[probe] 한국남동발전(진주) 채용공고: 목록 1건
+  - 2026-09-23 | 한국남동발전(진주) 채용공고 | 발전공기업 통합실무지원단장 채용공고 | https://www.koenergy.kr/kosep/fr/ov/jo/ovjo01/view.do?seqNo=33
+[detail] 본문 276자 · 마감 2026-10-08 23:00:00+09:00 (fixed, '10. 8.(목) 23:00') · 점수 0 ['-30 핵심어 없음', '+20 채용어(채용)'] · 분야 school
+[posting] 제외: 
+::endgroup::
