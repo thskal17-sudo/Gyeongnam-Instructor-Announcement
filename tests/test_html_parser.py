@@ -186,3 +186,24 @@ def test_category_keywords_pick_rows_without_title_keyword():
          "keywords": ["강사", "방과후"], "category_keywords": ["결원대체강사", "기타각종강사", "방과후학교강사"]}
     rows, _ = parse_list_html(html, "https://www.gne.go.kr/l", a, cfg, date(2026, 10, 1))
     assert [r.title for r in rows] == ["계약제교원(전일제) 채용 공고", "2026 방과후학교 외부강사 모집"]
+
+
+def test_exclude_other_region_titles_on_national_boards():
+    """전국 통합 게시판(LH)은 다른 지역 본부 공고를 목록에서 거른다. 경남·지역 없음은 남긴다 (2026-11-22)."""
+    from datetime import date
+
+    from gia.collectors.html_list import parse_list_html
+    from tests.conftest import make_source
+
+    def row(n, title):
+        return (f'<tr><td class="txt_left"><a href="#none" onclick="goView3(\'{n}\',\'/x\')">{title}</a></td>'
+                '<td aria-label="등록일">2026-11-18</td></tr>')
+    html = ('<table class="tstyle_list"><tbody>' + row(1, "한국토지주택공사 대구경북지역본부 교육강사 채용")
+            + row(2, "한국토지주택공사 경남지역본부 교육강사 채용") + row(3, "한국토지주택공사 주거복지 강사 모집")
+            + row(4, "부산울산·경남지역본부 강사 모집") + "</tbody></table>")
+    cfg = make_source("lh", "central_public", type="html_list", list_url="https://www.lh.or.kr/l")
+    a = {"row_selector": "table.tstyle_list tbody tr", "title_selector": "td.txt_left a", "link_attr": "onclick",
+         "link_regex": r"goView3\('(\d+)'", "link_url_template": "https://www.lh.or.kr/v?list_no={1}",
+         "date_selector": "td[aria-label='등록일']", "exclude_other_region_titles": True}
+    rows, _ = parse_list_html(html, "https://www.lh.or.kr/l", a, cfg, date(2026, 11, 1))
+    assert [r.url[-1] for r in rows] == ["2", "3", "4"]

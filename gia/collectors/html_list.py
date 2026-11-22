@@ -61,6 +61,12 @@ def resolve_link(node, page_url: str, a: dict) -> str | None:
     return urljoin(page_url, value)
 
 
+def _other_region_title(title: str) -> bool:
+    from ..classify.rules import OTHER_REGIONS
+    from ..normalize import mentions_gyeongnam
+    return any(o in title for o in OTHER_REGIONS) and not mentions_gyeongnam(title)
+
+
 def parse_list_html(html: str, page_url: str, a: dict, cfg, since: date) -> tuple[list[RawListing], date | None]:
     """목록 HTML에서 공고 후보를 뽑는다. 반환: (목록, 페이지 내 가장 오래된 게시일)."""
     tree = HTMLParser(html)
@@ -110,6 +116,9 @@ def parse_list_html(html: str, page_url: str, a: dict, cfg, since: date) -> tupl
         if not by_category and not matches_keywords(title, a.get("keywords")):
             continue
         if posted and posted < since:
+            continue
+        if a.get("exclude_other_region_titles") and _other_region_title(title):
+            # 전국 통합 게시판(LH·LX): '대구경북지역본부 …' 처럼 다른 지역 본부 공고는 상세를 열지 않고 거른다
             continue
         out.append(RawListing(source_id=cfg.id, title=title, url=target, org_name=org, posted_at=posted,
                               deadline_text=deadline_text, region_text=region_text))

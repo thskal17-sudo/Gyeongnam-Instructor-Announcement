@@ -1169,6 +1169,7 @@ sources:
       link_regex: "goView3\\('(\\d+)'"
       link_url_template: "https://www.lh.or.kr/board.es?mid=a10602050000&bid=0036&act=view&list_no={1}"
       date_selector: "td[aria-label='등록일']"
+      exclude_other_region_titles: true   # 제목에 다른 지역(대구경북지역본부 등)이 있고 경남이 없으면 거른다
       keywords: [강사, 교강사, 시간강사, 외래강사, 교육강사, 지도사, 지도자, 튜터, 코치, 강사진, 인력풀]
       paging: { max_pages: 2 }
       detail:
@@ -1650,6 +1651,7 @@ sources:
       link_regex: "bbsMstrView\\('(\\d+)'\\)"
       link_url_template: "https://www.lx.or.kr/kor/BBSMSTR_000000000001/317/{1}/view.do"
       date_selector: p.frst_register_nm
+      exclude_other_region_titles: true   # 제목에 다른 지역(대구경북지역본부 등)이 있고 경남이 없으면 거른다
       keywords: [강사, 교강사, 시간강사, 외래강사, 교육강사, 지도사, 지도자, 튜터, 코치, 강사진, 인력풀]
       paging: { max_pages: 1 }
       detail:
