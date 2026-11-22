@@ -137,3 +137,19 @@ def test_title_veto_instructor_excluded():
     assert title_veto("2026학년도 남지초등학교 기간제 교원(강사제외) 채용") == "비강사 직종(강사 제외)"
     assert title_veto("남지초등학교 기간제 교원(강사 제외) 채용(2차) 공고") == "비강사 직종(강사 제외)"
     assert title_veto("2026. 계약제 교원(시간 강사) 채용 공고") is None
+
+
+def test_rules_2026_11_22_held_rows():
+    """강사잇다 보류 14줄 정리 (2026-11-22)."""
+    from gia.classify.rules import score_posting, title_veto
+    # 고용24 구인 제목·방과후 개인위탁은 채용어로 친다
+    assert score_posting("생태복원 훈련교사를 찾습니다.", "", "경남 김해시").score >= 70
+    assert score_posting("2026학년도 겨울방학 방과후학교 개인위탁 외부강사 공고", "", "김해").score >= 70
+    # 과목·장소 이름의 '공사'·'시설'은 조달어가 아니다 (강사 핵심어 + 채용어가 있을 때)
+    r = score_posting("내선 전기공사 산업기사 강사진 모집", "", "경남 김해시")
+    assert r.score >= 70 and not any("조달어" in x for x in r.reasons)
+    assert any("조달어" in x for x in score_posting("체육관 시설 공사 입찰 공고", "", "경남").reasons)
+    # 강사 구인이 아닌 글
+    assert title_veto("김해시청소년상담복지센터 시간제 청소년동반자 채용 공고") == "비강사 직종(청소년동반자)"
+    assert title_veto("거제시 대중교통정책위원회 위원 모집 공고") == "구인 아님(위원 모집)"
+    assert title_veto("2026년 경상남도 청소년지도사 디지털.AI 역량현황 조사 참여 요청") == "구인 아님(조사 참여)"

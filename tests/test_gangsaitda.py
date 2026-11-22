@@ -448,3 +448,32 @@ def test_http_source_link_is_kept():
                                         url="http://eminwon.cng.go.kr/emwp/gov/mogaha/ntis/web/ofr/action/OfrAction.do?x=1",
                                         fetched_at=NOW)])
     assert to_row(p)["원문 링크"].startswith("http://eminwon.cng.go.kr/")
+
+
+def test_until_filled_gets_listing_end_date_and_note(tmp_path):
+    """'채용 시까지' 공고는 마감일 칸에 싣는 기간의 끝날(게시 뒤 2주)을 적고 바로 올린다 (2026-11-22)."""
+    from datetime import date
+
+    from gia.models import DeadlineType
+    from gia.report.gangsaitda import UNTIL_FILLED_NOTE, hold_reason, to_row
+    p = make_posting("영어강사 모집", org="파인슐레", deadline_type=DeadlineType.until_filled, deadline_text="상시채용",
+                     posted_at=date(2026, 11, 17), region=["사천"], body_excerpt="담당업무 영유아 영어교육",
+                     status=Status.active)
+    row = to_row(p)
+    assert row["마감일"] == "2026-12-01"
+    assert row["상세 내용"].endswith(UNTIL_FILLED_NOTE)
+    assert hold_reason(p, row) == ""
+
+
+def test_held_by_old_rules_is_released_when_rules_now_agree():
+    """수집 때 판별유보였어도 지금 규칙으로 확실하면 보류를 푼다. 여전히 애매하면 보류로 둔다."""
+    from gia.report.gangsaitda import hold_reason, to_row
+    later = NOW + timedelta(days=5)
+    lifted = make_posting("2026학년도 겨울방학 방과후학교 개인위탁 외부강사 공고", org="율하중", deadline=later,
+                          region=["김해"], flags=["판별유보"], relevance_score=60, status=Status.active,
+                          body_excerpt="율하중학교에서는 방과후학교 프로그램 위탁강사를 모집하오니")
+    assert hold_reason(lifted, to_row(lifted)) == ""
+    still = make_posting("2026년 시민생활체육관 기간제(초단시간)근로자 채용공고", org="창원시설공단", deadline=later,
+                         region=["창원"], flags=["판별유보"], relevance_score=60, status=Status.active,
+                         body_excerpt="1. 모집인원: 2명")
+    assert "판별 유보" in hold_reason(still, to_row(still))
