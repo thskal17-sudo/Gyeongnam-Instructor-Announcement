@@ -1,101 +1,116 @@
 ====================================================================================================
-URL: https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000001/317/lst.do
-status=200 final=https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000001/317/lst.do encoding=UTF-8 bytes=88540
-title: 채용공고 < 공고 < 뉴스룸 < LX 한국국토정보공사
+URL: https://www.lh.or.kr/board.es?mid=a10602050000&bid=0036&act=view&list_no=734669
+status=200 final=https://www.lh.or.kr/board.es?mid=a10602050000&bid=0036&act=view&list_no=734669 encoding=UTF-8 bytes=87943
+title: 한국토지주택공사 경남지역본부 기간제근로자(현장보조감독) 채용공고(2026년 4회차) | 비정규직 채용공고 | 채용정보 | 새소식 : 한국토지주택
 
-[GREP] function bbsMstrView
-   ... "home">홈</span> <span>뉴스룸 </span> <span> 공고 </span> <span> 채용공고 </span> </div> <!-- 텝메뉴 ::s:: --> <!-- 텝메뉴 ::e:: --> <script type="text/javascript"> function bbsMstrViewSecret(id){ $("form[name=secretViewFrm]").attr("action", "/kor/BBSMSTR_000000000001/"+id+"/view.do;jsessionid=A9E378FB0CBE76C61412CDF658ED1842.worker1") return false; } function board_secret_form(){ document.secretViewFrm.passwd.value=$("#sct_password").val(); var pw_box = $(".js_password_box"); //닫기 pw_box.fadeOut(200,function(){ blind_off(); }); document.secretView
-   ...  function bbsWrt(){ $("form[name=bbsMstr]").attr("action", "/kor/bbs/BBSMSTR_000000000001/wrt.do;jsessionid=A9E378FB0CBE76C61412CDF658ED1842.worker1") $("form[name=bbsMstr]").submit(); } function bbsMstrView(id){ var temp = "faq"; if(temp != "notice"){ $("form[name=bbsMstr]").attr("action", "/kor;jsessionid=A9E378FB0CBE76C61412CDF658ED1842.worker1/BBSMSTR_000000000001/317/"+id+"/view.do") $("form[name=bbsMstr]").submit(); } else{ return false; } } function fn_egov_select_noticeList(t){ $("input[name=pageIndex]").val(t); $("form[name=bbsMstr]").attr("action", "/kor/bbs/BBSMS
-   [SCRIPT src] ['/js/kor/js.js', '/js/core/html5.js', '/js/core/respond.min.js', '/js/cms/bluebird.js', '/js/loginTimer.js', 'https://www.googletagmanager.com/gtag/js?id=UA-131426347-1', 'https://www.googletagmanager.com/gtag/js?id=G-0B48QYSFDH']
-
-[RAW HTML] div.board.notice.list > ul > li
-<li>
-<p class="ntt_no"><span class="hidden">번호</span>1028</p>
-<div class="ntt_sj left">
-<span class="hidden">제목</span>
-<a class="no_secret" href="#" onclick="bbsMstrView('25766'); return false;">
-<strong>
-			                     한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지
-			                        <span class="new">[new]</span>
-<span class="js_secret">[secret]</span>
-</strong>
-</a>
-</div>
-<p class="frst_register_nm"><span>작성일 : </span> 2026-11-19</p>
-<p class="rdcnt"><span class="hidden">조회수</span>66265</p>
-<p class="atch_file_id">
-<span>첨부 : </span>
-<input name="nttId" type="hidden" value="25766"/>
-<input name="atchFileId" type="hidden" value="FILE_000000000046209wtH2j"/>
-<input name="fileSn" type="hidden"/>
-<input name="fileListCnt" type="hidden" value="1"/>
-<!-- id="fileListCnt"  -->
-<a class="pdf" href="#" onclick="fn_egov_downFile('FILE_000000000046209wtH2j','0', this); return false;">
-			다운로드
-			</a>
-<a class="preview" href="/cmm/fms/previewFile.do?atchFileId=FILE_000000000046209wtH2j&amp;fileSn=0" target="_blank" title="새창이동">미리보기<!--pdf--></a>
-</p>
-</li>
-
-[RAW HTML] div.board.notice.list > ul > li
-<li>
-<p class="ntt_no"><span class="hidden">번호</span>1027</p>
-<div class="ntt_sj left">
-<span class="hidden">제목</span>
-<a class="no_secret" href="#" onclick="bbsMstrView('25726'); return false;">
-<strong>
-			                     2026년 하반기 한국국토정보공사 전문경력직(토지보상) 채용 공고
-			                        <span class="new">[new]</span>
-<span class="js_secret">[secret]</span>
-</strong>
-</a>
-</div>
-<p class="frst_register_nm"><span>작성일 : </span> 2026-11-03</p>
-<p class="rdcnt"><span class="hidden">조회수</span>291701</p>
-<p class="atch_file_id">
-<span>첨부 : </span>
-<input name="nttId" type="hidden" value="25726"/>
-<input name="atchFileId" type="hidden" value="FILE_000000000046136OoHg6"/>
-<input name="fileSn" type="hidden"/>
-<input name="fileListCnt" type="hidden" value="2"/>
-<!-- id="fileListCnt"  -->
-<a class="folder" href="#" onclick="bbsMstrView('25726');;return false;">
-			1개이상 첨부파일이 있음[상세보기]
-			</a>
-</p>
-</li>
-
-[LIST] div#txt > div.board.notice.list > ul  items=11
-   li: li.thead -> 번호 제목 작성일 조회 첨부
-      strong.ntt_no :: own='번호' all='번호'
-      strong.ntt_sj :: own='제목' all='제목'
-      strong.frst_register_nm :: own='작성일' all='작성일'
-      strong.rdcnt :: own='조회' all='조회'
-      strong.atch_file_id :: own='첨부' all='첨부'
-
-[PAGING] ?pageIndex=1
-[DATES] sample: ['2026-11-19', '2026-11-03', '2026-11-03', '2026-11-03', '2026-10-28']
+[LIST] article.board_view > div.file > ul.list  items=3
+   li: li.type1 -> 1.경남지역본부기간제근로자채용공고(26년_4회차).pdf (245.34KB) 바로보기 다운로드
+      span.txt :: own='(245.34KB)' all='(245.34KB)'
+      a.btn_line.attachPreview href=/attachApiPreview.es?bid=0036&list_no=734669&seq=69107166&file_name=2026102269107166.pdf onclick= attrs={'target': '_blank'} :: own='바로보기' all='바로보기'
+      span.link :: own='' all='다운로드'
+      a.btn_line href=/boardDownload.es?bid=0036&list_no=734669&seq=69107166 onclick= :: own='다운로드' all='다운로드'
+[DATES] sample: ['2026-10-26']
 
 [ANCHORS] most common link paths
-   x10 ul > li > div.ntt_sj.left > a.no_secret  href=# {'onclick': "bbsMstrView('25766'); return false;"} text='한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지 [new] ['
-      row? div.ntt_sj.left :: '제목 한국국토정보공사 신입사원 채용 1차(필기)전형 합격자 공지 [new] [secret]'
-   x8 ul > li > p.atch_file_id > a.folder  href=# {'onclick': "bbsMstrView('25726');;return false;"} text='1개이상 첨부파일이 있음[상세보기]'
-      row? li :: '번호 1027 제목 2026년 하반기 한국국토정보공사 전문경력직(토지보상) 채용 공고 [new] [secret] 작성일 : 2026-11-03 조회수 291701 첨부 : 1개이상 첨부파일이 있음[상세보기]'
+   x1 div#contents_body > ul.prevnext > li.prev > a  href=/board.es?mid=a10602050000&bid=0036&tag=&act=view&list_no=734656&nPage=  text='한국토지주택공사 광주전남지역본부 주거복지 법률조직 변호사(기간제근로자) '
+      row? li.prev :: '이전글 한국토지주택공사 광주전남지역본부 주거복지 법률조직 변호사(기간제근로자) 채용공고(2026.10)'
+   x1 div#contents_body > ul.prevnext > li.next > a  href=/board.es?mid=a10602050000&bid=0036&tag=&act=view&list_no=734705&nPage=  text='한국토지주택공사 인천지역본부 기간제근로자(매입행정역, 매입기술역, 공사원'
+      row? li.next :: '다음글 한국토지주택공사 인천지역본부 기간제근로자(매입행정역, 매입기술역, 공사원가검토역) 채용공고'
 
-[LINKS] board candidates (16)
-   '보상공고' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000321/lst.do
-   '협의 공고' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000322/lst.do
-   '기업성장응답 게시판' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000311/lst.do
-   '채용정보' -> https://www.lx.or.kr/kor/sub03_05_04_10.do
-   '- 공지사항' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000041/lst.do
-   '인사·채용비리' -> https://bit.ly/38RFqMN
-   '누리지 소식' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000091/lst.do
-   '안전보건 제안 게시판' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000251/lst.do
-   '공고' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000001/lst.do
-   '채용공고' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000001/317/lst.do
-   '입찰공고' -> https://www.lx.or.kr/kor/bid/list.do
-   '인사소식' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000003/lst.do
-   '채용정보' -> https://www.lx.or.kr/kor/sub06_09_01.do
-   '채용안내' -> https://www.lx.or.kr/kor/sub06_09_02_01.do
-   '채용방법 및 분야' -> https://www.lx.or.kr/kor/sub06_09_02_02.do
-   '공지사항' -> https://www.lx.or.kr/kor/bbs/BBSMSTR_000000000011/lst.do
+[LINKS] board candidates (13)
+   '새소식' -> https://www.lh.or.kr/menu.es?mid=a10601000000
+   '공지ㆍ공모' -> https://www.lh.or.kr/menu.es?mid=a10601010000
+   '채용정보' -> https://www.lh.or.kr/menu.es?mid=a10602010000
+   'NCS 기반 채용' -> https://www.lh.or.kr/menu.es?mid=a10602020100
+   '정규직 채용공고' -> https://www.lh.or.kr/menu.es?mid=a10602040000
+   '비정규직 채용공고' -> https://www.lh.or.kr/menu.es?mid=a10602050000
+   '공지사항' -> https://www.lh.or.kr/menu.es?mid=a10602060000
+   '인사부조리, 채용비리' -> http://www.molit.go.kr/USR/WPGE0201/m_37055/DTL.jsp
+   '정보공개 소통게시판' -> https://www.lh.or.kr/menu.es?mid=a10112000000
+   '새소식 >' -> https://www.lh.or.kr/menu.es?mid=a10600000000
+   '채용정보 >' -> https://www.lh.or.kr/menu.es?mid=a10602000000
+   '한국토지주택공사 광주전남지역본부 주거복지 법률조직 변호' -> https://www.lh.or.kr/board.es?mid=a10602050000&bid=0036&tag=&act=view&list_no=734656&nPage=
+   '한국토지주택공사 인천지역본부 기간제근로자(매입행정역, ' -> https://www.lh.or.kr/board.es?mid=a10602050000&bid=0036&tag=&act=view&list_no=734705&nPage=
+====================================================================================================
+URL: https://www.kicet.re.kr/00020/00117/00253.web?gcode=1024&idx=12349&amode=view
+status=200 final=https://www.kicet.re.kr/00020/00117/00253.web?gcode=1024&idx=12349&amode=view encoding=UTF-8 bytes=42304
+title: 채용정보 | 한국세라믹기술원
+
+[BODY candidates]
+   div.container.clearfix > div.bbs1view1 > div.substance  textlen=162 :: '한국세라믹기술원 2026년도 제4분기 채용 공고가 개시되었습니다. 접수 기간은 2026년 10월 15일(목) 00시부터 2026년 10월 29일'
+   div#forPrint > div#body_content > div.container.clearfix  textlen=296 :: '채용공고 및 지원하기 상세내용 : 제목, 구분, 접수기한, 접수현황, 첨부파일 제목 2026년도 제4분기 채용 공고 안내 접수기한 2026-10'
+   div.container.clearfix > div#body > div.container.clearfix  textlen=440 :: '현재페이지 위치: 홈 / 알림마당 / 알림자료 / 채용정보 페이스북 담기 트위터 담기 채용정보 채용공고 및 지원하기 상세내용 : 제목, 구분, '
+   div#body > div.container.clearfix > div#forPrint  textlen=349 :: '현재페이지 위치: 홈 / 알림마당 / 알림자료 / 채용정보 페이스북 담기 트위터 담기 채용정보 채용공고 및 지원하기 상세내용 : 제목, 구분, '
+   div#wrap > div.container.clearfix > div#body  textlen=440 :: '현재페이지 위치: 홈 / 알림마당 / 알림자료 / 채용정보 페이스북 담기 트위터 담기 채용정보 채용공고 및 지원하기 상세내용 : 제목, 구분, '
+
+[ATTACH candidates]
+[DATES] sample: ['2026-10-15', '2026-10-29']
+====================================================================================================
+URL: https://www.copyright.or.kr/notify/recruitment/view.do?brdctsno=56130
+status=200 final=https://www.copyright.or.kr/notify/recruitment/view.do?brdctsno=56130 encoding=UTF-8 bytes=100652
+title: 채용공고(상세)
+						
+						
+					
+					>
+				
+				
+			
+		
+			
+				
+					
+						소식 > 한
+
+[BODY candidates]
+   div.sub_content > div.sub-con > div.table-style  textlen=246 :: '채용공고 상세보기 제목 <2026년 제3차 직원 채용> 최종면접 안내 담당부서 경영지원팀 (055-792-0036) 등록일 2026-11-02 '
+   div#subContent > div.sub_content > div.sub-con  textlen=330 :: '채용공고 상세보기 제목 <2026년 제3차 직원 채용> 최종면접 안내 담당부서 경영지원팀 (055-792-0036) 등록일 2026-11-02 '
+   div#container.sub_container > div#subContent > div.sub_content  textlen=335 :: '채용공고 채용공고 상세보기 제목 <2026년 제3차 직원 채용> 최종면접 안내 담당부서 경영지원팀 (055-792-0036) 등록일 2026-1'
+
+[ATTACH candidates]
+   ul.depth_03 > li > a href=/committee-introduction/committee/commissioner/profile/index.do onclick= text='위원장소개'
+   ul.depth_03 > li > a href=/committee-introduction/committee/commissioner/profile/index.do onclick= text='위원장소개'
+   ul.depth_02 > li > a href=/customer-center/download-service/customer-support-form/index.do onclick= text='서식다운로드'
+   ul.depth_03 > li > a href=/customer-center/download-service/customer-support-form/index.do onclick= text='고객지원 민원서식'
+   ul.depth_03 > li > a href=/customer-center/download-service/copyright-contract-form/index.do onclick= text='저작권 표준계약서'
+   ul.depth_03 > li > a href=/customer-center/download-service/viewer/index.do onclick= text='뷰어다운로드'
+   td > p > a.attachment href=download.do?brdctsno=56130&brdctsfileno=28446 onclick= text='(제출서류) 최종면접 응시자 본인확인서 제출 양식.hwp'
+   td > p > a.attachment href=download.do?brdctsno=56130&brdctsfileno=28448 onclick= text='(공고)_2026년 제3차 직원채용 최종면접 안내.pdf'
+   div.site_infor > div.site_mark > a href=/pdf/WA/Certification_copyright.pdf onclick=window.open('/pdf/WA/Certification_copyright.pdf', 'popup',  text=''
+   div.site_infor > div.site_mark > a href=/pdf/family_friendly.pdf onclick=window.open('/pdf/family_friendly.pdf', 'famillyfriendly', ' text=''
+   div.site_infor > div.site_mark > a href=/pdf/open_data_quality_certification.pdf onclick=window.open('/pdf/open_data_quality_certification.pdf', 'fam text=''
+[DATES] sample: ['2026-11-02']
+====================================================================================================
+URL: https://www.lx.or.kr/kor/BBSMSTR_000000000001/317/25726/view.do
+status=200 final=https://www.lx.or.kr/kor/BBSMSTR_000000000001/317/25726/view.do encoding=UTF-8 bytes=70457
+title: 채용공고 < 공고 < 뉴스룸 < LX 한국국토정보공사
+
+[BODY candidates]
+   div#container > div#content > div#txt  textlen=479 :: '채용공고 홈 뉴스룸 공고 채용공고 2026년 하반기 한국국토정보공사 전문경력직(토지보상) 채용 공고 분류 : 채용 작성자 : 인\n\t\t\t\t\t\t\t\t'
+   div#content > div#txt > div.board.notice.view  textlen=238 :: '2026년 하반기 한국국토정보공사 전문경력직(토지보상) 채용 공고 분류 : 채용 작성자 : 인\n\t\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t\t\t\t* 처 작성일'
+   div#txt > div#satisfaction > div.evaluation  textlen=123 :: '고객만족도 설문조사 이 페이지에서 제공하는 정보에 대하여 만족하시나요? 매우만족 만족 보통 불만족 매우불만족 의견입력 고객님의 제안에 열린 자세'
+   div#wrap > div#container > div#content  textlen=499 :: '공유열기 트위터 페이스북 print 채용공고 홈 뉴스룸 공고 채용공고 2026년 하반기 한국국토정보공사 전문경력직(토지보상) 채용 공고 분류 :'
+   div#content > div#txt > div#satisfaction  textlen=123 :: '고객만족도 설문조사 이 페이지에서 제공하는 정보에 대하여 만족하시나요? 매우만족 만족 보통 불만족 매우불만족 의견입력 고객님의 제안에 열린 자세'
+
+[ATTACH candidates]
+   ul > li > a.pdf.btn.bg_00.left href=javascript:fn_egov_downFile('FILE_000000000046136OoHg6','0') onclick= text='1_채용 공고문(토지보상)_2026년 하반기.pdf'
+   ul > li > a.btn.view.small.bg_04 href=/cmm/fms/previewFile.do?atchFileId=FILE_000000000046136OoHg6&fileSn=0 onclick= text='바로보기'
+   ul > li > a.pdf.btn.bg_00.left href=javascript:fn_egov_downFile('FILE_000000000046136OoHg6','1') onclick= text='2. 직무설명서(토지보상).pdf'
+   ul > li > a.btn.view.small.bg_04 href=/cmm/fms/previewFile.do?atchFileId=FILE_000000000046136OoHg6&fileSn=1 onclick= text='바로보기'
+[DATES] sample: ['2026-11-03']
+====================================================================================================
+URL: https://www.koenergy.kr/kosep/fr/ov/jo/ovjo01/view.do?seqNo=33
+status=200 final=https://www.koenergy.kr/kosep/fr/ov/jo/ovjo01/view.do?seqNo=33 encoding=UTF-8 bytes=175632
+title: | 한국남동발전(주)
+
+[BODY candidates]
+   div.section_body > div#mCont.content_area > section#subContent  textlen=392 :: '채용공고 상세 내용 제목 발전공기업 통합실무지원단장 채용공고 작성자 모집기간 2026.09.23 ~ 2026.10.08 진행현황 공고중 내용 발'
+   form#frmDefault > section.contents > div.data_table  textlen=351 :: '채용공고 상세 내용 제목 발전공기업 통합실무지원단장 채용공고 작성자 모집기간 2026.09.23 ~ 2026.10.08 진행현황 공고중 내용 발'
+   tr > td > div.cont_area  textlen=272 :: '발전공기업 통합실무지원단장을 아래와 같이 모집하니 많은 지원 바랍니다. 1. 채용인원 : 1명 2. 모집분야 및 채용수준 ○ 통합실무지원단장 :'
+   section#subContent > form#frmDefault > section.contents  textlen=392 :: '채용공고 상세 내용 제목 발전공기업 통합실무지원단장 채용공고 작성자 모집기간 2026.09.23 ~ 2026.10.08 진행현황 공고중 내용 발'
+   div#wrap > div.section_body  textlen=400 :: '메인으로 가기 채용공고 상세 내용 제목 발전공기업 통합실무지원단장 채용공고 작성자 모집기간 2026.09.23 ~ 2026.10.08 진행현황 '
+
+[ATTACH candidates]
+   p#fileList_0 > span.txtFile > a href=# onclick=javascript:fnDownFile('3655df2623750225bf1cbaea3264545f7a1cf text='발전공기업 통합실무지원단장 채용 공고문.pdf'
+   p#fileList_0 > span.txtFile > a href=# onclick=javascript:fnFileView('3655df2623750225bf1cbaea3264545f7a1cf text='[바로보기]'
+[DATES] sample: ['2026.09.23', '2026.10.08', '2026. 9. 30']
