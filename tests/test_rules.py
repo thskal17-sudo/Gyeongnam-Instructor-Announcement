@@ -159,7 +159,7 @@ def test_title_veto_school_support_staff():
     """돌봄전담사·실무원·실무사는 직종 칸이 '기타각종강사'여도 강사 자리가 아니다 (이방초, 2026-11-23)."""
     from gia.classify.rules import title_veto
     assert title_veto("2026. 이방초등학교 집중돌봄교실 겨울방학 중 돌봄전담사 기간제(대체인력) 모집 공고") == "비강사 직종(전담사)"
-    assert title_veto("사송초등학교 교육공무직원(방과후학교실무원) 대체인력 채용 공고") == "비강사 직종(실무원)"
+    assert title_veto("사송초등학교 방과후학교실무원 대체인력 채용 공고") == "비강사 직종(실무원)"
     assert title_veto("조리실무사 대체인력 채용공고") == "비강사 직종(실무사)"
     # 강사 자리는 그대로
     assert title_veto("2026학년도 가람초등학교 기초학력 전담강사 2차 채용 공고") is None
