@@ -153,3 +153,14 @@ def test_rules_2026_11_22_held_rows():
     assert title_veto("김해시청소년상담복지센터 시간제 청소년동반자 채용 공고") == "비강사 직종(청소년동반자)"
     assert title_veto("거제시 대중교통정책위원회 위원 모집 공고") == "구인 아님(위원 모집)"
     assert title_veto("2026년 경상남도 청소년지도사 디지털.AI 역량현황 조사 참여 요청") == "구인 아님(조사 참여)"
+
+
+def test_title_veto_school_support_staff():
+    """돌봄전담사·실무원·실무사는 직종 칸이 '기타각종강사'여도 강사 자리가 아니다 (이방초, 2026-11-23)."""
+    from gia.classify.rules import title_veto
+    assert title_veto("2026. 이방초등학교 집중돌봄교실 겨울방학 중 돌봄전담사 기간제(대체인력) 모집 공고") == "비강사 직종(전담사)"
+    assert title_veto("사송초등학교 교육공무직원(방과후학교실무원) 대체인력 채용 공고") == "비강사 직종(실무원)"
+    assert title_veto("조리실무사 대체인력 채용공고") == "비강사 직종(실무사)"
+    # 강사 자리는 그대로
+    assert title_veto("2026학년도 가람초등학교 기초학력 전담강사 2차 채용 공고") is None
+    assert title_veto("돌봄교실 특기 적성 개인 위탁 외부강사 모집 공고") is None
