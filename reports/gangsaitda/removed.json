@@ -1,12 +1,6 @@
 {
- "generated_at": "2026-11-24T16:07:32.018299+09:00",
+ "generated_at": "2026-11-25T07:51:18.009000+09:00",
  "removed": [
-  {
-   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1815697",
-   "title": "무동꿈유치원 겨울방학 중 방과후과정 외부강사 채용공고",
-   "org": "무동꿈유치원",
-   "removed_at": "2026-11-24T13:16:38.498883+09:00"
-  },
   {
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1814490",
    "title": "웅상고 계약제교원(결원대체 시간강사)3차 수시 채용 공고-물리(과학)",
@@ -18,12 +12,6 @@
    "title": "결원대체강사(전일제강사) 채용 공고",
    "org": "이북초",
    "removed_at": "2026-11-17T07:34:11.880441+09:00"
-  },
-  {
-   "url": "https://www.gimhae.go.kr/03360/00023/00031.web?amode=view&not_ancmt_mgt_no=110069&cpage=1&section=05",
-   "title": "진영한빛도서관 평생학습강좌 강사 채용 공고",
-   "org": "김해시",
-   "removed_at": "2026-11-11T05:02:33.192267+09:00"
   }
  ]
 }
